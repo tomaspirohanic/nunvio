@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<properties>
+  <property>
+    <externalId>CRM-1001</externalId>
+    <title>Moderný 3-izbový byt v centre</title>
+    <description>Svetlý byt po rekonštrukcii, výťah, balkón. Ideálny pre rodinu.</description>
+    <price>245000</price>
+    <currency>EUR</currency>
+    <offerType>sale</offerType>
+    <city>Bratislava</city>
+    <country>Slovakia</country>
+    <propertyType>APARTMENT</propertyType>
+    <bedrooms>3</bedrooms>
+    <bathrooms>1</bathrooms>
+    <areaSqm>78</areaSqm>
+    <latitude>48.1486</latitude>
+    <longitude>17.1077</longitude>
+    <images>
+      <image>https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200</image>
+      <image>https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200</image>
+    </images>
+  </property>
+  <property>
+    <externalId>CRM-1002</externalId>
+    <title>Rodinný dom so záhradou</title>
+    <description>Kľudná lokalita, garáž, veľká záhrada. Pripravené na nastahovanie.</description>
+    <price>389000</price>
+    <currency>EUR</currency>
+    <offerType>sale</offerType>
+    <city>Trnava</city>
+    <country>Slovakia</country>
+    <propertyType>HOUSE</propertyType>
+    <bedrooms>4</bedrooms>
+    <bathrooms>2</bathrooms>
+    <areaSqm>160</areaSqm>
+    <latitude>48.3774</latitude>
+    <longitude>17.5883</longitude>
+  </property>
+  <property>
+    <externalId>CRM-2001</externalId>
+    <title>Prenájom 2-izbového bytu</title>
+    <description>Zariadený byt, mesačný prenájom vrátane internetu.</description>
+    <price>950</price>
+    <currency>EUR</currency>
+    <offerType>rent</offerType>
+    <city>Košice</city>
+    <country>Slovakia</country>
+    <propertyType>APARTMENT</propertyType>
+    <bedrooms>2</bedrooms>
+    <bathrooms>1</bathrooms>
+    <areaSqm>55</areaSqm>
+    <latitude>48.7164</latitude>
+    <longitude>21.2611</longitude>
+  </property>
+  <property>
+    <externalId>CRM-CZ-501</externalId>
+    <title>Byt 2+kk Praha 5</title>
+    <description>Světlý byt po rekonstrukci, blízko metra.</description>
+    <price>6850000</price>
+    <currency>CZK</currency>
+    <offerType>sale</offerType>
+    <city>Praha</city>
+    <country>CZ</country>
+    <propertyType>byt</propertyType>
+    <bedrooms>2</bedrooms>
+    <bathrooms>1</bathrooms>
+    <areaSqm>52</areaSqm>
+    <latitude>50.0700</latitude>
+    <longitude>14.4000</longitude>
+    <images>
+      <image>https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200</image>
+    </images>
+  </property>
+</properties>

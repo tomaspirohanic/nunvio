@@ -32,6 +32,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...but DO commit the example template (no secrets).
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +41,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/app/generated/prisma
+
+# local / IDE junk
+/app/.vs/
+.vscode/
+Untitled
+*.db
+prisma/dev.db
+prisma.config.ts.bak

@@ -1,0 +1,242 @@
+// ============================================
+// NUNVIO REAL ESTATE PORTAL - PRISMA SCHEMA
+// ============================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String    @id @default(cuid())
+  email           String    @unique
+  name            String?
+  image           String?
+  phone           String?
+  passwordHash    String?
+  emailVerified   DateTime?
+  preferredLocale String?
+  role            UserRole  @default(PRIVATE_USER)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  agencyId String?
+  agency   Agency? @relation(fields: [agencyId], references: [id])
+
+  properties              Property[]
+  emailVerificationTokens EmailVerificationToken[]
+  passwordResetTokens     PasswordResetToken[]
+  inquiriesReceived       Inquiry[]                @relation("InquiryRecipient")
+}
+
+model EmailVerificationToken {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+/// Buyer/tenant lead from public property contact form
+model Inquiry {
+  id         String   @id @default(cuid())
+  propertyId String
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  recipientUserId String?
+  recipientUser   User?   @relation("InquiryRecipient", fields: [recipientUserId], references: [id], onDelete: SetNull)
+
+  name      String
+  email     String
+  phone     String?
+  message   String
+  locale    String?
+  createdAt DateTime @default(now())
+
+  @@index([propertyId])
+  @@index([recipientUserId])
+  @@index([createdAt])
+}
+
+enum UserRole {
+  SUPERADMIN
+  AGENCY_ADMIN
+  AGENT
+  PRIVATE_USER
+}
+
+enum Currency {
+  EUR
+  USD
+  GBP
+  CZK
+}
+
+enum Language {
+  EN
+  DE
+  ES
+}
+
+enum PropertyType {
+  HOUSE
+  APARTMENT
+  LAND
+  COMMERCIAL
+}
+
+enum PromotionLevel {
+  NONE
+  BRONZE
+  SILVER
+  GOLD
+}
+
+enum ListingOffer {
+  SALE
+  RENT
+}
+
+enum PropertyStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model Agency {
+  id        String   @id @default(cuid())
+  name      String
+  companyId String   @unique
+  address   String
+  city      String
+  country   String
+  phone     String?
+  email     String?
+  logoUrl   String?
+  website   String?
+
+  /// Public HTTPS URL of agency XML feed (CRM / multi-posting partner)
+  feedUrl          String?
+  feedSyncEnabled  Boolean   @default(false)
+  /// Next property index in the last fetched feed (for chunked sync of large XML)
+  feedOffset       Int       @default(0)
+  feedLastSyncedAt DateTime?
+  feedLastError    String?
+  feedLastResult   String? // short JSON summary of last sync
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users      User[]
+  properties Property[]
+}
+
+model Property {
+  id          String         @id @default(cuid())
+  title       String
+  description String
+  price       Decimal
+  currency    Currency       @default(EUR)
+  status      PropertyStatus @default(PUBLISHED)
+
+  city      String
+  country   String
+  latitude  Float?
+  longitude Float?
+  showOnMap Boolean @default(true)
+
+  bedrooms     Int
+  bathrooms    Int
+  areaSqm      Int
+  propertyType PropertyType
+  offerType    ListingOffer @default(SALE)
+  isNewBuild   Boolean      @default(false)
+  contactPhone String?
+  /// Full selected address (street + city…), for display; `city` stays searchable
+  address     String?
+  images      String[]     @default([])
+
+  externalId String?
+
+  promotionLevel PromotionLevel @default(NONE)
+  featuredUntil  DateTime?
+  isFeatured     Boolean        @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ownerId String
+  owner   User    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  agencyId String?
+  agency   Agency? @relation(fields: [agencyId], references: [id])
+
+  translations   PropertyTranslation[]
+  propertyImages PropertyImage[]
+  inquiries      Inquiry[]
+
+  @@unique([agencyId, externalId])
+  @@index([ownerId])
+  @@index([agencyId])
+  @@index([externalId])
+  @@index([city, country])
+  @@index([latitude, longitude])
+  @@index([propertyType])
+  @@index([offerType])
+  @@index([status])
+  @@index([isFeatured])
+  @@index([promotionLevel])
+  @@index([status, createdAt])
+  @@index([status, city])
+  @@index([agencyId, status])
+}
+
+model PropertyImage {
+  id         String   @id @default(cuid())
+  propertyId String
+  url        String
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@index([propertyId])
+  @@index([propertyId, order])
+}
+
+model PropertyTranslation {
+  id                    String    @id @default(cuid())
+  propertyId            String
+  language              Language?
+  translatedTitle       String?
+  translatedDescription String?
+  locale                String?
+  title                 String?
+  description           String?
+
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@unique([propertyId, language])
+  @@unique([propertyId, locale])
+  @@index([propertyId])
+  @@index([locale])
+  @@index([language])
+}
