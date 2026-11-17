@@ -128,6 +128,7 @@
     "statusInactive": "Неактивно",
     "resultsTitle": "Найденные объекты",
     "resultsCount": "{count, plural, =0 {0 результатов} =1 {1 результат} one {# результат} few {# результата} many {# результатов} other {# результата}}",
+    "resultsCountCapped": "Более {count, number} результатов",
     "propertiesFound": "{count, plural, =0 {Объекты не найдены} =1 {Найден 1 объект} one {Найден # объект} few {Найдено # объекта} many {Найдено # объектов} other {Найдено # объекта}}",
     "beFirst": "Станьте первым",
     "perMonth": "/месяц"

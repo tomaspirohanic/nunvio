@@ -128,6 +128,7 @@
     "statusInactive": "Inativo",
     "resultsTitle": "Imóveis encontrados",
     "resultsCount": "{count, plural, =0 {0 resultados} =1 {1 resultado} other {# resultados}}",
+    "resultsCountCapped": "Mais de {count, number} resultados",
     "propertiesFound": "{count, plural, =0 {Nenhum imóvel encontrado} =1 {1 imóvel encontrado} other {# imóveis encontrados}}",
     "beFirst": "Seja o primeiro a anunciar",
     "perMonth": "/mês"

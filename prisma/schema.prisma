@@ -170,6 +170,9 @@ model Property {
 
   city      String
   country   String
+  /// ISO 3166-1 alpha-2 derived from `country` (e.g. "SK"). Country search uses
+  /// this equality filter instead of ILIKE so it stays fast at millions of rows.
+  countryCode String?
   latitude  Float?
   longitude Float?
   showOnMap Boolean @default(true)
@@ -226,6 +229,11 @@ model Property {
   // Default public sort: WHERE status = PUBLISHED ORDER BY promotionLevel DESC, createdAt DESC
   @@index([status, promotionLevel(sort: Desc), createdAt(sort: Desc)])
   @@index([status, offerType, propertyType])
+  // Per-country browsing (EU scale): WHERE status AND countryCode ORDER BY promotion, date
+  @@index([status, countryCode, promotionLevel(sort: Desc), createdAt(sort: Desc)])
+  // Typical portal search: country + buy/rent + property type, same sort
+  @@index([status, countryCode, offerType, propertyType, promotionLevel(sort: Desc), createdAt(sort: Desc)])
+  @@index([country, countryCode])
   @@index([agencyId, lastSeenInFeedAt])
   // Trigram indexes: make ILIKE '%x%' (Prisma `contains` + mode insensitive) use an index
   @@index([city(ops: raw("gin_trgm_ops"))], type: Gin, map: "Property_city_trgm_idx")

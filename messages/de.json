@@ -129,6 +129,7 @@
     "forRent": "Zu vermieten",
     "resultsTitle": "Gefundene Immobilien",
     "resultsCount": "{count, plural, =0 {0 Ergebnisse} =1 {1 Ergebnis} other {# Ergebnisse}}",
+    "resultsCountCapped": "Mehr als {count, number} Ergebnisse",
     "perMonth": "/Monat"
   },
   "Filters": {

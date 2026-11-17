@@ -128,6 +128,7 @@
     "statusInactive": "Inactief",
     "resultsTitle": "Gevonden woningen",
     "resultsCount": "{count, plural, =0 {0 resultaten} =1 {1 resultaat} other {# resultaten}}",
+    "resultsCountCapped": "Meer dan {count, number} resultaten",
     "propertiesFound": "{count, plural, =0 {Geen woningen gevonden} =1 {1 woning gevonden} other {# woningen gevonden}}",
     "beFirst": "Plaats als eerste een woning",
     "perMonth": "/maand"

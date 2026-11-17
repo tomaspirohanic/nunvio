@@ -128,6 +128,7 @@
     "statusInactive": "Inactiv",
     "resultsTitle": "Proprietăți găsite",
     "resultsCount": "{count, plural, =0 {0 rezultate} =1 {1 rezultat} few {# rezultate} other {# de rezultate}}",
+    "resultsCountCapped": "Peste {count, number} de rezultate",
     "propertiesFound": "{count, plural, =0 {Nicio proprietate găsită} =1 {1 proprietate găsită} few {# proprietăți găsite} other {# de proprietăți găsite}}",
     "beFirst": "Fii primul care publică",
     "perMonth": "/lună"

@@ -128,6 +128,7 @@
     "statusInactive": "Inactive",
     "resultsTitle": "Found properties",
     "resultsCount": "{count, plural, =0 {0 results} =1 {1 result} other {# results}}",
+    "resultsCountCapped": "More than {count, number} results",
     "propertiesFound": "{count, plural, =0 {No properties found} =1 {1 property found} other {# properties found}}",
     "beFirst": "Be the First to List",
     "perMonth": "/month"

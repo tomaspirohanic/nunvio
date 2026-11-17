@@ -2,15 +2,15 @@
   "crons": [
     {
       "path": "/api/cron/sync-feeds",
-      "schedule": "*/15 * * * *"
+      "schedule": "0 3 * * *"
     },
     {
       "path": "/api/cron/maintenance",
-      "schedule": "*/10 * * * *"
+      "schedule": "30 3 * * *"
     },
     {
       "path": "/api/cron/translate-listings",
-      "schedule": "*/30 * * * *"
+      "schedule": "0 4 * * *"
     }
   ]
 }

@@ -31,7 +31,7 @@ These cannot be finished in code — you set them in external dashboards and `.e
    See `STRIPE_SETUP.md`
 7. **Domain / hosting** — deploy (Vercel or similar), DNS, TLS. Optional custom image domain for R2.
 8. **Automatic CRM feeds** — set `CRON_SECRET` (same value locally + Vercel). Cron hits `/api/cron/sync-feeds` every 15 minutes (`vercel.json`). Agencies enable a HTTPS XML URL in Dashboard → XML import. Spec: `docs/PARTNER-FEED.md`. Outreach emails: `docs/PARTNER-OUTREACH.md`. Public page: `/partners`. Validate API: `POST /api/partners/validate-feed`.  
-   Note: Vercel Hobby only allows 1 cron/day; use Pro for `*/15`.
+   **Before production launch: upgrade to Vercel Pro and set the feed sync cron back to every 15 minutes** (`*/15 * * * *`, also maintenance `*/10` and translations `*/30`). On Hobby, `vercel.json` runs all crons once a day because Hobby rejects more frequent crons (the deployment fails).
 9. **Partner contact** — `PARTNER_CONTACT_EMAIL` (shown on `/partners`).
 10. **Legal** — replace placeholder text on `/legal/privacy` and `/legal/terms` with your company details (IČO, address, DPO).
 11. **Optional** — `DEEPL_API_KEY` for real listing translations (otherwise mock/fallback).

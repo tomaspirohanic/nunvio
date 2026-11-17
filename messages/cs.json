@@ -126,6 +126,7 @@
     "statusInactive": "Neaktivní",
     "resultsTitle": "Nalezené nemovitosti",
     "resultsCount": "{count, plural, =0 {0 výsledků} =1 {1 výsledek} =2 {# výsledky} =3 {# výsledky} =4 {# výsledky} other {# výsledků}}",
+    "resultsCountCapped": "Více než {count, number} výsledků",
     "propertiesFound": "{count, plural, =0 {Nebyly nalezeny žádné nemovitosti} =1 {1 nemovitost nalezena} =2 {# nemovitosti nalezeny} =3 {# nemovitosti nalezeny} =4 {# nemovitosti nalezeny} other {# nemovitostí nalezeno}}",
     "beFirst": "Buďte první, kdo přidá inzerát",
     "forSale": "Na prodej",

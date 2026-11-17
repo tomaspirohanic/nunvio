@@ -128,6 +128,7 @@
     "statusInactive": "未上架",
     "resultsTitle": "找到的房产",
     "resultsCount": "{count, plural, =0 {0 个结果} other {# 个结果}}",
+    "resultsCountCapped": "超过 {count, number} 个结果",
     "propertiesFound": "{count, plural, =0 {未找到房产} other {找到 # 套房产}}",
     "beFirst": "成为第一个",
     "perMonth": "/月"

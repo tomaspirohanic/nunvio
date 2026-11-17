@@ -128,6 +128,7 @@
     "statusInactive": "非公開",
     "resultsTitle": "見つかった物件",
     "resultsCount": "{count, plural, =0 {0 件} other {# 件}}",
+    "resultsCountCapped": "{count, number} 件以上",
     "propertiesFound": "{count, plural, =0 {物件が見つかりません} other {# 件の物件が見つかりました}}",
     "beFirst": "最初の掲載者になろう",
     "perMonth": "/月"

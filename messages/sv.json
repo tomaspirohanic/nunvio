@@ -128,6 +128,7 @@
     "statusInactive": "Inaktiv",
     "resultsTitle": "Hittade bostäder",
     "resultsCount": "{count, plural, =0 {0 resultat} =1 {1 resultat} other {# resultat}}",
+    "resultsCountCapped": "Fler än {count, number} resultat",
     "propertiesFound": "{count, plural, =0 {Inga bostäder hittades} =1 {1 bostad hittades} other {# bostäder hittades}}",
     "beFirst": "Bli först att annonsera",
     "perMonth": "/månad"

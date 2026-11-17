@@ -128,6 +128,7 @@
     "statusInactive": "Neaktivno",
     "resultsTitle": "Pronađene nekretnine",
     "resultsCount": "{count, plural, =0 {0 rezultata} =1 {1 rezultat} one {# rezultat} few {# rezultata} other {# rezultata}}",
+    "resultsCountCapped": "Više od {count, number} rezultata",
     "propertiesFound": "{count, plural, =0 {Nema pronađenih nekretnina} =1 {Pronađena je 1 nekretnina} one {Pronađena je # nekretnina} few {Pronađene su # nekretnine} other {Pronađeno je # nekretnina}}",
     "beFirst": "Budite prvi koji objavljuje",
     "perMonth": "/mjesečno"

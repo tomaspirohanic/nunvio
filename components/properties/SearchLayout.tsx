@@ -43,6 +43,8 @@ export default function SearchLayout({
     page: number;
     pageSize: number;
     total: number;
+    /** true when there are more matches than were counted (MAX_COUNTED_RESULTS) */
+    totalIsCapped?: boolean;
     pageCount: number;
   };
 }) {
@@ -1110,9 +1112,11 @@ export default function SearchLayout({
               {tProperties("resultsTitle")}
             </h1>
             <div className="mt-2 text-sm text-gray-500">
-              {tProperties("resultsCount", {
-                count: pagination?.total ?? properties.length,
-              })}
+              {pagination?.totalIsCapped
+                ? tProperties("resultsCountCapped", { count: pagination.total })
+                : tProperties("resultsCount", {
+                    count: pagination?.total ?? properties.length,
+                  })}
             </div>
           </div>
 

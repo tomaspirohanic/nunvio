@@ -128,6 +128,7 @@
     "statusInactive": "Inactive",
     "resultsTitle": "Biens trouvés",
     "resultsCount": "{count, plural, =0 {0 résultat} =1 {1 résultat} other {# résultats}}",
+    "resultsCountCapped": "Plus de {count, number} résultats",
     "propertiesFound": "{count, plural, =0 {Aucun bien trouvé} =1 {1 bien trouvé} other {# biens trouvés}}",
     "beFirst": "Soyez le premier à publier",
     "perMonth": "/mois"

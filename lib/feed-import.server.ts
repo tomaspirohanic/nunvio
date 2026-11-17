@@ -15,6 +15,7 @@
 //   the returned `processed` count tells them where to resume.
 // ============================================
 
+import { countryCodeFor } from "@/lib/country-display";
 import "server-only";
 
 import { createHash } from "node:crypto";
@@ -223,6 +224,7 @@ export async function importNormalizedProperties(opts: {
         currency: prop.currency,
         city: prop.city,
         country: prop.country,
+        countryCode: countryCodeFor(prop.country),
         latitude: prop.latitude,
         longitude: prop.longitude,
         bedrooms: prop.bedrooms,

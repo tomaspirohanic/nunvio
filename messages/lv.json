@@ -128,6 +128,7 @@
     "statusInactive": "Neaktīvs",
     "resultsTitle": "Atrastie īpašumi",
     "resultsCount": "{count, plural, =0 {0 rezultātu} =1 {1 rezultāts} zero {# rezultātu} one {# rezultāts} other {# rezultāti}}",
+    "resultsCountCapped": "Vairāk nekā {count, number} rezultātu",
     "propertiesFound": "{count, plural, =0 {Īpašumi nav atrasti} =1 {Atrasts 1 īpašums} zero {Atrasti # īpašumi} one {Atrasts # īpašums} other {Atrasti # īpašumi}}",
     "beFirst": "Esiet pirmais",
     "perMonth": "/mēnesī"

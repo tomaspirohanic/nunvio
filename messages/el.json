@@ -128,6 +128,7 @@
     "statusInactive": "Ανενεργό",
     "resultsTitle": "Ακίνητα που βρέθηκαν",
     "resultsCount": "{count, plural, =0 {0 αποτελέσματα} =1 {1 αποτέλεσμα} other {# αποτελέσματα}}",
+    "resultsCountCapped": "Περισσότερα από {count, number} αποτελέσματα",
     "propertiesFound": "{count, plural, =0 {Δεν βρέθηκαν ακίνητα} =1 {Βρέθηκε 1 ακίνητο} other {Βρέθηκαν # ακίνητα}}",
     "beFirst": "Καταχωρίστε πρώτοι",
     "perMonth": "/μήνα"

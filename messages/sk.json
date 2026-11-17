@@ -128,6 +128,7 @@
     "statusInactive": "Neaktívne",
     "resultsTitle": "Nájdené nehnuteľnosti",
     "resultsCount": "{count, plural, =0 {0 výsledkov} =1 {1 výsledok} =2 {# výsledky} =3 {# výsledky} =4 {# výsledky} other {# výsledkov}}",
+    "resultsCountCapped": "Viac ako {count, number} výsledkov",
     "propertiesFound": "{count, plural, =0 {Nenašli sa žiadne nehnuteľnosti} =1 {1 nehnuteľnosť nájdená} =2 {# nehnuteľnosti nájdené} =3 {# nehnuteľnosti nájdené} =4 {# nehnuteľnosti nájdené} other {# nehnuteľností nájdených}}",
     "beFirst": "Buďte prvý, kto pridá inzerát",
     "perMonth": "/mes."

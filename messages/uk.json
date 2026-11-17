@@ -128,6 +128,7 @@
     "statusInactive": "Неактивне",
     "resultsTitle": "Знайдені об'єкти",
     "resultsCount": "{count, plural, =0 {0 результатів} =1 {1 результат} one {# результат} few {# результати} many {# результатів} other {# результату}}",
+    "resultsCountCapped": "Понад {count, number} результатів",
     "propertiesFound": "{count, plural, =0 {Об'єктів не знайдено} =1 {Знайдено 1 об'єкт} one {Знайдено # об'єкт} few {Знайдено # об'єкти} many {Знайдено # об'єктів} other {Знайдено # об'єкта}}",
     "beFirst": "Станьте першим",
     "perMonth": "/місяць"

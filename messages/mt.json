@@ -128,6 +128,7 @@
     "statusInactive": "Inattiv",
     "resultsTitle": "Proprjetajiet misjuba",
     "resultsCount": "{count, plural, =0 {0 riżultati} =1 {riżultat wieħed} other {# riżultati}}",
+    "resultsCountCapped": "Aktar minn {count, number} riżultat",
     "propertiesFound": "{count, plural, =0 {Ma nstabet l-ebda proprjetà} =1 {Instabet proprjetà waħda} other {Instabu # proprjetajiet}}",
     "beFirst": "Kun l-ewwel wieħed",
     "perMonth": "/xahar"

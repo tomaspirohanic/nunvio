@@ -128,6 +128,7 @@
     "statusInactive": "Nieaktywne",
     "resultsTitle": "Znalezione nieruchomości",
     "resultsCount": "{count, plural, =0 {0 wyników} =1 {1 wynik} one {# wynik} few {# wyniki} many {# wyników} other {# wyniku}}",
+    "resultsCountCapped": "Ponad {count, number} wyników",
     "propertiesFound": "{count, plural, =0 {Nie znaleziono nieruchomości} =1 {Znaleziono 1 nieruchomość} one {Znaleziono # nieruchomość} few {Znaleziono # nieruchomości} many {Znaleziono # nieruchomości} other {Znaleziono # nieruchomości}}",
     "beFirst": "Dodaj ogłoszenie jako pierwszy",
     "perMonth": "/mies."

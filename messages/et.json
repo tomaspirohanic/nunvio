@@ -128,6 +128,7 @@
     "statusInactive": "Mitteaktiivne",
     "resultsTitle": "Leitud objektid",
     "resultsCount": "{count, plural, =0 {0 tulemust} =1 {1 tulemus} other {# tulemust}}",
+    "resultsCountCapped": "Üle {count, number} tulemuse",
     "propertiesFound": "{count, plural, =0 {Objekte ei leitud} =1 {Leiti 1 objekt} other {Leiti # objekti}}",
     "beFirst": "Ole esimene",
     "perMonth": "/kuu"

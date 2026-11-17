@@ -128,6 +128,7 @@
     "statusInactive": "Neaktyvus",
     "resultsTitle": "Rasti objektai",
     "resultsCount": "{count, plural, =0 {0 rezultatų} =1 {1 rezultatas} one {# rezultatas} few {# rezultatai} many {# rezultato} other {# rezultatų}}",
+    "resultsCountCapped": "Daugiau nei {count, number} rezultatų",
     "propertiesFound": "{count, plural, =0 {Objektų nerasta} =1 {Rastas 1 objektas} one {Rastas # objektas} few {Rasti # objektai} many {Rasta # objekto} other {Rasta # objektų}}",
     "beFirst": "Būkite pirmas",
     "perMonth": "/mėn."

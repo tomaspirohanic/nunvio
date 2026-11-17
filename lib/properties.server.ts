@@ -9,6 +9,7 @@
 
 "use server";
 
+import { countryCodeFor } from "@/lib/country-display";
 import { getServerSession } from "next-auth/next";
 import { getToken } from "next-auth/jwt";
 import { cookies } from "next/headers";
@@ -94,6 +95,7 @@ export async function createProperty(input: CreatePropertyInput) {
         currency: input.currency,
         city: input.city,
         country: input.country,
+        countryCode: countryCodeFor(input.country),
         address: input.address?.trim() || null,
         latitude: input.latitude ?? null,
         longitude: input.longitude ?? null,
@@ -189,6 +191,7 @@ export async function updateProperty(
         currency: input.currency,
         city: input.city,
         country: input.country,
+        countryCode: countryCodeFor(input.country),
         address: input.address?.trim() || null,
         latitude: input.latitude ?? null,
         longitude: input.longitude ?? null,

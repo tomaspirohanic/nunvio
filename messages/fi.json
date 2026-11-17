@@ -128,6 +128,7 @@
     "statusInactive": "Ei aktiivinen",
     "resultsTitle": "Löydetyt kohteet",
     "resultsCount": "{count, plural, =0 {0 tulosta} =1 {1 tulos} other {# tulosta}}",
+    "resultsCountCapped": "Yli {count, number} tulosta",
     "propertiesFound": "{count, plural, =0 {Kohteita ei löytynyt} =1 {Löytyi 1 kohde} other {Löytyi # kohdetta}}",
     "beFirst": "Ilmoita ensimmäisenä",
     "perMonth": "/kk"

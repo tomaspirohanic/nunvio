@@ -128,6 +128,7 @@
     "statusInactive": "Неактивна",
     "resultsTitle": "Намерени имоти",
     "resultsCount": "{count, plural, =0 {0 резултата} =1 {1 резултат} other {# резултата}}",
+    "resultsCountCapped": "Над {count, number} резултата",
     "propertiesFound": "{count, plural, =0 {Няма намерени имоти} =1 {Намерен е 1 имот} other {Намерени са # имота}}",
     "beFirst": "Публикувайте първи",
     "perMonth": "/месец"

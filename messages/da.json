@@ -128,6 +128,7 @@
     "statusInactive": "Inaktiv",
     "resultsTitle": "Fundne boliger",
     "resultsCount": "{count, plural, =0 {0 resultater} =1 {1 resultat} other {# resultater}}",
+    "resultsCountCapped": "Over {count, number} resultater",
     "propertiesFound": "{count, plural, =0 {Ingen boliger fundet} =1 {1 bolig fundet} other {# boliger fundet}}",
     "beFirst": "Bliv den første til at annoncere",
     "perMonth": "/md."
