@@ -695,7 +695,7 @@
     "newBadge": "Nové"
   },
   "Prices": {
-    "cityMetaTitle": "Ceny nehnuteľností {city} {year}: cena za m² | Nunvio",
+    "cityMetaTitle": "Ceny nehnuteľností {city} {year}: cena za m²",
     "cityMetaDescription": "Priemerná ponuková cena bytu v lokalite {city} je {price} za m². Vývoj cien, nájmy a {count} aktuálnych inzerátov.",
     "cityMetaDescriptionNoPrice": "Ceny nehnuteľností, nájmy a {count} aktuálnych inzerátov v lokalite {city}.",
     "breadcrumbPrices": "Ceny nehnuteľností",
@@ -724,14 +724,14 @@
     "tableListings": "Inzeráty",
     "disclaimer": "Ide o ponukové ceny z inzerátov na Nunvio, nie o skutočné predajné ceny. Aktualizované denne.",
     "otherCities": "Ďalšie mestá – {country}",
-    "countryMetaTitle": "Ceny nehnuteľností {country} {year} podľa miest | Nunvio",
+    "countryMetaTitle": "Ceny nehnuteľností {country} {year} podľa miest",
     "countryMetaDescription": "Priemerná ponuková cena bytov za m² v každom meste ({country}), aktualizovaná denne.",
     "countryTitle": "Ceny nehnuteľností – {country}",
     "countryLead": "Priemerná ponuková cena bytov na predaj za m² v jednotlivých mestách podľa aktuálnych inzerátov.",
     "colCity": "Mesto",
     "colFlatPerSqm": "Byty, cena za m²",
     "colListings": "Inzeráty",
-    "indexMetaTitle": "Ceny nehnuteľností v Európe podľa krajín a miest | Nunvio",
+    "indexMetaTitle": "Ceny nehnuteľností v Európe podľa krajín a miest",
     "indexTitle": "Ceny nehnuteľností",
     "indexLead": "Priemerné ponukové ceny za m² z aktuálnych inzerátov podľa krajín a miest. Aktualizované denne.",
     "listingsCount": "{count, plural, one {# inzerát} few {# inzeráty} other {# inzerátov}}"

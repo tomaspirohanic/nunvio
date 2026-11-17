@@ -694,7 +694,7 @@
     "newBadge": "Ny"
   },
   "Prices": {
-    "cityMetaTitle": "Boligpriser i {city} {year}: pris pr. m² | Nunvio",
+    "cityMetaTitle": "Boligpriser i {city} {year}: pris pr. m²",
     "cityMetaDescription": "Den gennemsnitlige udbudspris for en lejlighed i {city} er {price} pr. m². Udvikling, huslejer og {count} aktuelle annoncer.",
     "cityMetaDescriptionNoPrice": "Boligpriser, huslejer og {count} aktuelle annoncer i {city}.",
     "breadcrumbPrices": "Boligpriser",
@@ -723,14 +723,14 @@
     "tableListings": "Annoncer",
     "disclaimer": "Dette er udbudspriser fra annoncer på Nunvio, ikke endelige salgspriser. Opdateres dagligt.",
     "otherCities": "Andre byer i {country}",
-    "countryMetaTitle": "Boligpriser i {country} {year} efter by | Nunvio",
+    "countryMetaTitle": "Boligpriser i {country} {year} efter by",
     "countryMetaDescription": "Gennemsnitlig udbudspris pr. m² for lejligheder i hver by i {country}, opdateret dagligt.",
     "countryTitle": "Boligpriser i {country}",
     "countryLead": "Gennemsnitlig udbudspris pr. m² for lejligheder til salg i hver by, ud fra aktuelle annoncer.",
     "colCity": "By",
     "colFlatPerSqm": "Lejligheder, pris pr. m²",
     "colListings": "Annoncer",
-    "indexMetaTitle": "Boligpriser i Europa efter land og by | Nunvio",
+    "indexMetaTitle": "Boligpriser i Europa efter land og by",
     "indexTitle": "Boligpriser",
     "indexLead": "Gennemsnitlige udbudspriser pr. m² fra aktuelle annoncer, efter land og by. Opdateres dagligt.",
     "listingsCount": "{count, plural, one {# annonce} other {# annoncer}}"

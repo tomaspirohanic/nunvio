@@ -694,7 +694,7 @@
     "newBadge": "Nieuw"
   },
   "Prices": {
-    "cityMetaTitle": "Woningprijzen in {city} {year}: prijs per m² | Nunvio",
+    "cityMetaTitle": "Woningprijzen in {city} {year}: prijs per m²",
     "cityMetaDescription": "De gemiddelde vraagprijs van een appartement in {city} is {price} per m². Trends, huurprijzen en {count} actuele advertenties.",
     "cityMetaDescriptionNoPrice": "Woningprijzen, huurprijzen en {count} actuele advertenties in {city}.",
     "breadcrumbPrices": "Woningprijzen",
@@ -723,14 +723,14 @@
     "tableListings": "Advertenties",
     "disclaimer": "Dit zijn vraagprijzen uit advertenties op Nunvio, geen uiteindelijke verkoopprijzen. Dagelijks bijgewerkt.",
     "otherCities": "Andere steden in {country}",
-    "countryMetaTitle": "Woningprijzen in {country} {year} per stad | Nunvio",
+    "countryMetaTitle": "Woningprijzen in {country} {year} per stad",
     "countryMetaDescription": "Gemiddelde vraagprijs per m² van appartementen in elke stad in {country}, dagelijks bijgewerkt.",
     "countryTitle": "Woningprijzen in {country}",
     "countryLead": "Gemiddelde vraagprijs per m² van koopappartementen in elke stad, op basis van actuele advertenties.",
     "colCity": "Stad",
     "colFlatPerSqm": "Appartementen, prijs per m²",
     "colListings": "Advertenties",
-    "indexMetaTitle": "Woningprijzen in Europa per land en stad | Nunvio",
+    "indexMetaTitle": "Woningprijzen in Europa per land en stad",
     "indexTitle": "Woningprijzen",
     "indexLead": "Gemiddelde vraagprijzen per m² uit actuele advertenties, per land en stad. Dagelijks bijgewerkt.",
     "listingsCount": "{count, plural, one {# advertentie} other {# advertenties}}"

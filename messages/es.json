@@ -695,7 +695,7 @@
     "newBadge": "Nuevo"
   },
   "Prices": {
-    "cityMetaTitle": "Precios de vivienda en {city} {year}: precio por m² | Nunvio",
+    "cityMetaTitle": "Precios de vivienda en {city} {year}: precio por m²",
     "cityMetaDescription": "El precio medio de oferta de un piso en {city} es de {price} por m². Tendencias, alquileres y {count} anuncios actuales.",
     "cityMetaDescriptionNoPrice": "Precios de vivienda, alquileres y {count} anuncios actuales en {city}.",
     "breadcrumbPrices": "Precios de vivienda",
@@ -724,14 +724,14 @@
     "tableListings": "Anuncios",
     "disclaimer": "Son precios de oferta de anuncios en Nunvio, no precios finales de venta. Se actualizan a diario.",
     "otherCities": "Otras ciudades de {country}",
-    "countryMetaTitle": "Precios de vivienda en {country} {year} por ciudad | Nunvio",
+    "countryMetaTitle": "Precios de vivienda en {country} {year} por ciudad",
     "countryMetaDescription": "Precio medio de oferta por m² de pisos en cada ciudad de {country}, actualizado a diario.",
     "countryTitle": "Precios de vivienda en {country}",
     "countryLead": "Precio medio de oferta por m² de pisos en venta en cada ciudad, según los anuncios actuales.",
     "colCity": "Ciudad",
     "colFlatPerSqm": "Pisos, precio por m²",
     "colListings": "Anuncios",
-    "indexMetaTitle": "Precios de vivienda en Europa por país y ciudad | Nunvio",
+    "indexMetaTitle": "Precios de vivienda en Europa por país y ciudad",
     "indexTitle": "Precios de vivienda",
     "indexLead": "Precios medios de oferta por m² de los anuncios actuales, por país y ciudad. Actualizado a diario.",
     "listingsCount": "{count, plural, one {# anuncio} other {# anuncios}}"

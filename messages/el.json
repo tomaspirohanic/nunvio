@@ -694,7 +694,7 @@
     "newBadge": "Νέο"
   },
   "Prices": {
-    "cityMetaTitle": "Τιμές ακινήτων σε {city} {year}: τιμή ανά τ.μ. | Nunvio",
+    "cityMetaTitle": "Τιμές ακινήτων σε {city} {year}: τιμή ανά τ.μ.",
     "cityMetaDescription": "Η μέση ζητούμενη τιμή διαμερίσματος σε {city} είναι {price} ανά τ.μ. Τάσεις, ενοίκια και {count} τρέχουσες αγγελίες.",
     "cityMetaDescriptionNoPrice": "Τιμές ακινήτων, ενοίκια και {count} τρέχουσες αγγελίες σε {city}.",
     "breadcrumbPrices": "Τιμές ακινήτων",
@@ -723,14 +723,14 @@
     "tableListings": "Αγγελίες",
     "disclaimer": "Πρόκειται για ζητούμενες τιμές από αγγελίες στο Nunvio, όχι τελικές τιμές πώλησης. Ενημερώνεται καθημερινά.",
     "otherCities": "Άλλες πόλεις: {country}",
-    "countryMetaTitle": "Τιμές ακινήτων: {country} {year} ανά πόλη | Nunvio",
+    "countryMetaTitle": "Τιμές ακινήτων: {country} {year} ανά πόλη",
     "countryMetaDescription": "Μέση ζητούμενη τιμή ανά τ.μ. διαμερισμάτων σε κάθε πόλη ({country}), με καθημερινή ενημέρωση.",
     "countryTitle": "Τιμές ακινήτων: {country}",
     "countryLead": "Μέση ζητούμενη τιμή ανά τ.μ. διαμερισμάτων προς πώληση σε κάθε πόλη, από τρέχουσες αγγελίες.",
     "colCity": "Πόλη",
     "colFlatPerSqm": "Διαμερίσματα, τιμή ανά τ.μ.",
     "colListings": "Αγγελίες",
-    "indexMetaTitle": "Τιμές ακινήτων στην Ευρώπη ανά χώρα και πόλη | Nunvio",
+    "indexMetaTitle": "Τιμές ακινήτων στην Ευρώπη ανά χώρα και πόλη",
     "indexTitle": "Τιμές ακινήτων",
     "indexLead": "Μέσες ζητούμενες τιμές ανά τ.μ. από τρέχουσες αγγελίες, ανά χώρα και πόλη. Ενημερώνεται καθημερινά.",
     "listingsCount": "{count, plural, one {# αγγελία} other {# αγγελίες}}"

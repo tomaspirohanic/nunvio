@@ -694,7 +694,7 @@
     "newBadge": "Uusi"
   },
   "Prices": {
-    "cityMetaTitle": "Asuntojen hinnat: {city} {year}, neliöhinta | Nunvio",
+    "cityMetaTitle": "Asuntojen hinnat: {city} {year}, neliöhinta",
     "cityMetaDescription": "Asunnon keskimääräinen pyyntihinta ({city}) on {price}/m². Kehitys, vuokrat ja {count} ajankohtaista ilmoitusta.",
     "cityMetaDescriptionNoPrice": "Asuntojen hinnat, vuokrat ja {count} ajankohtaista ilmoitusta: {city}.",
     "breadcrumbPrices": "Asuntojen hinnat",
@@ -723,14 +723,14 @@
     "tableListings": "Ilmoitukset",
     "disclaimer": "Nämä ovat Nunvion ilmoitusten pyyntihintoja, eivät toteutuneita kauppahintoja. Päivitetään päivittäin.",
     "otherCities": "Muut kaupungit: {country}",
-    "countryMetaTitle": "Asuntojen hinnat: {country} {year} kaupungeittain | Nunvio",
+    "countryMetaTitle": "Asuntojen hinnat: {country} {year} kaupungeittain",
     "countryMetaDescription": "Asuntojen keskimääräinen pyyntihinta/m² jokaisessa kaupungissa ({country}), päivitetään päivittäin.",
     "countryTitle": "Asuntojen hinnat: {country}",
     "countryLead": "Myytävien asuntojen keskimääräinen pyyntihinta/m² kaupungeittain ajankohtaisista ilmoituksista.",
     "colCity": "Kaupunki",
     "colFlatPerSqm": "Asunnot, hinta/m²",
     "colListings": "Ilmoitukset",
-    "indexMetaTitle": "Asuntojen hinnat Euroopassa maittain ja kaupungeittain | Nunvio",
+    "indexMetaTitle": "Asuntojen hinnat Euroopassa maittain ja kaupungeittain",
     "indexTitle": "Asuntojen hinnat",
     "indexLead": "Keskimääräiset pyyntihinnat/m² ajankohtaisista ilmoituksista maittain ja kaupungeittain. Päivitetään päivittäin.",
     "listingsCount": "{count, plural, one {# ilmoitus} other {# ilmoitusta}}"

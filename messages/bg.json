@@ -694,7 +694,7 @@
     "newBadge": "Ново"
   },
   "Prices": {
-    "cityMetaTitle": "Цени на имоти в {city} {year}: цена на м² | Nunvio",
+    "cityMetaTitle": "Цени на имоти в {city} {year}: цена на м²",
     "cityMetaDescription": "Средната цена на апартамент в {city} е {price} на м². Тенденции, наеми и актуални обяви: {count}.",
     "cityMetaDescriptionNoPrice": "Цени на имоти, наеми и актуални обяви в {city}: {count}.",
     "breadcrumbPrices": "Цени на имоти",
@@ -723,14 +723,14 @@
     "tableListings": "Обяви",
     "disclaimer": "Това са цени от обявите в Nunvio, а не крайни цени на сделките. Обновява се ежедневно.",
     "otherCities": "Други градове: {country}",
-    "countryMetaTitle": "Цени на имоти: {country} {year} по градове | Nunvio",
+    "countryMetaTitle": "Цени на имоти: {country} {year} по градове",
     "countryMetaDescription": "Средна цена на м² на апартаменти във всеки град ({country}), обновявана ежедневно.",
     "countryTitle": "Цени на имоти: {country}",
     "countryLead": "Средна цена на м² на апартаменти за продажба във всеки град, по актуални обяви.",
     "colCity": "Град",
     "colFlatPerSqm": "Апартаменти, цена на м²",
     "colListings": "Обяви",
-    "indexMetaTitle": "Цени на имоти в Европа по държави и градове | Nunvio",
+    "indexMetaTitle": "Цени на имоти в Европа по държави и градове",
     "indexTitle": "Цени на имоти",
     "indexLead": "Средни цени на м² от актуални обяви, по държави и градове. Обновява се ежедневно.",
     "listingsCount": "{count, plural, one {# обява} other {# обяви}}"

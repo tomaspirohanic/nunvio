@@ -694,7 +694,7 @@
     "newBadge": "Нове"
   },
   "Prices": {
-    "cityMetaTitle": "Ціни на нерухомість: {city} {year}, ціна за м² | Nunvio",
+    "cityMetaTitle": "Ціни на нерухомість: {city} {year}, ціна за м²",
     "cityMetaDescription": "Середня ціна пропозиції квартири в {city} — {price} за м². Динаміка, оренда та актуальні оголошення: {count}.",
     "cityMetaDescriptionNoPrice": "Ціни на нерухомість, оренда та актуальні оголошення в {city}: {count}.",
     "breadcrumbPrices": "Ціни на нерухомість",
@@ -723,14 +723,14 @@
     "tableListings": "Оголошення",
     "disclaimer": "Це ціни пропозиції з оголошень на Nunvio, а не остаточні ціни продажу. Оновлюється щодня.",
     "otherCities": "Інші міста: {country}",
-    "countryMetaTitle": "Ціни на нерухомість: {country} {year} за містами | Nunvio",
+    "countryMetaTitle": "Ціни на нерухомість: {country} {year} за містами",
     "countryMetaDescription": "Середня ціна пропозиції за м² квартир у кожному місті ({country}), оновлюється щодня.",
     "countryTitle": "Ціни на нерухомість: {country}",
     "countryLead": "Середня ціна пропозиції за м² квартир на продаж у кожному місті за актуальними оголошеннями.",
     "colCity": "Місто",
     "colFlatPerSqm": "Квартири, ціна за м²",
     "colListings": "Оголошення",
-    "indexMetaTitle": "Ціни на нерухомість у Європі за країнами та містами | Nunvio",
+    "indexMetaTitle": "Ціни на нерухомість у Європі за країнами та містами",
     "indexTitle": "Ціни на нерухомість",
     "indexLead": "Середні ціни пропозиції за м² з актуальних оголошень, за країнами та містами. Оновлюється щодня.",
     "listingsCount": "{count, plural, one {# оголошення} few {# оголошення} many {# оголошень} other {# оголошення}}"

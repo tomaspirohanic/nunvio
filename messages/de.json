@@ -704,7 +704,7 @@
     "newBadge": "Neu"
   },
   "Prices": {
-    "cityMetaTitle": "Immobilienpreise in {city} {year}: Preis pro m² | Nunvio",
+    "cityMetaTitle": "Immobilienpreise in {city} {year}: Preis pro m²",
     "cityMetaDescription": "Der durchschnittliche Angebotspreis einer Wohnung in {city} liegt bei {price} pro m². Trends, Mieten und {count} aktuelle Inserate.",
     "cityMetaDescriptionNoPrice": "Immobilienpreise, Mieten und {count} aktuelle Inserate in {city}.",
     "breadcrumbPrices": "Immobilienpreise",
@@ -733,14 +733,14 @@
     "tableListings": "Inserate",
     "disclaimer": "Dies sind Angebotspreise aus Inseraten auf Nunvio, keine tatsächlichen Verkaufspreise. Tägliche Aktualisierung.",
     "otherCities": "Weitere Städte in {country}",
-    "countryMetaTitle": "Immobilienpreise in {country} {year} nach Stadt | Nunvio",
+    "countryMetaTitle": "Immobilienpreise in {country} {year} nach Stadt",
     "countryMetaDescription": "Durchschnittlicher Angebotspreis pro m² für Wohnungen in jeder Stadt in {country}, täglich aktualisiert.",
     "countryTitle": "Immobilienpreise in {country}",
     "countryLead": "Durchschnittlicher Angebotspreis pro m² für Wohnungen zum Kauf in jeder Stadt, aus aktuellen Inseraten.",
     "colCity": "Stadt",
     "colFlatPerSqm": "Wohnungen, Preis pro m²",
     "colListings": "Inserate",
-    "indexMetaTitle": "Immobilienpreise in Europa nach Land und Stadt | Nunvio",
+    "indexMetaTitle": "Immobilienpreise in Europa nach Land und Stadt",
     "indexTitle": "Immobilienpreise",
     "indexLead": "Durchschnittliche Angebotspreise pro m² aus aktuellen Inseraten, nach Land und Stadt. Täglich aktualisiert.",
     "listingsCount": "{count, plural, one {# Inserat} other {# Inserate}}"

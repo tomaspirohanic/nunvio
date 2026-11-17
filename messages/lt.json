@@ -694,7 +694,7 @@
     "newBadge": "Nauja"
   },
   "Prices": {
-    "cityMetaTitle": "Nekilnojamojo turto kainos: {city} {year}, kaina už m² | Nunvio",
+    "cityMetaTitle": "Nekilnojamojo turto kainos: {city} {year}, kaina už m²",
     "cityMetaDescription": "Vidutinė buto siūloma kaina ({city}) yra {price} už m². Tendencijos, nuomos kainos ir aktualūs skelbimai: {count}.",
     "cityMetaDescriptionNoPrice": "Nekilnojamojo turto kainos, nuoma ir aktualūs skelbimai ({city}): {count}.",
     "breadcrumbPrices": "Nekilnojamojo turto kainos",
@@ -723,14 +723,14 @@
     "tableListings": "Skelbimai",
     "disclaimer": "Tai siūlomos kainos iš Nunvio skelbimų, o ne galutinės pardavimo kainos. Atnaujinama kasdien.",
     "otherCities": "Kiti miestai: {country}",
-    "countryMetaTitle": "Nekilnojamojo turto kainos: {country} {year} pagal miestus | Nunvio",
+    "countryMetaTitle": "Nekilnojamojo turto kainos: {country} {year} pagal miestus",
     "countryMetaDescription": "Vidutinė butų siūloma kaina už m² kiekviename mieste ({country}), atnaujinama kasdien.",
     "countryTitle": "Nekilnojamojo turto kainos: {country}",
     "countryLead": "Vidutinė parduodamų butų siūloma kaina už m² kiekviename mieste, pagal aktualius skelbimus.",
     "colCity": "Miestas",
     "colFlatPerSqm": "Butai, kaina už m²",
     "colListings": "Skelbimai",
-    "indexMetaTitle": "Nekilnojamojo turto kainos Europoje pagal šalis ir miestus | Nunvio",
+    "indexMetaTitle": "Nekilnojamojo turto kainos Europoje pagal šalis ir miestus",
     "indexTitle": "Nekilnojamojo turto kainos",
     "indexLead": "Vidutinės siūlomos kainos už m² iš aktualių skelbimų, pagal šalis ir miestus. Atnaujinama kasdien.",
     "listingsCount": "{count, plural, one {# skelbimas} few {# skelbimai} many {# skelbimo} other {# skelbimų}}"

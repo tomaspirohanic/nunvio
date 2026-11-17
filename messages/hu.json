@@ -694,7 +694,7 @@
     "newBadge": "Új"
   },
   "Prices": {
-    "cityMetaTitle": "Ingatlanárak – {city}, {year}: négyzetméterár | Nunvio",
+    "cityMetaTitle": "Ingatlanárak – {city}, {year}: négyzetméterár",
     "cityMetaDescription": "Egy lakás átlagos kínálati ára {city} településen {price}/m². Trendek, bérleti díjak és {count} aktuális hirdetés.",
     "cityMetaDescriptionNoPrice": "Ingatlanárak, bérleti díjak és {count} aktuális hirdetés – {city}.",
     "breadcrumbPrices": "Ingatlanárak",
@@ -723,14 +723,14 @@
     "tableListings": "Hirdetések",
     "disclaimer": "Ezek a Nunvio hirdetéseiben szereplő kínálati árak, nem végleges eladási árak. Naponta frissül.",
     "otherCities": "További városok – {country}",
-    "countryMetaTitle": "Ingatlanárak városonként – {country}, {year} | Nunvio",
+    "countryMetaTitle": "Ingatlanárak városonként – {country}, {year}",
     "countryMetaDescription": "Lakások átlagos kínálati m²-ára minden városban – {country}, naponta frissítve.",
     "countryTitle": "Ingatlanárak – {country}",
     "countryLead": "Eladó lakások átlagos kínálati m²-ára városonként, aktuális hirdetések alapján.",
     "colCity": "Város",
     "colFlatPerSqm": "Lakások, ár/m²",
     "colListings": "Hirdetések",
-    "indexMetaTitle": "Ingatlanárak Európában országonként és városonként | Nunvio",
+    "indexMetaTitle": "Ingatlanárak Európában országonként és városonként",
     "indexTitle": "Ingatlanárak",
     "indexLead": "Átlagos kínálati m²-árak aktuális hirdetésekből, országonként és városonként. Naponta frissül.",
     "listingsCount": "{count, plural, one {# hirdetés} other {# hirdetés}}"

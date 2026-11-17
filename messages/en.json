@@ -694,7 +694,7 @@
     "newBadge": "New"
   },
   "Prices": {
-    "cityMetaTitle": "Property prices in {city} {year}: price per m² | Nunvio",
+    "cityMetaTitle": "Property prices in {city} {year}: price per m²",
     "cityMetaDescription": "Average asking price of a flat in {city} is {price} per m². Trends, rents and {count} current listings.",
     "cityMetaDescriptionNoPrice": "Property prices, rents and {count} current listings in {city}.",
     "breadcrumbPrices": "Property prices",
@@ -723,14 +723,14 @@
     "tableListings": "Listings",
     "disclaimer": "These are asking prices from listings on Nunvio, not final sale prices. Updated daily.",
     "otherCities": "Other cities in {country}",
-    "countryMetaTitle": "Property prices in {country} {year} by city | Nunvio",
+    "countryMetaTitle": "Property prices in {country} {year} by city",
     "countryMetaDescription": "Average asking price per m² of flats in every city of {country}, updated daily.",
     "countryTitle": "Property prices in {country}",
     "countryLead": "Average asking price per m² of flats for sale in each city, from current listings.",
     "colCity": "City",
     "colFlatPerSqm": "Flats, price per m²",
     "colListings": "Listings",
-    "indexMetaTitle": "Property prices in Europe by country and city | Nunvio",
+    "indexMetaTitle": "Property prices in Europe by country and city",
     "indexTitle": "Property prices",
     "indexLead": "Average asking prices per m² from current listings, by country and city. Updated daily.",
     "listingsCount": "{count, plural, one {# listing} other {# listings}}"

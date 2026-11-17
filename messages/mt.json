@@ -694,7 +694,7 @@
     "newBadge": "Ġdid"
   },
   "Prices": {
-    "cityMetaTitle": "Prezzijiet tal-propjetà f'{city} {year}: prezz kull m² | Nunvio",
+    "cityMetaTitle": "Prezzijiet tal-propjetà f'{city} {year}: prezz kull m²",
     "cityMetaDescription": "Il-prezz medju mitlub għal appartament f'{city} huwa {price} kull m². Xejriet, kirjiet u reklami attwali: {count}.",
     "cityMetaDescriptionNoPrice": "Prezzijiet tal-propjetà, kirjiet u reklami attwali f'{city}: {count}.",
     "breadcrumbPrices": "Prezzijiet tal-propjetà",
@@ -723,14 +723,14 @@
     "tableListings": "Reklami",
     "disclaimer": "Dawn huma prezzijiet mitluba minn reklami fuq Nunvio, mhux prezzijiet finali tal-bejgħ. Aġġornat kuljum.",
     "otherCities": "Bliet oħra: {country}",
-    "countryMetaTitle": "Prezzijiet tal-propjetà: {country} {year} skont il-belt | Nunvio",
+    "countryMetaTitle": "Prezzijiet tal-propjetà: {country} {year} skont il-belt",
     "countryMetaDescription": "Prezz medju mitlub kull m² tal-appartamenti f'kull belt ({country}), aġġornat kuljum.",
     "countryTitle": "Prezzijiet tal-propjetà: {country}",
     "countryLead": "Prezz medju mitlub kull m² tal-appartamenti għall-bejgħ f'kull belt, minn reklami attwali.",
     "colCity": "Belt",
     "colFlatPerSqm": "Appartamenti, prezz kull m²",
     "colListings": "Reklami",
-    "indexMetaTitle": "Prezzijiet tal-propjetà fl-Ewropa skont il-pajjiż u l-belt | Nunvio",
+    "indexMetaTitle": "Prezzijiet tal-propjetà fl-Ewropa skont il-pajjiż u l-belt",
     "indexTitle": "Prezzijiet tal-propjetà",
     "indexLead": "Prezzijiet medji mitluba kull m² minn reklami attwali, skont il-pajjiż u l-belt. Aġġornat kuljum.",
     "listingsCount": "{count, plural, one {# reklam} other {# reklami}}"

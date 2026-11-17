@@ -694,7 +694,7 @@
     "newBadge": "Novo"
   },
   "Prices": {
-    "cityMetaTitle": "Cijene nekretnina u {city} {year}: cijena po m² | Nunvio",
+    "cityMetaTitle": "Cijene nekretnina u {city} {year}: cijena po m²",
     "cityMetaDescription": "Prosječna tražena cijena stana u {city} iznosi {price} po m². Trendovi, najamnine i aktualni oglasi: {count}.",
     "cityMetaDescriptionNoPrice": "Cijene nekretnina, najamnine i aktualni oglasi u {city}: {count}.",
     "breadcrumbPrices": "Cijene nekretnina",
@@ -723,14 +723,14 @@
     "tableListings": "Oglasi",
     "disclaimer": "Ovo su tražene cijene iz oglasa na Nunviju, a ne konačne prodajne cijene. Ažurira se svakodnevno.",
     "otherCities": "Ostali gradovi: {country}",
-    "countryMetaTitle": "Cijene nekretnina: {country} {year} po gradovima | Nunvio",
+    "countryMetaTitle": "Cijene nekretnina: {country} {year} po gradovima",
     "countryMetaDescription": "Prosječna tražena cijena po m² stanova u svakom gradu ({country}), svakodnevno ažurirano.",
     "countryTitle": "Cijene nekretnina: {country}",
     "countryLead": "Prosječna tražena cijena po m² stanova na prodaju u svakom gradu, iz aktualnih oglasa.",
     "colCity": "Grad",
     "colFlatPerSqm": "Stanovi, cijena po m²",
     "colListings": "Oglasi",
-    "indexMetaTitle": "Cijene nekretnina u Europi po državama i gradovima | Nunvio",
+    "indexMetaTitle": "Cijene nekretnina u Europi po državama i gradovima",
     "indexTitle": "Cijene nekretnina",
     "indexLead": "Prosječne tražene cijene po m² iz aktualnih oglasa, po državama i gradovima. Ažurira se svakodnevno.",
     "listingsCount": "{count, plural, one {# oglas} few {# oglasa} other {# oglasa}}"

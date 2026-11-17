@@ -694,7 +694,7 @@
     "newBadge": "Ny"
   },
   "Prices": {
-    "cityMetaTitle": "Bostadspriser i {city} {year}: pris per m² | Nunvio",
+    "cityMetaTitle": "Bostadspriser i {city} {year}: pris per m²",
     "cityMetaDescription": "Genomsnittligt utgångspris för en lägenhet i {city} är {price} per m². Trender, hyror och {count} aktuella annonser.",
     "cityMetaDescriptionNoPrice": "Bostadspriser, hyror och {count} aktuella annonser i {city}.",
     "breadcrumbPrices": "Bostadspriser",
@@ -723,14 +723,14 @@
     "tableListings": "Annonser",
     "disclaimer": "Detta är utgångspriser från annonser på Nunvio, inte slutpriser. Uppdateras dagligen.",
     "otherCities": "Andra städer i {country}",
-    "countryMetaTitle": "Bostadspriser i {country} {year} per stad | Nunvio",
+    "countryMetaTitle": "Bostadspriser i {country} {year} per stad",
     "countryMetaDescription": "Genomsnittligt utgångspris per m² för lägenheter i varje stad i {country}, uppdateras dagligen.",
     "countryTitle": "Bostadspriser i {country}",
     "countryLead": "Genomsnittligt utgångspris per m² för lägenheter till salu i varje stad, från aktuella annonser.",
     "colCity": "Stad",
     "colFlatPerSqm": "Lägenheter, pris per m²",
     "colListings": "Annonser",
-    "indexMetaTitle": "Bostadspriser i Europa per land och stad | Nunvio",
+    "indexMetaTitle": "Bostadspriser i Europa per land och stad",
     "indexTitle": "Bostadspriser",
     "indexLead": "Genomsnittliga utgångspriser per m² från aktuella annonser, per land och stad. Uppdateras dagligen.",
     "listingsCount": "{count, plural, one {# annons} other {# annonser}}"

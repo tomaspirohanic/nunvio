@@ -694,7 +694,7 @@
     "newBadge": "Nowe"
   },
   "Prices": {
-    "cityMetaTitle": "Ceny nieruchomości w {city} {year}: cena za m² | Nunvio",
+    "cityMetaTitle": "Ceny nieruchomości w {city} {year}: cena za m²",
     "cityMetaDescription": "Średnia cena ofertowa mieszkania w {city} wynosi {price} za m². Trendy, czynsze i aktualne ogłoszenia (liczba: {count}).",
     "cityMetaDescriptionNoPrice": "Ceny nieruchomości, czynsze i aktualne ogłoszenia w {city} (liczba: {count}).",
     "breadcrumbPrices": "Ceny nieruchomości",
@@ -723,14 +723,14 @@
     "tableListings": "Ogłoszenia",
     "disclaimer": "To ceny ofertowe z ogłoszeń na Nunvio, a nie ostateczne ceny transakcyjne. Aktualizowane codziennie.",
     "otherCities": "Inne miasta: {country}",
-    "countryMetaTitle": "Ceny nieruchomości: {country} {year} według miast | Nunvio",
+    "countryMetaTitle": "Ceny nieruchomości: {country} {year} według miast",
     "countryMetaDescription": "Średnia cena ofertowa za m² mieszkań w każdym mieście ({country}), aktualizowana codziennie.",
     "countryTitle": "Ceny nieruchomości: {country}",
     "countryLead": "Średnia cena ofertowa za m² mieszkań na sprzedaż w każdym mieście, na podstawie aktualnych ogłoszeń.",
     "colCity": "Miasto",
     "colFlatPerSqm": "Mieszkania, cena za m²",
     "colListings": "Ogłoszenia",
-    "indexMetaTitle": "Ceny nieruchomości w Europie według krajów i miast | Nunvio",
+    "indexMetaTitle": "Ceny nieruchomości w Europie według krajów i miast",
     "indexTitle": "Ceny nieruchomości",
     "indexLead": "Średnie ceny ofertowe za m² z aktualnych ogłoszeń, według krajów i miast. Aktualizowane codziennie.",
     "listingsCount": "{count, plural, one {# ogłoszenie} few {# ogłoszenia} many {# ogłoszeń} other {# ogłoszenia}}"

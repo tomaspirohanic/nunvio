@@ -694,7 +694,7 @@
     "newBadge": "Jauns"
   },
   "Prices": {
-    "cityMetaTitle": "Nekustamā īpašuma cenas: {city} {year}, cena par m² | Nunvio",
+    "cityMetaTitle": "Nekustamā īpašuma cenas: {city} {year}, cena par m²",
     "cityMetaDescription": "Dzīvokļa vidējā piedāvājuma cena ({city}) ir {price} par m². Tendences, īres maksa un aktuālie sludinājumi: {count}.",
     "cityMetaDescriptionNoPrice": "Nekustamā īpašuma cenas, īres maksa un aktuālie sludinājumi ({city}): {count}.",
     "breadcrumbPrices": "Nekustamā īpašuma cenas",
@@ -723,14 +723,14 @@
     "tableListings": "Sludinājumi",
     "disclaimer": "Šīs ir piedāvājuma cenas no Nunvio sludinājumiem, nevis galīgās pārdošanas cenas. Atjaunināts katru dienu.",
     "otherCities": "Citas pilsētas: {country}",
-    "countryMetaTitle": "Nekustamā īpašuma cenas: {country} {year} pa pilsētām | Nunvio",
+    "countryMetaTitle": "Nekustamā īpašuma cenas: {country} {year} pa pilsētām",
     "countryMetaDescription": "Dzīvokļu vidējā piedāvājuma cena par m² katrā pilsētā ({country}), atjaunināta katru dienu.",
     "countryTitle": "Nekustamā īpašuma cenas: {country}",
     "countryLead": "Pārdodamo dzīvokļu vidējā piedāvājuma cena par m² katrā pilsētā, pēc aktuālajiem sludinājumiem.",
     "colCity": "Pilsēta",
     "colFlatPerSqm": "Dzīvokļi, cena par m²",
     "colListings": "Sludinājumi",
-    "indexMetaTitle": "Nekustamā īpašuma cenas Eiropā pa valstīm un pilsētām | Nunvio",
+    "indexMetaTitle": "Nekustamā īpašuma cenas Eiropā pa valstīm un pilsētām",
     "indexTitle": "Nekustamā īpašuma cenas",
     "indexLead": "Vidējās piedāvājuma cenas par m² no aktuālajiem sludinājumiem, pa valstīm un pilsētām. Atjaunināts katru dienu.",
     "listingsCount": "{count, plural, zero {# sludinājumu} one {# sludinājums} other {# sludinājumi}}"

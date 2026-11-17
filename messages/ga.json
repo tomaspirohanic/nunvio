@@ -694,7 +694,7 @@
     "newBadge": "Nua"
   },
   "Prices": {
-    "cityMetaTitle": "Praghsanna maoine in {city} {year}: praghas in aghaidh an m² | Nunvio",
+    "cityMetaTitle": "Praghsanna maoine in {city} {year}: praghas in aghaidh an m²",
     "cityMetaDescription": "Is é {price} in aghaidh an m² an meánphraghas iarrtha ar árasán in {city}. Treochtaí, cíosanna agus fógraí reatha: {count}.",
     "cityMetaDescriptionNoPrice": "Praghsanna maoine, cíosanna agus fógraí reatha in {city}: {count}.",
     "breadcrumbPrices": "Praghsanna maoine",
@@ -723,14 +723,14 @@
     "tableListings": "Fógraí",
     "disclaimer": "Is praghsanna iarrtha ó fhógraí ar Nunvio iad seo, ní praghsanna díola deiridh. Nuashonraítear go laethúil.",
     "otherCities": "Cathracha eile: {country}",
-    "countryMetaTitle": "Praghsanna maoine: {country} {year} de réir cathrach | Nunvio",
+    "countryMetaTitle": "Praghsanna maoine: {country} {year} de réir cathrach",
     "countryMetaDescription": "Meánphraghas iarrtha in aghaidh an m² d'árasáin i ngach cathair ({country}), nuashonraithe go laethúil.",
     "countryTitle": "Praghsanna maoine: {country}",
     "countryLead": "Meánphraghas iarrtha in aghaidh an m² d'árasáin ar díol i ngach cathair, ó fhógraí reatha.",
     "colCity": "Cathair",
     "colFlatPerSqm": "Árasáin, praghas in aghaidh an m²",
     "colListings": "Fógraí",
-    "indexMetaTitle": "Praghsanna maoine san Eoraip de réir tíre agus cathrach | Nunvio",
+    "indexMetaTitle": "Praghsanna maoine san Eoraip de réir tíre agus cathrach",
     "indexTitle": "Praghsanna maoine",
     "indexLead": "Meánphraghsanna iarrtha in aghaidh an m² ó fhógraí reatha, de réir tíre agus cathrach. Nuashonraítear go laethúil.",
     "listingsCount": "{count, plural, one {# fhógra} two {# fhógra} few {# fhógra} many {# bhfógra} other {# fógra}}"

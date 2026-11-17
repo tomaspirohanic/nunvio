@@ -694,7 +694,7 @@
     "newBadge": "Nou"
   },
   "Prices": {
-    "cityMetaTitle": "Prețuri imobiliare în {city} {year}: preț pe m² | Nunvio",
+    "cityMetaTitle": "Prețuri imobiliare în {city} {year}: preț pe m²",
     "cityMetaDescription": "Prețul mediu cerut pentru un apartament în {city} este {price} pe m². Tendințe, chirii și anunțuri actuale: {count}.",
     "cityMetaDescriptionNoPrice": "Prețuri imobiliare, chirii și anunțuri actuale în {city}: {count}.",
     "breadcrumbPrices": "Prețuri imobiliare",
@@ -723,14 +723,14 @@
     "tableListings": "Anunțuri",
     "disclaimer": "Acestea sunt prețuri cerute din anunțurile de pe Nunvio, nu prețuri finale de vânzare. Actualizat zilnic.",
     "otherCities": "Alte orașe din {country}",
-    "countryMetaTitle": "Prețuri imobiliare în {country} {year} pe orașe | Nunvio",
+    "countryMetaTitle": "Prețuri imobiliare în {country} {year} pe orașe",
     "countryMetaDescription": "Prețul mediu cerut pe m² al apartamentelor în fiecare oraș din {country}, actualizat zilnic.",
     "countryTitle": "Prețuri imobiliare în {country}",
     "countryLead": "Prețul mediu cerut pe m² al apartamentelor de vânzare în fiecare oraș, din anunțurile actuale.",
     "colCity": "Oraș",
     "colFlatPerSqm": "Apartamente, preț pe m²",
     "colListings": "Anunțuri",
-    "indexMetaTitle": "Prețuri imobiliare în Europa pe țări și orașe | Nunvio",
+    "indexMetaTitle": "Prețuri imobiliare în Europa pe țări și orașe",
     "indexTitle": "Prețuri imobiliare",
     "indexLead": "Prețuri medii cerute pe m² din anunțurile actuale, pe țări și orașe. Actualizat zilnic.",
     "listingsCount": "{count, plural, one {# anunț} few {# anunțuri} other {# de anunțuri}}"

@@ -694,7 +694,7 @@
     "newBadge": "Novo"
   },
   "Prices": {
-    "cityMetaTitle": "Cene nepremičnin v {city} {year}: cena na m² | Nunvio",
+    "cityMetaTitle": "Cene nepremičnin v {city} {year}: cena na m²",
     "cityMetaDescription": "Povprečna oglaševana cena stanovanja v {city} je {price} na m². Trendi, najemnine in aktualni oglasi: {count}.",
     "cityMetaDescriptionNoPrice": "Cene nepremičnin, najemnine in aktualni oglasi v {city}: {count}.",
     "breadcrumbPrices": "Cene nepremičnin",
@@ -723,14 +723,14 @@
     "tableListings": "Oglasi",
     "disclaimer": "To so oglaševane cene iz oglasov na Nunviu, ne končne prodajne cene. Posodobljeno vsak dan.",
     "otherCities": "Druga mesta: {country}",
-    "countryMetaTitle": "Cene nepremičnin: {country} {year} po mestih | Nunvio",
+    "countryMetaTitle": "Cene nepremičnin: {country} {year} po mestih",
     "countryMetaDescription": "Povprečna oglaševana cena na m² stanovanj v vsakem mestu ({country}), posodobljena vsak dan.",
     "countryTitle": "Cene nepremičnin: {country}",
     "countryLead": "Povprečna oglaševana cena na m² stanovanj naprodaj v vsakem mestu, iz aktualnih oglasov.",
     "colCity": "Mesto",
     "colFlatPerSqm": "Stanovanja, cena na m²",
     "colListings": "Oglasi",
-    "indexMetaTitle": "Cene nepremičnin v Evropi po državah in mestih | Nunvio",
+    "indexMetaTitle": "Cene nepremičnin v Evropi po državah in mestih",
     "indexTitle": "Cene nepremičnin",
     "indexLead": "Povprečne oglaševane cene na m² iz aktualnih oglasov, po državah in mestih. Posodobljeno vsak dan.",
     "listingsCount": "{count, plural, one {# oglas} two {# oglasa} few {# oglasi} other {# oglasov}}"

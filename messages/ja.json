@@ -694,7 +694,7 @@
     "newBadge": "新着"
   },
   "Prices": {
-    "cityMetaTitle": "{city}の不動産価格 {year}年：㎡単価 | Nunvio",
+    "cityMetaTitle": "{city}の不動産価格 {year}年：㎡単価",
     "cityMetaDescription": "{city}のマンションの平均売り出し価格は1㎡あたり{price}です。価格推移、家賃、掲載中の物件{count}件。",
     "cityMetaDescriptionNoPrice": "{city}の不動産価格、家賃、掲載中の物件{count}件。",
     "breadcrumbPrices": "不動産価格",
@@ -723,14 +723,14 @@
     "tableListings": "物件数",
     "disclaimer": "これはNunvio掲載物件の売り出し価格であり、成約価格ではありません。毎日更新。",
     "otherCities": "{country}のその他の都市",
-    "countryMetaTitle": "{country}の都市別不動産価格 {year}年 | Nunvio",
+    "countryMetaTitle": "{country}の都市別不動産価格 {year}年",
     "countryMetaDescription": "{country}の各都市におけるマンションの平均売り出し㎡単価。毎日更新。",
     "countryTitle": "{country}の不動産価格",
     "countryLead": "掲載中の物件をもとにした、各都市の売りマンションの平均売り出し㎡単価。",
     "colCity": "都市",
     "colFlatPerSqm": "マンション ㎡単価",
     "colListings": "物件数",
-    "indexMetaTitle": "ヨーロッパの国・都市別不動産価格 | Nunvio",
+    "indexMetaTitle": "ヨーロッパの国・都市別不動産価格",
     "indexTitle": "不動産価格",
     "indexLead": "掲載中の物件をもとにした国・都市別の平均売り出し㎡単価。毎日更新。",
     "listingsCount": "{count, plural, other {#件}}"

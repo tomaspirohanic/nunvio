@@ -694,7 +694,7 @@
     "newBadge": "新"
   },
   "Prices": {
-    "cityMetaTitle": "{city}房价 {year}年：每平方米价格 | Nunvio",
+    "cityMetaTitle": "{city}房价 {year}年：每平方米价格",
     "cityMetaDescription": "{city}公寓的平均挂牌价为每平方米{price}。价格走势、租金及{count}条在售房源。",
     "cityMetaDescriptionNoPrice": "{city}的房价、租金及{count}条在售房源。",
     "breadcrumbPrices": "房价",
@@ -723,14 +723,14 @@
     "tableListings": "房源",
     "disclaimer": "以上为Nunvio房源的挂牌价，并非最终成交价。每日更新。",
     "otherCities": "{country}的其他城市",
-    "countryMetaTitle": "{country}各城市房价 {year}年 | Nunvio",
+    "countryMetaTitle": "{country}各城市房价 {year}年",
     "countryMetaDescription": "{country}各城市公寓的平均挂牌单价，每日更新。",
     "countryTitle": "{country}房价",
     "countryLead": "根据当前房源计算的各城市出售公寓平均挂牌单价。",
     "colCity": "城市",
     "colFlatPerSqm": "公寓每平方米价格",
     "colListings": "房源",
-    "indexMetaTitle": "欧洲各国家和城市房价 | Nunvio",
+    "indexMetaTitle": "欧洲各国家和城市房价",
     "indexTitle": "房价",
     "indexLead": "根据当前房源计算的各国家和城市平均挂牌单价。每日更新。",
     "listingsCount": "{count, plural, other {#条房源}}"

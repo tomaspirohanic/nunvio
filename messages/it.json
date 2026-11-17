@@ -694,7 +694,7 @@
     "newBadge": "Nuovo"
   },
   "Prices": {
-    "cityMetaTitle": "Prezzi delle case a {city} {year}: prezzo al m² | Nunvio",
+    "cityMetaTitle": "Prezzi delle case a {city} {year}: prezzo al m²",
     "cityMetaDescription": "Il prezzo medio richiesto per un appartamento a {city} è di {price} al m². Andamento, affitti e {count} annunci attuali.",
     "cityMetaDescriptionNoPrice": "Prezzi delle case, affitti e {count} annunci attuali a {city}.",
     "breadcrumbPrices": "Prezzi delle case",
@@ -723,14 +723,14 @@
     "tableListings": "Annunci",
     "disclaimer": "Sono prezzi richiesti negli annunci su Nunvio, non prezzi di vendita finali. Aggiornati ogni giorno.",
     "otherCities": "Altre città: {country}",
-    "countryMetaTitle": "Prezzi delle case in {country} {year} per città | Nunvio",
+    "countryMetaTitle": "Prezzi delle case in {country} {year} per città",
     "countryMetaDescription": "Prezzo medio richiesto al m² degli appartamenti in ogni città ({country}), aggiornato ogni giorno.",
     "countryTitle": "Prezzi delle case: {country}",
     "countryLead": "Prezzo medio richiesto al m² degli appartamenti in vendita in ogni città, dagli annunci attuali.",
     "colCity": "Città",
     "colFlatPerSqm": "Appartamenti, prezzo al m²",
     "colListings": "Annunci",
-    "indexMetaTitle": "Prezzi delle case in Europa per paese e città | Nunvio",
+    "indexMetaTitle": "Prezzi delle case in Europa per paese e città",
     "indexTitle": "Prezzi delle case",
     "indexLead": "Prezzi medi richiesti al m² dagli annunci attuali, per paese e città. Aggiornati ogni giorno.",
     "listingsCount": "{count, plural, one {# annuncio} other {# annunci}}"
