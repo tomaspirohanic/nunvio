@@ -757,5 +757,22 @@
     "ownFunds": "Your own funds",
     "totalInterest": "Total interest",
     "disclaimer": "Indicative calculation with typical market rates. Your bank's offer may differ."
+  },
+  "Nearby": {
+    "title": "What's nearby",
+    "cat_school": "Schools & kindergartens",
+    "cat_transport": "Public transport",
+    "cat_shop": "Grocery shops",
+    "cat_health": "Doctors & pharmacies",
+    "cat_park": "Parks",
+    "within1km": "{count} within 1 km",
+    "nearest": "Nearest: {name}, {minutes} min walk ({meters} m)",
+    "unnamed_school": "school",
+    "unnamed_transport": "stop",
+    "unnamed_shop": "shop",
+    "unnamed_health": "doctor or pharmacy",
+    "unnamed_park": "park",
+    "noneNearby": "Nothing within 1 km",
+    "source": "Map data © OpenStreetMap contributors"
   }
 }

@@ -758,5 +758,22 @@
     "ownFunds": "Vaše vlastné zdroje",
     "totalInterest": "Úroky spolu",
     "disclaimer": "Orientačný výpočet s bežnými trhovými sadzbami. Ponuka vašej banky sa môže líšiť."
+  },
+  "Nearby": {
+    "title": "Okolie",
+    "cat_school": "Školy a škôlky",
+    "cat_transport": "Verejná doprava",
+    "cat_shop": "Obchody s potravinami",
+    "cat_health": "Lekári a lekárne",
+    "cat_park": "Parky",
+    "within1km": "{count} do 1 km",
+    "nearest": "Najbližšie: {name}, {minutes} min pešo ({meters} m)",
+    "unnamed_school": "škola",
+    "unnamed_transport": "zastávka",
+    "unnamed_shop": "obchod",
+    "unnamed_health": "lekár alebo lekáreň",
+    "unnamed_park": "park",
+    "noneNearby": "Do 1 km nič",
+    "source": "Mapové údaje © prispievatelia OpenStreetMap"
   }
 }

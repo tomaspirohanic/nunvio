@@ -25,6 +25,7 @@ import {
 import { resolvePropertyImageUrls } from "@/lib/property-gallery";
 import ListingMarketInfo from "@/components/properties/ListingMarketInfo";
 import MortgageCalculator from "@/components/properties/MortgageCalculator";
+import NearbyPlaces from "@/components/properties/NearbyPlaces";
 import { countryConfig } from "@/lib/country-config";
 
 // ISR: detail pages are rendered once and served from the CDN; refreshed at
@@ -427,6 +428,9 @@ export default async function PropertyDetailPage({
                 )}
               </div>
             </div>
+            {property.showOnMap !== false && property.latitude && property.longitude ? (
+              <NearbyPlaces propertyId={property.id} />
+            ) : null}
           </div>
 
           {/* Right column */}

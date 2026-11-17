@@ -250,6 +250,15 @@ model Property {
   @@index([description(ops: raw("gin_trgm_ops"))], type: Gin, map: "Property_description_trgm_idx")
 }
 
+/// Nearby places (OpenStreetMap) for one ~200 m map cell, shared by all
+/// listings in that cell. Filled on first view, refreshed after 90 days.
+model NearbyCache {
+  cell      String   @id
+  /// [{ c: category, n: name, la: lat, lo: lng }]
+  places    Json
+  fetchedAt DateTime @default(now())
+}
+
 /// One price change of a listing (feeds and manual edits), for price history.
 model PropertyPriceChange {
   id         String   @id @default(cuid())
