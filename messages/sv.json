@@ -110,7 +110,8 @@
     "typeHouseCottage": "Fritidshus/Stuga",
     "typeLandFamily": "För villor",
     "typeLandCommercial": "Kommersiell",
-    "typeLandGarden": "Trädgårdar"
+    "typeLandGarden": "Trädgårdar",
+    "onlyReduced": "Endast sänkt pris"
   },
   "Properties": {
     "title": "Bostäder",
@@ -131,7 +132,8 @@
     "resultsCountCapped": "Fler än {count, number} resultat",
     "propertiesFound": "{count, plural, =0 {Inga bostäder hittades} =1 {1 bostad hittades} other {# bostäder hittades}}",
     "beFirst": "Bli först att annonsera",
-    "perMonth": "/månad"
+    "perMonth": "/månad",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "Pris",
@@ -544,7 +546,8 @@
     "tipBody": "Lägg till bra bilder och en korrekt beskrivning för att få fler förfrågningar.",
     "openMenu": "Öppna meny",
     "closeMenu": "Stäng meny",
-    "signOut": "Logga ut"
+    "signOut": "Logga ut",
+    "alerts": "Sparade sökningar"
   },
   "Settings": {
     "title": "Inställningar",
@@ -609,5 +612,89 @@
     "resetBody": "Vi har fått en begäran om att återställa ditt Nunvio-lösenord. Klicka på knappen nedan för att välja ett nytt lösenord.",
     "resetCta": "Återställ lösenord",
     "resetIgnore": "Om du inte har begärt detta kan du ignorera detta mejl."
+  },
+  "SavedSearch": {
+    "priceRange": "{min} – {max}",
+    "kind_flat": "Lägenheter",
+    "kind_house": "Hus",
+    "kind_land": "Tomter",
+    "kind_commercial": "Kommersiellt",
+    "kind_any": "Alla bostäder",
+    "offer_buy": "till salu",
+    "offer_rent": "att hyra",
+    "priceMax": "upp till {max}",
+    "priceMin": "från {min}",
+    "areaMin": "från {min} m²",
+    "areaMax": "upp till {max} m²",
+    "newBuild": "nyproduktion",
+    "reduced": "sänkt pris",
+    "confirmedTitle": "Bevakning aktiverad",
+    "confirmedBody": "Vi mejlar dig nya annonser och prissänkningar för den här sökningen.",
+    "invalidLinkTitle": "Länken är inte giltig",
+    "invalidLinkBody": "Den kan ha gått ut eller redan använts.",
+    "openSearch": "Öppna sökningen",
+    "unsubscribeTitle": "Sluta få dessa mejl?",
+    "unsubscribed": "Klart. Du får inga fler mejl för den här sökningen.",
+    "unsubscribeCta": "Avsluta prenumeration",
+    "saveButton": "Spara sökning",
+    "dialogTitle": "Nya annonser via e-post",
+    "close": "Stäng",
+    "savedBody": "Sparat. Nya annonser och prissänkningar kommer till din inkorg.",
+    "confirmBody": "Nästan klart: vi har skickat en bekräftelselänk till {email}. Klicka på den för att aktivera bevakningen.",
+    "done": "OK",
+    "dialogBody": "Vi skickar nya annonser och prissänkningar som matchar dina nuvarande filter.",
+    "emailLabel": "E-post",
+    "frequencyLabel": "Hur ofta",
+    "frequency": {
+      "INSTANT": "Så snart de dyker upp",
+      "DAILY": "En gång om dagen",
+      "WEEKLY": "En gång i veckan"
+    },
+    "saving": "Sparar…",
+    "submit": "Skicka nya annonser",
+    "privacyNote": "Varje mejl har en avregistreringslänk. Vi delar inte din adress.",
+    "errors": {
+      "invalidEmail": "Ange en giltig e-postadress.",
+      "tooMany": "Du har nått maxgränsen på 20 sparade sökningar.",
+      "emptyFilters": "Välj först minst ett filter (t.ex. en stad)."
+    },
+    "dashboardTitle": "Sparade sökningar",
+    "dashboardSubtitle": "Nya annonser och prissänkningar som vi mejlar dig.",
+    "emptyList": "Du har inga sparade sökningar ännu.",
+    "startSearching": "Börja söka",
+    "notConfirmed": "Väntar på bekräftelse via e-post",
+    "paused": "Pausad",
+    "lastSent": "Senaste mejl: {date}",
+    "noneYet": "Inga nya annonser ännu",
+    "pause": "Pausa",
+    "resume": "Återuppta",
+    "delete": "Ta bort"
+  },
+  "ListingMarket": {
+    "onMarket": "På marknaden",
+    "newToday": "Ny idag",
+    "days": "{count, plural, one {# dag} other {# dagar}}",
+    "sinceListed": "Prisändring sedan publicering",
+    "priceHistory": "Prishistorik",
+    "listed": "publicerad",
+    "perMonth": "/ månad",
+    "otherOffers": "{count, plural, one {Erbjuds även av # annan säljare} other {Erbjuds även av # andra säljare}}",
+    "otherOffersHint": "Bostaden erbjuds av flera mäklare. Jämför priserna och välj vem du kontaktar.",
+    "privateSeller": "Privatperson",
+    "viewOffer": "Visa"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Bekräfta din Nunvio-bevakning",
+    "confirmBody": "Bekräfta att du vill få nya annonser för den här sökningen:",
+    "confirmCta": "Aktivera bevakningen",
+    "confirmIgnore": "Om du inte har begärt detta kan du ignorera mejlet.",
+    "alertSubjectOne": "1 ny annons: {label}",
+    "alertSubjectMany": "{count} nya annonser: {label}",
+    "alertIntro": "Nya annonser och prissänkningar för din sökning: {label}",
+    "priceDropped": "tidigare",
+    "showAll": "Alla resultat",
+    "showAllCount": "Visa alla ({count})",
+    "unsubscribe": "Avsluta denna bevakning",
+    "newBadge": "Ny"
   }
 }

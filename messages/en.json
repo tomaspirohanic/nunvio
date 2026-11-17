@@ -110,7 +110,8 @@
     "typeHouseCottage": "Cottage/Chalet",
     "typeLandFamily": "For family houses",
     "typeLandCommercial": "Commercial",
-    "typeLandGarden": "Gardens"
+    "typeLandGarden": "Gardens",
+    "onlyReduced": "Only reduced price"
   },
   "Properties": {
     "title": "Properties",
@@ -131,7 +132,8 @@
     "resultsCountCapped": "More than {count, number} results",
     "propertiesFound": "{count, plural, =0 {No properties found} =1 {1 property found} other {# properties found}}",
     "beFirst": "Be the First to List",
-    "perMonth": "/month"
+    "perMonth": "/month",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "Price",
@@ -544,7 +546,8 @@
     "tipBody": "Add good photos and an accurate description to get more enquiries.",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "alerts": "Saved searches"
   },
   "Settings": {
     "title": "Settings",
@@ -609,5 +612,89 @@
     "resetBody": "We received a request to reset your Nunvio password. Click the button below to choose a new password.",
     "resetCta": "Reset password",
     "resetIgnore": "If you did not request this, you can ignore this email."
+  },
+  "ListingMarket": {
+    "onMarket": "On the market",
+    "newToday": "New today",
+    "days": "{count, plural, one {# day} other {# days}}",
+    "sinceListed": "Price change since listed",
+    "priceHistory": "Price history",
+    "listed": "listed",
+    "perMonth": "/ month",
+    "otherOffers": "{count, plural, one {Also offered by # other seller} other {Also offered by # other sellers}}",
+    "otherOffersHint": "The same property is listed by several agencies. Compare prices and choose whom to contact.",
+    "privateSeller": "Private seller",
+    "viewOffer": "View"
+  },
+  "SavedSearch": {
+    "kind_flat": "Flats",
+    "kind_house": "Houses",
+    "kind_land": "Land",
+    "kind_commercial": "Commercial",
+    "kind_any": "All properties",
+    "offer_buy": "for sale",
+    "offer_rent": "for rent",
+    "priceRange": "{min} – {max}",
+    "priceMax": "up to {max}",
+    "priceMin": "from {min}",
+    "areaMin": "from {min} m²",
+    "areaMax": "up to {max} m²",
+    "newBuild": "new builds",
+    "reduced": "reduced price",
+    "confirmedTitle": "Alert switched on",
+    "confirmedBody": "We will e-mail you new listings and price drops for this search.",
+    "invalidLinkTitle": "This link is not valid",
+    "invalidLinkBody": "It may have expired or been used already.",
+    "openSearch": "Open the search",
+    "unsubscribeTitle": "Stop these e-mails?",
+    "unsubscribed": "Done. You will not receive e-mails for this search any more.",
+    "unsubscribeCta": "Unsubscribe",
+    "saveButton": "Save search",
+    "dialogTitle": "Get new listings by e-mail",
+    "close": "Close",
+    "savedBody": "Saved. New listings and price drops will arrive in your inbox.",
+    "confirmBody": "Almost done: we sent a confirmation link to {email}. Click it to switch the alert on.",
+    "done": "OK",
+    "dialogBody": "We will e-mail you new listings and price drops matching your current filters.",
+    "emailLabel": "E-mail",
+    "frequencyLabel": "How often",
+    "frequency": {
+      "INSTANT": "As soon as they appear",
+      "DAILY": "Once a day",
+      "WEEKLY": "Once a week"
+    },
+    "saving": "Saving…",
+    "submit": "Send me new listings",
+    "privacyNote": "Every e-mail has an unsubscribe link. We do not share your address.",
+    "errors": {
+      "invalidEmail": "Please enter a valid e-mail address.",
+      "tooMany": "You have reached the maximum of 20 saved searches.",
+      "emptyFilters": "Choose at least one filter (e.g. a city) first."
+    },
+    "dashboardTitle": "Saved searches",
+    "dashboardSubtitle": "New listings and price drops we send you by e-mail.",
+    "emptyList": "You have no saved searches yet.",
+    "startSearching": "Start searching",
+    "notConfirmed": "Waiting for e-mail confirmation",
+    "paused": "Paused",
+    "lastSent": "Last e-mail: {date}",
+    "noneYet": "No new listings yet",
+    "pause": "Pause",
+    "resume": "Resume",
+    "delete": "Delete"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Confirm your Nunvio alert",
+    "confirmBody": "Please confirm that you want new listings for this search:",
+    "confirmCta": "Switch the alert on",
+    "confirmIgnore": "If you did not ask for this, ignore this e-mail.",
+    "alertSubjectOne": "1 new listing: {label}",
+    "alertSubjectMany": "{count} new listings: {label}",
+    "alertIntro": "New listings and price drops for your search: {label}",
+    "priceDropped": "was",
+    "showAll": "All results",
+    "showAllCount": "Show all ({count})",
+    "unsubscribe": "Unsubscribe from this alert",
+    "newBadge": "New"
   }
 }

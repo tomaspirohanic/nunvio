@@ -110,7 +110,8 @@
     "typeHouseCottage": "Cabană",
     "typeLandFamily": "Pentru case familiale",
     "typeLandCommercial": "Comercial",
-    "typeLandGarden": "Grădini"
+    "typeLandGarden": "Grădini",
+    "onlyReduced": "Doar preț redus"
   },
   "Properties": {
     "title": "Proprietăți",
@@ -131,7 +132,8 @@
     "resultsCountCapped": "Peste {count, number} de rezultate",
     "propertiesFound": "{count, plural, =0 {Nicio proprietate găsită} =1 {1 proprietate găsită} few {# proprietăți găsite} other {# de proprietăți găsite}}",
     "beFirst": "Fii primul care publică",
-    "perMonth": "/lună"
+    "perMonth": "/lună",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "Preț",
@@ -544,7 +546,8 @@
     "tipBody": "Adaugă fotografii bune și o descriere exactă pentru a primi mai multe solicitări.",
     "openMenu": "Deschide meniul",
     "closeMenu": "Închide meniul",
-    "signOut": "Deconectare"
+    "signOut": "Deconectare",
+    "alerts": "Căutări salvate"
   },
   "Settings": {
     "title": "Setări",
@@ -609,5 +612,89 @@
     "resetBody": "Am primit o solicitare de resetare a parolei tale Nunvio. Fă clic pe butonul de mai jos pentru a alege o parolă nouă.",
     "resetCta": "Resetează parola",
     "resetIgnore": "Dacă nu ai solicitat acest lucru, poți ignora acest e-mail."
+  },
+  "SavedSearch": {
+    "priceRange": "{min} – {max}",
+    "kind_flat": "Apartamente",
+    "kind_house": "Case",
+    "kind_land": "Terenuri",
+    "kind_commercial": "Spații comerciale",
+    "kind_any": "Toate proprietățile",
+    "offer_buy": "de vânzare",
+    "offer_rent": "de închiriat",
+    "priceMax": "până la {max}",
+    "priceMin": "de la {min}",
+    "areaMin": "de la {min} m²",
+    "areaMax": "până la {max} m²",
+    "newBuild": "construcții noi",
+    "reduced": "preț redus",
+    "confirmedTitle": "Alertă activată",
+    "confirmedBody": "Vă trimitem pe e-mail anunțurile noi și reducerile de preț pentru această căutare.",
+    "invalidLinkTitle": "Acest link nu este valid",
+    "invalidLinkBody": "Poate a expirat sau a fost deja folosit.",
+    "openSearch": "Deschide căutarea",
+    "unsubscribeTitle": "Opriți aceste e-mailuri?",
+    "unsubscribed": "Gata. Nu veți mai primi e-mailuri pentru această căutare.",
+    "unsubscribeCta": "Dezabonare",
+    "saveButton": "Salvează căutarea",
+    "dialogTitle": "Anunțuri noi pe e-mail",
+    "close": "Închide",
+    "savedBody": "Salvat. Anunțurile noi și reducerile de preț vor ajunge în căsuța dvs.",
+    "confirmBody": "Aproape gata: am trimis un link de confirmare la {email}. Dați clic pe el pentru a activa alerta.",
+    "done": "OK",
+    "dialogBody": "Vă trimitem anunțurile noi și reducerile de preț conform filtrelor actuale.",
+    "emailLabel": "E-mail",
+    "frequencyLabel": "Cât de des",
+    "frequency": {
+      "INSTANT": "Imediat ce apar",
+      "DAILY": "O dată pe zi",
+      "WEEKLY": "O dată pe săptămână"
+    },
+    "saving": "Se salvează…",
+    "submit": "Trimite-mi anunțuri noi",
+    "privacyNote": "Fiecare e-mail conține un link de dezabonare. Nu vă divulgăm adresa.",
+    "errors": {
+      "invalidEmail": "Introduceți o adresă de e-mail validă.",
+      "tooMany": "Ați atins maximul de 20 de căutări salvate.",
+      "emptyFilters": "Alegeți mai întâi cel puțin un filtru (de ex. un oraș)."
+    },
+    "dashboardTitle": "Căutări salvate",
+    "dashboardSubtitle": "Anunțuri noi și reduceri de preț pe care vi le trimitem pe e-mail.",
+    "emptyList": "Nu aveți încă nicio căutare salvată.",
+    "startSearching": "Începeți căutarea",
+    "notConfirmed": "Așteaptă confirmarea pe e-mail",
+    "paused": "În pauză",
+    "lastSent": "Ultimul e-mail: {date}",
+    "noneYet": "Încă nu sunt anunțuri noi",
+    "pause": "Pauză",
+    "resume": "Reia",
+    "delete": "Șterge"
+  },
+  "ListingMarket": {
+    "onMarket": "Pe piață",
+    "newToday": "Nou azi",
+    "days": "{count, plural, one {# zi} few {# zile} other {# de zile}}",
+    "sinceListed": "Modificare de preț de la publicare",
+    "priceHistory": "Istoricul prețului",
+    "listed": "publicat",
+    "perMonth": "/ lună",
+    "otherOffers": "{count, plural, one {Oferit și de încă # vânzător} few {Oferit și de încă # vânzători} other {Oferit și de încă # de vânzători}}",
+    "otherOffersHint": "Această proprietate este oferită de mai multe agenții. Comparați prețurile și alegeți pe cine contactați.",
+    "privateSeller": "Proprietar",
+    "viewOffer": "Vezi"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Confirmați alerta Nunvio",
+    "confirmBody": "Confirmați că doriți să primiți anunțuri noi pentru această căutare:",
+    "confirmCta": "Activează alerta",
+    "confirmIgnore": "Dacă nu ați solicitat acest lucru, ignorați acest e-mail.",
+    "alertSubjectOne": "1 anunț nou: {label}",
+    "alertSubjectMany": "{count} anunțuri noi: {label}",
+    "alertIntro": "Anunțuri noi și reduceri de preț pentru căutarea dvs.: {label}",
+    "priceDropped": "înainte",
+    "showAll": "Toate rezultatele",
+    "showAllCount": "Vezi toate ({count})",
+    "unsubscribe": "Dezabonare de la această alertă",
+    "newBadge": "Nou"
   }
 }

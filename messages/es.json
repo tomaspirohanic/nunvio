@@ -110,7 +110,8 @@
     "typeHouseCottage": "Casa rural / cabaña",
     "typeLandFamily": "Para casas",
     "typeLandCommercial": "Comercial",
-    "typeLandGarden": "Jardines"
+    "typeLandGarden": "Jardines",
+    "onlyReduced": "Solo precio rebajado"
   },
   "Properties": {
     "title": "Propiedades",
@@ -131,7 +132,8 @@
     "beFirst": "Sé el primero en publicar",
     "forSale": "En venta",
     "forRent": "En alquiler",
-    "perMonth": "/mes"
+    "perMonth": "/mes",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "Precio",
@@ -557,7 +559,8 @@
     "tipBody": "Añade buenas fotos y una descripción precisa para recibir más consultas.",
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
-    "signOut": "Cerrar sesión"
+    "signOut": "Cerrar sesión",
+    "alerts": "Búsquedas guardadas"
   },
   "Settings": {
     "title": "Ajustes",
@@ -610,5 +613,89 @@
     "maxUpload": "Límite de subida manual:",
     "maxUploadBody": "500 anuncios por archivo, 8 fotos por anuncio. Para catálogos grandes usa el feed automático de arriba.",
     "photosNote": "Las fotos de las URL se copian al almacenamiento de Nunvio."
+  },
+  "SavedSearch": {
+    "priceRange": "{min} – {max}",
+    "kind_flat": "Pisos",
+    "kind_house": "Casas",
+    "kind_land": "Terrenos",
+    "kind_commercial": "Locales comerciales",
+    "kind_any": "Todos los inmuebles",
+    "offer_buy": "en venta",
+    "offer_rent": "en alquiler",
+    "priceMax": "hasta {max}",
+    "priceMin": "desde {min}",
+    "areaMin": "desde {min} m²",
+    "areaMax": "hasta {max} m²",
+    "newBuild": "obra nueva",
+    "reduced": "rebajado",
+    "confirmedTitle": "Alerta activada",
+    "confirmedBody": "Te enviaremos por e-mail los nuevos anuncios y las bajadas de precio de esta búsqueda.",
+    "invalidLinkTitle": "Este enlace no es válido",
+    "invalidLinkBody": "Puede que haya caducado o ya se haya usado.",
+    "openSearch": "Abrir la búsqueda",
+    "unsubscribeTitle": "¿Dejar de recibir estos e-mails?",
+    "unsubscribed": "Hecho. Ya no recibirás e-mails de esta búsqueda.",
+    "unsubscribeCta": "Darse de baja",
+    "saveButton": "Guardar búsqueda",
+    "dialogTitle": "Nuevos anuncios por e-mail",
+    "close": "Cerrar",
+    "savedBody": "Guardado. Los nuevos anuncios y bajadas de precio llegarán a tu correo.",
+    "confirmBody": "Casi listo: hemos enviado un enlace de confirmación a {email}. Haz clic en él para activar la alerta.",
+    "done": "OK",
+    "dialogBody": "Te enviaremos los nuevos anuncios y bajadas de precio que coincidan con tus filtros actuales.",
+    "emailLabel": "E-mail",
+    "frequencyLabel": "Frecuencia",
+    "frequency": {
+      "INSTANT": "En cuanto aparezcan",
+      "DAILY": "Una vez al día",
+      "WEEKLY": "Una vez a la semana"
+    },
+    "saving": "Guardando…",
+    "submit": "Enviarme nuevos anuncios",
+    "privacyNote": "Cada e-mail incluye un enlace para darse de baja. No compartimos tu dirección.",
+    "errors": {
+      "invalidEmail": "Introduce una dirección de e-mail válida.",
+      "tooMany": "Has alcanzado el máximo de 20 búsquedas guardadas.",
+      "emptyFilters": "Elige primero al menos un filtro (p. ej., una ciudad)."
+    },
+    "dashboardTitle": "Búsquedas guardadas",
+    "dashboardSubtitle": "Nuevos anuncios y bajadas de precio que te enviamos por e-mail.",
+    "emptyList": "Aún no tienes búsquedas guardadas.",
+    "startSearching": "Empezar a buscar",
+    "notConfirmed": "Pendiente de confirmación por e-mail",
+    "paused": "En pausa",
+    "lastSent": "Último e-mail: {date}",
+    "noneYet": "Aún no hay anuncios nuevos",
+    "pause": "Pausar",
+    "resume": "Reanudar",
+    "delete": "Eliminar"
+  },
+  "ListingMarket": {
+    "onMarket": "En el mercado",
+    "newToday": "Nuevo hoy",
+    "days": "{count, plural, one {# día} other {# días}}",
+    "sinceListed": "Cambio de precio desde la publicación",
+    "priceHistory": "Historial de precios",
+    "listed": "publicado",
+    "perMonth": "/ mes",
+    "otherOffers": "{count, plural, one {También lo ofrece # vendedor más} other {También lo ofrecen # vendedores más}}",
+    "otherOffersHint": "Este inmueble lo anuncian varias agencias. Compara precios y elige a quién contactar.",
+    "privateSeller": "Particular",
+    "viewOffer": "Ver"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Confirma tu alerta de Nunvio",
+    "confirmBody": "Confirma que quieres recibir nuevos anuncios para esta búsqueda:",
+    "confirmCta": "Activar la alerta",
+    "confirmIgnore": "Si no lo has solicitado, ignora este e-mail.",
+    "alertSubjectOne": "1 anuncio nuevo: {label}",
+    "alertSubjectMany": "{count} anuncios nuevos: {label}",
+    "alertIntro": "Nuevos anuncios y bajadas de precio para tu búsqueda: {label}",
+    "priceDropped": "antes",
+    "showAll": "Todos los resultados",
+    "showAllCount": "Ver todos ({count})",
+    "unsubscribe": "Darse de baja de esta alerta",
+    "newBadge": "Nuevo"
   }
 }

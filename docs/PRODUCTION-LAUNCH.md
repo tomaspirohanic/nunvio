@@ -154,3 +154,16 @@ After saving everything: **Deployments → … → Redeploy**
 
 Sessions are per-host. Prefer sharing **nunvio.eu** links.  
 If someone logs in only on `.com`, cookies do not automatically apply on `.eu`. Both domains stay in Google OAuth for convenience.
+
+## Before launch: Vercel Pro and cron frequency
+
+On Vercel Hobby every cron runs once a day. After upgrading to Pro, change
+`vercel.json`:
+
+| Cron | Hobby (now) | Pro (launch) |
+| --- | --- | --- |
+| `/api/cron/sync-feeds` | `0 3 * * *` | `*/15 * * * *` |
+| `/api/cron/maintenance` (promotions, duplicate finder) | `30 3 * * *` | `5,35 * * * *` |
+| `/api/cron/send-alerts` (saved-search e-mails) | `30 4 * * *` | `10,25,40,55 * * * *` |
+
+After the schema change run `npm run db:push` once against production.

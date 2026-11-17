@@ -110,7 +110,8 @@
     "typeHouseCottage": "Vikendica/Brvnara",
     "typeLandFamily": "Za obiteljske kuće",
     "typeLandCommercial": "Poslovno",
-    "typeLandGarden": "Vrtovi"
+    "typeLandGarden": "Vrtovi",
+    "onlyReduced": "Samo snižena cijena"
   },
   "Properties": {
     "title": "Nekretnine",
@@ -131,7 +132,8 @@
     "resultsCountCapped": "Više od {count, number} rezultata",
     "propertiesFound": "{count, plural, =0 {Nema pronađenih nekretnina} =1 {Pronađena je 1 nekretnina} one {Pronađena je # nekretnina} few {Pronađene su # nekretnine} other {Pronađeno je # nekretnina}}",
     "beFirst": "Budite prvi koji objavljuje",
-    "perMonth": "/mjesečno"
+    "perMonth": "/mjesečno",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "Cijena",
@@ -544,7 +546,8 @@
     "tipBody": "Dodajte kvalitetne fotografije i točan opis kako biste dobili više upita.",
     "openMenu": "Otvori izbornik",
     "closeMenu": "Zatvori izbornik",
-    "signOut": "Odjava"
+    "signOut": "Odjava",
+    "alerts": "Spremljene pretrage"
   },
   "Settings": {
     "title": "Postavke",
@@ -609,5 +612,89 @@
     "resetBody": "Primili smo zahtjev za ponovno postavljanje vaše lozinke za Nunvio. Kliknite gumb u nastavku kako biste odabrali novu lozinku.",
     "resetCta": "Postavi novu lozinku",
     "resetIgnore": "Ako niste poslali ovaj zahtjev, možete zanemariti ovu poruku."
+  },
+  "SavedSearch": {
+    "priceRange": "{min} – {max}",
+    "kind_flat": "Stanovi",
+    "kind_house": "Kuće",
+    "kind_land": "Zemljišta",
+    "kind_commercial": "Poslovni prostori",
+    "kind_any": "Sve nekretnine",
+    "offer_buy": "na prodaju",
+    "offer_rent": "za najam",
+    "priceMax": "do {max}",
+    "priceMin": "od {min}",
+    "areaMin": "od {min} m²",
+    "areaMax": "do {max} m²",
+    "newBuild": "novogradnja",
+    "reduced": "sniženo",
+    "confirmedTitle": "Obavijest uključena",
+    "confirmedBody": "Nove oglase i sniženja cijena za ovu pretragu poslat ćemo vam e-poštom.",
+    "invalidLinkTitle": "Ova poveznica nije valjana",
+    "invalidLinkBody": "Možda je istekla ili je već iskorištena.",
+    "openSearch": "Otvori pretragu",
+    "unsubscribeTitle": "Prestati primati ove e-poruke?",
+    "unsubscribed": "Gotovo. Više nećete primati e-poruke za ovu pretragu.",
+    "unsubscribeCta": "Odjava",
+    "saveButton": "Spremi pretragu",
+    "dialogTitle": "Novi oglasi e-poštom",
+    "close": "Zatvori",
+    "savedBody": "Spremljeno. Novi oglasi i sniženja stizat će u vaš sandučić.",
+    "confirmBody": "Još korak: poslali smo poveznicu za potvrdu na {email}. Kliknite je kako biste uključili obavijest.",
+    "done": "U redu",
+    "dialogBody": "Poslat ćemo vam nove oglase i sniženja prema trenutačnim filtrima.",
+    "emailLabel": "E-pošta",
+    "frequencyLabel": "Koliko često",
+    "frequency": {
+      "INSTANT": "Čim se pojave",
+      "DAILY": "Jednom dnevno",
+      "WEEKLY": "Jednom tjedno"
+    },
+    "saving": "Spremanje…",
+    "submit": "Šalji mi nove oglase",
+    "privacyNote": "Svaka poruka sadrži poveznicu za odjavu. Ne dijelimo vašu adresu.",
+    "errors": {
+      "invalidEmail": "Unesite valjanu adresu e-pošte.",
+      "tooMany": "Dosegnuli ste najviše 20 spremljenih pretraga.",
+      "emptyFilters": "Najprije odaberite barem jedan filtar (npr. grad)."
+    },
+    "dashboardTitle": "Spremljene pretrage",
+    "dashboardSubtitle": "Novi oglasi i sniženja koje vam šaljemo e-poštom.",
+    "emptyList": "Još nemate spremljenih pretraga.",
+    "startSearching": "Počnite pretraživati",
+    "notConfirmed": "Čeka potvrdu e-poštom",
+    "paused": "Pauzirano",
+    "lastSent": "Posljednja poruka: {date}",
+    "noneYet": "Još nema novih oglasa",
+    "pause": "Pauziraj",
+    "resume": "Nastavi",
+    "delete": "Izbriši"
+  },
+  "ListingMarket": {
+    "onMarket": "Na tržištu",
+    "newToday": "Novo danas",
+    "days": "{count, plural, one {# dan} few {# dana} other {# dana}}",
+    "sinceListed": "Promjena cijene od objave",
+    "priceHistory": "Povijest cijene",
+    "listed": "objavljeno",
+    "perMonth": "/ mjesec",
+    "otherOffers": "{count, plural, one {Nudi i još # prodavatelj} few {Nude i još # prodavatelja} other {Nudi i još # prodavatelja}}",
+    "otherOffersHint": "Ovu nekretninu nudi više agencija. Usporedite cijene i odaberite koga ćete kontaktirati.",
+    "privateSeller": "Privatni prodavatelj",
+    "viewOffer": "Pogledaj"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Potvrdite Nunvio obavijest",
+    "confirmBody": "Potvrdite da želite primati nove oglase za ovu pretragu:",
+    "confirmCta": "Uključi obavijest",
+    "confirmIgnore": "Ako to niste zatražili, zanemarite ovu poruku.",
+    "alertSubjectOne": "1 novi oglas: {label}",
+    "alertSubjectMany": "Novi oglasi ({count}): {label}",
+    "alertIntro": "Novi oglasi i sniženja za vašu pretragu: {label}",
+    "priceDropped": "prije",
+    "showAll": "Svi rezultati",
+    "showAllCount": "Prikaži sve ({count})",
+    "unsubscribe": "Odjava s ove obavijesti",
+    "newBadge": "Novo"
   }
 }

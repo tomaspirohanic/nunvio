@@ -110,7 +110,8 @@
     "typeHouseCottage": "Chata/Chalupa",
     "typeLandFamily": "Pre rod. domy",
     "typeLandCommercial": "Komerčné",
-    "typeLandGarden": "Záhrady"
+    "typeLandGarden": "Záhrady",
+    "onlyReduced": "Iba zlacnené"
   },
   "Properties": {
     "title": "Nehnuteľnosti",
@@ -131,7 +132,8 @@
     "resultsCountCapped": "Viac ako {count, number} výsledkov",
     "propertiesFound": "{count, plural, =0 {Nenašli sa žiadne nehnuteľnosti} =1 {1 nehnuteľnosť nájdená} =2 {# nehnuteľnosti nájdené} =3 {# nehnuteľnosti nájdené} =4 {# nehnuteľnosti nájdené} other {# nehnuteľností nájdených}}",
     "beFirst": "Buďte prvý, kto pridá inzerát",
-    "perMonth": "/mes."
+    "perMonth": "/mes.",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "Cena",
@@ -557,7 +559,8 @@
     "tipBody": "Pridajte kvalitné fotky a presný popis. Získate viac dopytov.",
     "openMenu": "Otvoriť menu",
     "closeMenu": "Zavrieť menu",
-    "signOut": "Odhlásiť sa"
+    "signOut": "Odhlásiť sa",
+    "alerts": "Uložené hľadania"
   },
   "Settings": {
     "title": "Nastavenia",
@@ -610,5 +613,89 @@
     "maxUpload": "Limit ručného nahratia:",
     "maxUploadBody": "500 inzerátov v súbore, 8 fotiek na inzerát. Pre veľké katalógy použite automatický feed vyššie.",
     "photosNote": "Fotky z URL adries sa skopírujú do úložiska Nunvio."
+  },
+  "ListingMarket": {
+    "onMarket": "V ponuke",
+    "newToday": "Nový dnes",
+    "days": "{count, plural, one {# deň} few {# dni} other {# dní}}",
+    "sinceListed": "Zmena ceny od zverejnenia",
+    "priceHistory": "Vývoj ceny",
+    "listed": "zverejnené",
+    "perMonth": "/ mesiac",
+    "otherOffers": "{count, plural, one {Ponúka aj # ďalší predajca} few {Ponúkajú aj # ďalší predajcovia} other {Ponúka aj # ďalších predajcov}}",
+    "otherOffersHint": "Túto nehnuteľnosť ponúka viac realitiek. Porovnajte ceny a vyberte si, koho oslovíte.",
+    "privateSeller": "Súkromný predajca",
+    "viewOffer": "Zobraziť"
+  },
+  "SavedSearch": {
+    "kind_flat": "Byty",
+    "kind_house": "Domy",
+    "kind_land": "Pozemky",
+    "kind_commercial": "Komerčné",
+    "kind_any": "Všetky nehnuteľnosti",
+    "offer_buy": "na predaj",
+    "offer_rent": "na prenájom",
+    "priceRange": "{min} – {max}",
+    "priceMax": "do {max}",
+    "priceMin": "od {min}",
+    "areaMin": "od {min} m²",
+    "areaMax": "do {max} m²",
+    "newBuild": "novostavby",
+    "reduced": "zlacnené",
+    "confirmedTitle": "Upozornenie je zapnuté",
+    "confirmedBody": "Nové inzeráty a zníženia cien pre toto hľadanie vám pošleme e-mailom.",
+    "invalidLinkTitle": "Tento odkaz nie je platný",
+    "invalidLinkBody": "Možno už vypršal alebo bol použitý.",
+    "openSearch": "Otvoriť hľadanie",
+    "unsubscribeTitle": "Zrušiť tieto e-maily?",
+    "unsubscribed": "Hotovo. E-maily pre toto hľadanie vám už nebudeme posielať.",
+    "unsubscribeCta": "Odhlásiť sa",
+    "saveButton": "Uložiť hľadanie",
+    "dialogTitle": "Nové inzeráty e-mailom",
+    "close": "Zavrieť",
+    "savedBody": "Uložené. Nové inzeráty a zníženia cien vám prídu do e-mailu.",
+    "confirmBody": "Ešte krok: na {email} sme poslali potvrdzovací odkaz. Kliknutím upozornenie zapnete.",
+    "done": "OK",
+    "dialogBody": "Pošleme vám nové inzeráty a zníženia cien podľa aktuálnych filtrov.",
+    "emailLabel": "E-mail",
+    "frequencyLabel": "Ako často",
+    "frequency": {
+      "INSTANT": "Hneď ako pribudnú",
+      "DAILY": "Raz denne",
+      "WEEKLY": "Raz týždenne"
+    },
+    "saving": "Ukladám…",
+    "submit": "Posielať nové inzeráty",
+    "privacyNote": "V každom e-maile je odkaz na odhlásenie. Vašu adresu nikomu nedáme.",
+    "errors": {
+      "invalidEmail": "Zadajte platnú e-mailovú adresu.",
+      "tooMany": "Dosiahli ste maximum 20 uložených hľadaní.",
+      "emptyFilters": "Najprv zvoľte aspoň jeden filter (napr. mesto)."
+    },
+    "dashboardTitle": "Uložené hľadania",
+    "dashboardSubtitle": "Nové inzeráty a zníženia cien, ktoré vám posielame e-mailom.",
+    "emptyList": "Zatiaľ nemáte uložené žiadne hľadanie.",
+    "startSearching": "Začať hľadať",
+    "notConfirmed": "Čaká na potvrdenie e-mailom",
+    "paused": "Pozastavené",
+    "lastSent": "Posledný e-mail: {date}",
+    "noneYet": "Zatiaľ žiadne nové inzeráty",
+    "pause": "Pozastaviť",
+    "resume": "Obnoviť",
+    "delete": "Zmazať"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Potvrďte upozornenie Nunvio",
+    "confirmBody": "Potvrďte, prosím, že chcete dostávať nové inzeráty pre toto hľadanie:",
+    "confirmCta": "Zapnúť upozornenie",
+    "confirmIgnore": "Ak ste o to nežiadali, tento e-mail ignorujte.",
+    "alertSubjectOne": "1 nový inzerát: {label}",
+    "alertSubjectMany": "Nové inzeráty ({count}): {label}",
+    "alertIntro": "Nové inzeráty a zníženia cien pre vaše hľadanie: {label}",
+    "priceDropped": "predtým",
+    "showAll": "Všetky výsledky",
+    "showAllCount": "Zobraziť všetky ({count})",
+    "unsubscribe": "Odhlásiť toto upozornenie",
+    "newBadge": "Nové"
   }
 }

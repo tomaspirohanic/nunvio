@@ -110,7 +110,8 @@
     "typeHouseCottage": "Teachín/Sealla",
     "typeLandFamily": "Do thithe teaghlaigh",
     "typeLandCommercial": "Tráchtála",
-    "typeLandGarden": "Gairdíní"
+    "typeLandGarden": "Gairdíní",
+    "onlyReduced": "Praghas laghdaithe amháin"
   },
   "Properties": {
     "title": "Réadmhaoin",
@@ -131,7 +132,8 @@
     "resultsCountCapped": "Níos mó ná {count, number} toradh",
     "propertiesFound": "{count, plural, =0 {Níor aimsíodh réadmhaoin ar bith} =1 {Aimsíodh 1 réadmhaoin} other {Aimsíodh # réadmhaoin}}",
     "beFirst": "Bí ar an gcéad duine",
-    "perMonth": "/mí"
+    "perMonth": "/mí",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "Praghas",
@@ -544,7 +546,8 @@
     "tipBody": "Cuir grianghraif mhaithe agus cur síos cruinn leis chun níos mó fiosrúchán a fháil.",
     "openMenu": "Oscail an roghchlár",
     "closeMenu": "Dún an roghchlár",
-    "signOut": "Logáil amach"
+    "signOut": "Logáil amach",
+    "alerts": "Cuardaigh shábháilte"
   },
   "Settings": {
     "title": "Socruithe",
@@ -609,5 +612,89 @@
     "resetBody": "Fuaireamar iarratas chun do phasfhocal Nunvio a athshocrú. Cliceáil an cnaipe thíos chun pasfhocal nua a roghnú.",
     "resetCta": "Athshocraigh pasfhocal",
     "resetIgnore": "Mura ndearna tú an t-iarratas seo, is féidir leat neamhaird a dhéanamh den ríomhphost seo."
+  },
+  "SavedSearch": {
+    "priceRange": "{min} – {max}",
+    "kind_flat": "Árasáin",
+    "kind_house": "Tithe",
+    "kind_land": "Talamh",
+    "kind_commercial": "Tráchtáil",
+    "kind_any": "Gach maoin",
+    "offer_buy": "ar díol",
+    "offer_rent": "ar cíos",
+    "priceMax": "suas le {max}",
+    "priceMin": "ó {min}",
+    "areaMin": "ó {min} m²",
+    "areaMax": "suas le {max} m²",
+    "newBuild": "tógáil nua",
+    "reduced": "praghas laghdaithe",
+    "confirmedTitle": "Foláireamh casta air",
+    "confirmedBody": "Seolfaimid fógraí nua agus laghduithe praghais don chuardach seo chugat le ríomhphost.",
+    "invalidLinkTitle": "Níl an nasc seo bailí",
+    "invalidLinkBody": "B'fhéidir go bhfuil sé imithe in éag nó úsáidte cheana.",
+    "openSearch": "Oscail an cuardach",
+    "unsubscribeTitle": "Stop na ríomhphoist seo?",
+    "unsubscribed": "Déanta. Ní bhfaighidh tú ríomhphoist don chuardach seo a thuilleadh.",
+    "unsubscribeCta": "Díliostáil",
+    "saveButton": "Sábháil an cuardach",
+    "dialogTitle": "Fógraí nua le ríomhphost",
+    "close": "Dún",
+    "savedBody": "Sábháilte. Tiocfaidh fógraí nua agus laghduithe praghais chuig do bhosca isteach.",
+    "confirmBody": "Beagnach déanta: sheolamar nasc dearbhaithe chuig {email}. Cliceáil air chun an foláireamh a chasadh air.",
+    "done": "Ceart go leor",
+    "dialogBody": "Seolfaimid fógraí nua agus laghduithe praghais a oireann do do scagairí reatha.",
+    "emailLabel": "Ríomhphost",
+    "frequencyLabel": "Cé chomh minic",
+    "frequency": {
+      "INSTANT": "Chomh luath agus a fhoilsítear iad",
+      "DAILY": "Uair sa lá",
+      "WEEKLY": "Uair sa tseachtain"
+    },
+    "saving": "Á shábháil…",
+    "submit": "Seol fógraí nua chugam",
+    "privacyNote": "Tá nasc díliostála i ngach ríomhphost. Ní roinnimid do sheoladh.",
+    "errors": {
+      "invalidEmail": "Cuir isteach seoladh ríomhphoist bailí.",
+      "tooMany": "Tá an t-uasmhéid de 20 cuardach sábháilte bainte amach agat.",
+      "emptyFilters": "Roghnaigh scagaire amháin ar a laghad ar dtús (m.sh. cathair)."
+    },
+    "dashboardTitle": "Cuardaigh shábháilte",
+    "dashboardSubtitle": "Fógraí nua agus laghduithe praghais a sheolaimid chugat le ríomhphost.",
+    "emptyList": "Níl aon chuardach sábháilte agat fós.",
+    "startSearching": "Tosaigh ag cuardach",
+    "notConfirmed": "Ag fanacht le dearbhú ríomhphoist",
+    "paused": "Ar sos",
+    "lastSent": "Ríomhphost deireanach: {date}",
+    "noneYet": "Níl aon fhógra nua fós",
+    "pause": "Cuir ar sos",
+    "resume": "Atosaigh",
+    "delete": "Scrios"
+  },
+  "ListingMarket": {
+    "onMarket": "Ar an margadh",
+    "newToday": "Nua inniu",
+    "days": "{count, plural, one {# lá} two {# lá} few {# lá} many {# lá} other {# lá}}",
+    "sinceListed": "Athrú praghais ó foilsíodh é",
+    "priceHistory": "Stair an phraghais",
+    "listed": "foilsithe",
+    "perMonth": "/ mí",
+    "otherOffers": "{count, plural, one {Á thairiscint freisin ag # díoltóir eile} other {Á thairiscint freisin ag # díoltóir eile}}",
+    "otherOffersHint": "Tá an maoin seo á fógairt ag roinnt gníomhaireachtaí. Cuir na praghsanna i gcomparáid agus roghnaigh cé leis a rachaidh tú i dteagmháil.",
+    "privateSeller": "Díoltóir príobháideach",
+    "viewOffer": "Féach"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Dearbhaigh d'fholáireamh Nunvio",
+    "confirmBody": "Dearbhaigh gur mian leat fógraí nua a fháil don chuardach seo:",
+    "confirmCta": "Cas an foláireamh air",
+    "confirmIgnore": "Mura ndearna tú an t-iarratas seo, déan neamhaird den ríomhphost seo.",
+    "alertSubjectOne": "1 fhógra nua: {label}",
+    "alertSubjectMany": "Fógraí nua ({count}): {label}",
+    "alertIntro": "Fógraí nua agus laghduithe praghais do do chuardach: {label}",
+    "priceDropped": "roimhe seo",
+    "showAll": "Gach toradh",
+    "showAllCount": "Taispeáin gach ceann ({count})",
+    "unsubscribe": "Díliostáil ón bhfoláireamh seo",
+    "newBadge": "Nua"
   }
 }

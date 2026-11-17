@@ -64,7 +64,7 @@ export default async function ListingMarketInfo({
   const t = await getTranslations({ locale, namespace: "ListingMarket" });
   const days = Math.max(
     0,
-    Math.floor((Date.now() - new Date(listedSince).getTime()) / 86_400_000)
+    Math.floor((new Date().getTime() - new Date(listedSince).getTime()) / 86_400_000)
   );
 
   const firstPrice = priceChanges.length > 0 ? priceChanges[0].oldPrice : currentPrice;

@@ -110,7 +110,8 @@
     "typeHouseCottage": "Vasarnīca",
     "typeLandFamily": "Privātmājām",
     "typeLandCommercial": "Komerczeme",
-    "typeLandGarden": "Dārzi"
+    "typeLandGarden": "Dārzi",
+    "onlyReduced": "Tikai samazināta cena"
   },
   "Properties": {
     "title": "Īpašumi",
@@ -131,7 +132,8 @@
     "resultsCountCapped": "Vairāk nekā {count, number} rezultātu",
     "propertiesFound": "{count, plural, =0 {Īpašumi nav atrasti} =1 {Atrasts 1 īpašums} zero {Atrasti # īpašumi} one {Atrasts # īpašums} other {Atrasti # īpašumi}}",
     "beFirst": "Esiet pirmais",
-    "perMonth": "/mēnesī"
+    "perMonth": "/mēnesī",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "Cena",
@@ -544,7 +546,8 @@
     "tipBody": "Pievienojiet labus fotoattēlus un precīzu aprakstu, lai saņemtu vairāk pieprasījumu.",
     "openMenu": "Atvērt izvēlni",
     "closeMenu": "Aizvērt izvēlni",
-    "signOut": "Iziet"
+    "signOut": "Iziet",
+    "alerts": "Saglabātie meklējumi"
   },
   "Settings": {
     "title": "Iestatījumi",
@@ -609,5 +612,89 @@
     "resetBody": "Saņēmām pieprasījumu atiestatīt jūsu Nunvio paroli. Noklikšķiniet uz zemāk esošās pogas, lai izvēlētos jaunu paroli.",
     "resetCta": "Atiestatīt paroli",
     "resetIgnore": "Ja to nepieprasījāt, varat ignorēt šo e-pastu."
+  },
+  "SavedSearch": {
+    "priceRange": "{min} – {max}",
+    "kind_flat": "Dzīvokļi",
+    "kind_house": "Mājas",
+    "kind_land": "Zemes gabali",
+    "kind_commercial": "Komercīpašumi",
+    "kind_any": "Visi īpašumi",
+    "offer_buy": "pārdošanā",
+    "offer_rent": "īrei",
+    "priceMax": "līdz {max}",
+    "priceMin": "no {min}",
+    "areaMin": "no {min} m²",
+    "areaMax": "līdz {max} m²",
+    "newBuild": "jaunbūves",
+    "reduced": "samazināta cena",
+    "confirmedTitle": "Paziņojumi ieslēgti",
+    "confirmedBody": "Pa e-pastu sūtīsim jaunus sludinājumus un cenu samazinājumus šim meklējumam.",
+    "invalidLinkTitle": "Šī saite nav derīga",
+    "invalidLinkBody": "Iespējams, tā ir beigusies vai jau izmantota.",
+    "openSearch": "Atvērt meklējumu",
+    "unsubscribeTitle": "Pārtraukt šos e-pastus?",
+    "unsubscribed": "Gatavs. Par šo meklējumu vairs nesaņemsiet e-pastus.",
+    "unsubscribeCta": "Atteikties",
+    "saveButton": "Saglabāt meklējumu",
+    "dialogTitle": "Jauni sludinājumi e-pastā",
+    "close": "Aizvērt",
+    "savedBody": "Saglabāts. Jaunie sludinājumi un cenu samazinājumi pienāks jūsu pastkastē.",
+    "confirmBody": "Gandrīz gatavs: nosūtījām apstiprinājuma saiti uz {email}. Noklikšķiniet uz tās, lai ieslēgtu paziņojumus.",
+    "done": "Labi",
+    "dialogBody": "Sūtīsim jaunus sludinājumus un cenu samazinājumus atbilstoši pašreizējiem filtriem.",
+    "emailLabel": "E-pasts",
+    "frequencyLabel": "Cik bieži",
+    "frequency": {
+      "INSTANT": "Tiklīdz tie parādās",
+      "DAILY": "Reizi dienā",
+      "WEEKLY": "Reizi nedēļā"
+    },
+    "saving": "Saglabā…",
+    "submit": "Sūtīt man jaunus sludinājumus",
+    "privacyNote": "Katrā e-pastā ir atteikšanās saite. Jūsu adresi nevienam nenododam.",
+    "errors": {
+      "invalidEmail": "Ievadiet derīgu e-pasta adresi.",
+      "tooMany": "Sasniegts maksimums — 20 saglabāti meklējumi.",
+      "emptyFilters": "Vispirms izvēlieties vismaz vienu filtru (piem., pilsētu)."
+    },
+    "dashboardTitle": "Saglabātie meklējumi",
+    "dashboardSubtitle": "Jauni sludinājumi un cenu samazinājumi, ko sūtām pa e-pastu.",
+    "emptyList": "Jums vēl nav saglabātu meklējumu.",
+    "startSearching": "Sākt meklēšanu",
+    "notConfirmed": "Gaida apstiprinājumu e-pastā",
+    "paused": "Apturēts",
+    "lastSent": "Pēdējais e-pasts: {date}",
+    "noneYet": "Jaunu sludinājumu vēl nav",
+    "pause": "Apturēt",
+    "resume": "Atsākt",
+    "delete": "Dzēst"
+  },
+  "ListingMarket": {
+    "onMarket": "Tirgū",
+    "newToday": "Jauns šodien",
+    "days": "{count, plural, zero {# dienas} one {# diena} other {# dienas}}",
+    "sinceListed": "Cenas izmaiņas kopš publicēšanas",
+    "priceHistory": "Cenas vēsture",
+    "listed": "publicēts",
+    "perMonth": "/ mēn.",
+    "otherOffers": "{count, plural, zero {Piedāvā arī vēl # pārdevēji} one {Piedāvā arī vēl # pārdevējs} other {Piedāvā arī vēl # pārdevēji}}",
+    "otherOffersHint": "Šo īpašumu piedāvā vairākas aģentūras. Salīdziniet cenas un izvēlieties, ar ko sazināties.",
+    "privateSeller": "Privātpersona",
+    "viewOffer": "Skatīt"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Apstipriniet Nunvio paziņojumus",
+    "confirmBody": "Lūdzu, apstipriniet, ka vēlaties saņemt jaunus sludinājumus šim meklējumam:",
+    "confirmCta": "Ieslēgt paziņojumus",
+    "confirmIgnore": "Ja to nepieprasījāt, ignorējiet šo e-pastu.",
+    "alertSubjectOne": "1 jauns sludinājums: {label}",
+    "alertSubjectMany": "Jauni sludinājumi ({count}): {label}",
+    "alertIntro": "Jauni sludinājumi un cenu samazinājumi jūsu meklējumam: {label}",
+    "priceDropped": "iepriekš",
+    "showAll": "Visi rezultāti",
+    "showAllCount": "Rādīt visus ({count})",
+    "unsubscribe": "Atteikties no šiem paziņojumiem",
+    "newBadge": "Jauns"
   }
 }

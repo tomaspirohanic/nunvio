@@ -110,7 +110,8 @@
     "typeHouseCottage": "Cottage/Chalet",
     "typeLandFamily": "Għal djar tal-familja",
     "typeLandCommercial": "Kummerċjali",
-    "typeLandGarden": "Ġonna"
+    "typeLandGarden": "Ġonna",
+    "onlyReduced": "Prezz imnaqqas biss"
   },
   "Properties": {
     "title": "Proprjetajiet",
@@ -131,7 +132,8 @@
     "resultsCountCapped": "Aktar minn {count, number} riżultat",
     "propertiesFound": "{count, plural, =0 {Ma nstabet l-ebda proprjetà} =1 {Instabet proprjetà waħda} other {Instabu # proprjetajiet}}",
     "beFirst": "Kun l-ewwel wieħed",
-    "perMonth": "/xahar"
+    "perMonth": "/xahar",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "Prezz",
@@ -544,7 +546,8 @@
     "tipBody": "Żid ritratti tajbin u deskrizzjoni preċiża biex tirċievi aktar mistoqsijiet.",
     "openMenu": "Iftaħ il-menu",
     "closeMenu": "Agħlaq il-menu",
-    "signOut": "Oħroġ"
+    "signOut": "Oħroġ",
+    "alerts": "Tfittxijiet salvati"
   },
   "Settings": {
     "title": "Settings",
@@ -609,5 +612,89 @@
     "resetBody": "Irċevejna talba biex nirrisettjaw il-password tiegħek ta' Nunvio. Ikklikkja l-buttuna hawn taħt biex tagħżel password ġdida.",
     "resetCta": "Irrisettja l-password",
     "resetIgnore": "Jekk ma tlabtx dan, tista' tinjora din l-email."
+  },
+  "SavedSearch": {
+    "priceRange": "{min} – {max}",
+    "kind_flat": "Appartamenti",
+    "kind_house": "Djar",
+    "kind_land": "Art",
+    "kind_commercial": "Kummerċjali",
+    "kind_any": "Il-proprjetajiet kollha",
+    "offer_buy": "għall-bejgħ",
+    "offer_rent": "għall-kiri",
+    "priceMax": "sa {max}",
+    "priceMin": "minn {min}",
+    "areaMin": "minn {min} m²",
+    "areaMax": "sa {max} m²",
+    "newBuild": "binjiet ġodda",
+    "reduced": "prezz imnaqqas",
+    "confirmedTitle": "Twissija mixgħula",
+    "confirmedBody": "Nibagħtulek b'email reklami ġodda u tnaqqis fil-prezzijiet għal din it-tfittxija.",
+    "invalidLinkTitle": "Din il-ħolqa mhix valida",
+    "invalidLinkBody": "Forsi skadiet jew diġà ntużat.",
+    "openSearch": "Iftaħ it-tfittxija",
+    "unsubscribeTitle": "Twaqqaf dawn l-emails?",
+    "unsubscribed": "Lest. M'intix se tirċievi aktar emails għal din it-tfittxija.",
+    "unsubscribeCta": "Ħassar l-abbonament",
+    "saveButton": "Issejvja t-tfittxija",
+    "dialogTitle": "Reklami ġodda b'email",
+    "close": "Agħlaq",
+    "savedBody": "Salvat. Ir-reklami ġodda u t-tnaqqis fil-prezzijiet jaslu fl-inbox tiegħek.",
+    "confirmBody": "Kważi lest: bgħatna ħolqa ta' konferma lil {email}. Ikklikkja fuqha biex tixgħel it-twissija.",
+    "done": "OK",
+    "dialogBody": "Nibagħtulek reklami ġodda u tnaqqis fil-prezzijiet skont il-filtri attwali.",
+    "emailLabel": "Email",
+    "frequencyLabel": "Kemm-il darba",
+    "frequency": {
+      "INSTANT": "Hekk kif jidhru",
+      "DAILY": "Darba kuljum",
+      "WEEKLY": "Darba fil-ġimgħa"
+    },
+    "saving": "Qed jissejvja…",
+    "submit": "Ibgħatli reklami ġodda",
+    "privacyNote": "Kull email fiha ħolqa biex tneħħi l-abbonament. Ma naqsmux l-indirizz tiegħek.",
+    "errors": {
+      "invalidEmail": "Daħħal indirizz tal-email validu.",
+      "tooMany": "Laħaqt il-massimu ta' 20 tfittxija salvata.",
+      "emptyFilters": "L-ewwel agħżel mill-inqas filtru wieħed (eż. belt)."
+    },
+    "dashboardTitle": "Tfittxijiet salvati",
+    "dashboardSubtitle": "Reklami ġodda u tnaqqis fil-prezzijiet li nibagħtulek b'email.",
+    "emptyList": "Għad m'għandek l-ebda tfittxija salvata.",
+    "startSearching": "Ibda fittex",
+    "notConfirmed": "Qed jistenna konferma b'email",
+    "paused": "Waqfa",
+    "lastSent": "L-aħħar email: {date}",
+    "noneYet": "Għad m'hemmx reklami ġodda",
+    "pause": "Waqqaf",
+    "resume": "Kompli",
+    "delete": "Ħassar"
+  },
+  "ListingMarket": {
+    "onMarket": "Fis-suq",
+    "newToday": "Ġdid illum",
+    "days": "{count, plural, one {# jum} few {# ijiem} many {# jum} other {# jum}}",
+    "sinceListed": "Bidla fil-prezz minn meta ġie ppubblikat",
+    "priceHistory": "Storja tal-prezz",
+    "listed": "ippubblikat",
+    "perMonth": "/ xahar",
+    "otherOffers": "{count, plural, one {Offrut ukoll minn # bejjiegħ ieħor} other {Offrut ukoll minn # bejjiegħa oħra}}",
+    "otherOffersHint": "Din il-proprjetà hija offruta minn diversi aġenziji. Qabbel il-prezzijiet u agħżel lil min tikkuntattja.",
+    "privateSeller": "Bejjiegħ privat",
+    "viewOffer": "Ara"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Ikkonferma t-twissija ta' Nunvio",
+    "confirmBody": "Jekk jogħġbok ikkonferma li trid tirċievi reklami ġodda għal din it-tfittxija:",
+    "confirmCta": "Ixgħel it-twissija",
+    "confirmIgnore": "Jekk ma tlabtx dan, injora din l-email.",
+    "alertSubjectOne": "1 reklam ġdid: {label}",
+    "alertSubjectMany": "Reklami ġodda ({count}): {label}",
+    "alertIntro": "Reklami ġodda u tnaqqis fil-prezzijiet għat-tfittxija tiegħek: {label}",
+    "priceDropped": "qabel",
+    "showAll": "Ir-riżultati kollha",
+    "showAllCount": "Uri kollox ({count})",
+    "unsubscribe": "Ħassar l-abbonament għal din it-twissija",
+    "newBadge": "Ġdid"
   }
 }

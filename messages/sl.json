@@ -110,7 +110,8 @@
     "typeHouseCottage": "Počitniška hiša/koča",
     "typeLandFamily": "Za družinske hiše",
     "typeLandCommercial": "Poslovno",
-    "typeLandGarden": "Vrtovi"
+    "typeLandGarden": "Vrtovi",
+    "onlyReduced": "Samo znižana cena"
   },
   "Properties": {
     "title": "Nepremičnine",
@@ -131,7 +132,8 @@
     "resultsCountCapped": "Več kot {count, number} zadetkov",
     "propertiesFound": "{count, plural, =0 {Ni najdenih nepremičnin} =1 {Najdena 1 nepremičnina} one {Najdena # nepremičnina} two {Najdeni # nepremičnini} few {Najdene # nepremičnine} other {Najdenih # nepremičnin}}",
     "beFirst": "Bodite prvi",
-    "perMonth": "/mesec"
+    "perMonth": "/mesec",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "Cena",
@@ -544,7 +546,8 @@
     "tipBody": "Dodajte dobre fotografije in natančen opis, da prejmete več povpraševanj.",
     "openMenu": "Odpri meni",
     "closeMenu": "Zapri meni",
-    "signOut": "Odjava"
+    "signOut": "Odjava",
+    "alerts": "Shranjena iskanja"
   },
   "Settings": {
     "title": "Nastavitve",
@@ -609,5 +612,89 @@
     "resetBody": "Prejeli smo zahtevo za ponastavitev vašega gesla za Nunvio. Kliknite spodnji gumb, da izberete novo geslo.",
     "resetCta": "Ponastavi geslo",
     "resetIgnore": "Če tega niste zahtevali, lahko to sporočilo prezrete."
+  },
+  "SavedSearch": {
+    "priceRange": "{min} – {max}",
+    "kind_flat": "Stanovanja",
+    "kind_house": "Hiše",
+    "kind_land": "Zemljišča",
+    "kind_commercial": "Poslovni prostori",
+    "kind_any": "Vse nepremičnine",
+    "offer_buy": "naprodaj",
+    "offer_rent": "za najem",
+    "priceMax": "do {max}",
+    "priceMin": "od {min}",
+    "areaMin": "od {min} m²",
+    "areaMax": "do {max} m²",
+    "newBuild": "novogradnje",
+    "reduced": "znižano",
+    "confirmedTitle": "Obvestila vklopljena",
+    "confirmedBody": "Nove oglase in znižanja cen za to iskanje vam bomo pošiljali po e-pošti.",
+    "invalidLinkTitle": "Ta povezava ni veljavna",
+    "invalidLinkBody": "Morda je potekla ali je bila že uporabljena.",
+    "openSearch": "Odpri iskanje",
+    "unsubscribeTitle": "Ustavim ta sporočila?",
+    "unsubscribed": "Končano. Za to iskanje ne boste več prejemali sporočil.",
+    "unsubscribeCta": "Odjava",
+    "saveButton": "Shrani iskanje",
+    "dialogTitle": "Novi oglasi po e-pošti",
+    "close": "Zapri",
+    "savedBody": "Shranjeno. Novi oglasi in znižanja cen bodo prihajali v vaš nabiralnik.",
+    "confirmBody": "Še korak: na {email} smo poslali potrditveno povezavo. Kliknite jo, da vklopite obvestila.",
+    "done": "V redu",
+    "dialogBody": "Pošiljali vam bomo nove oglase in znižanja cen glede na trenutne filtre.",
+    "emailLabel": "E-pošta",
+    "frequencyLabel": "Kako pogosto",
+    "frequency": {
+      "INSTANT": "Takoj ko se pojavijo",
+      "DAILY": "Enkrat na dan",
+      "WEEKLY": "Enkrat na teden"
+    },
+    "saving": "Shranjujem…",
+    "submit": "Pošiljaj mi nove oglase",
+    "privacyNote": "Vsako sporočilo vsebuje povezavo za odjavo. Vašega naslova ne delimo.",
+    "errors": {
+      "invalidEmail": "Vnesite veljaven e-poštni naslov.",
+      "tooMany": "Dosegli ste največ 20 shranjenih iskanj.",
+      "emptyFilters": "Najprej izberite vsaj en filter (npr. mesto)."
+    },
+    "dashboardTitle": "Shranjena iskanja",
+    "dashboardSubtitle": "Novi oglasi in znižanja cen, ki vam jih pošiljamo po e-pošti.",
+    "emptyList": "Še nimate shranjenih iskanj.",
+    "startSearching": "Začnite iskati",
+    "notConfirmed": "Čaka na potrditev po e-pošti",
+    "paused": "Zaustavljeno",
+    "lastSent": "Zadnje sporočilo: {date}",
+    "noneYet": "Novih oglasov še ni",
+    "pause": "Zaustavi",
+    "resume": "Nadaljuj",
+    "delete": "Izbriši"
+  },
+  "ListingMarket": {
+    "onMarket": "Na trgu",
+    "newToday": "Novo danes",
+    "days": "{count, plural, one {# dan} two {# dneva} few {# dnevi} other {# dni}}",
+    "sinceListed": "Sprememba cene od objave",
+    "priceHistory": "Zgodovina cene",
+    "listed": "objavljeno",
+    "perMonth": "/ mesec",
+    "otherOffers": "{count, plural, one {Ponuja tudi še # prodajalec} two {Ponujata tudi še # prodajalca} few {Ponujajo tudi še # prodajalci} other {Ponuja tudi še # prodajalcev}}",
+    "otherOffersHint": "To nepremičnino ponuja več agencij. Primerjajte cene in izberite, koga boste kontaktirali.",
+    "privateSeller": "Zasebni prodajalec",
+    "viewOffer": "Poglej"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Potrdite obvestila Nunvio",
+    "confirmBody": "Potrdite, da želite prejemati nove oglase za to iskanje:",
+    "confirmCta": "Vklopi obvestila",
+    "confirmIgnore": "Če tega niste zahtevali, prezrite to sporočilo.",
+    "alertSubjectOne": "1 nov oglas: {label}",
+    "alertSubjectMany": "Novi oglasi ({count}): {label}",
+    "alertIntro": "Novi oglasi in znižanja cen za vaše iskanje: {label}",
+    "priceDropped": "prej",
+    "showAll": "Vsi rezultati",
+    "showAllCount": "Prikaži vse ({count})",
+    "unsubscribe": "Odjava od teh obvestil",
+    "newBadge": "Novo"
   }
 }

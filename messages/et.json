@@ -110,7 +110,8 @@
     "typeHouseCottage": "Suvila",
     "typeLandFamily": "Eramute jaoks",
     "typeLandCommercial": "Ärimaa",
-    "typeLandGarden": "Aiamaad"
+    "typeLandGarden": "Aiamaad",
+    "onlyReduced": "Ainult alandatud hind"
   },
   "Properties": {
     "title": "Kinnisvara",
@@ -131,7 +132,8 @@
     "resultsCountCapped": "Üle {count, number} tulemuse",
     "propertiesFound": "{count, plural, =0 {Objekte ei leitud} =1 {Leiti 1 objekt} other {Leiti # objekti}}",
     "beFirst": "Ole esimene",
-    "perMonth": "/kuu"
+    "perMonth": "/kuu",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "Hind",
@@ -544,7 +546,8 @@
     "tipBody": "Lisa head fotod ja täpne kirjeldus, et saada rohkem päringuid.",
     "openMenu": "Ava menüü",
     "closeMenu": "Sulge menüü",
-    "signOut": "Logi välja"
+    "signOut": "Logi välja",
+    "alerts": "Salvestatud otsingud"
   },
   "Settings": {
     "title": "Seaded",
@@ -609,5 +612,89 @@
     "resetBody": "Saime taotluse sinu Nunvio parooli lähtestamiseks. Klõpsa allolevat nuppu, et valida uus parool.",
     "resetCta": "Lähtesta parool",
     "resetIgnore": "Kui sa seda ei taotlenud, võid selle kirja tähelepanuta jätta."
+  },
+  "SavedSearch": {
+    "priceRange": "{min} – {max}",
+    "kind_flat": "Korterid",
+    "kind_house": "Majad",
+    "kind_land": "Krundid",
+    "kind_commercial": "Äripinnad",
+    "kind_any": "Kõik kinnisvara",
+    "offer_buy": "müügis",
+    "offer_rent": "üürile",
+    "priceMax": "kuni {max}",
+    "priceMin": "alates {min}",
+    "areaMin": "alates {min} m²",
+    "areaMax": "kuni {max} m²",
+    "newBuild": "uusarendused",
+    "reduced": "hind alandatud",
+    "confirmedTitle": "Teavitus sisse lülitatud",
+    "confirmedBody": "Saadame teile e-postiga uued kuulutused ja hinnalangused selle otsingu kohta.",
+    "invalidLinkTitle": "See link ei kehti",
+    "invalidLinkBody": "See võib olla aegunud või juba kasutatud.",
+    "openSearch": "Ava otsing",
+    "unsubscribeTitle": "Lõpetada need kirjad?",
+    "unsubscribed": "Valmis. Selle otsingu kohta te enam kirju ei saa.",
+    "unsubscribeCta": "Loobu",
+    "saveButton": "Salvesta otsing",
+    "dialogTitle": "Uued kuulutused e-postiga",
+    "close": "Sulge",
+    "savedBody": "Salvestatud. Uued kuulutused ja hinnalangused jõuavad teie postkasti.",
+    "confirmBody": "Peaaegu valmis: saatsime kinnituslingi aadressile {email}. Teavituse sisselülitamiseks klõpsake sellel.",
+    "done": "OK",
+    "dialogBody": "Saadame uued kuulutused ja hinnalangused vastavalt praegustele filtritele.",
+    "emailLabel": "E-post",
+    "frequencyLabel": "Kui tihti",
+    "frequency": {
+      "INSTANT": "Kohe kui need ilmuvad",
+      "DAILY": "Kord päevas",
+      "WEEKLY": "Kord nädalas"
+    },
+    "saving": "Salvestan…",
+    "submit": "Saada mulle uued kuulutused",
+    "privacyNote": "Igas kirjas on loobumislink. Me ei jaga teie aadressi.",
+    "errors": {
+      "invalidEmail": "Sisestage kehtiv e-posti aadress.",
+      "tooMany": "Olete jõudnud 20 salvestatud otsingu piirini.",
+      "emptyFilters": "Valige kõigepealt vähemalt üks filter (nt linn)."
+    },
+    "dashboardTitle": "Salvestatud otsingud",
+    "dashboardSubtitle": "Uued kuulutused ja hinnalangused, mida teile e-postiga saadame.",
+    "emptyList": "Teil pole veel salvestatud otsinguid.",
+    "startSearching": "Alusta otsingut",
+    "notConfirmed": "Ootab e-posti kinnitust",
+    "paused": "Peatatud",
+    "lastSent": "Viimane kiri: {date}",
+    "noneYet": "Uusi kuulutusi veel pole",
+    "pause": "Peata",
+    "resume": "Jätka",
+    "delete": "Kustuta"
+  },
+  "ListingMarket": {
+    "onMarket": "Turul",
+    "newToday": "Täna uus",
+    "days": "{count, plural, one {# päev} other {# päeva}}",
+    "sinceListed": "Hinnamuutus avaldamisest",
+    "priceHistory": "Hinnaajalugu",
+    "listed": "avaldatud",
+    "perMonth": "/ kuu",
+    "otherOffers": "{count, plural, one {Pakub ka # teine müüja} other {Pakuvad ka # teist müüjat}}",
+    "otherOffersHint": "Seda kinnisvara pakub mitu maaklerit. Võrrelge hindu ja valige, kellega ühendust võtta.",
+    "privateSeller": "Eraisik",
+    "viewOffer": "Vaata"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Kinnitage Nunvio teavitus",
+    "confirmBody": "Palun kinnitage, et soovite selle otsingu kohta uusi kuulutusi:",
+    "confirmCta": "Lülita teavitus sisse",
+    "confirmIgnore": "Kui te seda ei taotlenud, eirake seda kirja.",
+    "alertSubjectOne": "1 uus kuulutus: {label}",
+    "alertSubjectMany": "{count} uut kuulutust: {label}",
+    "alertIntro": "Uued kuulutused ja hinnalangused teie otsingule: {label}",
+    "priceDropped": "varem",
+    "showAll": "Kõik tulemused",
+    "showAllCount": "Näita kõiki ({count})",
+    "unsubscribe": "Loobu sellest teavitusest",
+    "newBadge": "Uus"
   }
 }

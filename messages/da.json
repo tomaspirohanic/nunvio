@@ -110,7 +110,8 @@
     "typeHouseCottage": "Sommerhus/hytte",
     "typeLandFamily": "Til parcelhuse",
     "typeLandCommercial": "Erhverv",
-    "typeLandGarden": "Haver"
+    "typeLandGarden": "Haver",
+    "onlyReduced": "Kun nedsat pris"
   },
   "Properties": {
     "title": "Boliger",
@@ -131,7 +132,8 @@
     "resultsCountCapped": "Over {count, number} resultater",
     "propertiesFound": "{count, plural, =0 {Ingen boliger fundet} =1 {1 bolig fundet} other {# boliger fundet}}",
     "beFirst": "Bliv den første til at annoncere",
-    "perMonth": "/md."
+    "perMonth": "/md.",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "Pris",
@@ -544,7 +546,8 @@
     "tipBody": "Tilføj gode billeder og en præcis beskrivelse for at få flere henvendelser.",
     "openMenu": "Åbn menu",
     "closeMenu": "Luk menu",
-    "signOut": "Log ud"
+    "signOut": "Log ud",
+    "alerts": "Gemte søgninger"
   },
   "Settings": {
     "title": "Indstillinger",
@@ -609,5 +612,89 @@
     "resetBody": "Vi har modtaget en anmodning om at nulstille din Nunvio-adgangskode. Klik på knappen nedenfor for at vælge en ny adgangskode.",
     "resetCta": "Nulstil adgangskode",
     "resetIgnore": "Hvis du ikke har anmodet om dette, kan du se bort fra denne e-mail."
+  },
+  "SavedSearch": {
+    "priceRange": "{min} – {max}",
+    "kind_flat": "Lejligheder",
+    "kind_house": "Huse",
+    "kind_land": "Grunde",
+    "kind_commercial": "Erhverv",
+    "kind_any": "Alle boliger",
+    "offer_buy": "til salg",
+    "offer_rent": "til leje",
+    "priceMax": "op til {max}",
+    "priceMin": "fra {min}",
+    "areaMin": "fra {min} m²",
+    "areaMax": "op til {max} m²",
+    "newBuild": "nybyggeri",
+    "reduced": "nedsat pris",
+    "confirmedTitle": "Boligagent aktiveret",
+    "confirmedBody": "Vi mailer dig nye annoncer og prisfald for denne søgning.",
+    "invalidLinkTitle": "Linket er ikke gyldigt",
+    "invalidLinkBody": "Det kan være udløbet eller allerede brugt.",
+    "openSearch": "Åbn søgningen",
+    "unsubscribeTitle": "Stop disse e-mails?",
+    "unsubscribed": "Færdig. Du modtager ikke flere e-mails for denne søgning.",
+    "unsubscribeCta": "Afmeld",
+    "saveButton": "Gem søgning",
+    "dialogTitle": "Nye annoncer på e-mail",
+    "close": "Luk",
+    "savedBody": "Gemt. Nye annoncer og prisfald kommer i din indbakke.",
+    "confirmBody": "Næsten færdig: vi har sendt et bekræftelseslink til {email}. Klik på det for at aktivere agenten.",
+    "done": "OK",
+    "dialogBody": "Vi sender dig nye annoncer og prisfald, der matcher dine nuværende filtre.",
+    "emailLabel": "E-mail",
+    "frequencyLabel": "Hvor ofte",
+    "frequency": {
+      "INSTANT": "Så snart de kommer",
+      "DAILY": "En gang om dagen",
+      "WEEKLY": "En gang om ugen"
+    },
+    "saving": "Gemmer…",
+    "submit": "Send mig nye annoncer",
+    "privacyNote": "Hver e-mail har et afmeldingslink. Vi deler ikke din adresse.",
+    "errors": {
+      "invalidEmail": "Indtast en gyldig e-mailadresse.",
+      "tooMany": "Du har nået maksimum på 20 gemte søgninger.",
+      "emptyFilters": "Vælg først mindst ét filter (f.eks. en by)."
+    },
+    "dashboardTitle": "Gemte søgninger",
+    "dashboardSubtitle": "Nye annoncer og prisfald, som vi mailer dig.",
+    "emptyList": "Du har endnu ingen gemte søgninger.",
+    "startSearching": "Begynd at søge",
+    "notConfirmed": "Afventer bekræftelse på e-mail",
+    "paused": "Sat på pause",
+    "lastSent": "Seneste e-mail: {date}",
+    "noneYet": "Ingen nye annoncer endnu",
+    "pause": "Pause",
+    "resume": "Genoptag",
+    "delete": "Slet"
+  },
+  "ListingMarket": {
+    "onMarket": "På markedet",
+    "newToday": "Ny i dag",
+    "days": "{count, plural, one {# dag} other {# dage}}",
+    "sinceListed": "Prisændring siden oprettelse",
+    "priceHistory": "Prishistorik",
+    "listed": "oprettet",
+    "perMonth": "/ måned",
+    "otherOffers": "{count, plural, one {Udbydes også af # anden sælger} other {Udbydes også af # andre sælgere}}",
+    "otherOffersHint": "Boligen udbydes af flere mæglere. Sammenlign priserne, og vælg hvem du kontakter.",
+    "privateSeller": "Privat sælger",
+    "viewOffer": "Se"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Bekræft din Nunvio-boligagent",
+    "confirmBody": "Bekræft venligst, at du vil modtage nye annoncer for denne søgning:",
+    "confirmCta": "Aktivér agenten",
+    "confirmIgnore": "Hvis du ikke har bedt om dette, kan du ignorere denne e-mail.",
+    "alertSubjectOne": "1 ny annonce: {label}",
+    "alertSubjectMany": "{count} nye annoncer: {label}",
+    "alertIntro": "Nye annoncer og prisfald for din søgning: {label}",
+    "priceDropped": "før",
+    "showAll": "Alle resultater",
+    "showAllCount": "Vis alle ({count})",
+    "unsubscribe": "Afmeld denne agent",
+    "newBadge": "Ny"
   }
 }

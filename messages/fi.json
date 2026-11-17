@@ -110,7 +110,8 @@
     "typeHouseCottage": "Mökki",
     "typeLandFamily": "Omakotitaloille",
     "typeLandCommercial": "Liiketontti",
-    "typeLandGarden": "Puutarhat"
+    "typeLandGarden": "Puutarhat",
+    "onlyReduced": "Vain alennettu hinta"
   },
   "Properties": {
     "title": "Asunnot",
@@ -131,7 +132,8 @@
     "resultsCountCapped": "Yli {count, number} tulosta",
     "propertiesFound": "{count, plural, =0 {Kohteita ei löytynyt} =1 {Löytyi 1 kohde} other {Löytyi # kohdetta}}",
     "beFirst": "Ilmoita ensimmäisenä",
-    "perMonth": "/kk"
+    "perMonth": "/kk",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "Hinta",
@@ -544,7 +546,8 @@
     "tipBody": "Lisää hyvät kuvat ja tarkka kuvaus saadaksesi enemmän yhteydenottoja.",
     "openMenu": "Avaa valikko",
     "closeMenu": "Sulje valikko",
-    "signOut": "Kirjaudu ulos"
+    "signOut": "Kirjaudu ulos",
+    "alerts": "Tallennetut haut"
   },
   "Settings": {
     "title": "Asetukset",
@@ -609,5 +612,89 @@
     "resetBody": "Saimme pyynnön nollata Nunvio-salasanasi. Napsauta alla olevaa painiketta valitaksesi uuden salasanan.",
     "resetCta": "Nollaa salasana",
     "resetIgnore": "Jos et pyytänyt tätä, voit jättää tämän viestin huomiotta."
+  },
+  "SavedSearch": {
+    "priceRange": "{min} – {max}",
+    "kind_flat": "Asunnot",
+    "kind_house": "Talot",
+    "kind_land": "Tontit",
+    "kind_commercial": "Liiketilat",
+    "kind_any": "Kaikki kohteet",
+    "offer_buy": "myytävänä",
+    "offer_rent": "vuokrattavana",
+    "priceMax": "enintään {max}",
+    "priceMin": "alkaen {min}",
+    "areaMin": "alkaen {min} m²",
+    "areaMax": "enintään {max} m²",
+    "newBuild": "uudiskohteet",
+    "reduced": "hinta laskenut",
+    "confirmedTitle": "Hakuvahti päällä",
+    "confirmedBody": "Lähetämme sähköpostilla uudet ilmoitukset ja hinnanlaskut tähän hakuun.",
+    "invalidLinkTitle": "Linkki ei ole voimassa",
+    "invalidLinkBody": "Se on voinut vanhentua tai olla jo käytetty.",
+    "openSearch": "Avaa haku",
+    "unsubscribeTitle": "Lopetetaanko nämä viestit?",
+    "unsubscribed": "Valmis. Et saa enää viestejä tästä hausta.",
+    "unsubscribeCta": "Peru tilaus",
+    "saveButton": "Tallenna haku",
+    "dialogTitle": "Uudet ilmoitukset sähköpostiin",
+    "close": "Sulje",
+    "savedBody": "Tallennettu. Uudet ilmoitukset ja hinnanlaskut tulevat sähköpostiisi.",
+    "confirmBody": "Melkein valmista: lähetimme vahvistuslinkin osoitteeseen {email}. Ota vahti käyttöön napsauttamalla linkkiä.",
+    "done": "OK",
+    "dialogBody": "Lähetämme uudet ilmoitukset ja hinnanlaskut nykyisten suodattimien mukaan.",
+    "emailLabel": "Sähköposti",
+    "frequencyLabel": "Kuinka usein",
+    "frequency": {
+      "INSTANT": "Heti kun niitä tulee",
+      "DAILY": "Kerran päivässä",
+      "WEEKLY": "Kerran viikossa"
+    },
+    "saving": "Tallennetaan…",
+    "submit": "Lähetä uudet ilmoitukset",
+    "privacyNote": "Jokaisessa viestissä on peruutuslinkki. Emme jaa osoitettasi.",
+    "errors": {
+      "invalidEmail": "Anna kelvollinen sähköpostiosoite.",
+      "tooMany": "Olet saavuttanut 20 tallennetun haun enimmäismäärän.",
+      "emptyFilters": "Valitse ensin vähintään yksi suodatin (esim. kaupunki)."
+    },
+    "dashboardTitle": "Tallennetut haut",
+    "dashboardSubtitle": "Uudet ilmoitukset ja hinnanlaskut, jotka lähetämme sähköpostilla.",
+    "emptyList": "Sinulla ei ole vielä tallennettuja hakuja.",
+    "startSearching": "Aloita haku",
+    "notConfirmed": "Odottaa sähköpostivahvistusta",
+    "paused": "Keskeytetty",
+    "lastSent": "Viimeisin viesti: {date}",
+    "noneYet": "Ei vielä uusia ilmoituksia",
+    "pause": "Keskeytä",
+    "resume": "Jatka",
+    "delete": "Poista"
+  },
+  "ListingMarket": {
+    "onMarket": "Myynnissä",
+    "newToday": "Uusi tänään",
+    "days": "{count, plural, one {# päivä} other {# päivää}}",
+    "sinceListed": "Hinnanmuutos julkaisusta",
+    "priceHistory": "Hintahistoria",
+    "listed": "julkaistu",
+    "perMonth": "/ kk",
+    "otherOffers": "{count, plural, one {Myös # muu myyjä tarjoaa} other {Myös # muuta myyjää tarjoaa}}",
+    "otherOffersHint": "Kohdetta tarjoaa useampi välittäjä. Vertaa hintoja ja valitse, kehen otat yhteyttä.",
+    "privateSeller": "Yksityinen myyjä",
+    "viewOffer": "Näytä"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Vahvista Nunvio-hakuvahti",
+    "confirmBody": "Vahvista, että haluat saada uusia ilmoituksia tähän hakuun:",
+    "confirmCta": "Ota vahti käyttöön",
+    "confirmIgnore": "Jos et pyytänyt tätä, voit jättää viestin huomiotta.",
+    "alertSubjectOne": "1 uusi ilmoitus: {label}",
+    "alertSubjectMany": "{count} uutta ilmoitusta: {label}",
+    "alertIntro": "Uudet ilmoitukset ja hinnanlaskut hakuusi: {label}",
+    "priceDropped": "aiemmin",
+    "showAll": "Kaikki tulokset",
+    "showAllCount": "Näytä kaikki ({count})",
+    "unsubscribe": "Peru tämä hakuvahti",
+    "newBadge": "Uusi"
   }
 }

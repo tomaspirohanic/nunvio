@@ -118,3 +118,47 @@ test("same agency never dedups its own listings", { skip: !url }, async () => {
   const rows = await m.prisma.property.findMany({ where: { agencyId: c.agencyId } });
   assert.ok(rows.every((r) => r.duplicateOfId === null));
 });
+
+test("saved search: alerts new listings once, respects filters", { skip: !url }, async () => {
+  const { createSavedSearch, sendSearchAlerts, findAlertMatches, confirmSavedSearch, unsubscribeSavedSearch } =
+    await import("../lib/saved-search.server");
+  const d = await makeAgency("delta");
+
+  const r = await createSavedSearch({
+    email: "Buyer@Example.com",
+    filters: { location: "Žilina", offer: "buy", maxPrice: 200000, page: 3 },
+    locale: "sk",
+    frequency: "INSTANT",
+  });
+  assert.deepEqual(r, { ok: true, needsConfirmation: true });
+  const saved = await m.prisma.savedSearch.findFirstOrThrow({ where: { email: "buyer@example.com" } });
+  assert.equal(saved.confirmedAt, null);
+  assert.deepEqual(saved.filters, { location: "Žilina", offer: "buy", maxPrice: 200000 });
+  assert.match(saved.label, /Žilina/);
+
+  // Not confirmed -> no alerts
+  assert.equal((await sendSearchAlerts({ deadline: Date.now() + 5000 })).checked, 0);
+  await confirmSavedSearch(saved.token);
+  await m.prisma.savedSearch.update({ where: { id: saved.id }, data: { lastCheckedAt: new Date(Date.now() - 60_000) } });
+
+  await m.importNormalizedProperties({
+    ...d,
+    skipImages: true,
+    properties: [
+      { ...base, city: "Žilina", externalId: "D1", title: "Lacný byt", price: 180000 },
+      { ...base, city: "Žilina", externalId: "D2", title: "Drahý byt", price: 320000, areaSqm: 120 },
+      { ...base, city: "Martin", externalId: "D3", title: "Iné mesto", price: 150000, areaSqm: 50 },
+    ],
+  });
+
+  const matches = await findAlertMatches(saved.filters as never, new Date(Date.now() - 60_000));
+  assert.deepEqual(matches.listings.map((l) => l.title), ["Lacný byt"]);
+
+  const first = await sendSearchAlerts({ deadline: Date.now() + 5000 });
+  assert.equal(first.emailed, 1);
+  const second = await sendSearchAlerts({ deadline: Date.now() + 5000 });
+  assert.equal(second.emailed, 0, "the same listing is not sent twice");
+
+  await unsubscribeSavedSearch(saved.token);
+  assert.equal((await m.prisma.savedSearch.findUniqueOrThrow({ where: { id: saved.id } })).active, false);
+});

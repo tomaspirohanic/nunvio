@@ -97,7 +97,7 @@ async function buildVerificationHtml(opts: {
   return { subject, text, html };
 }
 
-function escapeHtml(value: string): string {
+export function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -134,12 +134,14 @@ async function getTransport() {
   });
 }
 
-async function sendMailMessage(opts: {
+export async function sendMailMessage(opts: {
   to: string;
   subject: string;
   text: string;
   html: string;
   logLabel?: string;
+  /** Extra headers, e.g. List-Unsubscribe for alert e-mails */
+  headers?: Record<string, string>;
 }): Promise<{ sent: boolean; logged: boolean }> {
   const from = process.env.EMAIL_FROM || "Nunvio <noreply@nunvio.com>";
   const transport = await getTransport();
@@ -158,6 +160,7 @@ async function sendMailMessage(opts: {
     subject: opts.subject,
     text: opts.text,
     html: opts.html,
+    ...(opts.headers ? { headers: opts.headers } : {}),
   });
 
   return { sent: true, logged: false };

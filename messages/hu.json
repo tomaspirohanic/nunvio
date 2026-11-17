@@ -110,7 +110,8 @@
     "typeHouseCottage": "Nyaraló/Hétvégi ház",
     "typeLandFamily": "Családi házhoz",
     "typeLandCommercial": "Kereskedelmi",
-    "typeLandGarden": "Kertek"
+    "typeLandGarden": "Kertek",
+    "onlyReduced": "Csak csökkentett ár"
   },
   "Properties": {
     "title": "Ingatlanok",
@@ -131,7 +132,8 @@
     "resultsCountCapped": "Több mint {count, number} találat",
     "propertiesFound": "{count, plural, =0 {Nincs találat} =1 {1 ingatlan található} other {# ingatlan található}}",
     "beFirst": "Hirdessen elsőként",
-    "perMonth": "/hó"
+    "perMonth": "/hó",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "Ár",
@@ -556,7 +558,8 @@
     "tipBody": "Jó fotókkal és pontos leírással több érdeklődőt kap.",
     "openMenu": "Menü megnyitása",
     "closeMenu": "Menü bezárása",
-    "signOut": "Kijelentkezés"
+    "signOut": "Kijelentkezés",
+    "alerts": "Mentett keresések"
   },
   "Settings": {
     "title": "Beállítások",
@@ -609,5 +612,89 @@
     "maxUpload": "Kézi feltöltés korlátja:",
     "maxUploadBody": "Fájlonként 500 hirdetés, hirdetésenként 8 fotó. Nagy katalógusokhoz használja a fenti automatikus feedet.",
     "photosNote": "Az URL-ekről érkező fotók a Nunvio tárhelyére másolódnak."
+  },
+  "SavedSearch": {
+    "priceRange": "{min} – {max}",
+    "kind_flat": "Lakások",
+    "kind_house": "Házak",
+    "kind_land": "Telkek",
+    "kind_commercial": "Üzleti ingatlanok",
+    "kind_any": "Minden ingatlan",
+    "offer_buy": "eladó",
+    "offer_rent": "kiadó",
+    "priceMax": "legfeljebb {max}",
+    "priceMin": "{min}-tól",
+    "areaMin": "{min} m²-től",
+    "areaMax": "legfeljebb {max} m²",
+    "newBuild": "új építésű",
+    "reduced": "csökkentett árú",
+    "confirmedTitle": "Értesítés bekapcsolva",
+    "confirmedBody": "E-mailben küldjük az új hirdetéseket és árcsökkenéseket ehhez a kereséshez.",
+    "invalidLinkTitle": "Ez a link érvénytelen",
+    "invalidLinkBody": "Lehet, hogy lejárt vagy már felhasználták.",
+    "openSearch": "Keresés megnyitása",
+    "unsubscribeTitle": "Leiratkozik ezekről az e-mailekről?",
+    "unsubscribed": "Kész. Ehhez a kereséshez nem küldünk több e-mailt.",
+    "unsubscribeCta": "Leiratkozás",
+    "saveButton": "Keresés mentése",
+    "dialogTitle": "Új hirdetések e-mailben",
+    "close": "Bezárás",
+    "savedBody": "Mentve. Az új hirdetések és árcsökkenések a postafiókjába érkeznek.",
+    "confirmBody": "Majdnem kész: megerősítő linket küldtünk a(z) {email} címre. Kattintson rá az értesítés bekapcsolásához.",
+    "done": "OK",
+    "dialogBody": "Elküldjük az aktuális szűrőknek megfelelő új hirdetéseket és árcsökkenéseket.",
+    "emailLabel": "E-mail",
+    "frequencyLabel": "Milyen gyakran",
+    "frequency": {
+      "INSTANT": "Amint megjelennek",
+      "DAILY": "Naponta egyszer",
+      "WEEKLY": "Hetente egyszer"
+    },
+    "saving": "Mentés…",
+    "submit": "Kérem az új hirdetéseket",
+    "privacyNote": "Minden e-mailben van leiratkozási link. A címét nem adjuk tovább.",
+    "errors": {
+      "invalidEmail": "Adjon meg érvényes e-mail-címet.",
+      "tooMany": "Elérte a 20 mentett keresés maximumát.",
+      "emptyFilters": "Először válasszon legalább egy szűrőt (pl. várost)."
+    },
+    "dashboardTitle": "Mentett keresések",
+    "dashboardSubtitle": "Új hirdetések és árcsökkenések, amelyeket e-mailben küldünk.",
+    "emptyList": "Még nincs mentett keresése.",
+    "startSearching": "Keresés indítása",
+    "notConfirmed": "E-mailes megerősítésre vár",
+    "paused": "Szüneteltetve",
+    "lastSent": "Utolsó e-mail: {date}",
+    "noneYet": "Még nincs új hirdetés",
+    "pause": "Szüneteltetés",
+    "resume": "Folytatás",
+    "delete": "Törlés"
+  },
+  "ListingMarket": {
+    "onMarket": "Piacon",
+    "newToday": "Ma új",
+    "days": "{count, plural, one {# nap} other {# nap}}",
+    "sinceListed": "Árváltozás a megjelenés óta",
+    "priceHistory": "Ártörténet",
+    "listed": "megjelent",
+    "perMonth": "/ hó",
+    "otherOffers": "{count, plural, one {További # eladó is kínálja} other {További # eladó is kínálja}}",
+    "otherOffersHint": "Ezt az ingatlant több iroda is hirdeti. Hasonlítsa össze az árakat, és válassza ki, kit keres meg.",
+    "privateSeller": "Magánszemély",
+    "viewOffer": "Megnéz"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Erősítse meg Nunvio értesítését",
+    "confirmBody": "Kérjük, erősítse meg, hogy új hirdetéseket szeretne kapni ehhez a kereséshez:",
+    "confirmCta": "Értesítés bekapcsolása",
+    "confirmIgnore": "Ha nem Ön kérte, hagyja figyelmen kívül ezt az e-mailt.",
+    "alertSubjectOne": "1 új hirdetés: {label}",
+    "alertSubjectMany": "{count} új hirdetés: {label}",
+    "alertIntro": "Új hirdetések és árcsökkenések a keresésére: {label}",
+    "priceDropped": "korábban",
+    "showAll": "Összes találat",
+    "showAllCount": "Összes megjelenítése ({count})",
+    "unsubscribe": "Leiratkozás erről az értesítésről",
+    "newBadge": "Új"
   }
 }

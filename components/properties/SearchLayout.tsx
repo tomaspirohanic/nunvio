@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import SaveSearchButton from "@/components/alerts/SaveSearchButton";
 import {
   Building2,
   Home,
@@ -1107,17 +1108,20 @@ export default function SearchLayout({
               : "w-full h-full overflow-y-auto p-4 md:p-6 max-w-5xl mx-auto"
           }
         >
-          <div className="mb-6">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-950 tracking-tight">
-              {tProperties("resultsTitle")}
-            </h1>
-            <div className="mt-2 text-sm text-gray-500">
-              {pagination?.totalIsCapped
-                ? tProperties("resultsCountCapped", { count: pagination.total })
-                : tProperties("resultsCount", {
-                    count: pagination?.total ?? properties.length,
-                  })}
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-950 tracking-tight">
+                {tProperties("resultsTitle")}
+              </h1>
+              <div className="mt-2 text-sm text-gray-500">
+                {pagination?.totalIsCapped
+                  ? tProperties("resultsCountCapped", { count: pagination.total })
+                  : tProperties("resultsCount", {
+                      count: pagination?.total ?? properties.length,
+                    })}
+              </div>
             </div>
+            <SaveSearchButton />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -110,7 +110,8 @@
     "typeHouseCottage": "別荘・コテージ",
     "typeLandFamily": "住宅用地",
     "typeLandCommercial": "商業用地",
-    "typeLandGarden": "庭"
+    "typeLandGarden": "庭",
+    "onlyReduced": "値下げ物件のみ"
   },
   "Properties": {
     "title": "物件",
@@ -131,7 +132,8 @@
     "resultsCountCapped": "{count, number} 件以上",
     "propertiesFound": "{count, plural, =0 {物件が見つかりません} other {# 件の物件が見つかりました}}",
     "beFirst": "最初の掲載者になろう",
-    "perMonth": "/月"
+    "perMonth": "/月",
+    "priceReducedBadge": "−{percent} %"
   },
   "ContactBox": {
     "priceLabel": "価格",
@@ -556,7 +558,8 @@
     "tipBody": "良い写真と正確な説明を追加すると、問い合わせが増えます。",
     "openMenu": "メニューを開く",
     "closeMenu": "メニューを閉じる",
-    "signOut": "ログアウト"
+    "signOut": "ログアウト",
+    "alerts": "保存した検索"
   },
   "Settings": {
     "title": "設定",
@@ -609,5 +612,89 @@
     "maxUpload": "手動アップロードの上限：",
     "maxUploadBody": "1 ファイルあたり 500 件、1 物件あたり写真 8 枚。大規模なカタログには上の自動フィード URL をご利用ください。",
     "photosNote": "URL の写真は Nunvio のストレージにコピーされます。"
+  },
+  "SavedSearch": {
+    "priceRange": "{min} – {max}",
+    "kind_flat": "マンション",
+    "kind_house": "戸建て",
+    "kind_land": "土地",
+    "kind_commercial": "事業用",
+    "kind_any": "すべての物件",
+    "offer_buy": "売買",
+    "offer_rent": "賃貸",
+    "priceMax": "{max} まで",
+    "priceMin": "{min} から",
+    "areaMin": "{min} m² 以上",
+    "areaMax": "{max} m² 以下",
+    "newBuild": "新築",
+    "reduced": "値下げ",
+    "confirmedTitle": "アラートを有効にしました",
+    "confirmedBody": "この検索の新着物件と値下げ情報をメールでお送りします。",
+    "invalidLinkTitle": "このリンクは無効です",
+    "invalidLinkBody": "有効期限切れか、すでに使用された可能性があります。",
+    "openSearch": "検索を開く",
+    "unsubscribeTitle": "このメールの配信を停止しますか？",
+    "unsubscribed": "完了しました。この検索に関するメールは今後届きません。",
+    "unsubscribeCta": "配信停止",
+    "saveButton": "検索を保存",
+    "dialogTitle": "新着物件をメールで受け取る",
+    "close": "閉じる",
+    "savedBody": "保存しました。新着物件と値下げ情報がメールで届きます。",
+    "confirmBody": "あと少しです：{email} に確認リンクを送信しました。クリックするとアラートが有効になります。",
+    "done": "OK",
+    "dialogBody": "現在の条件に合う新着物件と値下げ情報をお送りします。",
+    "emailLabel": "メール",
+    "frequencyLabel": "頻度",
+    "frequency": {
+      "INSTANT": "掲載され次第",
+      "DAILY": "1日1回",
+      "WEEKLY": "週1回"
+    },
+    "saving": "保存中…",
+    "submit": "新着物件を受け取る",
+    "privacyNote": "すべてのメールに配信停止リンクがあります。アドレスを第三者と共有することはありません。",
+    "errors": {
+      "invalidEmail": "有効なメールアドレスを入力してください。",
+      "tooMany": "保存できる検索は最大20件です。",
+      "emptyFilters": "まず条件を1つ以上選んでください（例：都市）。"
+    },
+    "dashboardTitle": "保存した検索",
+    "dashboardSubtitle": "メールでお届けする新着物件と値下げ情報。",
+    "emptyList": "保存した検索はまだありません。",
+    "startSearching": "検索を始める",
+    "notConfirmed": "メールでの確認待ち",
+    "paused": "一時停止中",
+    "lastSent": "最後のメール：{date}",
+    "noneYet": "まだ新着物件はありません",
+    "pause": "一時停止",
+    "resume": "再開",
+    "delete": "削除"
+  },
+  "ListingMarket": {
+    "onMarket": "掲載期間",
+    "newToday": "本日新着",
+    "days": "{count, plural, other {# 日}}",
+    "sinceListed": "掲載開始からの価格変動",
+    "priceHistory": "価格履歴",
+    "listed": "掲載",
+    "perMonth": "/ 月",
+    "otherOffers": "{count, plural, other {ほか # 社の売主も掲載中}}",
+    "otherOffersHint": "この物件は複数の不動産会社が掲載しています。価格を比較して問い合わせ先を選べます。",
+    "privateSeller": "個人売主",
+    "viewOffer": "見る"
+  },
+  "AlertEmail": {
+    "confirmSubject": "Nunvio アラートの確認",
+    "confirmBody": "この検索の新着物件を受け取ることを確認してください：",
+    "confirmCta": "アラートを有効にする",
+    "confirmIgnore": "お心当たりがない場合は、このメールを無視してください。",
+    "alertSubjectOne": "新着1件：{label}",
+    "alertSubjectMany": "新着 {count} 件：{label}",
+    "alertIntro": "検索条件の新着物件と値下げ：{label}",
+    "priceDropped": "以前",
+    "showAll": "すべての結果",
+    "showAllCount": "すべて表示（{count}）",
+    "unsubscribe": "このアラートの配信停止",
+    "newBadge": "新着"
   }
 }
