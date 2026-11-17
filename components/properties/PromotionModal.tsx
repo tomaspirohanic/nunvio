@@ -9,6 +9,7 @@
 // ============================================
 
 import { useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { PromotionLevel } from "@prisma/client";
 import { createCheckoutSession } from "@/lib/stripe.server";
 import { useRouter } from "next/navigation";
@@ -32,13 +33,15 @@ export default function PromotionModal({
   const [selectedTier, setSelectedTier] = useState<PromotionLevel | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const router = useRouter();
+  const t = useTranslations("Promotion");
+  const locale = useLocale();
 
   const isCurrentlyFeatured =
     featuredUntil && new Date(featuredUntil) > new Date();
 
   const handlePromote = async (tierLevel: PromotionLevel) => {
     if (!tierLevel || tierLevel === PromotionLevel.NONE) {
-      alert("Please select a promotion tier.");
+      alert(t("selectTier"));
       return;
     }
 
@@ -50,12 +53,12 @@ export default function PromotionModal({
         // Redirect to Stripe Checkout
         window.location.href = result.url;
       } else {
-        alert("Failed to create checkout session. Please try again.");
+        alert(t("checkoutFailed"));
         setIsProcessing(false);
       }
     } catch (error) {
       console.error("Error creating checkout session:", error);
-      const errorMessage = error instanceof Error ? error.message : "An error occurred. Please try again.";
+      const errorMessage = error instanceof Error ? error.message : t("genericError");
       alert(errorMessage);
       setIsProcessing(false);
     }
@@ -68,7 +71,7 @@ export default function PromotionModal({
           {/* Header */}
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-900">
-              Promote Your Property
+              {t("title")}
             </h2>
             <button
               onClick={onClose}
@@ -95,10 +98,10 @@ export default function PromotionModal({
           {isCurrentlyFeatured && (
             <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-sm text-blue-800">
-                <strong>Current Promotion:</strong> {currentPromotionLevel}
+                <strong>{t("currentPromotion")}</strong> {currentPromotionLevel}
                 {featuredUntil && (
                   <span className="ml-2">
-                    (Expires: {new Date(featuredUntil).toLocaleDateString()})
+                    ({t("expires", { date: new Date(featuredUntil).toLocaleDateString(locale) })})
                   </span>
                 )}
               </p>
@@ -134,31 +137,31 @@ export default function PromotionModal({
                       €{Number(tier.price).toFixed(2)}
                     </div>
                     <div className="text-sm text-gray-500">
-                      for {tier.durationDays} days
+                      {t("forDays", { days: tier.durationDays })}
                     </div>
                   </div>
                   <div className="text-sm text-gray-600 mb-3">
-                    {tier.description}
+                    {t(`tiers.${tierId}.description`)}
                   </div>
                   {/* Features List */}
                   {tier.features && (
                     <ul className="text-xs text-gray-500 space-y-1 mb-3">
-                      {tier.features.map((feature, idx) => (
+                      {tier.features.map((_feature, idx) => (
                         <li key={idx} className="flex items-start gap-1">
                           <span className="text-green-500 mt-0.5">✓</span>
-                          <span>{feature}</span>
+                          <span>{t(`tiers.${tierId}.f${idx + 1}`)}</span>
                         </li>
                       ))}
                     </ul>
                   )}
                   {isCurrentTier && (
                     <div className="text-xs text-blue-600 font-medium">
-                      Current Plan
+                      {t("currentPlan")}
                     </div>
                   )}
                   {isUpgrade && (
                     <div className="text-xs text-green-600 font-medium">
-                      Upgrade Available
+                      {t("upgradeAvailable")}
                     </div>
                   )}
                 </div>
@@ -169,13 +172,13 @@ export default function PromotionModal({
           {/* Benefits List */}
           <div className="mb-6 p-4 bg-gray-50 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-2">
-              Promotion Benefits:
+              {t("benefitsTitle")}
             </h3>
             <ul className="text-sm text-gray-600 space-y-1">
-              <li>✓ Featured placement at the top of listings</li>
-              <li>✓ Increased visibility to potential buyers</li>
-              <li>✓ Priority sorting in search results</li>
-              <li>✓ Visual badge highlighting your property</li>
+              <li>✓ {t("benefit1")}</li>
+              <li>✓ {t("benefit2")}</li>
+              <li>✓ {t("benefit3")}</li>
+              <li>✓ {t("benefit4")}</li>
             </ul>
           </div>
 
@@ -186,7 +189,7 @@ export default function PromotionModal({
               disabled={isProcessing}
               className="flex-1 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
             >
-              Cancel
+              {t("cancel")}
             </button>
             <button
               onClick={() =>
@@ -201,10 +204,10 @@ export default function PromotionModal({
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  <span>Processing...</span>
+                  <span>{t("processing")}</span>
                 </>
               ) : (
-                "Continue to Payment"
+                t("continueToPayment")
               )}
             </button>
           </div>

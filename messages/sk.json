@@ -26,13 +26,25 @@
     "delete": "Zmazať",
     "edit": "Upraviť",
     "create": "Vytvoriť",
-    "back": "Späť"
+    "back": "Späť",
+    "approxLocation": "Približná poloha",
+    "exactHidden": "Presná adresa je skrytá kvôli súkromiu",
+    "indicativeConversion": "orientačný prepočet",
+    "remove": "Odstrániť",
+    "close": "Zavrieť",
+    "somethingWrong": "Niečo sa pokazilo",
+    "tryAgain": "Skúsiť znova",
+    "dashboardErrorFallback": "Skúste to znova alebo sa vráťte na prehľad.",
+    "changeLanguage": "Zmeniť jazyk",
+    "changeCurrency": "Zmeniť menu",
+    "toggleMenu": "Otvoriť alebo zavrieť menu"
   },
   "Hero": {
     "title": "Nájdite svoj domov snov",
     "subtitle": "Viac ako {count} nehnuteľností k dispozícii",
     "listProperty": "Pridať inzerát",
-    "browseProperties": "Prehľadať nehnuteľnosti"
+    "browseProperties": "Prehľadať nehnuteľnosti",
+    "imageAlt": "Moderný dom so záhradou"
   },
   "Search": {
     "heroTitle": "Vybrať správne je kľúčové",
@@ -73,8 +85,7 @@
     "clear": "Vymazať",
     "cancel": "Zrušiť",
     "showResults": "Zobraziť ponuky",
-    "confirmSelection": "Potvrdiť výber"
-    ,
+    "confirmSelection": "Potvrdiť výber",
     "megaTitle": "Hľadať nehnuteľnosti",
     "onlyWithVideo": "Iba s video prehliadkou",
     "all": "Všetky",
@@ -118,7 +129,8 @@
     "resultsTitle": "Nájdené nehnuteľnosti",
     "resultsCount": "{count, plural, =0 {0 výsledkov} =1 {1 výsledok} =2 {# výsledky} =3 {# výsledky} =4 {# výsledky} other {# výsledkov}}",
     "propertiesFound": "{count, plural, =0 {Nenašli sa žiadne nehnuteľnosti} =1 {1 nehnuteľnosť nájdená} =2 {# nehnuteľnosti nájdené} =3 {# nehnuteľnosti nájdené} =4 {# nehnuteľnosti nájdené} other {# nehnuteľností nájdených}}",
-    "beFirst": "Buďte prvý, kto pridá inzerát"
+    "beFirst": "Buďte prvý, kto pridá inzerát",
+    "perMonth": "/mes."
   },
   "ContactBox": {
     "priceLabel": "Cena",
@@ -244,7 +256,13 @@
     "cityAutocompleteHint": "Začnite písať adresu alebo mesto a vyberte návrh — krajina a bod na mape sa doplnia automaticky.",
     "addressLabel": "Adresa",
     "addressPlaceholder": "Ulica, číslo, mesto…",
-    "savingText": "Ukladám..."
+    "savingText": "Ukladám...",
+    "statusLabel": "Stav",
+    "statusPublished": "Zverejnený",
+    "statusDraft": "Koncept",
+    "statusArchived": "Archivovaný",
+    "contactPhone": "Kontaktný telefón",
+    "newBuild": "Novostavba"
   },
   "AgencySetupForm": {
     "agencyNameLabel": "Názov agentúry",
@@ -264,7 +282,9 @@
     "logoUrlPlaceholder": "https://example.com/logo.png",
     "creatingAgencyText": "Vytváram agentúru...",
     "createAgencyButton": "Vytvoriť agentúru",
-    "genericError": "Nepodarilo sa vytvoriť agentúru. Skúste to prosím znova."
+    "genericError": "Nepodarilo sa vytvoriť agentúru. Skúste to prosím znova.",
+    "phone": "Telefón",
+    "contactEmail": "Kontaktný e-mail"
   },
   "TeamManagement": {
     "addNewAgentHeading": "Pridať nového agenta",
@@ -396,7 +416,12 @@
     "contactTitle": "Kontakt",
     "contactBody": "Pre mostík alebo testovací účet agentúry napíšte na",
     "ctaRegister": "Vytvoriť účet agentúry",
-    "ctaSample": "Stiahnuť ukážkové XML"
+    "ctaSample": "Stiahnuť ukážkové XML",
+    "crmSlovakia": "Slovensko",
+    "crmCzechia": "Česko",
+    "techSample": "Ukážkový XML",
+    "techValidate": "Overenie feedu (API)",
+    "techDocs": "Dokumentácia"
   },
   "Privacy": {
     "title": "Zásady ochrany súkromia",
@@ -431,5 +456,158 @@
     "lawTitle": "Rozhodné právo",
     "lawBody": "Tieto podmienky majú byť riadené právom členského štátu EÚ, v ktorom má prevádzkovateľ sídlo, bez dotknutia kogentnej spotrebiteľskej ochrany v krajine vášho bydliska. Súdnu príslušnosť a identifikáciu spoločnosti potvrdíme po doplnení registračných údajov.",
     "companyPlaceholder": "Údaje o prevádzkovateľovi (obchodný názov, IČO / registračné číslo a sídlo) doplní prevádzkovateľ."
+  },
+  "Email": {
+    "verifySubject": "Potvrďte svoj účet Nunvio",
+    "greeting": "Ahoj {name},",
+    "greetingNoName": "Ahoj,",
+    "verifyBody": "Ďakujeme za registráciu na Nunvio. Potvrďte svoju e-mailovú adresu, aby sme vám aktivovali účet.",
+    "verifyCta": "Potvrdiť e-mail",
+    "verifyIgnore": "Ak ste si účet nevytvorili, tento e-mail môžete ignorovať.",
+    "resetSubject": "Obnovenie hesla Nunvio",
+    "resetBody": "Dostali sme žiadosť o obnovenie hesla k Nunvio. Kliknite na tlačidlo nižšie a nastavte si nové heslo.",
+    "resetCta": "Obnoviť heslo",
+    "resetIgnore": "Ak ste o to nežiadali, tento e-mail môžete ignorovať."
+  },
+  "Gallery": {
+    "openPhotos": "Otvoriť fotky",
+    "photoAlt": "Fotka nehnuteľnosti {n}",
+    "showAll": "Zobraziť všetky fotky",
+    "photosCount": "Fotky ({count})",
+    "close": "Zavrieť",
+    "previous": "Predchádzajúca fotka",
+    "next": "Ďalšia fotka"
+  },
+  "ImageUploader": {
+    "dropHere": "Presuňte sem fotky alebo",
+    "browse": "kliknite a vyberte",
+    "formats": "PNG, JPG, WebP, GIF alebo AVIF, každý súbor do 15 MB. Môžete vybrať viac súborov naraz.",
+    "working": "Spracúvam…",
+    "uploading": "Nahráva sa ({count})",
+    "failedCount": "{count, plural, =1 {1 súbor sa nepodarilo nahrať} few {# súbory sa nepodarilo nahrať} other {# súborov sa nepodarilo nahrať}}",
+    "dismiss": "Zavrieť",
+    "gallery": "Galéria ({count})",
+    "savingOrder": "Ukladám poradie…",
+    "cover": "Titulná",
+    "dragToReorder": "Potiahnutím zmeníte poradie",
+    "remove": "Odstrániť fotku",
+    "deleteFailed": "Fotku sa nepodarilo odstrániť"
+  },
+  "Promotion": {
+    "title": "Zviditeľnite svoj inzerát",
+    "currentPromotion": "Aktuálna propagácia:",
+    "expires": "platí do {date}",
+    "forDays": "na {days} dní",
+    "currentPlan": "Aktuálny balík",
+    "upgradeAvailable": "Možnosť vyššieho balíka",
+    "benefitsTitle": "Výhody propagácie:",
+    "benefit1": "Zvýraznené umiestnenie na začiatku výpisu",
+    "benefit2": "Viac zobrazení u potenciálnych kupujúcich",
+    "benefit3": "Prednostné radenie vo výsledkoch hľadania",
+    "benefit4": "Výrazný štítok pri inzeráte",
+    "cancel": "Zrušiť",
+    "processing": "Spracúvam…",
+    "continueToPayment": "Pokračovať na platbu",
+    "selectTier": "Vyberte balík propagácie.",
+    "checkoutFailed": "Platbu sa nepodarilo spustiť. Skúste to znova.",
+    "genericError": "Niečo sa pokazilo. Skúste to znova.",
+    "tiers": {
+      "BRONZE": {
+        "description": "Zvýraznenie vo výsledkoch hľadania",
+        "f1": "Zvýraznené umiestnenie vo vyhľadávaní",
+        "f2": "Štítok pri inzeráte",
+        "f3": "7 dní propagácie"
+      },
+      "SILVER": {
+        "description": "Popredné miesto vo výpise",
+        "f1": "Popredné miesto vo výsledkoch hľadania",
+        "f2": "Prémiový štítok",
+        "f3": "14 dní propagácie",
+        "f4": "Prednostné radenie"
+      },
+      "GOLD": {
+        "description": "Maximálna viditeľnosť",
+        "f1": "Najvyššia priorita vo všetkých výpisoch",
+        "f2": "Zlatý prémiový štítok",
+        "f3": "30 dní propagácie",
+        "f4": "Zobrazenie na úvodnej stránke",
+        "f5": "Maximálna viditeľnosť vo vyhľadávaní"
+      }
+    }
+  },
+  "NotFound": {
+    "propertyTitle": "Inzerát sa nenašiel",
+    "propertyBody": "Inzerát, ktorý hľadáte, neexistuje alebo bol odstránený.",
+    "agencyTitle": "Kancelária sa nenašla",
+    "agencyBody": "Táto realitná kancelária neexistuje alebo bola odstránená.",
+    "browseAll": "Prezrieť všetky nehnuteľnosti"
+  },
+  "DashboardSidebar": {
+    "badge": "Správa",
+    "overview": "Prehľad",
+    "myListings": "Moje inzeráty",
+    "addListing": "Pridať inzerát",
+    "settings": "Nastavenia",
+    "agency": "Kancelária",
+    "team": "Tím",
+    "xmlImport": "XML import",
+    "createAgency": "Vytvoriť kanceláriu",
+    "tipTitle": "Tip",
+    "tipBody": "Pridajte kvalitné fotky a presný popis. Získate viac dopytov.",
+    "openMenu": "Otvoriť menu",
+    "closeMenu": "Zavrieť menu",
+    "signOut": "Odhlásiť sa"
+  },
+  "Settings": {
+    "title": "Nastavenia",
+    "subtitle": "Váš účet a základné nastavenia.",
+    "account": "Účet",
+    "name": "Meno",
+    "email": "E-mail",
+    "role": "Rola",
+    "agency": "Kancelária",
+    "agencyConnected": "Prepojená",
+    "agencyNone": "Žiadna",
+    "quickLinks": "Rýchle odkazy",
+    "agencyProfile": "Verejný profil kancelárie",
+    "manageTeam": "Správa tímu",
+    "roles": {
+      "SUPERADMIN": "Administrátor",
+      "AGENCY_ADMIN": "Správca kancelárie",
+      "AGENT": "Maklér",
+      "PRIVATE_USER": "Súkromný predajca"
+    }
+  },
+  "FeedSync": {
+    "title": "Automatický XML feed (CRM / multi-posting)",
+    "intro": "Vložte HTTPS adresu vášho XML exportu. Nunvio ho sťahuje po častiach približne každých 15 minút, takže sa postupne naimportujú aj desaťtisíce inzerátov. Každý inzerát musí mať <code>externalId</code>. Špecifikácia pre dodávateľov CRM: <link>/partners</link>.",
+    "urlLabel": "Adresa feedu",
+    "enable": "Zapnúť automatickú synchronizáciu",
+    "save": "Uložiť nastavenia",
+    "saving": "Ukladám…",
+    "saved": "Nastavenia feedu sú uložené.",
+    "saveFailed": "Uloženie zlyhalo.",
+    "syncNow": "Synchronizovať teraz",
+    "syncFailed": "Synchronizácia zlyhala.",
+    "syncResult": "Synchronizácia OK: {created} nových, {updated} aktualizovaných (spracovaných {processed} z {total}).",
+    "feedComplete": "Celý feed je spracovaný.",
+    "continuesAt": "Ďalší beh pokračuje od pozície {offset}.",
+    "lastSync": "Posledná synchronizácia",
+    "offset": "Pozícia vo feede",
+    "lastError": "Posledná chyba",
+    "lastResult": "Posledný výsledok"
+  },
+  "XmlImportHelp": {
+    "manualTitle": "Ručné nahratie XML",
+    "downloadSample": "Stiahnuť ukážkový XML",
+    "required": "Povinné:",
+    "recommended": "Odporúčané:",
+    "recommendedBody": "ID z vášho CRM; pri opätovnom importe sa inzerát aktualizuje a nevznikne duplicita",
+    "optional": "Voliteľné:",
+    "types": "Typy:",
+    "currencies": "Meny:",
+    "maxUpload": "Limit ručného nahratia:",
+    "maxUploadBody": "500 inzerátov v súbore, 8 fotiek na inzerát. Pre veľké katalógy použite automatický feed vyššie.",
+    "photosNote": "Fotky z URL adries sa skopírujú do úložiska Nunvio."
   }
 }

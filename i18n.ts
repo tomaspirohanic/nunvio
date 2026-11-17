@@ -2,14 +2,15 @@
 // I18N CONFIGURATION
 // ============================================
 // Next-intl configuration for internationalization
-// Supported locales: en (default), sk, de
+// Supported locales: en (default) + all EU languages, see `locales` below
 // ============================================
 
 import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
 
-// Global coverage — Europe-first + major world languages.
-// Missing message JSON files fall back to EN via deepMerge / catch below.
+// All 24 official EU languages + uk, ru, zh, ja.
+// Every locale has a complete messages/<locale>.json (pre-translated, no
+// machine translation at runtime). Missing keys still fall back to EN.
 export const locales = [
   "en",
   "sk",
@@ -32,6 +33,9 @@ export const locales = [
   "lt",
   "lv",
   "et",
+  "sl",
+  "ga",
+  "mt",
   "uk",
   "ru",
   "zh",
@@ -83,13 +87,11 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const baseMessages = enMessages;
 
   if (locale === "en") {
-    console.log(`✅ Successfully loaded messages for locale: ${locale}`);
     return { locale, messages: enMessages };
   }
 
   try {
     const localeMessages = await loadMessages(locale);
-    console.log(`✅ Successfully loaded messages for locale: ${locale}`);
     return { locale, messages: deepMerge(baseMessages, localeMessages) };
   } catch {
     console.warn(`⚠️ Missing messages for locale: ${locale}. Falling back to en.`);

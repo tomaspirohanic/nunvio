@@ -78,7 +78,7 @@ export function getLocaleForCountryCode(
     GB: "en",
     MT: "en",
     CY: "el",
-    SI: "en",
+    SI: "sl",
     RU: "ru",
   };
 

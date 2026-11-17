@@ -34,8 +34,8 @@ export default async function PartnersPage() {
         </h2>
         <p className="text-gray-700">{t("crmBody")}</p>
         <ul className="list-disc space-y-1 pl-5 text-gray-700">
-          <li>Slovensko: backOFFICE / ZRKS, RealSys, easyReal.NET</li>
-          <li>Česko: Softreal, Urbium, REALBrána, Poski REAL</li>
+          <li>{t("crmSlovakia")}: backOFFICE / ZRKS, RealSys, easyReal.NET</li>
+          <li>{t("crmCzechia")}: Softreal, Urbium, REALBrána, Poski REAL</li>
         </ul>
       </section>
 
@@ -45,7 +45,7 @@ export default async function PartnersPage() {
         </h2>
         <ul className="space-y-2 text-sm text-gray-700">
           <li>
-            <strong>Sample XML:</strong>{" "}
+            <strong>{t("techSample")}:</strong>{" "}
             <a
               className="text-blue-700 underline"
               href="/samples/nunvio-properties-sample.xml"
@@ -54,13 +54,13 @@ export default async function PartnersPage() {
             </a>
           </li>
           <li>
-            <strong>Validate feed (API):</strong>{" "}
+            <strong>{t("techValidate")}:</strong>{" "}
             <code className="rounded bg-white px-1">
               POST {appUrl}/api/partners/validate-feed
             </code>
           </li>
           <li>
-            <strong>Docs:</strong> docs/PARTNER-FEED.md (v repozitári)
+            <strong>{t("techDocs")}:</strong> docs/PARTNER-FEED.md
           </li>
           <li>
             <strong>Sync:</strong> {t("techSync")}

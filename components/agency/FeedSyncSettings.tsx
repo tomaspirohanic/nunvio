@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
 type FeedStatus = {
@@ -38,6 +39,8 @@ export default function FeedSyncSettings({
   syncAgencyFeedNow,
 }: Props) {
   const router = useRouter();
+  const t = useTranslations("FeedSync");
+  const locale = useLocale();
   const [feedUrl, setFeedUrl] = useState(initial.feedUrl ?? "");
   const [enabled, setEnabled] = useState(initial.feedSyncEnabled);
   const [error, setError] = useState<string | null>(null);
@@ -54,10 +57,10 @@ export default function FeedSyncSettings({
           feedUrl,
           feedSyncEnabled: enabled,
         });
-        setInfo("Nastavenia feedu boli uložené.");
+        setInfo(t("saved"));
         router.refresh();
       } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : "Uloženie zlyhalo.");
+        setError(err instanceof Error ? err.message : t("saveFailed"));
       }
     });
   }
@@ -69,15 +72,21 @@ export default function FeedSyncSettings({
       try {
         const result = await syncAgencyFeedNow();
         const done = result.feedComplete
-          ? "Celý feed je spracovaný (offset sa resetuje)."
-          : `Ďalší beh pokračuje od pozície ${result.nextOffset}.`;
+          ? t("feedComplete")
+          : t("continuesAt", { offset: result.nextOffset ?? 0 });
         setInfo(
-          `Sync OK: +${result.created} nových, ${result.updated} aktualizovaných` +
-            ` (chunk ${result.processedInChunk ?? "?"} z ${result.total}). ${done}`
+          t("syncResult", {
+            created: result.created,
+            updated: result.updated,
+            processed: result.processedInChunk ?? 0,
+            total: result.total,
+          }) +
+            " " +
+            done
         );
         router.refresh();
       } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : "Sync zlyhal.");
+        setError(err instanceof Error ? err.message : t("syncFailed"));
       }
     });
   }
@@ -99,18 +108,19 @@ export default function FeedSyncSettings({
     <div className="space-y-4 rounded-lg border border-emerald-200 bg-emerald-50/40 p-6">
       <div>
         <h2 className="text-xl font-semibold text-gray-900">
-          Automatický XML feed (CRM / multi-posting)
+          {t("title")}
         </h2>
         <p className="mt-1 text-sm text-gray-600">
-          Vložte HTTPS URL vášho XML exportu. Nunvio ho bude sťahovať po častiach
-          (každých ~15 min), takže aj desiatky tisíc inzerátov sa postupne
-          naimportujú bez timeoutu. Každý inzerát musí mať{" "}
-          <code className="rounded bg-white px-1">externalId</code>. Špecifikácia
-          pre CRM (Softreal, Urbium, backOFFICE…):{" "}
-          <a href="/sk/partners" className="text-emerald-800 underline">
-            /partners
-          </a>
-          .
+          {t.rich("intro", {
+            code: (chunks) => (
+              <code className="rounded bg-white px-1">{chunks}</code>
+            ),
+            link: (chunks) => (
+              <a href={`/${locale}/partners`} className="text-emerald-800 underline">
+                {chunks}
+              </a>
+            ),
+          })}
         </p>
       </div>
 
@@ -120,7 +130,7 @@ export default function FeedSyncSettings({
             htmlFor="feedUrl"
             className="mb-1 block text-sm font-medium text-gray-700"
           >
-            Feed URL
+            {t("urlLabel")}
           </label>
           <input
             id="feedUrl"
@@ -141,7 +151,7 @@ export default function FeedSyncSettings({
             disabled={pending}
             className="h-4 w-4 rounded border-gray-300 text-emerald-600"
           />
-          Zapnúť automatický sync (cron)
+          {t("enable")}
         </label>
 
         <div className="flex flex-wrap gap-3">
@@ -150,7 +160,7 @@ export default function FeedSyncSettings({
             disabled={pending}
             className="rounded-md bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800 disabled:opacity-50"
           >
-            {pending ? "Ukladám…" : "Uložiť nastavenia"}
+            {pending ? t("saving") : t("save")}
           </button>
           <button
             type="button"
@@ -158,7 +168,7 @@ export default function FeedSyncSettings({
             disabled={pending || !feedUrl.trim()}
             className="rounded-md border border-emerald-700 bg-white px-4 py-2 text-sm font-medium text-emerald-800 hover:bg-emerald-50 disabled:opacity-50"
           >
-            Synchronizovať teraz (1 dávka)
+            {t("syncNow")}
           </button>
         </div>
       </form>
@@ -176,26 +186,26 @@ export default function FeedSyncSettings({
 
       <dl className="grid gap-2 text-sm text-gray-700 sm:grid-cols-2">
         <div>
-          <dt className="font-medium text-gray-500">Posledný sync</dt>
+          <dt className="font-medium text-gray-500">{t("lastSync")}</dt>
           <dd>
             {initial.feedLastSyncedAt
-              ? new Date(initial.feedLastSyncedAt).toLocaleString("sk-SK")
+              ? new Date(initial.feedLastSyncedAt).toLocaleString(locale)
               : "—"}
           </dd>
         </div>
         <div>
-          <dt className="font-medium text-gray-500">Offset vo feede</dt>
+          <dt className="font-medium text-gray-500">{t("offset")}</dt>
           <dd>{initial.feedOffset}</dd>
         </div>
         {initial.feedLastError && (
           <div className="sm:col-span-2">
-            <dt className="font-medium text-red-600">Posledná chyba</dt>
+            <dt className="font-medium text-red-600">{t("lastError")}</dt>
             <dd className="text-red-800">{initial.feedLastError}</dd>
           </div>
         )}
         {lastResultPretty && (
           <div className="sm:col-span-2">
-            <dt className="font-medium text-gray-500">Posledný výsledok</dt>
+            <dt className="font-medium text-gray-500">{t("lastResult")}</dt>
             <dd>
               <pre className="mt-1 overflow-x-auto rounded bg-white p-2 text-xs text-gray-600">
                 {lastResultPretty}

@@ -25,7 +25,7 @@ const PropertyDetailMap = dynamic(
     ssr: false,
     loading: () => (
       <div className="w-full h-[400px] rounded-lg border border-gray-200 bg-gray-100 animate-pulse flex items-center justify-center">
-        <p className="text-gray-500">Loading map...</p>
+        <div className="h-6 w-6 animate-spin rounded-full border-2 border-gray-400 border-t-transparent" role="status" aria-busy="true" />
       </div>
     ),
   }

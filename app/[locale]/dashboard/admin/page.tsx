@@ -1,9 +1,6 @@
+import { redirect } from "next/navigation";
+
+// Platform administration lives at /admin (outside the locale routes).
 export default function AdminPage() {
-    return (
-      <div>
-        <h1>Admin dashboard</h1>
-        <p>Len pre administrátorov.</p>
-      </div>
-    );
-  }
-  
+  redirect("/admin");
+}

@@ -8,7 +8,7 @@
 // ============================================
 
 import { useEffect, useState } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import {
   convertPrice,
   formatPrice,
@@ -31,6 +31,7 @@ export default function PropertyPrice({
   size = "md",
 }: PropertyPriceProps) {
   const locale = useLocale();
+  const tc = useTranslations("Common");
   const [targetCurrency, setTargetCurrency] = useState<Currency>("EUR");
 
   // Read currency from cookie on mount
@@ -79,7 +80,7 @@ export default function PropertyPrice({
       </span>
       {converted && (
         <span className="mt-0.5 text-[11px] font-normal text-gray-400">
-          ≈ indicative conversion
+          ≈ {tc("indicativeConversion")}
         </span>
       )}
     </span>

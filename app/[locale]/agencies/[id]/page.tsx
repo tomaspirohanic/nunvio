@@ -30,10 +30,11 @@ export async function generateMetadata({
 }: {
   params: Promise<{ id: string; locale: string }>;
 }): Promise<Metadata> {
-  const { id } = await params;
+  const { id, locale } = await params;
   const agency = await getPublicAgencyById(id);
   if (!agency) {
-    return { title: "Agency Not Found | Nunvio" };
+    const t = await getTranslations({ locale, namespace: "NotFound" });
+    return { title: `${t("agencyTitle")} | Nunvio` };
   }
   return {
     title: `${agency.name} | Nunvio`,

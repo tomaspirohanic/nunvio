@@ -7,7 +7,7 @@
 // Preserves current path when switching languages
 // ============================================
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/src/i18n/routing";
 import { locales, type Locale } from "@/i18n";
 import { useState, useRef, useEffect } from "react";
@@ -34,6 +34,9 @@ const localeNames: Partial<Record<Locale, string>> = {
   lt: "Lietuvių",
   lv: "Latviešu",
   et: "Eesti",
+  sl: "Slovenščina",
+  ga: "Gaeilge",
+  mt: "Malti",
   uk: "Українська",
   ru: "Русский",
   zh: "中文",
@@ -42,6 +45,7 @@ const localeNames: Partial<Record<Locale, string>> = {
 
 export default function LanguageSwitcher() {
   const locale = useLocale() as Locale;
+  const tc = useTranslations("Common");
   const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -74,7 +78,7 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors rounded-md hover:bg-gray-100"
-        aria-label="Change language"
+        aria-label={tc("changeLanguage")}
       >
         <svg
           className="w-5 h-5"

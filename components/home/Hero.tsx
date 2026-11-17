@@ -23,7 +23,7 @@ export default function Hero({ propertyCount }: HeroProps) {
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&h=1080&fit=crop&q=80"
-          alt="Beautiful real estate property"
+          alt={t("imageAlt")}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40"></div>

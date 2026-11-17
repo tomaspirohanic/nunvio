@@ -12,6 +12,7 @@ export default function Header() {
   const locale = useLocale();
   const pathname = usePathname();
   const t = useTranslations("Navigation");
+  const tc = useTranslations("Common");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -90,7 +91,7 @@ export default function Header() {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="p-2 text-gray-700 hover:text-blue-600 transition-colors"
-            aria-label="Toggle menu"
+            aria-label={tc("toggleMenu")}
           >
             {isMobileMenuOpen ? (
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

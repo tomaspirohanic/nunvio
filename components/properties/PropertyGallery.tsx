@@ -2,10 +2,12 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type GalleryView = "grid" | "list" | "slider";
 
 export default function PropertyGallery({ images }: { images: string[] }) {
+  const t = useTranslations("Gallery");
   const safeImages = useMemo(() => {
     const cleaned = (Array.isArray(images) ? images : []).filter(
       (url): url is string => typeof url === "string" && url.trim().length > 0
@@ -78,11 +80,11 @@ export default function PropertyGallery({ images }: { images: string[] }) {
             type="button"
             onClick={openList}
             className="col-span-1 md:col-span-2 row-span-2 relative group focus:outline-none"
-            aria-label="Open photos"
+            aria-label={t("openPhotos")}
           >
             <img
               src={mainImage}
-              alt="Property photo 1"
+              alt={t("photoAlt", { n: 1 })}
               className="object-cover w-full h-full group-hover:opacity-90 transition-opacity"
             />
           </button>
@@ -97,12 +99,12 @@ export default function PropertyGallery({ images }: { images: string[] }) {
                 type="button"
                 onClick={openList}
                 className="col-span-1 row-span-1 relative group focus:outline-none"
-                aria-label={`Open photos${imageUrl ? ` (photo ${idx + 2})` : ""}`}
+                aria-label={t("openPhotos")}
               >
                 {imageUrl ? (
                   <img
                     src={imageUrl}
-                    alt={`Property photo ${idx + 2}`}
+                    alt={t("photoAlt", { n: idx + 2 })}
                     className="object-cover w-full h-full group-hover:opacity-90 transition-opacity"
                   />
                 ) : (
@@ -112,7 +114,7 @@ export default function PropertyGallery({ images }: { images: string[] }) {
                 {isLastTile && (
                   <div className="absolute bottom-3 right-3">
                     <div className="rounded-full bg-white/95 backdrop-blur px-4 py-2 text-sm font-semibold text-gray-900 shadow-md border border-gray-200 group-hover:bg-white transition-colors">
-                      Zobraziť všetky fotky
+                      {t("showAll")}
                     </div>
                   </div>
                 )}
@@ -128,14 +130,14 @@ export default function PropertyGallery({ images }: { images: string[] }) {
           <div className="sticky top-0 z-10 bg-white/90 backdrop-blur border-b border-gray-200">
             <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
               <div className="text-sm font-semibold text-gray-900">
-                Fotky ({safeImages.length})
+                {t("photosCount", { count: safeImages.length })}
               </div>
               <button
                 type="button"
                 onClick={closeList}
                 className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 transition-colors"
               >
-                Zavrieť
+                {t("close")}
               </button>
             </div>
           </div>
@@ -147,11 +149,11 @@ export default function PropertyGallery({ images }: { images: string[] }) {
                 type="button"
                 onClick={() => openSliderAt(idx)}
                 className="group rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 shadow-sm hover:shadow-md transition-shadow focus:outline-none"
-                aria-label={`Open fullscreen slider at photo ${idx + 1}`}
+                aria-label={t("photoAlt", { n: idx + 1 })}
               >
                 <img
                   src={url}
-                  alt={`Property photo ${idx + 1}`}
+                  alt={t("photoAlt", { n: idx + 1 })}
                   className="w-full h-auto object-cover group-hover:opacity-95 transition-opacity"
                 />
               </button>
@@ -167,7 +169,7 @@ export default function PropertyGallery({ images }: { images: string[] }) {
             type="button"
             onClick={closeSliderToList}
             className="absolute top-5 right-5 inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-            aria-label="Close fullscreen slider"
+            aria-label={t("close")}
           >
             <X className="w-7 h-7" />
           </button>
@@ -176,7 +178,7 @@ export default function PropertyGallery({ images }: { images: string[] }) {
             type="button"
             onClick={goPrev}
             className="absolute left-4 md:left-8 inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-            aria-label="Previous photo"
+            aria-label={t("previous")}
           >
             <ChevronLeft className="w-8 h-8 md:w-9 md:h-9" />
           </button>
@@ -185,7 +187,7 @@ export default function PropertyGallery({ images }: { images: string[] }) {
             <div className="relative w-full h-[70vh] md:h-[80vh] flex items-center justify-center">
               <img
                 src={safeImages[currentIndex]}
-                alt={`Property photo ${currentIndex + 1}`}
+                alt={t("photoAlt", { n: currentIndex + 1 })}
                 className="w-full h-full object-contain transition-opacity duration-200"
               />
             </div>
@@ -199,7 +201,7 @@ export default function PropertyGallery({ images }: { images: string[] }) {
             type="button"
             onClick={goNext}
             className="absolute right-4 md:right-8 inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-            aria-label="Next photo"
+            aria-label={t("next")}
           >
             <ChevronRight className="w-8 h-8 md:w-9 md:h-9" />
           </button>

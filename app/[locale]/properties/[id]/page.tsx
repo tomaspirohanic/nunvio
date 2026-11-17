@@ -135,7 +135,7 @@ export async function generateMetadata({
 
   if (!property) {
     return {
-      title: "Property Not Found | Nunvio",
+      title: `${(await getTranslations({ locale, namespace: "NotFound" }))("propertyTitle")} | Nunvio`,
     };
   }
 

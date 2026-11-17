@@ -19,6 +19,7 @@ export default async function XmlImportPage({
 }) {
   const { locale } = await params;
   const tAgency = await getTranslations("AgencyDashboard");
+  const tHelp = await getTranslations("XmlImportHelp");
   const session = await getServerSession(authConfig);
 
   if (!session?.user?.email) {
@@ -80,14 +81,14 @@ export default async function XmlImportPage({
         <div>
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <h2 className="text-xl font-semibold text-gray-900">
-              Manuálny XML upload
+              {tHelp("manualTitle")}
             </h2>
             <a
               href="/samples/nunvio-properties-sample.xml"
               download
               className="inline-flex items-center rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100"
             >
-              Stiahnuť ukážkový XML
+              {tHelp("downloadSample")}
             </a>
           </div>
 
@@ -118,30 +119,24 @@ export default async function XmlImportPage({
 
           <div className="space-y-1 text-sm text-gray-600">
             <p>
-              <strong>Povinné:</strong> title, description, price, city, country
+              <strong>{tHelp("required")}</strong> title, description, price, city, country
             </p>
             <p>
-              <strong>Odporúčané:</strong> externalId (ID z vášho CRM — pri
-              opätovnom importe sa inzerát aktualizuje, nevytvorí sa duplicita)
+              <strong>{tHelp("recommended")}</strong> externalId ({tHelp("recommendedBody")})
             </p>
             <p>
-              <strong>Voliteľné:</strong> currency, offerType (sale/rent),
+              <strong>{tHelp("optional")}</strong> currency, offerType (sale/rent),
               propertyType, bedrooms, bathrooms, areaSqm, latitude, longitude,
               images
             </p>
             <p>
-              <strong>Typy:</strong> HOUSE, APARTMENT, LAND, COMMERCIAL
+              <strong>{tHelp("types")}</strong> HOUSE, APARTMENT, LAND, COMMERCIAL
             </p>
             <p>
-              <strong>Meny:</strong> EUR, USD, GBP, CZK ·{" "}
-              <strong>Max manuálny upload:</strong> 500 inzerátov / súbor, 8
-              fotiek / inzerát. Pre veľké katalógy použite automatický feed URL
-              vyššie.
+              <strong>{tHelp("currencies")}</strong> EUR, USD, GBP, CZK ·{" "}
+              <strong>{tHelp("maxUpload")}</strong> {tHelp("maxUploadBody")}
             </p>
-            <p className="text-gray-500">
-              Fotky z URL sa stiahnu do Nunvio R2. Partner špecifikácia je v
-              repozitári: docs/PARTNER-FEED.md
-            </p>
+            <p className="text-gray-500">{tHelp("photosNote")}</p>
           </div>
         </div>
 

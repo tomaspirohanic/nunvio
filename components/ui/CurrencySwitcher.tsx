@@ -9,7 +9,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import {
   supportedCurrencies,
   currencyInfo,
@@ -19,6 +19,7 @@ import {
 export default function CurrencySwitcher() {
   const router = useRouter();
   const locale = useLocale();
+  const tc = useTranslations("Common");
   const [currentCurrency, setCurrentCurrency] = useState<Currency>("EUR");
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -76,7 +77,7 @@ export default function CurrencySwitcher() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors rounded-md hover:bg-gray-100"
-        aria-label="Change currency"
+        aria-label={tc("changeCurrency")}
       >
         <span className="text-lg">{currentCurrencyInfo.symbol}</span>
         <span className="uppercase">{currentCurrency}</span>

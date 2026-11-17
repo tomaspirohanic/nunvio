@@ -139,7 +139,7 @@ export default function AgencySetupForm({ createAgency }: AgencySetupFormProps) 
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-            Phone
+            {t("phone")}
           </label>
           <input
             type="tel"
@@ -151,7 +151,7 @@ export default function AgencySetupForm({ createAgency }: AgencySetupFormProps) 
         </div>
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-            Contact email
+            {t("contactEmail")}
           </label>
           <input
             type="email"

@@ -49,6 +49,7 @@ export default function SearchLayout({
   const router = useRouter();
   const tProperties = useTranslations("Properties");
   const tSearch = useTranslations("Search");
+  const tCommon = useTranslations("Common");
   const tPropertyTypes = useTranslations("PropertyTypes");
 
   const regionNames = useMemo(() => {
@@ -570,7 +571,7 @@ export default function SearchLayout({
                                   e.stopPropagation();
                                   setTypes((prev) => prev.filter((x) => x !== chip.key));
                                 }}
-                                aria-label="Remove"
+                                aria-label={tCommon("remove")}
                               >
                                 ×
                               </button>
@@ -756,7 +757,7 @@ export default function SearchLayout({
                 type="button"
                 onClick={() => setIsFilterModalOpen(false)}
                 className="w-10 h-10 rounded-full hover:bg-gray-100 inline-flex items-center justify-center text-gray-700"
-                aria-label="Close"
+                aria-label={tCommon("close")}
               >
                 <X className="w-5 h-5" />
               </button>

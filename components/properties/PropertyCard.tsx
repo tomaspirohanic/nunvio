@@ -183,7 +183,7 @@ export default function PropertyCard({
             <div className="text-2xl font-bold text-gray-900 leading-tight">
               {formattedPrice}
               {property.offerType === "RENT" ? (
-                <span className="text-base font-medium text-gray-500"> /mes</span>
+                <span className="text-base font-medium text-gray-500"> {t("perMonth")}</span>
               ) : null}
             </div>
             <div className="mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500">
