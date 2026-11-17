@@ -8,7 +8,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider   = "postgresql"
   /// Runtime: Neon POOLED connection string (host contains "-pooler").
   url        = env("DATABASE_URL")
   /// Migrations / db push: Neon DIRECT (non-pooled) connection string.
@@ -38,6 +38,7 @@ model User {
   emailVerificationTokens EmailVerificationToken[]
   passwordResetTokens     PasswordResetToken[]
   inquiriesReceived       Inquiry[]                @relation("InquiryRecipient")
+  savedSearches           SavedSearch[]
 }
 
 model EmailVerificationToken {
@@ -129,9 +130,9 @@ enum PropertyStatus {
 }
 
 model Agency {
-  id        String   @id @default(cuid())
+  id        String  @id @default(cuid())
   name      String
-  companyId String   @unique
+  companyId String  @unique
   address   String
   city      String
   country   String
@@ -141,17 +142,17 @@ model Agency {
   website   String?
 
   /// Public HTTPS URL of agency XML feed (CRM / multi-posting partner)
-  feedUrl          String?
-  feedSyncEnabled  Boolean   @default(false)
+  feedUrl           String?
+  feedSyncEnabled   Boolean   @default(false)
   /// Next property index in the last fetched feed (for chunked sync of large XML)
-  feedOffset       Int       @default(0)
-  feedLastSyncedAt DateTime?
-  feedLastError    String?
-  feedLastResult   String? // short JSON summary of last sync
+  feedOffset        Int       @default(0)
+  feedLastSyncedAt  DateTime?
+  feedLastError     String?
+  feedLastResult    String? // short JSON summary of last sync
   /// Start of the current full pass through the feed (used to archive listings that disappeared)
-  feedPassStartedAt  DateTime?
+  feedPassStartedAt DateTime?
   /// Simple lease so overlapping cron runs never process the same agency twice
-  feedLockedUntil    DateTime?
+  feedLockedUntil   DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -168,14 +169,14 @@ model Property {
   currency    Currency       @default(EUR)
   status      PropertyStatus @default(PUBLISHED)
 
-  city      String
-  country   String
+  city        String
+  country     String
   /// ISO 3166-1 alpha-2 derived from `country` (e.g. "SK"). Country search uses
   /// this equality filter instead of ILIKE so it stays fast at millions of rows.
   countryCode String?
-  latitude  Float?
-  longitude Float?
-  showOnMap Boolean @default(true)
+  latitude    Float?
+  longitude   Float?
+  showOnMap   Boolean @default(true)
 
   bedrooms     Int
   bathrooms    Int
@@ -185,16 +186,28 @@ model Property {
   isNewBuild   Boolean      @default(false)
   contactPhone String?
   /// Full selected address (street + city…), for display; `city` stays searchable
-  address     String?
-  images      String[]     @default([])
+  address      String?
+  images       String[]     @default([])
 
-  externalId String?
+  externalId       String?
   /// Hash of the imported feed payload (content). Unchanged hash = skip the DB write.
-  sourceHash String?
+  sourceHash       String?
   /// Hash of the remote image URL list from the feed. Unchanged = do not re-download images.
-  imageSourceHash String?
+  imageSourceHash  String?
   /// Last time this listing was present in its agency feed (for archiving removed listings)
   lastSeenInFeedAt DateTime?
+
+  /// Price before the latest change (shown as "zlacnené z …"); null = never changed
+  previousPrice  Decimal?
+  priceChangedAt DateTime?
+
+  /// Same real property listed by another agency: points at the listing we
+  /// show in search (the "main" one). Null = this listing is shown itself.
+  duplicateOfId  String?
+  duplicateOf    Property?  @relation("PropertyDuplicates", fields: [duplicateOfId], references: [id], onDelete: SetNull)
+  duplicates     Property[] @relation("PropertyDuplicates")
+  /// Null = needs a (re)check by the background duplicate finder
+  dedupCheckedAt DateTime?
 
   promotionLevel PromotionLevel @default(NONE)
   featuredUntil  DateTime?
@@ -203,14 +216,15 @@ model Property {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  ownerId String
-  owner   User    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId  String
+  owner    User    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   agencyId String?
   agency   Agency? @relation(fields: [agencyId], references: [id])
 
   translations   PropertyTranslation[]
   propertyImages PropertyImage[]
   inquiries      Inquiry[]
+  priceChanges   PropertyPriceChange[]
 
   @@unique([agencyId, externalId])
   @@index([ownerId])
@@ -235,11 +249,66 @@ model Property {
   @@index([status, countryCode, offerType, propertyType, promotionLevel(sort: Desc), createdAt(sort: Desc)])
   @@index([country, countryCode])
   @@index([agencyId, lastSeenInFeedAt])
+  @@index([duplicateOfId])
+  // Duplicate finder: candidates with the same country, offer, type and size
+  @@index([countryCode, offerType, propertyType, areaSqm])
+  @@index([dedupCheckedAt])
+  // Saved-search alerts use the existing [status, createdAt] index for new listings
+  @@index([status, priceChangedAt])
   // Trigram indexes: make ILIKE '%x%' (Prisma `contains` + mode insensitive) use an index
   @@index([city(ops: raw("gin_trgm_ops"))], type: Gin, map: "Property_city_trgm_idx")
   @@index([country(ops: raw("gin_trgm_ops"))], type: Gin, map: "Property_country_trgm_idx")
   @@index([title(ops: raw("gin_trgm_ops"))], type: Gin, map: "Property_title_trgm_idx")
   @@index([description(ops: raw("gin_trgm_ops"))], type: Gin, map: "Property_description_trgm_idx")
+}
+
+/// One price change of a listing (feeds and manual edits), for price history.
+model PropertyPriceChange {
+  id         String   @id @default(cuid())
+  propertyId String
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  oldPrice   Decimal
+  newPrice   Decimal
+  currency   Currency
+  changedAt  DateTime @default(now())
+
+  @@index([propertyId, changedAt])
+}
+
+enum AlertFrequency {
+  INSTANT
+  DAILY
+  WEEKLY
+}
+
+/// A visitor's saved search; new matching listings are e-mailed to them.
+model SavedSearch {
+  id        String         @id @default(cuid())
+  userId    String?
+  user      User?          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  email     String
+  /// Search filters exactly as in the /properties URL (location, offer, types, price…)
+  filters   Json
+  /// Human label, e.g. "Byty na predaj, Bratislava, do 250 000 €"
+  label     String
+  locale    String         @default("sk")
+  frequency AlertFrequency @default(INSTANT)
+
+  /// Double opt-in for visitors without an account; null = not confirmed yet
+  confirmedAt DateTime?
+  /// Secret for the confirm / unsubscribe links in e-mails
+  token       String    @unique
+  active      Boolean   @default(true)
+
+  /// Listings created / reduced after this moment are "new" for the next e-mail
+  lastCheckedAt  DateTime  @default(now())
+  lastNotifiedAt DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([email])
+  @@index([active, confirmedAt, frequency, lastCheckedAt])
 }
 
 model PropertyImage {

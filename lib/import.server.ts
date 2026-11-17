@@ -15,7 +15,7 @@ import { cookies } from "next/headers";
 import { authConfig } from "@/auth/config";
 import { prisma } from "@/lib/db";
 import { UserRole } from "@prisma/client";
-import { normalizeXmlProperty, parseXmlProperties } from "@/lib/import-xml";
+import { normalizeXmlProperties, parseXmlProperties } from "@/lib/import-xml";
 import {
   importNormalizedProperties,
   type XmlImportResult,
@@ -104,15 +104,25 @@ export async function processXmlImport(
       );
     }
 
-    const normalized = rawProperties.map((p, i) =>
-      normalizeXmlProperty(p, i, { defaultCountry: agency?.country })
-    );
+    const normalized = normalizeXmlProperties(rawProperties, {
+      defaultCountry: agency?.country,
+    });
+    if (normalized.properties.length === 0) {
+      throw new Error(normalized.errors[0] ?? "XML neobsahuje žiadne platné inzeráty.");
+    }
 
-    return importNormalizedProperties({
+    const result = await importNormalizedProperties({
       agencyId: user.agencyId,
       ownerId: user.id,
-      properties: normalized,
+      properties: normalized.properties,
     });
+    // Unusable records are skipped and reported instead of failing the whole file.
+    return {
+      ...result,
+      total: rawProperties.length,
+      errors: result.errors + normalized.failed,
+      errorMessages: [...normalized.errors, ...result.errorMessages].slice(0, 50),
+    };
   } catch (error) {
     console.error("processXmlImport failed:", error);
     throw error;

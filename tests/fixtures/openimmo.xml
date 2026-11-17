@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openimmo>
+  <uebertragung art="OFFLINE" umfang="VOLL" version="1.2.7"/>
+  <anbieter>
+    <anbieternr>A1</anbieternr>
+    <immobilie>
+      <objektkategorie>
+        <nutzungsart WOHNEN="true"/>
+        <vermarktungsart KAUF="true" MIETE_PACHT="false"/>
+        <objektart><wohnung wohnungtyp="ETAGE"/></objektart>
+      </objektkategorie>
+      <geo>
+        <plz>1070</plz>
+        <ort>Wien</ort>
+        <strasse>Neubaugasse</strasse>
+        <hausnummer>5</hausnummer>
+        <land iso_land="AUT"/>
+        <geokoordinaten breitengrad="48.2005" laengengrad="16.3500"/>
+      </geo>
+      <preise>
+        <kaufpreis>389000</kaufpreis>
+        <waehrung iso_waehrung="EUR"/>
+      </preise>
+      <flaechen>
+        <wohnflaeche>72.5</wohnflaeche>
+        <anzahl_zimmer>3</anzahl_zimmer>
+        <anzahl_badezimmer>1</anzahl_badezimmer>
+      </flaechen>
+      <zustand_angaben><alter alter_attr="NEUBAU"/></zustand_angaben>
+      <freitexte>
+        <objekttitel>Helle 3-Zimmer-Wohnung im 7. Bezirk</objekttitel>
+        <objektbeschreibung>Schöne Wohnung mit Balkon.</objektbeschreibung>
+        <lage>Zentrale Lage, U3 in 3 Minuten.</lage>
+      </freitexte>
+      <anhaenge>
+        <anhang location="EXTERN" gruppe="BILD"><daten><pfad>https://img.example.at/2.jpg</pfad></daten></anhang>
+        <anhang location="EXTERN" gruppe="TITELBILD"><daten><pfad>https://img.example.at/1.jpg</pfad></daten></anhang>
+        <anhang location="EXTERN" gruppe="DOKUMENTE"><daten><pfad>https://img.example.at/expose.pdf</pfad></daten></anhang>
+      </anhaenge>
+      <verwaltung_techn>
+        <objektnr_extern>W-77</objektnr_extern>
+        <openimmo_obid>OBID123</openimmo_obid>
+      </verwaltung_techn>
+    </immobilie>
+  </anbieter>
+</openimmo>

@@ -26,7 +26,7 @@ type InitialParams = Partial<{
   maxArea: string;
   keyword: string;
   isNewBuild: boolean;
-  hasVideo: boolean;
+  reduced: boolean;
   page: string;
 }>;
 
@@ -86,7 +86,7 @@ export default function SearchLayout({
   const [maxArea, setMaxArea] = useState(initialParams.maxArea ?? "");
   const [keyword, setKeyword] = useState(initialParams.keyword ?? "");
   const [isNewBuild, setIsNewBuild] = useState(!!initialParams.isNewBuild);
-  const [hasVideo, setHasVideo] = useState(!!initialParams.hasVideo);
+  const [reduced, setReduced] = useState(!!initialParams.reduced);
 
   const [draftMinPrice, setDraftMinPrice] = useState(minPrice);
   const [draftMaxPrice, setDraftMaxPrice] = useState(maxPrice);
@@ -94,7 +94,7 @@ export default function SearchLayout({
   const [draftMaxArea, setDraftMaxArea] = useState(maxArea);
   const [draftKeyword, setDraftKeyword] = useState(keyword);
   const [draftIsNewBuild, setDraftIsNewBuild] = useState(isNewBuild);
-  const [draftHasVideo, setDraftHasVideo] = useState(hasVideo);
+  const [draftReduced, setDraftReduced] = useState(reduced);
   const [draftTypes, setDraftTypes] = useState<string[]>(types);
   const [draftLocation, setDraftLocation] = useState(location);
   const [draftOffer, setDraftOffer] = useState<"" | "buy" | "rent">(offer);
@@ -323,7 +323,7 @@ export default function SearchLayout({
     if (maxArea) params.set("maxArea", maxArea);
     if (keyword.trim()) params.set("keyword", keyword.trim());
     if (isNewBuild) params.set("isNewBuild", "true");
-    if (hasVideo) params.set("hasVideo", "true");
+    if (reduced) params.set("reduced", "true");
     router.push(`/${locale}/properties?${params.toString()}`);
   };
 
@@ -701,7 +701,7 @@ export default function SearchLayout({
                 setDraftMaxArea(maxArea);
                 setDraftKeyword(keyword);
                 setDraftIsNewBuild(isNewBuild);
-                setDraftHasVideo(hasVideo);
+                setDraftReduced(reduced);
                 setIsFilterModalOpen(true);
               }}
               className="h-11 px-4 rounded-xl border border-gray-200 text-gray-900 bg-white shadow-sm hover:bg-gray-50 transition-colors inline-flex items-center gap-2"
@@ -952,11 +952,11 @@ export default function SearchLayout({
                   <label className="flex items-center gap-2 cursor-pointer w-full whitespace-nowrap text-sm font-medium text-gray-900">
                     <input
                       type="checkbox"
-                      checked={draftHasVideo}
-                      onChange={(e) => setDraftHasVideo(e.target.checked)}
+                      checked={draftReduced}
+                      onChange={(e) => setDraftReduced(e.target.checked)}
                       className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500/30"
                     />
-                    {tSearch("onlyWithVideo")}
+                    {tSearch("onlyReduced")}
                   </label>
                 </div>
               </div>
@@ -1054,7 +1054,7 @@ export default function SearchLayout({
                   setDraftMaxArea("");
                   setDraftKeyword("");
                   setDraftIsNewBuild(false);
-                  setDraftHasVideo(false);
+                  setDraftReduced(false);
                 }}
                 className="text-sm text-gray-500 underline hover:text-gray-700"
               >
@@ -1072,7 +1072,7 @@ export default function SearchLayout({
                   setMaxArea(draftMaxArea.trim());
                   setKeyword(draftKeyword.trim());
                   setIsNewBuild(draftIsNewBuild);
-                  setHasVideo(draftHasVideo);
+                  setReduced(draftReduced);
                   setIsFilterModalOpen(false);
                   // Apply immediately, matching reference UX.
                   const params = new URLSearchParams();
@@ -1085,7 +1085,7 @@ export default function SearchLayout({
                   if (draftMaxArea.trim()) params.set("maxArea", draftMaxArea.trim());
                   if (draftKeyword.trim()) params.set("keyword", draftKeyword.trim());
                   if (draftIsNewBuild) params.set("isNewBuild", "true");
-                  if (draftHasVideo) params.set("hasVideo", "true");
+                  if (draftReduced) params.set("reduced", "true");
                   router.push(`/${locale}/properties?${params.toString()}`);
                 }}
                 className="rounded-xl bg-red-600 hover:bg-red-700 text-white px-6 py-3 text-sm font-bold transition-colors"

@@ -15,6 +15,7 @@ import { prisma } from "@/lib/db";
 import { countryCodeFor } from "@/lib/country-display";
 import { translationWhereForLocale } from "@/lib/listing-text";
 import { LISTINGS_CACHE_TAG } from "@/lib/revalidate-listings";
+import type { ListingSearchParams } from "@/lib/listing-search-params";
 
 export const SEARCH_PAGE_SIZE = 48;
 /**
@@ -24,24 +25,11 @@ export const SEARCH_PAGE_SIZE = 48;
  */
 export const MAX_COUNTED_RESULTS = 10_000;
 
-export type ListingSearchParams = {
-  location?: string;
-  /** Exact property type, e.g. "APARTMENT" */
-  type?: string;
-  /** UI type chips, e.g. ["flat_2", "house_villa"] */
-  types?: string[];
-  offer?: "buy" | "rent";
-  minPrice?: number;
-  maxPrice?: number;
-  minArea?: number;
-  maxArea?: number;
-  keyword?: string;
-  isNewBuild?: boolean;
-  page?: number;
-};
+export type { ListingSearchParams } from "@/lib/listing-search-params";
 
 export function buildListingWhere(p: ListingSearchParams): Prisma.PropertyWhereInput {
-  const where: Prisma.PropertyWhereInput = { status: "PUBLISHED" };
+  // Duplicates of another agency's listing are shown on that listing's page.
+  const where: Prisma.PropertyWhereInput = { status: "PUBLISHED", duplicateOfId: null };
   const and: Prisma.PropertyWhereInput[] = [];
 
   if (p.location) {
@@ -87,6 +75,7 @@ export function buildListingWhere(p: ListingSearchParams): Prisma.PropertyWhereI
   }
 
   if (p.isNewBuild) where.isNewBuild = true;
+  if (p.reduced) where.previousPrice = { not: null };
 
   if (p.keyword) {
     and.push({
@@ -151,6 +140,8 @@ const cachedSearch = unstable_cache(
         promotionLevel: true,
         featuredUntil: true,
         createdAt: true,
+        previousPrice: true,
+        priceChangedAt: true,
         translations: {
           where: translationWhereForLocale(localeTag),
           select: {
@@ -171,12 +162,14 @@ const cachedSearch = unstable_cache(
     const rows = properties.map((p) => ({
       ...p,
       price: Number(p.price),
+      previousPrice: p.previousPrice != null ? Number(p.previousPrice) : null,
+      priceChangedAt: p.priceChangedAt ? p.priceChangedAt.toISOString() : null,
       createdAt: p.createdAt.toISOString(),
       featuredUntil: p.featuredUntil ? p.featuredUntil.toISOString() : null,
     }));
 
     return { total: counted, totalIsCapped, pageCount, safePage, rows };
   },
-  ["public-property-search-v2"],
+  ["public-property-search-v3"],
   { revalidate: 60, tags: [LISTINGS_CACHE_TAG] }
 );

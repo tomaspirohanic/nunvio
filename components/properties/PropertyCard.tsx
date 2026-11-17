@@ -31,6 +31,8 @@ export type FeaturedProperty = {
   images?: string[];
   promotionLevel: PromotionLevel;
   featuredUntil: Date | string | null;
+  /** Price before the latest drop (null when the price never went down) */
+  previousPrice?: number | null;
   translations?: Array<{
     translatedTitle: string;
     translatedDescription: string;
@@ -145,6 +147,22 @@ export default function PropertyCard({
     locale === "sk" ? "sk-SK" : locale === "de" ? "de-DE" : locale
   );
 
+  const previousPrice =
+    property.previousPrice != null && property.previousPrice > priceNumber
+      ? property.previousPrice
+      : null;
+  const formattedPreviousPrice =
+    previousPrice != null
+      ? formatCurrency(
+          previousPrice,
+          property.currency,
+          targetCurrency,
+          locale === "sk" ? "sk-SK" : locale === "de" ? "de-DE" : locale
+        )
+      : null;
+  const dropPercent =
+    previousPrice != null ? Math.round((1 - priceNumber / previousPrice) * 100) : 0;
+
   const displayCountry = localizeCountryName(property.country, locale);
 
   const displayTitle =
@@ -175,6 +193,12 @@ export default function PropertyCard({
             </div>
           </div>
         )}
+
+        {formattedPreviousPrice && dropPercent >= 1 && (
+          <div className="absolute top-3 right-3 z-10 rounded bg-green-600 px-2.5 py-1 text-xs font-bold text-white shadow">
+            {t("priceReducedBadge", { percent: dropPercent })}
+          </div>
+        )}
       </div>
 
       <div className="p-5 md:p-6">
@@ -186,6 +210,9 @@ export default function PropertyCard({
                 <span className="text-base font-medium text-gray-500"> {t("perMonth")}</span>
               ) : null}
             </div>
+            {formattedPreviousPrice && dropPercent >= 1 && (
+              <div className="text-sm text-gray-400 line-through">{formattedPreviousPrice}</div>
+            )}
             <div className="mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500">
               {property.offerType === "RENT" ? t("forRent") : t("forSale")}
             </div>

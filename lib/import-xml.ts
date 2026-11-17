@@ -7,6 +7,12 @@
 
 import { XMLParser } from "fast-xml-parser";
 import {
+  detectFeedFormat,
+  normalizeKyeroProperty,
+  normalizeOpenImmoProperty,
+  normalizeSrealityProperty,
+} from "@/lib/feed-formats";
+import {
   Currency,
   ListingOffer,
   PropertyType,
@@ -23,6 +29,8 @@ const ITEM_TAGS = [
   "nemovitost",
   "inzerat",
   "listing",
+  // OpenImmo (DE/AT standard): <openimmo><anbieter><immobilie>
+  "immobilie",
 ] as const;
 
 export type NormalizedProperty = {
@@ -41,7 +49,14 @@ export type NormalizedProperty = {
   latitude: number | null;
   longitude: number | null;
   imageUrls: string[];
+  /** Street / full address when the feed has one (display only). */
+  address?: string | null;
+  /** New development (novostavba / Neubau / new_build). */
+  isNewBuild?: boolean;
 };
+
+/** Which export dialect a listing came in (shown to partners when validating). */
+export type FeedFormat = "nunvio" | "sreality" | "openimmo" | "kyero";
 
 export type FeedValidationResult = {
   ok: boolean;
@@ -51,25 +66,38 @@ export type FeedValidationResult = {
   missingExternalId: number;
   errors: string[];
   sampleTitles: string[];
+  /** Detected export dialect(s) in the sample, e.g. ["sreality"]. */
+  formats: FeedFormat[];
 };
 
-function asArray<T>(value: T | T[] | undefined | null): T[] {
+export function asArray<T>(value: T | T[] | undefined | null): T[] {
   if (value == null) return [];
   return Array.isArray(value) ? value : [value];
 }
 
 export function textValue(value: unknown): string {
   if (value == null) return "";
+  if (Array.isArray(value)) {
+    for (const v of value) {
+      const t = textValue(v);
+      if (t) return t;
+    }
+    return "";
+  }
   if (typeof value === "string" || typeof value === "number") {
     return String(value).trim();
   }
-  if (typeof value === "object" && value !== null && "#text" in value) {
-    return String((value as { "#text"?: unknown })["#text"] ?? "").trim();
+  if (typeof value === "object" && value !== null) {
+    if ("#text" in value) {
+      return String((value as { "#text"?: unknown })["#text"] ?? "").trim();
+    }
+    // An element with only child elements / attributes has no text of its own.
+    return "";
   }
   return String(value).trim();
 }
 
-function firstText(
+export function firstText(
   prop: Record<string, unknown>,
   keys: string[]
 ): string {
@@ -89,21 +117,21 @@ function firstText(
   return "";
 }
 
-function parseInteger(value: unknown, defaultValue = 0): number {
+export function parseInteger(value: unknown, defaultValue = 0): number {
   const raw = textValue(value).replace(/\s/g, "").replace(",", ".");
   if (!raw) return defaultValue;
   const parsed = parseInt(raw, 10);
   return Number.isFinite(parsed) ? Math.max(0, parsed) : defaultValue;
 }
 
-function parseFloatValue(value: unknown): number | null {
+export function parseFloatValue(value: unknown): number | null {
   const raw = textValue(value).replace(/\s/g, "").replace(",", ".");
   if (!raw) return null;
   const parsed = parseFloat(raw);
   return Number.isFinite(parsed) ? parsed : null;
 }
 
-function parseOfferType(value: unknown): ListingOffer {
+export function parseOfferType(value: unknown): ListingOffer {
   const raw = textValue(value).toLowerCase();
   if (
     [
@@ -126,7 +154,7 @@ function parseOfferType(value: unknown): ListingOffer {
   return ListingOffer.SALE;
 }
 
-function parsePropertyType(value: unknown): PropertyType {
+export function parsePropertyType(value: unknown): PropertyType {
   const raw = textValue(value).toUpperCase();
   if ((Object.values(PropertyType) as string[]).includes(raw)) {
     return raw as PropertyType;
@@ -176,7 +204,7 @@ function parsePropertyType(value: unknown): PropertyType {
   return PropertyType.HOUSE;
 }
 
-function parseCurrency(value: unknown, fallback: Currency = Currency.EUR): Currency {
+export function parseCurrency(value: unknown, fallback: Currency = Currency.EUR): Currency {
   const raw = textValue(value).toUpperCase() || fallback;
   if (raw === "KČ" || raw === "KC" || raw === "KČS") return Currency.CZK;
   if ((Object.values(Currency) as string[]).includes(raw)) {
@@ -184,6 +212,17 @@ function parseCurrency(value: unknown, fallback: Currency = Currency.EUR): Curre
   }
   return fallback;
 }
+
+const ISO3_COUNTRY_NAMES: Record<string, string> = {
+  SVK: "Slovakia", CZE: "Czech Republic", AUT: "Austria", DEU: "Germany",
+  POL: "Poland", HUN: "Hungary", HRV: "Croatia", SVN: "Slovenia",
+  ITA: "Italy", ESP: "Spain", PRT: "Portugal", FRA: "France",
+  BEL: "Belgium", NLD: "Netherlands", LUX: "Luxembourg", IRL: "Ireland",
+  DNK: "Denmark", SWE: "Sweden", FIN: "Finland", EST: "Estonia",
+  LVA: "Latvia", LTU: "Lithuania", ROU: "Romania", BGR: "Bulgaria",
+  GRC: "Greece", CYP: "Cyprus", MLT: "Malta", CHE: "Switzerland",
+  GBR: "United Kingdom", NOR: "Norway",
+};
 
 /** Normalize country names / ISO codes used in SK+CZ CRM exports. */
 export function normalizeCountryName(
@@ -197,6 +236,10 @@ export function normalizeCountryName(
     .normalize("NFD")
     .replace(/\p{M}/gu, "")
     .toLowerCase();
+
+  // ISO 3166 alpha-3 (OpenImmo uses iso_land="SVK", "DEU", …)
+  const iso3 = ISO3_COUNTRY_NAMES[n.toUpperCase()];
+  if (iso3) return iso3;
 
   if (n === "sk" || n.includes("slovensk")) return "Slovakia";
   if (
@@ -222,10 +265,14 @@ export function normalizeCountryName(
   return raw;
 }
 
-function extractImageUrls(prop: Record<string, unknown>): string[] {
+export function extractImageUrls(prop: Record<string, unknown>): string[] {
   const urls: string[] = [];
 
   const pushUrl = (u: unknown) => {
+    if (Array.isArray(u)) {
+      for (const x of u) pushUrl(x);
+      return;
+    }
     const s = textValue(u);
     if (s && /^https?:\/\//i.test(s)) urls.push(s);
   };
@@ -291,6 +338,8 @@ export function parseXmlProperties(fileContent: string): Record<string, unknown>
         "url",
         "foto",
         "photo",
+        "anbieter",
+        "anhang",
       ].includes(tagName.toLowerCase()),
   });
 
@@ -319,6 +368,16 @@ export function parseXmlProperties(fileContent: string): Record<string, unknown>
   let raw = tryExtract(parsedData);
   if (raw.length > 0) return raw;
 
+  // OpenImmo: <openimmo><anbieter>…<immobilie/></anbieter>… (several providers possible)
+  const openimmo = parsedData.openimmo as Record<string, unknown> | undefined;
+  if (openimmo && typeof openimmo === "object") {
+    const all: Record<string, unknown>[] = [];
+    for (const anbieter of asArray(openimmo.anbieter)) {
+      all.push(...tryExtract(anbieter));
+    }
+    if (all.length > 0) return all;
+  }
+
   // Common wrappers
   for (const wrap of [
     "properties",
@@ -334,6 +393,8 @@ export function parseXmlProperties(fileContent: string): Record<string, unknown>
     "export",
     "rss",
     "channel",
+    // Kyero: <root><kyero/><property/></root>
+    "root",
   ]) {
     const node = parsedData[wrap];
     raw = tryExtract(node);
@@ -348,14 +409,78 @@ export function parseXmlProperties(fileContent: string): Record<string, unknown>
   }
 
   throw new Error(
-    "V XML sa nenašli inzeráty. Podporované korene: <properties><property>…</property></properties> (alebo reality/offers/nemovitosti + property/advert/offer/item)."
+    "V XML sa nenašli inzeráty. Podporované formáty: Nunvio <properties><property>, export v štruktúre Sreality (advert_*), OpenImmo (<openimmo><anbieter><immobilie>) a Kyero (<root><property>)."
   );
 }
 
+export type NormalizeOptions = {
+  defaultCountry?: string;
+  defaultCurrency?: Currency;
+};
+
+/**
+ * Turn one raw listing node into Nunvio's shape, whatever export dialect it
+ * is in (Nunvio / SK-CZ CRM aliases, Sreality-style advert_* fields,
+ * OpenImmo, Kyero). Throws a readable error for an unusable listing.
+ */
 export function normalizeXmlProperty(
   prop: Record<string, unknown>,
   index: number,
-  opts?: { defaultCountry?: string; defaultCurrency?: Currency }
+  opts?: NormalizeOptions
+): NormalizedProperty {
+  switch (detectFeedFormat(prop)) {
+    case "sreality":
+      return normalizeSrealityProperty(prop, index, opts);
+    case "openimmo":
+      return normalizeOpenImmoProperty(prop, index, opts);
+    case "kyero":
+      return normalizeKyeroProperty(prop, index, opts);
+    default:
+      return normalizeNunvioProperty(prop, index, opts);
+  }
+}
+
+/**
+ * Normalize a whole list; bad listings are reported, not fatal, so one
+ * broken record never blocks the rest of an agency's feed.
+ */
+export function normalizeXmlProperties(
+  raw: Record<string, unknown>[],
+  opts?: NormalizeOptions & { indexOffset?: number }
+): {
+  properties: NormalizedProperty[];
+  /** Position in `raw` of each entry of `properties` */
+  validRawIndexes: number[];
+  errors: string[];
+  failed: number;
+} {
+  const properties: NormalizedProperty[] = [];
+  const validRawIndexes: number[] = [];
+  const errors: string[] = [];
+  let failed = 0;
+  raw.forEach((p, i) => {
+    try {
+      properties.push(normalizeXmlProperty(p, (opts?.indexOffset ?? 0) + i, opts));
+      validRawIndexes.push(i);
+    } catch (e: unknown) {
+      failed++;
+      if (errors.length < 50) {
+        errors.push(e instanceof Error ? e.message : "Neznáma chyba");
+      }
+    }
+  });
+  return { properties, validRawIndexes, errors, failed };
+}
+
+function parseBool(value: string): boolean {
+  const n = value.trim().toLowerCase();
+  return ["1", "true", "yes", "ano", "áno", "y", "ja"].includes(n);
+}
+
+function normalizeNunvioProperty(
+  prop: Record<string, unknown>,
+  index: number,
+  opts?: NormalizeOptions
 ): NormalizedProperty {
   const title = firstText(prop, [
     "title",
@@ -531,6 +656,19 @@ export function normalizeXmlProperty(
       ]) || prop.longitude
     ),
     imageUrls: extractImageUrls(prop),
+    address:
+      firstText(prop, [
+        "address",
+        "adresa",
+        "street",
+        "ulica",
+        "ulice",
+        "location.street",
+        "address.street",
+      ]) || null,
+    isNewBuild: parseBool(
+      firstText(prop, ["isNewBuild", "newBuild", "new_build", "novostavba", "novostavby"])
+    ),
   };
 }
 
@@ -548,8 +686,10 @@ export function validateXmlFeedContent(
   let sampleFailed = 0;
   let missingExternalId = 0;
   const sampleTitles: string[] = [];
+  const formats = new Set<FeedFormat>();
 
   for (let i = 0; i < sampleSize; i++) {
+    formats.add(detectFeedFormat(raw[i]));
     try {
       const n = normalizeXmlProperty(raw[i], i, {
         defaultCountry: opts?.defaultCountry,
@@ -573,5 +713,6 @@ export function validateXmlFeedContent(
     missingExternalId,
     errors,
     sampleTitles,
+    formats: Array.from(formats),
   };
 }

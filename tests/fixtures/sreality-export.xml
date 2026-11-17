@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export>
+  <advert>
+    <advert_rkid>RK-2001</advert_rkid>
+    <advert_function>1</advert_function>
+    <advert_type>1</advert_type>
+    <advert_subtype>4</advert_subtype>
+    <advert_price>6490000</advert_price>
+    <advert_price_currency>1</advert_price_currency>
+    <advert_price_unit>1</advert_price_unit>
+    <building_condition>6</building_condition>
+    <description>Světlý byt 2+kk v novostavbě s balkonem.</description>
+    <locality_city>Praha</locality_city>
+    <locality_citypart>Karlín</locality_citypart>
+    <locality_street>Křižíkova</locality_street>
+    <locality_co>12</locality_co>
+    <locality_latitude>50.0925</locality_latitude>
+    <locality_longitude>14.4519</locality_longitude>
+    <usable_area>54</usable_area>
+    <photos>
+      <photo><url>https://cdn.example.com/a1.jpg</url></photo>
+      <photo><url>https://cdn.example.com/a2.jpg</url></photo>
+    </photos>
+  </advert>
+  <advert>
+    <advert_rkid>RK-2002</advert_rkid>
+    <advert_function>2</advert_function>
+    <advert_type>2</advert_type>
+    <advert_room_count>4</advert_room_count>
+    <advert_price>1500</advert_price>
+    <advert_price_currency>3</advert_price_currency>
+    <advert_price_unit>2</advert_price_unit>
+    <description>Rodinný dom na prenájom.</description>
+    <locality_city>Senec</locality_city>
+    <locality_country>SK</locality_country>
+    <usable_area>140</usable_area>
+  </advert>
+  <advert>
+    <advert_rkid>RK-BAD</advert_rkid>
+    <advert_function>1</advert_function>
+    <advert_type>3</advert_type>
+    <description>Pozemok bez ceny</description>
+    <locality_city>Brno</locality_city>
+  </advert>
+</export>

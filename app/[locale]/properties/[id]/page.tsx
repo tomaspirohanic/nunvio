@@ -23,6 +23,8 @@ import {
   translationWhereForLocale,
 } from "@/lib/listing-text";
 import { resolvePropertyImageUrls } from "@/lib/property-gallery";
+import { firstListedAt, getOtherOffers } from "@/lib/dedup.server";
+import ListingMarketInfo from "@/components/properties/ListingMarketInfo";
 
 // ISR: detail pages are rendered once and served from the CDN; refreshed at
 // most every 10 min, or immediately when the listing changes
@@ -73,6 +75,13 @@ const getPropertyForPublicDetail = cache(async function getPropertyForPublicDeta
         promotionLevel: true,
         featuredUntil: true,
         createdAt: true,
+        duplicateOfId: true,
+        previousPrice: true,
+        priceChanges: {
+          orderBy: { changedAt: "asc" },
+          select: { oldPrice: true, newPrice: true, currency: true, changedAt: true },
+          take: 50,
+        },
         owner: {
           select: {
             name: true,
@@ -104,6 +113,13 @@ const getPropertyForPublicDetail = cache(async function getPropertyForPublicDeta
     return {
       ...property,
       price: Number(property.price),
+      previousPrice: property.previousPrice != null ? Number(property.previousPrice) : null,
+      priceChanges: property.priceChanges.map((c) => ({
+        oldPrice: Number(c.oldPrice),
+        newPrice: Number(c.newPrice),
+        currency: c.currency,
+        changedAt: c.changedAt,
+      })),
       bedrooms:
         typeof property.bedrooms === "number" && !isNaN(property.bedrooms)
           ? property.bedrooms
@@ -248,6 +264,13 @@ export default async function PropertyDetailPage({
 
   const galleryImages = resolvePropertyImageUrls(property);
 
+  const [otherOffers, listedSince] = await Promise.all([
+    getOtherOffers(property.id, property.duplicateOfId).catch(() => []),
+    firstListedAt(property.id, property.duplicateOfId, property.createdAt).catch(
+      () => property.createdAt
+    ),
+  ]);
+
   return (
     <div className="bg-white">
       <div className="max-w-7xl mx-auto px-4 mt-6">
@@ -356,6 +379,16 @@ export default async function PropertyDetailPage({
                 </div>
               </div>
             </div>
+
+            <ListingMarketInfo
+              locale={locale}
+              currentPrice={property.price}
+              currency={property.currency}
+              offerType={property.offerType}
+              listedSince={listedSince}
+              priceChanges={property.priceChanges}
+              otherOffers={otherOffers}
+            />
 
             {/* Description */}
             <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-6">

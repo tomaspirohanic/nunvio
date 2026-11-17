@@ -9,6 +9,7 @@
 
 "use server";
 
+import { priceChangeData } from "@/lib/price-history.server";
 import { countryCodeFor } from "@/lib/country-display";
 import { getServerSession } from "next-auth/next";
 import { getToken } from "next-auth/jwt";
@@ -203,6 +204,8 @@ export async function updateProperty(
         offerType: input.offerType ?? ListingOffer.SALE,
         contactPhone: input.contactPhone?.trim() || null,
         isNewBuild: input.isNewBuild ?? false,
+        ...priceChangeData(existing, input.price, input.currency),
+        dedupCheckedAt: null,
         ...(input.status
           ? { status: input.status as PropertyStatus }
           : {}),
