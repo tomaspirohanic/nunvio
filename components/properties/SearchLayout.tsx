@@ -43,12 +43,15 @@ export default function SearchLayout({
     page: number;
     pageSize: number;
     total: number;
+    /** true when there are more matches than were counted (MAX_COUNTED_RESULTS) */
+    totalIsCapped?: boolean;
     pageCount: number;
   };
 }) {
   const router = useRouter();
   const tProperties = useTranslations("Properties");
   const tSearch = useTranslations("Search");
+  const tCommon = useTranslations("Common");
   const tPropertyTypes = useTranslations("PropertyTypes");
 
   const regionNames = useMemo(() => {
@@ -117,82 +120,23 @@ export default function SearchLayout({
     const timeoutId = setTimeout(async () => {
       try {
         setIsSearching(true);
-        const localSamples: Array<{ city: string; countryCode: string }> = [
-          { city: "Bratislava", countryCode: "SK" },
-          { city: "Senec", countryCode: "SK" },
-          { city: "Miloslavov", countryCode: "SK" },
-          { city: "Trnava", countryCode: "SK" },
-          { city: "Pezinok", countryCode: "SK" },
-        ];
-
-        const localMatches = localSamples
-          .map((s) => {
-            const country =
-              regionNames?.of(s.countryCode) ?? s.countryCode.toUpperCase();
-            const display_name = `${s.city}, ${country}`;
-            return { ...s, display_name };
-          })
-          .filter((s) => s.display_name.toLowerCase().includes(query.toLowerCase()))
-          .slice(0, 5)
-          .map((s, idx) => ({
-            place_id: `local-${idx}-${s.city}-${s.countryCode}`,
-            display_name: s.display_name,
-            address: { city: s.city, country_code: s.countryCode.toLowerCase() },
-          }));
-
+        // Own endpoint (cities with listings) instead of public Nominatim.
         const response = await fetch(
-          `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-            query
-          )}&format=json&addressdetails=1&limit=5`
+          `/api/locations/suggest?q=${encodeURIComponent(query)}`
         );
 
         if (!response.ok) {
-          throw new Error(`Nominatim request failed: ${response.status}`);
+          throw new Error(`Location suggest failed: ${response.status}`);
         }
 
         const data = await response.json();
-        const raw = Array.isArray(data) ? data : [];
-        const uniqueResults = Array.from(
-          new Map(raw.map((item: any) => [item.display_name, item])).values()
-        ).slice(0, 5);
-
-        const merged = Array.from(
-          new Map(
-            [...localMatches, ...uniqueResults].map((item: any) => [
-              item.display_name,
-              item,
-            ])
-          ).values()
-        ).slice(0, 8);
-
-        setSuggestions(merged);
+        const results = Array.isArray(data) ? data.slice(0, 8) : [];
+        setSuggestions(results);
         setShowDropdown(true);
       } catch (error) {
         console.error("City autocomplete error:", error);
-        // Fallback to local sample suggestions (localized country names)
-        const localSamples: Array<{ city: string; countryCode: string }> = [
-          { city: "Bratislava", countryCode: "SK" },
-          { city: "Senec", countryCode: "SK" },
-          { city: "Miloslavov", countryCode: "SK" },
-          { city: "Trnava", countryCode: "SK" },
-          { city: "Pezinok", countryCode: "SK" },
-        ];
-        const localMatches = localSamples
-          .map((s) => {
-            const country =
-              regionNames?.of(s.countryCode) ?? s.countryCode.toUpperCase();
-            const display_name = `${s.city}, ${country}`;
-            return { ...s, display_name };
-          })
-          .filter((s) => s.display_name.toLowerCase().includes(query.toLowerCase()))
-          .slice(0, 5)
-          .map((s, idx) => ({
-            place_id: `local-${idx}-${s.city}-${s.countryCode}`,
-            display_name: s.display_name,
-            address: { city: s.city, country_code: s.countryCode.toLowerCase() },
-          }));
-        setSuggestions(localMatches);
-        setShowDropdown(localMatches.length > 0);
+        setSuggestions([]);
+        setShowDropdown(false);
       } finally {
         setIsSearching(false);
       }
@@ -629,7 +573,7 @@ export default function SearchLayout({
                                   e.stopPropagation();
                                   setTypes((prev) => prev.filter((x) => x !== chip.key));
                                 }}
-                                aria-label="Remove"
+                                aria-label={tCommon("remove")}
                               >
                                 ×
                               </button>
@@ -815,7 +759,7 @@ export default function SearchLayout({
                 type="button"
                 onClick={() => setIsFilterModalOpen(false)}
                 className="w-10 h-10 rounded-full hover:bg-gray-100 inline-flex items-center justify-center text-gray-700"
-                aria-label="Close"
+                aria-label={tCommon("close")}
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1168,9 +1112,11 @@ export default function SearchLayout({
               {tProperties("resultsTitle")}
             </h1>
             <div className="mt-2 text-sm text-gray-500">
-              {tProperties("resultsCount", {
-                count: pagination?.total ?? properties.length,
-              })}
+              {pagination?.totalIsCapped
+                ? tProperties("resultsCountCapped", { count: pagination.total })
+                : tProperties("resultsCount", {
+                    count: pagination?.total ?? properties.length,
+                  })}
             </div>
           </div>
 

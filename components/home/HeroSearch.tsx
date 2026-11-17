@@ -86,14 +86,13 @@ export default function HeroSearch() {
     const timeoutId = setTimeout(async () => {
       try {
         setIsSearching(true);
+        // Own endpoint (cities with listings) instead of public Nominatim.
         const response = await fetch(
-          `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-            query
-          )}&format=json&addressdetails=1&limit=5`
+          `/api/locations/suggest?q=${encodeURIComponent(query)}`
         );
 
         if (!response.ok) {
-          throw new Error(`Nominatim request failed: ${response.status}`);
+          throw new Error(`Location suggest failed: ${response.status}`);
         }
 
         const data = await response.json();

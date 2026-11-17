@@ -9,7 +9,7 @@
 // ============================================
 
 import { useEffect, useState } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { MapContainer, TileLayer, Marker, Circle, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -73,6 +73,7 @@ export default function PropertyDetailMap({
   showOnMap,
 }: PropertyDetailMapProps) {
   const locale = useLocale();
+  const t = useTranslations("Common");
   const [targetCurrency, setTargetCurrency] = useState<Currency>("EUR");
 
   // Read currency from cookie
@@ -185,8 +186,8 @@ export default function PropertyDetailMap({
         </MapContainer>
         {!showOnMap && (
           <div className="pointer-events-none absolute top-3 left-3 z-[500] rounded-md border border-gray-200 bg-white/95 px-3 py-2 text-xs text-gray-600 shadow-lg backdrop-blur-sm">
-            <p className="font-medium">Approximate location</p>
-            <p className="text-gray-500">Exact address hidden for privacy</p>
+            <p className="font-medium">{t("approxLocation")}</p>
+            <p className="text-gray-500">{t("exactHidden")}</p>
           </div>
         )}
       </div>

@@ -12,18 +12,20 @@ import {
   FileUp,
   X,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type NavItem = {
   href: string;
+  /** key in the "DashboardSidebar" messages namespace */
   label: string;
   icon: React.ComponentType<{ className?: string }>;
 };
 
 const mainNavItems: NavItem[] = [
-  { href: "/dashboard", label: "Prehľad", icon: LayoutDashboard },
-  { href: "/dashboard/properties", label: "Moje inzeráty", icon: Home },
-  { href: "/dashboard/properties/new", label: "Pridať inzerát", icon: PlusCircle },
-  { href: "/dashboard/settings", label: "Nastavenia", icon: Settings },
+  { href: "/dashboard", label: "overview", icon: LayoutDashboard },
+  { href: "/dashboard/properties", label: "myListings", icon: Home },
+  { href: "/dashboard/properties/new", label: "addListing", icon: PlusCircle },
+  { href: "/dashboard/settings", label: "settings", icon: Settings },
 ];
 
 function cx(...classes: Array<string | false | null | undefined>) {
@@ -59,6 +61,7 @@ function NavLink({
   onNavigate?: () => void;
 }) {
   const pathname = usePathname();
+  const t = useTranslations("DashboardSidebar");
   const active = isActivePath(pathname, locale, item.href);
   const Icon = item.icon;
 
@@ -80,7 +83,7 @@ function NavLink({
           active ? "text-blue-700" : "text-gray-500 group-hover:text-gray-900"
         )}
       />
-      <span className="truncate">{item.label}</span>
+      <span className="truncate">{t(item.label)}</span>
     </Link>
   );
 }
@@ -95,6 +98,7 @@ function SidebarContent({
   onCloseButton?: () => void;
 }) {
   const { data: session } = useSession();
+  const t = useTranslations("DashboardSidebar");
   const role = session?.user?.role;
   const agencyId = session?.user?.agencyId;
   const hasAgency = Boolean(agencyId);
@@ -111,7 +115,7 @@ function SidebarContent({
         >
           Nunvio
           <span className="ml-2 rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
-            Dashboard
+            {t("badge")}
           </span>
         </Link>
         {onCloseButton && (
@@ -119,7 +123,7 @@ function SidebarContent({
             type="button"
             onClick={onCloseButton}
             className="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-            aria-label="Close menu"
+            aria-label={t("closeMenu")}
           >
             <X className="h-5 w-5" />
           </button>
@@ -134,17 +138,17 @@ function SidebarContent({
         {isAgencyAdmin && hasAgency && (
           <div className="pt-4 mt-3 border-t border-gray-200 space-y-1">
             <div className="px-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-gray-400">
-              Agentúra
+              {t("agency")}
             </div>
             <NavLink
-              item={{ href: "/dashboard/agency/team", label: "Tím", icon: Users }}
+              item={{ href: "/dashboard/agency/team", label: "team", icon: Users }}
               locale={locale}
               onNavigate={onNavigate}
             />
             <NavLink
               item={{
                 href: "/dashboard/agency/import",
-                label: "XML import",
+                label: "xmlImport",
                 icon: FileUp,
               }}
               locale={locale}
@@ -156,12 +160,12 @@ function SidebarContent({
         {!hasAgency && (
           <div className="pt-4 mt-3 border-t border-gray-200 space-y-1">
             <div className="px-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-gray-400">
-              Agentúra
+              {t("agency")}
             </div>
             <NavLink
               item={{
                 href: "/dashboard/agency/setup",
-                label: "Vytvoriť agentúru",
+                label: "createAgency",
                 icon: Building2,
               }}
               locale={locale}
@@ -173,9 +177,9 @@ function SidebarContent({
 
       <div className="px-4 py-4 border-t border-gray-200">
         <div className="rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 p-4">
-          <div className="text-sm font-semibold text-gray-900">Tip</div>
+          <div className="text-sm font-semibold text-gray-900">{t("tipTitle")}</div>
           <div className="mt-1 text-xs text-gray-600 leading-relaxed">
-            Pridajte kvalitné fotky a presný popis. Zvýšite tak počet dopytov.
+            {t("tipBody")}
           </div>
         </div>
       </div>

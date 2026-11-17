@@ -9,13 +9,15 @@
 
 "use server";
 
+import { countryCodeFor } from "@/lib/country-display";
 import { getServerSession } from "next-auth/next";
 import { getToken } from "next-auth/jwt";
 import { cookies } from "next/headers";
 import { authConfig } from "@/auth/config";
 import { prisma } from "@/lib/db";
-import { Language, ListingOffer, PropertyStatus } from "@prisma/client";
+import { ListingOffer, PropertyStatus } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import { revalidateListings } from "@/lib/revalidate-listings";
 import type { CreatePropertyInput } from "./properties.types";
 
 const getAuthenticatedUserId = async (): Promise<string | null> => {
@@ -93,6 +95,7 @@ export async function createProperty(input: CreatePropertyInput) {
         currency: input.currency,
         city: input.city,
         country: input.country,
+        countryCode: countryCodeFor(input.country),
         address: input.address?.trim() || null,
         latitude: input.latitude ?? null,
         longitude: input.longitude ?? null,
@@ -118,25 +121,17 @@ export async function createProperty(input: CreatePropertyInput) {
           : {}),
         ownerId: userId,
         agencyId: user?.agencyId || null, // Auto-link to agency if user belongs to one
-        translations: {
-          create: {
-            locale: "en",
-            language: Language.EN,
-            title: input.title,
-            description: input.description,
-            translatedTitle: input.title,
-            translatedDescription: input.description,
-          },
-        },
+        // No translation rows here: the original text is shown in every
+        // locale until the background job (/api/cron/translate-listings)
+        // stores real translations.
       },
       include: {
         translations: true,
       },
     });
 
-    // Revalidate the properties page
     revalidatePath("/dashboard/properties");
-    revalidatePath("/properties");
+    revalidateListings([property.id]);
 
     return property;
   } catch (error) {
@@ -181,6 +176,9 @@ export async function updateProperty(
       throw new Error("Property not found or unauthorized");
     }
 
+    const textChanged =
+      existing.title !== input.title || existing.description !== input.description;
+
     // Validate images array if provided
     const images = Array.isArray(input.images) ? input.images : undefined;
 
@@ -193,6 +191,7 @@ export async function updateProperty(
         currency: input.currency,
         city: input.city,
         country: input.country,
+        countryCode: countryCodeFor(input.country),
         address: input.address?.trim() || null,
         latitude: input.latitude ?? null,
         longitude: input.longitude ?? null,
@@ -208,31 +207,9 @@ export async function updateProperty(
           ? { status: input.status as PropertyStatus }
           : {}),
         ...(images !== undefined && { images }), // Only update images if provided
-        translations: {
-          upsert: {
-            where: {
-              propertyId_language: {
-                propertyId,
-                language: Language.EN,
-              },
-            },
-            update: {
-              locale: "en",
-              title: input.title,
-              description: input.description,
-              translatedTitle: input.title,
-              translatedDescription: input.description,
-            },
-            create: {
-              locale: "en",
-              language: Language.EN,
-              title: input.title,
-              description: input.description,
-              translatedTitle: input.title,
-              translatedDescription: input.description,
-            },
-          },
-        },
+        // Text changed -> stored translations are stale; the background job
+        // re-translates them.
+        ...(textChanged ? { translations: { deleteMany: {} } } : {}),
       },
       include: {
         translations: true,
@@ -240,7 +217,7 @@ export async function updateProperty(
     });
 
     revalidatePath("/dashboard/properties");
-    revalidatePath("/properties");
+    revalidateListings([propertyId]);
 
     return updated;
   } catch (error) {
@@ -275,9 +252,8 @@ export async function deleteProperty(propertyId: string) {
     },
   });
 
-  // Revalidate the properties page
   revalidatePath("/dashboard/properties");
-  revalidatePath("/properties");
+  revalidateListings([propertyId]);
 
   return { success: true };
 }
@@ -304,6 +280,6 @@ export async function setPropertyStatus(
   });
 
   revalidatePath("/dashboard/properties");
-  revalidatePath("/properties");
+  revalidateListings([propertyId]);
   return { success: true };
 }

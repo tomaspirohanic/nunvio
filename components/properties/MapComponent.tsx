@@ -8,7 +8,7 @@
 // ============================================
 
 import { useEffect, useState } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -133,6 +133,7 @@ function PropertyMarker({ property, formattedPrice, displayTitle, units }: {
   units: string;
 }) {
   const locale = useLocale();
+  const tg = useTranslations("Gallery");
   const displayCountry = localizeCountryName(property.country, locale);
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
   
@@ -199,6 +200,8 @@ function PropertyMarker({ property, formattedPrice, displayTitle, units }: {
       {/* Image Carousel */}
       <div className="relative mb-3 -mx-4 -mt-4 rounded-t-lg overflow-hidden bg-gray-100">
         <img
+          loading="lazy"
+          decoding="async"
           src={currentImage}
           alt={displayTitle}
           className="w-full h-32 object-cover"
@@ -219,7 +222,7 @@ function PropertyMarker({ property, formattedPrice, displayTitle, units }: {
             <button
               onClick={handlePrevImage}
               className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full p-1.5 shadow-lg transition-all z-10"
-              aria-label="Previous image"
+              aria-label={tg("previous")}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -229,7 +232,7 @@ function PropertyMarker({ property, formattedPrice, displayTitle, units }: {
             <button
               onClick={handleNextImage}
               className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 rounded-full p-1.5 shadow-lg transition-all z-10"
-              aria-label="Next image"
+              aria-label={tg("next")}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

@@ -23,7 +23,7 @@ const LocationPickerMap = dynamic(
     ssr: false,
     loading: () => (
       <div className="w-full h-[400px] rounded-lg border border-gray-300 bg-gray-100 animate-pulse flex items-center justify-center">
-        <p className="text-gray-500">Loading map...</p>
+        <div className="h-6 w-6 animate-spin rounded-full border-2 border-gray-400 border-t-transparent" role="status" aria-busy="true" />
       </div>
     ),
   }
@@ -267,7 +267,7 @@ export default function PropertyForm({
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-1">
-            Status
+            {tPropertyForm("statusLabel")}
           </label>
           <select
             id="status"
@@ -275,14 +275,14 @@ export default function PropertyForm({
             defaultValue={initialData?.status || "PUBLISHED"}
             className={inputClass}
           >
-            <option value="PUBLISHED">Published</option>
-            <option value="DRAFT">Draft</option>
-            <option value="ARCHIVED">Archived</option>
+            <option value="PUBLISHED">{tPropertyForm("statusPublished")}</option>
+            <option value="DRAFT">{tPropertyForm("statusDraft")}</option>
+            <option value="ARCHIVED">{tPropertyForm("statusArchived")}</option>
           </select>
         </div>
         <div>
           <label htmlFor="contactPhone" className="block text-sm font-medium text-gray-700 mb-1">
-            Contact phone
+            {tPropertyForm("contactPhone")}
           </label>
           <input
             type="tel"
@@ -304,7 +304,7 @@ export default function PropertyForm({
           defaultChecked={initialData?.isNewBuild ?? false}
           className="h-4 w-4 rounded border-gray-300 text-blue-600"
         />
-        <span className="text-sm text-gray-700">New build</span>
+        <span className="text-sm text-gray-700">{tPropertyForm("newBuild")}</span>
       </label>
 
       {/* Location */}

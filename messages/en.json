@@ -26,13 +26,25 @@
     "delete": "Delete",
     "edit": "Edit",
     "create": "Create",
-    "back": "Back"
+    "back": "Back",
+    "approxLocation": "Approximate location",
+    "exactHidden": "Exact address hidden for privacy",
+    "indicativeConversion": "indicative conversion",
+    "remove": "Remove",
+    "close": "Close",
+    "somethingWrong": "Something went wrong",
+    "tryAgain": "Try again",
+    "dashboardErrorFallback": "Please try again or return to the dashboard.",
+    "changeLanguage": "Change language",
+    "changeCurrency": "Change currency",
+    "toggleMenu": "Toggle menu"
   },
   "Hero": {
     "title": "Find your dream home",
     "subtitle": "Over {count} properties available",
     "listProperty": "List Your Property",
-    "browseProperties": "Browse Properties"
+    "browseProperties": "Browse Properties",
+    "imageAlt": "Modern house with a garden"
   },
   "Search": {
     "heroTitle": "Choosing right is the key",
@@ -116,8 +128,10 @@
     "statusInactive": "Inactive",
     "resultsTitle": "Found properties",
     "resultsCount": "{count, plural, =0 {0 results} =1 {1 result} other {# results}}",
+    "resultsCountCapped": "More than {count, number} results",
     "propertiesFound": "{count, plural, =0 {No properties found} =1 {1 property found} other {# properties found}}",
-    "beFirst": "Be the First to List"
+    "beFirst": "Be the First to List",
+    "perMonth": "/month"
   },
   "ContactBox": {
     "priceLabel": "Price",
@@ -243,7 +257,13 @@
     "cityAutocompleteHint": "Start typing an address or city and pick a suggestion — country and map pin update automatically.",
     "addressLabel": "Address",
     "addressPlaceholder": "Street, number, city…",
-    "savingText": "Saving..."
+    "savingText": "Saving...",
+    "statusLabel": "Status",
+    "statusPublished": "Published",
+    "statusDraft": "Draft",
+    "statusArchived": "Archived",
+    "contactPhone": "Contact phone",
+    "newBuild": "New build"
   },
   "AgencySetupForm": {
     "agencyNameLabel": "Agency Name",
@@ -263,7 +283,9 @@
     "logoUrlPlaceholder": "https://example.com/logo.png",
     "creatingAgencyText": "Creating Agency...",
     "createAgencyButton": "Create Agency",
-    "genericError": "Failed to create agency. Please try again."
+    "genericError": "Failed to create agency. Please try again.",
+    "phone": "Phone",
+    "contactEmail": "Contact email"
   },
   "TeamManagement": {
     "addNewAgentHeading": "Add New Agent",
@@ -302,8 +324,7 @@
     "deletingText": "Deleting...",
     "deleteConfirm": "Are you sure you want to delete this property? This action cannot be undone.",
     "deleteFailedAlert": "Failed to delete property. Please try again."
-  }
-  ,
+  },
   "DashboardNav": {
     "dashboard": "Dashboard",
     "myProperties": "My Properties",
@@ -395,7 +416,12 @@
     "contactTitle": "Contact",
     "contactBody": "For bridge setup or a test agency account, email",
     "ctaRegister": "Create agency account",
-    "ctaSample": "Download sample XML"
+    "ctaSample": "Download sample XML",
+    "crmSlovakia": "Slovakia",
+    "crmCzechia": "Czechia",
+    "techSample": "Sample XML",
+    "techValidate": "Validate feed (API)",
+    "techDocs": "Documentation"
   },
   "Privacy": {
     "title": "Privacy Policy",
@@ -430,5 +456,158 @@
     "lawTitle": "Governing law",
     "lawBody": "These terms are intended to be governed by the laws of the EU member state where the operating company is established, without prejudice to mandatory consumer protections in your country of residence. Venue and company identity will be confirmed once registration details are filled in.",
     "companyPlaceholder": "Operator company details (legal name, IČO / registration number, and registered address) will be filled in by the operator."
+  },
+  "Gallery": {
+    "openPhotos": "Open photos",
+    "photoAlt": "Property photo {n}",
+    "showAll": "Show all photos",
+    "photosCount": "Photos ({count})",
+    "close": "Close",
+    "previous": "Previous photo",
+    "next": "Next photo"
+  },
+  "ImageUploader": {
+    "dropHere": "Drag & drop images here, or",
+    "browse": "click to browse",
+    "formats": "PNG, JPG, WebP, GIF or AVIF, up to 15 MB each. You can select multiple files.",
+    "working": "Working…",
+    "uploading": "Uploading ({count})",
+    "failedCount": "{count, plural, =1 {1 upload failed} other {# uploads failed}}",
+    "dismiss": "Dismiss",
+    "gallery": "Gallery ({count})",
+    "savingOrder": "Saving order…",
+    "cover": "Cover",
+    "dragToReorder": "Drag to reorder",
+    "remove": "Remove image",
+    "deleteFailed": "Failed to delete image"
+  },
+  "Promotion": {
+    "title": "Promote your property",
+    "currentPromotion": "Current promotion:",
+    "expires": "expires {date}",
+    "forDays": "for {days} days",
+    "currentPlan": "Current plan",
+    "upgradeAvailable": "Upgrade available",
+    "benefitsTitle": "Promotion benefits:",
+    "benefit1": "Featured placement at the top of listings",
+    "benefit2": "More visibility to potential buyers",
+    "benefit3": "Priority sorting in search results",
+    "benefit4": "Visual badge highlighting your property",
+    "cancel": "Cancel",
+    "processing": "Processing…",
+    "continueToPayment": "Continue to payment",
+    "selectTier": "Please select a promotion tier.",
+    "checkoutFailed": "Failed to start the payment. Please try again.",
+    "genericError": "Something went wrong. Please try again.",
+    "tiers": {
+      "BRONZE": {
+        "description": "Highlighted in search results",
+        "f1": "Featured placement in search",
+        "f2": "Highlighted listing badge",
+        "f3": "7 days of promotion"
+      },
+      "SILVER": {
+        "description": "Top position in listings",
+        "f1": "Top position in search results",
+        "f2": "Premium badge",
+        "f3": "14 days of promotion",
+        "f4": "Priority sorting"
+      },
+      "GOLD": {
+        "description": "Maximum visibility",
+        "f1": "Highest priority in all listings",
+        "f2": "Premium gold badge",
+        "f3": "30 days of promotion",
+        "f4": "Featured on the homepage",
+        "f5": "Maximum search visibility"
+      }
+    }
+  },
+  "NotFound": {
+    "propertyTitle": "Property not found",
+    "propertyBody": "The property you are looking for does not exist or has been removed.",
+    "agencyTitle": "Agency not found",
+    "agencyBody": "This real estate agency does not exist or has been removed.",
+    "browseAll": "Browse all properties"
+  },
+  "DashboardSidebar": {
+    "badge": "Dashboard",
+    "overview": "Overview",
+    "myListings": "My listings",
+    "addListing": "Add listing",
+    "settings": "Settings",
+    "agency": "Agency",
+    "team": "Team",
+    "xmlImport": "XML import",
+    "createAgency": "Create agency",
+    "tipTitle": "Tip",
+    "tipBody": "Add good photos and an accurate description to get more enquiries.",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "signOut": "Sign out"
+  },
+  "Settings": {
+    "title": "Settings",
+    "subtitle": "Your account and basic dashboard settings.",
+    "account": "Account",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "agency": "Agency",
+    "agencyConnected": "Connected",
+    "agencyNone": "None",
+    "quickLinks": "Quick links",
+    "agencyProfile": "Public agency profile",
+    "manageTeam": "Manage team",
+    "roles": {
+      "SUPERADMIN": "Administrator",
+      "AGENCY_ADMIN": "Agency administrator",
+      "AGENT": "Agent",
+      "PRIVATE_USER": "Private seller"
+    }
+  },
+  "FeedSync": {
+    "title": "Automatic XML feed (CRM / multi-posting)",
+    "intro": "Paste the HTTPS URL of your XML export. Nunvio downloads it in parts every ~15 minutes, so even tens of thousands of listings are imported gradually. Every listing must have an <code>externalId</code>. Specification for CRM vendors: <link>/partners</link>.",
+    "urlLabel": "Feed URL",
+    "enable": "Enable automatic sync",
+    "save": "Save settings",
+    "saving": "Saving…",
+    "saved": "Feed settings saved.",
+    "saveFailed": "Saving failed.",
+    "syncNow": "Sync now",
+    "syncFailed": "Sync failed.",
+    "syncResult": "Sync OK: {created} new, {updated} updated ({processed} of {total} processed).",
+    "feedComplete": "The whole feed has been processed.",
+    "continuesAt": "The next run continues from position {offset}.",
+    "lastSync": "Last sync",
+    "offset": "Position in feed",
+    "lastError": "Last error",
+    "lastResult": "Last result"
+  },
+  "XmlImportHelp": {
+    "manualTitle": "Manual XML upload",
+    "downloadSample": "Download sample XML",
+    "required": "Required:",
+    "recommended": "Recommended:",
+    "recommendedBody": "the ID from your CRM; re-importing updates the listing instead of creating a duplicate",
+    "optional": "Optional:",
+    "types": "Types:",
+    "currencies": "Currencies:",
+    "maxUpload": "Manual upload limit:",
+    "maxUploadBody": "500 listings per file, 8 photos per listing. For large catalogues use the automatic feed URL above.",
+    "photosNote": "Photos from URLs are copied to Nunvio storage."
+  },
+  "Email": {
+    "verifySubject": "Confirm your Nunvio account",
+    "greeting": "Hi {name},",
+    "greetingNoName": "Hi,",
+    "verifyBody": "Thanks for signing up for Nunvio. Please confirm your email address to activate your account.",
+    "verifyCta": "Confirm email",
+    "verifyIgnore": "If you did not create an account, you can ignore this email.",
+    "resetSubject": "Reset your Nunvio password",
+    "resetBody": "We received a request to reset your Nunvio password. Click the button below to choose a new password.",
+    "resetCta": "Reset password",
+    "resetIgnore": "If you did not request this, you can ignore this email."
   }
 }

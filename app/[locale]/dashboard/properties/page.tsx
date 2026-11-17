@@ -210,6 +210,8 @@ function PropertyCard({
       {/* Property Image with Badge */}
       <div className="relative w-full h-48 bg-gray-100">
         <img
+          loading="lazy"
+          decoding="async"
           src={propertyImage}
           alt={property.title}
           className="w-full h-full object-cover"

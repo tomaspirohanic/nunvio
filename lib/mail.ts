@@ -25,106 +25,57 @@ type EmailCopy = {
   ignore: string;
 };
 
-const EMAIL_COPY: Record<Locale, EmailCopy> = {
-  en: {
-    subject: "Confirm your Nunvio account",
-    greeting: (name) => (name ? `Hi ${name},` : "Hi,"),
-    body: "Thanks for signing up for Nunvio. Please confirm your email address to activate your account.",
-    cta: "Confirm email",
-    ignore: "If you did not create an account, you can ignore this email.",
-  },
-  sk: {
-    subject: "Potvrďte svoj účet Nunvio",
-    greeting: (name) => (name ? `Ahoj ${name},` : "Ahoj,"),
-    body: "Ďakujeme za registráciu na Nunvio. Potvrďte svoju e-mailovú adresu, aby sme vám aktivovali účet.",
-    cta: "Potvrdiť e-mail",
-    ignore: "Ak ste si účet nevytvorili, tento e-mail môžete ignorovať.",
-  },
-  cs: {
-    subject: "Potvrďte svůj účet Nunvio",
-    greeting: (name) => (name ? `Ahoj ${name},` : "Ahoj,"),
-    body: "Děkujeme za registraci na Nunvio. Potvrďte svou e-mailovou adresu, abychom vám aktivovali účet.",
-    cta: "Potvrdit e-mail",
-    ignore: "Pokud jste si účet nevytvořili, můžete tento e-mail ignorovat.",
-  },
-  de: {
-    subject: "Bestätigen Sie Ihr Nunvio-Konto",
-    greeting: (name) => (name ? `Hallo ${name},` : "Hallo,"),
-    body: "Danke für Ihre Anmeldung bei Nunvio. Bitte bestätigen Sie Ihre E-Mail-Adresse, um Ihr Konto zu aktivieren.",
-    cta: "E-Mail bestätigen",
-    ignore: "Wenn Sie kein Konto erstellt haben, können Sie diese E-Mail ignorieren.",
-  },
-  fr: {
-    subject: "Confirmez votre compte Nunvio",
-    greeting: (name) => (name ? `Bonjour ${name},` : "Bonjour,"),
-    body: "Merci de vous être inscrit sur Nunvio. Veuillez confirmer votre adresse e-mail pour activer votre compte.",
-    cta: "Confirmer l'e-mail",
-    ignore: "Si vous n'avez pas créé de compte, vous pouvez ignorer cet e-mail.",
-  },
-  es: {
-    subject: "Confirma tu cuenta de Nunvio",
-    greeting: (name) => (name ? `Hola ${name},` : "Hola,"),
-    body: "Gracias por registrarte en Nunvio. Confirma tu correo electrónico para activar tu cuenta.",
-    cta: "Confirmar correo",
-    ignore: "Si no creaste una cuenta, puedes ignorar este correo.",
-  },
-  it: {
-    subject: "Conferma il tuo account Nunvio",
-    greeting: (name) => (name ? `Ciao ${name},` : "Ciao,"),
-    body: "Grazie per esserti registrato su Nunvio. Conferma la tua email per attivare l'account.",
-    cta: "Conferma email",
-    ignore: "Se non hai creato un account, puoi ignorare questa email.",
-  },
-  pl: {
-    subject: "Potwierdź konto Nunvio",
-    greeting: (name) => (name ? `Cześć ${name},` : "Cześć,"),
-    body: "Dziękujemy za rejestrację w Nunvio. Potwierdź adres e-mail, aby aktywować konto.",
-    cta: "Potwierdź e-mail",
-    ignore: "Jeśli nie zakładałeś konta, możesz zignorować tę wiadomość.",
-  },
-  hu: {
-    subject: "Erősítse meg Nunvio fiókját",
-    greeting: (name) => (name ? `Szia ${name},` : "Szia,"),
-    body: "Köszönjük, hogy regisztrált a Nunvio-ra. Erősítse meg e-mail címét a fiók aktiválásához.",
-    cta: "E-mail megerősítése",
-    ignore: "Ha nem Ön hozott létre fiókot, hagyja figyelmen kívül ezt az e-mailt.",
-  },
-  ru: {
-    subject: "Подтвердите аккаунт Nunvio",
-    greeting: (name) => (name ? `Здравствуйте, ${name}!` : "Здравствуйте!"),
-    body: "Спасибо за регистрацию на Nunvio. Подтвердите адрес электронной почты, чтобы активировать аккаунт.",
-    cta: "Подтвердить email",
-    ignore: "Если вы не создавали аккаунт, просто проигнорируйте это письмо.",
-  },
-  uk: {
-    subject: "Підтвердіть обліковий запис Nunvio",
-    greeting: (name) => (name ? `Вітаємо, ${name}!` : "Вітаємо!"),
-    body: "Дякуємо за реєстрацію на Nunvio. Підтвердіть електронну адресу, щоб активувати обліковий запис.",
-    cta: "Підтвердити email",
-    ignore: "Якщо ви не створювали обліковий запис, просто проігноруйте цей лист.",
-  },
-  zh: {
-    subject: "确认您的 Nunvio 账户",
-    greeting: (name) => (name ? `您好 ${name}，` : "您好，"),
-    body: "感谢注册 Nunvio。请确认您的电子邮箱以激活账户。",
-    cta: "确认邮箱",
-    ignore: "如果您没有创建账户，请忽略此邮件。",
-  },
-  ja: {
-    subject: "Nunvioアカウントを確認してください",
-    greeting: (name) => (name ? `${name}様` : "こんにちは"),
-    body: "Nunvioへのご登録ありがとうございます。アカウントを有効にするには、メールアドレスを確認してください。",
-    cta: "メールを確認",
-    ignore: "アカウントを作成していない場合は、このメールを無視してください。",
-  },
+type EmailMessages = {
+  verifySubject: string;
+  greeting: string;
+  greetingNoName: string;
+  verifyBody: string;
+  verifyCta: string;
+  verifyIgnore: string;
+  resetSubject: string;
+  resetBody: string;
+  resetCta: string;
+  resetIgnore: string;
 };
 
-function buildVerificationHtml(opts: {
+/**
+ * Email texts live in messages/<locale>.json under "Email" (same
+ * pre-translated files as the website UI). Falls back to English per key.
+ */
+async function loadEmailMessages(locale: Locale): Promise<EmailMessages> {
+  const en = (await import("../messages/en.json")).default.Email as EmailMessages;
+  if (locale === "en") return en;
+  try {
+    const loc = (await import(`../messages/${locale}.json`)).default as {
+      Email?: Partial<EmailMessages>;
+    };
+    return { ...en, ...(loc.Email ?? {}) };
+  } catch {
+    return en;
+  }
+}
+
+async function getEmailCopy(
+  locale: Locale,
+  kind: "verify" | "reset"
+): Promise<EmailCopy> {
+  const m = await loadEmailMessages(locale);
+  return {
+    subject: kind === "verify" ? m.verifySubject : m.resetSubject,
+    greeting: (name) =>
+      name ? m.greeting.replace("{name}", name) : m.greetingNoName,
+    body: kind === "verify" ? m.verifyBody : m.resetBody,
+    cta: kind === "verify" ? m.verifyCta : m.resetCta,
+    ignore: kind === "verify" ? m.verifyIgnore : m.resetIgnore,
+  };
+}
+
+async function buildVerificationHtml(opts: {
   locale: Locale;
   name: string | null | undefined;
   verifyUrl: string;
-}): { subject: string; text: string; html: string } {
-  const copy = EMAIL_COPY[opts.locale] ?? EMAIL_COPY.en;
+}): Promise<{ subject: string; text: string; html: string }> {
+  const copy = await getEmailCopy(opts.locale, "verify");
   const greeting = copy.greeting(opts.name?.trim() || "");
   const subject = copy.subject;
   const text = `${greeting}\n\n${copy.body}\n\n${copy.cta}: ${opts.verifyUrl}\n\n${copy.ignore}\n\n— Nunvio`;
@@ -219,7 +170,7 @@ export async function sendVerificationEmail(opts: {
   verifyUrl: string;
 }): Promise<{ sent: boolean; logged: boolean }> {
   const locale = normalizeLocale(opts.locale);
-  const { subject, text, html } = buildVerificationHtml({
+  const { subject, text, html } = await buildVerificationHtml({
     locale,
     name: opts.name,
     verifyUrl: opts.verifyUrl,
@@ -234,99 +185,6 @@ export async function sendVerificationEmail(opts: {
   });
 }
 
-const RESET_COPY: Record<Locale, EmailCopy> = {
-  en: {
-    subject: "Reset your Nunvio password",
-    greeting: (name) => (name ? `Hi ${name},` : "Hi,"),
-    body: "We received a request to reset your Nunvio password. Click the button below to choose a new password.",
-    cta: "Reset password",
-    ignore: "If you did not request this, you can ignore this email.",
-  },
-  sk: {
-    subject: "Obnovenie hesla Nunvio",
-    greeting: (name) => (name ? `Ahoj ${name},` : "Ahoj,"),
-    body: "Dostali sme žiadosť o obnovenie hesla k Nunvio. Kliknite na tlačidlo nižšie a nastavte si nové heslo.",
-    cta: "Obnoviť heslo",
-    ignore: "Ak ste o to nežiadali, tento e-mail môžete ignorovať.",
-  },
-  cs: {
-    subject: "Obnovení hesla Nunvio",
-    greeting: (name) => (name ? `Ahoj ${name},` : "Ahoj,"),
-    body: "Obdrželi jsme žádost o obnovení hesla k Nunvio. Klikněte na tlačítko níže a nastavte si nové heslo.",
-    cta: "Obnovit heslo",
-    ignore: "Pokud jste o to nežádali, můžete tento e-mail ignorovat.",
-  },
-  de: {
-    subject: "Nunvio-Passwort zurücksetzen",
-    greeting: (name) => (name ? `Hallo ${name},` : "Hallo,"),
-    body: "Wir haben eine Anfrage zum Zurücksetzen Ihres Nunvio-Passworts erhalten. Klicken Sie auf die Schaltfläche unten.",
-    cta: "Passwort zurücksetzen",
-    ignore: "Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail ignorieren.",
-  },
-  fr: {
-    subject: "Réinitialisez votre mot de passe Nunvio",
-    greeting: (name) => (name ? `Bonjour ${name},` : "Bonjour,"),
-    body: "Nous avons reçu une demande de réinitialisation de votre mot de passe Nunvio.",
-    cta: "Réinitialiser",
-    ignore: "Si vous n'êtes pas à l'origine de cette demande, ignorez cet e-mail.",
-  },
-  es: {
-    subject: "Restablece tu contraseña de Nunvio",
-    greeting: (name) => (name ? `Hola ${name},` : "Hola,"),
-    body: "Hemos recibido una solicitud para restablecer tu contraseña de Nunvio.",
-    cta: "Restablecer contraseña",
-    ignore: "Si no lo solicitaste, puedes ignorar este correo.",
-  },
-  it: {
-    subject: "Reimposta la password Nunvio",
-    greeting: (name) => (name ? `Ciao ${name},` : "Ciao,"),
-    body: "Abbiamo ricevuto una richiesta di reimpostazione della password Nunvio.",
-    cta: "Reimposta password",
-    ignore: "Se non hai richiesto tu, ignora questa email.",
-  },
-  pl: {
-    subject: "Zresetuj hasło Nunvio",
-    greeting: (name) => (name ? `Cześć ${name},` : "Cześć,"),
-    body: "Otrzymaliśmy prośbę o zresetowanie hasła do Nunvio.",
-    cta: "Zresetuj hasło",
-    ignore: "Jeśli to nie Ty, zignoruj tę wiadomość.",
-  },
-  hu: {
-    subject: "Nunvio jelszó visszaállítása",
-    greeting: (name) => (name ? `Szia ${name},` : "Szia,"),
-    body: "Kérést kaptunk a Nunvio jelszó visszaállítására.",
-    cta: "Jelszó visszaállítása",
-    ignore: "Ha nem Ön kérte, hagyja figyelmen kívül ezt az e-mailt.",
-  },
-  ru: {
-    subject: "Сброс пароля Nunvio",
-    greeting: (name) => (name ? `Здравствуйте, ${name}!` : "Здравствуйте!"),
-    body: "Мы получили запрос на сброс пароля Nunvio.",
-    cta: "Сбросить пароль",
-    ignore: "Если это были не вы, просто проигнорируйте письмо.",
-  },
-  uk: {
-    subject: "Скидання пароля Nunvio",
-    greeting: (name) => (name ? `Вітаємо, ${name}!` : "Вітаємо!"),
-    body: "Ми отримали запит на скидання пароля Nunvio.",
-    cta: "Скинути пароль",
-    ignore: "Якщо це були не ви, просто проігноруйте лист.",
-  },
-  zh: {
-    subject: "重置您的 Nunvio 密码",
-    greeting: (name) => (name ? `您好 ${name}，` : "您好，"),
-    body: "我们收到了重置 Nunvio 密码的请求。",
-    cta: "重置密码",
-    ignore: "如果不是您本人操作，请忽略此邮件。",
-  },
-  ja: {
-    subject: "Nunvioパスワードのリセット",
-    greeting: (name) => (name ? `${name}様` : "こんにちは"),
-    body: "Nunvioパスワードのリセットリクエストを受け取りました。",
-    cta: "パスワードをリセット",
-    ignore: "心当たりがない場合はこのメールを無視してください。",
-  },
-};
 
 export async function sendPasswordResetEmail(opts: {
   to: string;
@@ -335,7 +193,7 @@ export async function sendPasswordResetEmail(opts: {
   resetUrl: string;
 }): Promise<{ sent: boolean; logged: boolean }> {
   const locale = normalizeLocale(opts.locale);
-  const copy = RESET_COPY[locale] ?? RESET_COPY.en;
+  const copy = await getEmailCopy(locale, "reset");
   const greeting = copy.greeting(opts.name?.trim() || "");
   const subject = copy.subject;
   const text = `${greeting}\n\n${copy.body}\n\n${copy.cta}: ${opts.resetUrl}\n\n${copy.ignore}\n\n— Nunvio`;

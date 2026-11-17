@@ -10,6 +10,7 @@
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
+import { revalidateListings } from "@/lib/revalidate-listings";
 import Stripe from "stripe";
 import { handleStripeWebhook } from "@/lib/stripe.server";
 
@@ -62,6 +63,7 @@ export async function POST(req: Request) {
       revalidatePath("/", "layout");
       revalidatePath("/dashboard/properties");
       revalidatePath("/properties");
+      revalidateListings();
     }
 
     // Always return 200 OK to Stripe (unless signature verification failed)

@@ -17,6 +17,7 @@ export default function FeaturedProperties({
   properties: FeaturedProperty[];
 }) {
   const tProperties = useTranslations("Properties");
+  const tg = useTranslations("Gallery");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [snapCount, setSnapCount] = useState(0);
 
@@ -66,7 +67,7 @@ export default function FeaturedProperties({
       <div className="relative">
         <button
           type="button"
-          aria-label="Prev"
+          aria-label={tg("previous")}
           onClick={scrollPrev}
           disabled={!canScrollPrev}
           className="absolute left-2 top-1/2 -translate-y-1/2 z-10 h-10 w-10 rounded-full bg-white/95 shadow-sm border border-gray-200 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
@@ -94,7 +95,7 @@ export default function FeaturedProperties({
 
         <button
           type="button"
-          aria-label="Next"
+          aria-label={tg("next")}
           onClick={scrollNext}
           disabled={!canScrollNext}
           className="absolute right-2 top-1/2 -translate-y-1/2 z-10 h-10 w-10 rounded-full bg-white/95 shadow-sm border border-gray-200 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"

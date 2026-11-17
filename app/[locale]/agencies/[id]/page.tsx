@@ -22,15 +22,19 @@ function agencyInitials(name: string): string {
   return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
 }
 
+// ISR: agency profile served from cache, refreshed at most every 10 minutes.
+export const revalidate = 600;
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ id: string; locale: string }>;
 }): Promise<Metadata> {
-  const { id } = await params;
+  const { id, locale } = await params;
   const agency = await getPublicAgencyById(id);
   if (!agency) {
-    return { title: "Agency Not Found | Nunvio" };
+    const t = await getTranslations({ locale, namespace: "NotFound" });
+    return { title: `${t("agencyTitle")} | Nunvio` };
   }
   return {
     title: `${agency.name} | Nunvio`,
@@ -68,6 +72,8 @@ export default async function AgencyProfilePage({
               {agency.logoUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
+          loading="lazy"
+          decoding="async"
                   src={agency.logoUrl}
                   alt={agency.name}
                   className="h-full w-full object-contain p-2"

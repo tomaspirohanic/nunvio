@@ -3,12 +3,19 @@
 // ============================================
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  /// Runtime: Neon POOLED connection string (host contains "-pooler").
+  url        = env("DATABASE_URL")
+  /// Migrations / db push: Neon DIRECT (non-pooled) connection string.
+  /// Falls back to DATABASE_URL when not set (see .env.example).
+  directUrl  = env("DIRECT_URL")
+  /// pg_trgm powers fast case-insensitive "contains" search (city, title, description).
+  extensions = [pg_trgm]
 }
 
 model User {
@@ -141,6 +148,10 @@ model Agency {
   feedLastSyncedAt DateTime?
   feedLastError    String?
   feedLastResult   String? // short JSON summary of last sync
+  /// Start of the current full pass through the feed (used to archive listings that disappeared)
+  feedPassStartedAt  DateTime?
+  /// Simple lease so overlapping cron runs never process the same agency twice
+  feedLockedUntil    DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -159,6 +170,9 @@ model Property {
 
   city      String
   country   String
+  /// ISO 3166-1 alpha-2 derived from `country` (e.g. "SK"). Country search uses
+  /// this equality filter instead of ILIKE so it stays fast at millions of rows.
+  countryCode String?
   latitude  Float?
   longitude Float?
   showOnMap Boolean @default(true)
@@ -175,6 +189,12 @@ model Property {
   images      String[]     @default([])
 
   externalId String?
+  /// Hash of the imported feed payload (content). Unchanged hash = skip the DB write.
+  sourceHash String?
+  /// Hash of the remote image URL list from the feed. Unchanged = do not re-download images.
+  imageSourceHash String?
+  /// Last time this listing was present in its agency feed (for archiving removed listings)
+  lastSeenInFeedAt DateTime?
 
   promotionLevel PromotionLevel @default(NONE)
   featuredUntil  DateTime?
@@ -206,6 +226,20 @@ model Property {
   @@index([status, createdAt])
   @@index([status, city])
   @@index([agencyId, status])
+  // Default public sort: WHERE status = PUBLISHED ORDER BY promotionLevel DESC, createdAt DESC
+  @@index([status, promotionLevel(sort: Desc), createdAt(sort: Desc)])
+  @@index([status, offerType, propertyType])
+  // Per-country browsing (EU scale): WHERE status AND countryCode ORDER BY promotion, date
+  @@index([status, countryCode, promotionLevel(sort: Desc), createdAt(sort: Desc)])
+  // Typical portal search: country + buy/rent + property type, same sort
+  @@index([status, countryCode, offerType, propertyType, promotionLevel(sort: Desc), createdAt(sort: Desc)])
+  @@index([country, countryCode])
+  @@index([agencyId, lastSeenInFeedAt])
+  // Trigram indexes: make ILIKE '%x%' (Prisma `contains` + mode insensitive) use an index
+  @@index([city(ops: raw("gin_trgm_ops"))], type: Gin, map: "Property_city_trgm_idx")
+  @@index([country(ops: raw("gin_trgm_ops"))], type: Gin, map: "Property_country_trgm_idx")
+  @@index([title(ops: raw("gin_trgm_ops"))], type: Gin, map: "Property_title_trgm_idx")
+  @@index([description(ops: raw("gin_trgm_ops"))], type: Gin, map: "Property_description_trgm_idx")
 }
 
 model PropertyImage {

@@ -6,23 +6,36 @@
 // Uses PropertyTranslation for EN language display
 // ============================================
 
+import { cache } from "react";
 import { prisma } from "@/lib/db";
-import { Language, PromotionLevel } from "@prisma/client";
+import { PromotionLevel } from "@prisma/client";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import PropertyPrice from "@/components/properties/PropertyPrice";
 import PropertyDetailMapClient from "@/components/properties/PropertyDetailMapClient";
 import PropertyGallery from "@/components/properties/PropertyGallery";
 import ContactBox from "@/components/properties/ContactBox";
 import AreaValue from "@/components/common/AreaValue";
-import { persistPropertyTranslation, translateText } from "@/lib/translate";
+import {
+  normalizeLocale,
+  pickListingText,
+  translationWhereForLocale,
+} from "@/lib/listing-text";
 import { resolvePropertyImageUrls } from "@/lib/property-gallery";
 
-async function getPropertyForPublicDetail(
+// ISR: detail pages are rendered once and served from the CDN; refreshed at
+// most every 10 min, or immediately when the listing changes
+// (revalidateListings). No pages are pre-built at deploy time.
+export const revalidate = 600;
+export function generateStaticParams() {
+  return [];
+}
+
+// React cache(): generateMetadata + page share ONE DB query per request.
+const getPropertyForPublicDetail = cache(async function getPropertyForPublicDetail(
   id: unknown,
-  localeTag: string,
-  legacyLang: Language
+  localeTag: string
 ) {
   try {
     if (typeof id !== "string" || id.trim().length === 0) {
@@ -80,9 +93,7 @@ async function getPropertyForPublicDetail(
           },
         },
         translations: {
-          where: {
-            OR: [{ locale: localeTag }, { language: legacyLang }],
-          },
+          where: translationWhereForLocale(localeTag),
           take: 1,
         },
       },
@@ -110,7 +121,7 @@ async function getPropertyForPublicDetail(
     console.error("getPropertyForPublicDetail failed:", error);
     return null;
   }
-}
+});
 
 // Generate metadata for SEO
 export async function generateMetadata({
@@ -119,27 +130,20 @@ export async function generateMetadata({
   params: Promise<{ id: string; locale: string }>;
 }): Promise<Metadata> {
   const { id, locale } = await params;
-  const localeTag = (locale || "en").toLowerCase();
-  const primary = localeTag.split("-")[0];
-  const legacyLang =
-    primary === "de" ? Language.DE : primary === "es" ? Language.ES : Language.EN;
-  const property = await getPropertyForPublicDetail(id, localeTag, legacyLang);
+  const localeTag = normalizeLocale(locale);
+  const property = await getPropertyForPublicDetail(id, localeTag);
 
   if (!property) {
     return {
-      title: "Property Not Found | Nunvio",
+      title: `${(await getTranslations({ locale, namespace: "NotFound" }))("propertyTitle")} | Nunvio`,
     };
   }
 
-  // Use translation if available, otherwise fall back to original
-  const title =
-    property.translations[0]?.title ||
-    property.translations[0]?.translatedTitle ||
-    property.title;
-  const description =
-    property.translations[0]?.description ||
-    property.translations[0]?.translatedDescription ||
-    property.description;
+  // Use stored translation if available, otherwise fall back to original
+  const { title, description } = pickListingText(
+    property,
+    property.translations[0]
+  );
   const location = property.address
     ? `${property.address}, ${property.country}`
     : `${property.city}, ${property.country}`;
@@ -164,11 +168,9 @@ export default async function PropertyDetailPage({
   params: Promise<{ id: string; locale: string }>;
 }) {
   const { id, locale } = await params;
-  const localeTag = (locale || "en").toLowerCase();
-  const primary = localeTag.split("-")[0];
-  const legacyLang =
-    primary === "de" ? Language.DE : primary === "es" ? Language.ES : Language.EN;
-  const property = await getPropertyForPublicDetail(id, localeTag, legacyLang);
+  setRequestLocale(locale);
+  const localeTag = normalizeLocale(locale);
+  const property = await getPropertyForPublicDetail(id, localeTag);
 
   if (!property) {
     notFound();
@@ -176,39 +178,11 @@ export default async function PropertyDetailPage({
 
   const t = await getTranslations({ locale, namespace: "PropertyDetail" });
 
-  // Use DB translation if available; otherwise translate, persist, and use result.
-  const existing = property.translations?.[0];
-  const baseTitle =
-    existing?.title || existing?.translatedTitle || property.title;
-  const baseDescription =
-    existing?.description || existing?.translatedDescription || property.description;
-
-  const shouldTranslate =
-    primary !== "sk" && (!existing?.title || !existing?.description);
-  const displayTitle = shouldTranslate
-    ? await translateText({
-        text: property.title,
-        targetLocale: localeTag,
-        cacheKey: `${localeTag}:${property.id}:detail:title`,
-      })
-    : baseTitle;
-
-  const displayDescription = shouldTranslate
-    ? await translateText({
-        text: property.description,
-        targetLocale: localeTag,
-        cacheKey: `${localeTag}:${property.id}:detail:description`,
-      })
-    : baseDescription;
-
-  if (shouldTranslate) {
-    await persistPropertyTranslation({
-      propertyId: property.id,
-      locale: localeTag,
-      title: displayTitle,
-      description: displayDescription,
-    });
-  }
+  // Stored translation for this locale, else the original text.
+  // Never machine-translate during render (cost + latency); see
+  // lib/listing-translation.server.ts for the background job.
+  const { title: displayTitle, description: displayDescription } =
+    pickListingText(property, property.translations?.[0]);
 
   const featuredUntilDate = property.featuredUntil
     ? new Date(property.featuredUntil)

@@ -17,6 +17,7 @@
 // ============================================
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import {
   useImageUpload,
   type UploadedImage,
@@ -94,6 +95,7 @@ export default function ImageUploader({
     if (dbItems.length > 0) return dbItems;
     return (value ?? []).map((url) => ({ url, source: "local" as const }));
   });
+  const tu = useTranslations("ImageUploader");
 
   const [isDragging, setIsDragging] = useState(false);
   const [isSavingOrder, setIsSavingOrder] = useState(false);
@@ -231,7 +233,7 @@ export default function ImageUploader({
         onRemove?.(url);
       } catch (err) {
         console.error("Failed to delete image:", err);
-        alert(err instanceof Error ? err.message : "Failed to delete image");
+        alert(err instanceof Error ? err.message : tu("deleteFailed"));
       } finally {
         setIsBusy(false);
       }
@@ -333,20 +335,20 @@ export default function ImageUploader({
 
         <div>
           <p className="text-sm font-semibold text-gray-800">
-            Drag &amp; drop images here, or{" "}
+            {tu("dropHere")}{" "}
             <span className="text-blue-600 underline-offset-2 group-hover:underline">
-              click to browse
+              {tu("browse")}
             </span>
           </p>
           <p className="mt-1 text-xs text-gray-500">
-            PNG, JPG, WebP, GIF or AVIF — up to 15MB each. Multiple files supported.
+            {tu("formats")}
           </p>
         </div>
 
         {busy && (
           <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-blue-600/90 px-2.5 py-1 text-xs font-medium text-white">
             <span className="h-3 w-3 animate-spin rounded-full border-2 border-white/60 border-t-transparent" />
-            Working…
+            {tu("working")}
           </span>
         )}
       </div>
@@ -355,7 +357,7 @@ export default function ImageUploader({
       {uploadingTasks.length > 0 && (
         <div className="space-y-3">
           <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-            Uploading ({uploadingTasks.length})
+            {tu("uploading", { count: uploadingTasks.length })}
           </p>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {uploadingTasks.map((task) => (
@@ -395,7 +397,7 @@ export default function ImageUploader({
       {errorTasks.length > 0 && (
         <div className="space-y-2 rounded-xl border border-red-200 bg-red-50 p-4">
           <p className="text-sm font-semibold text-red-800">
-            {errorTasks.length} upload{errorTasks.length > 1 ? "s" : ""} failed
+            {tu("failedCount", { count: errorTasks.length })}
           </p>
           <ul className="space-y-1.5">
             {errorTasks.map((task) => (
@@ -412,7 +414,7 @@ export default function ImageUploader({
                   onClick={() => removeTask(task.id)}
                   className="shrink-0 rounded-md px-2 py-0.5 text-xs font-medium text-red-700 hover:bg-red-100"
                 >
-                  Dismiss
+                  {tu("dismiss")}
                 </button>
               </li>
             ))}
@@ -425,12 +427,12 @@ export default function ImageUploader({
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-              Gallery ({items.length})
+              {tu("gallery", { count: items.length })}
             </p>
             {isSavingOrder && (
               <span className="flex items-center gap-1.5 text-xs text-gray-500">
                 <span className="h-3 w-3 animate-spin rounded-full border-2 border-gray-400 border-t-transparent" />
-                Saving order…
+                {tu("savingOrder")}
               </span>
             )}
           </div>
@@ -480,6 +482,7 @@ function SortableImageCard(props: {
 }) {
   const { item, index, disabled, isCover, canDeleteDb, onDeleteDb, onRemoveLocal } =
     props;
+  const tu = useTranslations("ImageUploader");
   const sortableId = (item.id ?? item.url) || String(index);
 
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
@@ -499,7 +502,7 @@ function SortableImageCard(props: {
     >
       {isCover && (
         <span className="absolute left-2 top-2 z-10 rounded-full bg-blue-600 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
-          Cover
+          {tu("cover")}
         </span>
       )}
 
@@ -507,7 +510,7 @@ function SortableImageCard(props: {
       <button
         type="button"
         className="absolute right-2 top-2 z-10 cursor-grab rounded-full bg-white/90 p-1 text-gray-600 opacity-0 shadow transition-opacity hover:bg-white group-hover:opacity-100 active:cursor-grabbing"
-        title="Drag to reorder"
+        title={tu("dragToReorder")}
         {...attributes}
         {...listeners}
       >
@@ -533,8 +536,8 @@ function SortableImageCard(props: {
           else onRemoveLocal(item.url);
         }}
         disabled={disabled}
-        aria-label="Remove image"
-        title="Remove"
+        aria-label={tu("remove")}
+        title={tu("remove")}
         className="absolute bottom-2 right-2 rounded-full bg-red-500 p-1.5 text-white opacity-0 shadow transition-opacity hover:bg-red-600 disabled:opacity-40 group-hover:opacity-100"
       >
         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

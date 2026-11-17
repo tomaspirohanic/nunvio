@@ -1,8 +1,59 @@
 import Hero from "@/components/home/Hero";
 import FeaturedProperties from "@/components/home/FeaturedProperties";
 import { prisma } from "@/lib/db";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PromotionLevel } from "@prisma/client";
+import { unstable_cache } from "next/cache";
+import { LISTINGS_CACHE_TAG } from "@/lib/revalidate-listings";
+
+// Rendered per request (cheap: the DB work is cached in getHomeData) so the
+// build never needs a database connection. The data is cached for 5 minutes
+// and dropped immediately when listings change (revalidateListings).
+export const dynamic = "force-dynamic";
+
+const getHomeData = unstable_cache(
+  async () => {
+    const propertyCount = await prisma.property.count({
+      where: { status: "PUBLISHED" },
+    });
+    const promotedRaw = await prisma.property.findMany({
+      where: {
+        status: "PUBLISHED",
+        promotionLevel: { not: PromotionLevel.NONE },
+        featuredUntil: { gt: new Date() },
+      },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        price: true,
+        currency: true,
+        city: true,
+        country: true,
+        propertyType: true,
+        images: true,
+        promotionLevel: true,
+        featuredUntil: true,
+        bedrooms: true,
+        bathrooms: true,
+        areaSqm: true,
+        createdAt: true,
+      },
+      orderBy: [{ promotionLevel: "desc" }, { createdAt: "desc" }],
+      take: 4,
+    });
+    // Plain JSON only (Decimal / Date are not cache-serializable as-is).
+    const promoted = promotedRaw.map((p) => ({
+      ...p,
+      price: Number(p.price.toString()),
+      createdAt: p.createdAt.toISOString(),
+      featuredUntil: p.featuredUntil ? p.featuredUntil.toISOString() : null,
+    }));
+    return { propertyCount, promoted };
+  },
+  ["home-data-v1"],
+  { revalidate: 300, tags: [LISTINGS_CACHE_TAG] }
+);
 
 export default async function HomePage({
   params,
@@ -10,48 +61,19 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-
-  const propertyCount = await prisma.property.count({
-    where: { status: "PUBLISHED" },
-  });
+  setRequestLocale(locale);
 
   const tHome = await getTranslations("Home");
-
-  const promotedRaw = await prisma.property.findMany({
-    where: {
-      status: "PUBLISHED",
-      promotionLevel: { not: PromotionLevel.NONE },
-      featuredUntil: { gt: new Date() },
-    },
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      price: true,
-      currency: true,
-      city: true,
-      country: true,
-      propertyType: true,
-      images: true,
-      promotionLevel: true,
-      featuredUntil: true,
-      bedrooms: true,
-      bathrooms: true,
-      areaSqm: true,
-      createdAt: true,
-    },
-    orderBy: [{ promotionLevel: "desc" }, { createdAt: "desc" }],
-    take: 12,
-  });
-
-  const promoted = promotedRaw.slice(0, 4).map((p) => ({
+  const data = await getHomeData();
+  const promoted = data.promoted.map((p) => ({
     ...p,
-    price: Number(p.price.toString()),
+    createdAt: new Date(p.createdAt),
+    featuredUntil: p.featuredUntil ? new Date(p.featuredUntil) : null,
   }));
 
   return (
     <div className="bg-white w-full min-h-screen">
-      <Hero propertyCount={propertyCount} />
+      <Hero propertyCount={data.propertyCount} />
       <section className="w-full bg-white">
         <div className="max-w-7xl mx-auto px-4 py-16">
           <FeaturedProperties

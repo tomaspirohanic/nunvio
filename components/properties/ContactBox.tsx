@@ -132,6 +132,8 @@ export default function ContactBox({
           {display.logoUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
+          loading="lazy"
+          decoding="async"
               src={display.logoUrl}
               alt={display.name}
               className="h-full w-full object-cover"

@@ -257,7 +257,7 @@ export default async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/",
-    "/(sk|en|cs|de|fr|es|it|pl|hu|pt|nl|ro|bg|hr|el|sv|da|fi|lt|lv|et|uk|ru|zh|ja)/:path*",
+    "/(sk|en|cs|de|fr|es|it|pl|hu|pt|nl|ro|bg|hr|sl|el|sv|da|fi|lt|lv|et|ga|mt|uk|ru|zh|ja)/:path*",
     "/((?!api|_next|_vercel|.*\\..*).*)",
   ],
 };
