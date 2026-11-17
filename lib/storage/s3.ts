@@ -21,7 +21,7 @@
 
 import "server-only";
 
-import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { DeleteObjectsCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { createS3Client, getS3BucketName } from "@/lib/s3-client";
 
@@ -222,6 +222,7 @@ export async function generatePresignedUrl(
       Bucket: bucket,
       Key: fileKey,
       ContentType: fileType,
+      CacheControl: "public, max-age=31536000, immutable",
     });
 
     const uploadUrl = await getSignedUrl(s3, command, {
@@ -321,6 +322,8 @@ export async function uploadImageFromUrl(
         Body: body,
         ContentType: contentType,
         ContentLength: body.byteLength,
+        // Keys are unique per upload, so browsers / CDN may cache forever.
+        CacheControl: "public, max-age=31536000, immutable",
       })
     );
 
@@ -341,4 +344,47 @@ export async function uploadImageFromUrl(
   } finally {
     clearTimeout(timeout);
   }
+}
+
+
+/**
+ * Best-effort delete of objects WE stored (URLs under S3_PUBLIC_BASE_URL).
+ * Foreign URLs are ignored. Used when a feed replaces a listing's photos so
+ * the bucket does not grow forever.
+ */
+export async function deleteStoredImagesByUrl(urls: string[]): Promise<number> {
+  let base: string;
+  try {
+    base = getPublicBaseUrl() + "/";
+  } catch {
+    return 0;
+  }
+  const keys = Array.from(
+    new Set(
+      urls
+        .filter((u) => typeof u === "string" && u.startsWith(base))
+        .map((u) => u.slice(base.length))
+        .filter((k) => k.length > 0)
+    )
+  );
+  if (keys.length === 0) return 0;
+
+  const s3 = createS3Client();
+  const bucket = getS3BucketName();
+  let deleted = 0;
+  for (let i = 0; i < keys.length; i += 1000) {
+    const batch = keys.slice(i, i + 1000);
+    try {
+      await s3.send(
+        new DeleteObjectsCommand({
+          Bucket: bucket,
+          Delete: { Objects: batch.map((Key) => ({ Key })), Quiet: true },
+        })
+      );
+      deleted += batch.length;
+    } catch (err) {
+      console.warn("[storage] deleteStoredImagesByUrl failed:", err);
+    }
+  }
+  return deleted;
 }

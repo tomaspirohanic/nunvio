@@ -117,82 +117,23 @@ export default function SearchLayout({
     const timeoutId = setTimeout(async () => {
       try {
         setIsSearching(true);
-        const localSamples: Array<{ city: string; countryCode: string }> = [
-          { city: "Bratislava", countryCode: "SK" },
-          { city: "Senec", countryCode: "SK" },
-          { city: "Miloslavov", countryCode: "SK" },
-          { city: "Trnava", countryCode: "SK" },
-          { city: "Pezinok", countryCode: "SK" },
-        ];
-
-        const localMatches = localSamples
-          .map((s) => {
-            const country =
-              regionNames?.of(s.countryCode) ?? s.countryCode.toUpperCase();
-            const display_name = `${s.city}, ${country}`;
-            return { ...s, display_name };
-          })
-          .filter((s) => s.display_name.toLowerCase().includes(query.toLowerCase()))
-          .slice(0, 5)
-          .map((s, idx) => ({
-            place_id: `local-${idx}-${s.city}-${s.countryCode}`,
-            display_name: s.display_name,
-            address: { city: s.city, country_code: s.countryCode.toLowerCase() },
-          }));
-
+        // Own endpoint (cities with listings) instead of public Nominatim.
         const response = await fetch(
-          `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-            query
-          )}&format=json&addressdetails=1&limit=5`
+          `/api/locations/suggest?q=${encodeURIComponent(query)}`
         );
 
         if (!response.ok) {
-          throw new Error(`Nominatim request failed: ${response.status}`);
+          throw new Error(`Location suggest failed: ${response.status}`);
         }
 
         const data = await response.json();
-        const raw = Array.isArray(data) ? data : [];
-        const uniqueResults = Array.from(
-          new Map(raw.map((item: any) => [item.display_name, item])).values()
-        ).slice(0, 5);
-
-        const merged = Array.from(
-          new Map(
-            [...localMatches, ...uniqueResults].map((item: any) => [
-              item.display_name,
-              item,
-            ])
-          ).values()
-        ).slice(0, 8);
-
-        setSuggestions(merged);
+        const results = Array.isArray(data) ? data.slice(0, 8) : [];
+        setSuggestions(results);
         setShowDropdown(true);
       } catch (error) {
         console.error("City autocomplete error:", error);
-        // Fallback to local sample suggestions (localized country names)
-        const localSamples: Array<{ city: string; countryCode: string }> = [
-          { city: "Bratislava", countryCode: "SK" },
-          { city: "Senec", countryCode: "SK" },
-          { city: "Miloslavov", countryCode: "SK" },
-          { city: "Trnava", countryCode: "SK" },
-          { city: "Pezinok", countryCode: "SK" },
-        ];
-        const localMatches = localSamples
-          .map((s) => {
-            const country =
-              regionNames?.of(s.countryCode) ?? s.countryCode.toUpperCase();
-            const display_name = `${s.city}, ${country}`;
-            return { ...s, display_name };
-          })
-          .filter((s) => s.display_name.toLowerCase().includes(query.toLowerCase()))
-          .slice(0, 5)
-          .map((s, idx) => ({
-            place_id: `local-${idx}-${s.city}-${s.countryCode}`,
-            display_name: s.display_name,
-            address: { city: s.city, country_code: s.countryCode.toLowerCase() },
-          }));
-        setSuggestions(localMatches);
-        setShowDropdown(localMatches.length > 0);
+        setSuggestions([]);
+        setShowDropdown(false);
       } finally {
         setIsSearching(false);
       }

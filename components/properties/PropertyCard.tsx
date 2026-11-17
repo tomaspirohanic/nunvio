@@ -159,6 +159,8 @@ export default function PropertyCard({
     >
       <div className="relative w-full h-56 md:h-60 bg-gray-100">
         <img
+          loading="lazy"
+          decoding="async"
           src={propertyImage}
           alt={property.title}
           className="w-full h-full object-cover"

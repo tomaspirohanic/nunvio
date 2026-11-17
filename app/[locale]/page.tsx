@@ -1,8 +1,11 @@
 import Hero from "@/components/home/Hero";
 import FeaturedProperties from "@/components/home/FeaturedProperties";
 import { prisma } from "@/lib/db";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PromotionLevel } from "@prisma/client";
+
+// ISR: homepage is served from cache and rebuilt at most every 5 minutes.
+export const revalidate = 300;
 
 export default async function HomePage({
   params,
@@ -10,6 +13,7 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   const propertyCount = await prisma.property.count({
     where: { status: "PUBLISHED" },

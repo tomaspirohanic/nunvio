@@ -22,6 +22,9 @@ function agencyInitials(name: string): string {
   return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
 }
 
+// ISR: agency profile served from cache, refreshed at most every 10 minutes.
+export const revalidate = 600;
+
 export async function generateMetadata({
   params,
 }: {
@@ -68,6 +71,8 @@ export default async function AgencyProfilePage({
               {agency.logoUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
+          loading="lazy"
+          decoding="async"
                   src={agency.logoUrl}
                   alt={agency.name}
                   className="h-full w-full object-contain p-2"

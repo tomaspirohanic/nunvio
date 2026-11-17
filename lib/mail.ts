@@ -25,7 +25,8 @@ type EmailCopy = {
   ignore: string;
 };
 
-const EMAIL_COPY: Record<Locale, EmailCopy> = {
+// Missing locales fall back to English (see usage below).
+const EMAIL_COPY: Partial<Record<Locale, EmailCopy>> & { en: EmailCopy } = {
   en: {
     subject: "Confirm your Nunvio account",
     greeting: (name) => (name ? `Hi ${name},` : "Hi,"),
@@ -234,7 +235,7 @@ export async function sendVerificationEmail(opts: {
   });
 }
 
-const RESET_COPY: Record<Locale, EmailCopy> = {
+const RESET_COPY: Partial<Record<Locale, EmailCopy>> & { en: EmailCopy } = {
   en: {
     subject: "Reset your Nunvio password",
     greeting: (name) => (name ? `Hi ${name},` : "Hi,"),

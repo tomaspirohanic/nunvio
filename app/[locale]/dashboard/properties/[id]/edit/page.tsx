@@ -30,11 +30,10 @@ export default async function EditPropertyPage({
   // (Next.js App Router: params must be awaited; otherwise propertyId is undefined).
   const propertyId = property.id;
 
-  const translation = property.translations?.[0];
-
   const initialData = {
-    title: translation?.translatedTitle || property.title,
-    description: translation?.translatedDescription || property.description,
+    // Always edit the ORIGINAL text, never a stored (machine) translation.
+    title: property.title,
+    description: property.description,
     price: Number(property.price),
     currency: property.currency as Currency,
     city: property.city,

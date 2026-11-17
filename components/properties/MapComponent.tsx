@@ -199,6 +199,8 @@ function PropertyMarker({ property, formattedPrice, displayTitle, units }: {
       {/* Image Carousel */}
       <div className="relative mb-3 -mx-4 -mt-4 rounded-t-lg overflow-hidden bg-gray-100">
         <img
+          loading="lazy"
+          decoding="async"
           src={currentImage}
           alt={displayTitle}
           className="w-full h-32 object-cover"

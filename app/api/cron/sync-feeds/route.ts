@@ -1,32 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
-import { syncAllEnabledFeeds } from "@/lib/feed-sync.server";
+import { rejectUnauthorizedCron } from "@/lib/cron-auth";
+import { syncAllEnabledFeeds } from "@/lib/feed-sync-engine.server";
 
 export const runtime = "nodejs";
-export const maxDuration = 60;
+// Vercel Pro allows up to 300 s (800 s with Fluid compute). The engine stops
+// on its own ~30 s before this limit and saves its progress.
+export const maxDuration = 300;
 
 /**
  * Vercel Cron (or manual): GET /api/cron/sync-feeds
  * Auth: Authorization: Bearer <CRON_SECRET>
  */
 export async function GET(req: NextRequest) {
-  const secret = process.env.CRON_SECRET;
-  if (!secret) {
-    return NextResponse.json(
-      { error: "CRON_SECRET is not configured" },
-      { status: 500 }
-    );
-  }
-
-  const auth = req.headers.get("authorization") || "";
-  const bearer = auth.startsWith("Bearer ") ? auth.slice(7) : "";
-  const querySecret = req.nextUrl.searchParams.get("secret");
-
-  if (bearer !== secret && querySecret !== secret) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const rejected = rejectUnauthorizedCron(req);
+  if (rejected) return rejected;
 
   try {
-    const result = await syncAllEnabledFeeds();
+    const result = await syncAllEnabledFeeds({
+      deadline: Date.now() + (maxDuration - 30) * 1000,
+    });
     return NextResponse.json({ ok: true, ...result });
   } catch (error: unknown) {
     console.error("[cron/sync-feeds]", error);

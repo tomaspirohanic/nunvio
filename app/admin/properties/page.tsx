@@ -95,6 +95,8 @@ export default async function AdminPropertiesPage() {
                           {p.cover ? (
                             // eslint-disable-next-line @next/next/no-img-element
                             <img
+          loading="lazy"
+          decoding="async"
                               src={p.cover}
                               alt=""
                               className="h-full w-full object-cover"

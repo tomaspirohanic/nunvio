@@ -1,12 +1,17 @@
+import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/db";
 import { PropertyType } from "@prisma/client";
 import SearchLayout from "@/components/properties/SearchLayout";
-import { persistPropertyTranslation, translateText } from "@/lib/translate";
-import { Language } from "@prisma/client";
-import { expireOutdatedPromotions } from "@/lib/promotions.server";
 import { comparePromotionThenDate } from "@/lib/listing";
+import {
+  normalizeLocale,
+  pickListingText,
+  translationWhereForLocale,
+} from "@/lib/listing-text";
+import { LISTINGS_CACHE_TAG } from "@/lib/revalidate-listings";
 
 const PAGE_SIZE = 48;
+const MAX_COUNTED_RESULTS = 10_000;
 
 export default async function PropertiesPage({
   params,
@@ -17,12 +22,7 @@ export default async function PropertiesPage({
 }) {
   const { locale } = await params;
   const sp = await searchParams;
-  const localeTag = (locale || "en").toLowerCase();
-  const primary = localeTag.split("-")[0];
-  const legacyLang =
-    primary === "de" ? Language.DE : primary === "es" ? Language.ES : Language.EN;
-
-  await expireOutdatedPromotions().catch(() => undefined);
+  const localeTag = normalizeLocale(locale);
 
   const getString = (v: string | string[] | undefined) =>
     typeof v === "string" && v.trim().length > 0 ? v.trim() : undefined;
@@ -108,92 +108,30 @@ export default async function PropertiesPage({
     if (maxPrice !== undefined) where.price.lte = maxPrice;
   }
 
-  const total = await prisma.property.count({ where });
+  // Identical searches (same filters + page + locale) share one cached DB
+  // result for 60 s. Any listing change calls revalidateListings() which
+  // drops this cache immediately (tag: LISTINGS_CACHE_TAG).
+  const { total, safePage, rows } = await getCachedSearch(
+    JSON.stringify(where),
+    page,
+    localeTag
+  );
   const pageCount = Math.max(1, Math.ceil(total / PAGE_SIZE));
-  const safePage = Math.min(page, pageCount);
-
-  const properties = await prisma.property.findMany({
-    where,
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      price: true,
-      currency: true,
-      city: true,
-      country: true,
-      latitude: true,
-      longitude: true,
-      showOnMap: true,
-      bedrooms: true,
-      bathrooms: true,
-      areaSqm: true,
-      propertyType: true,
-      offerType: true,
-      images: true,
-      promotionLevel: true,
-      featuredUntil: true,
-      createdAt: true,
-      translations: {
-        where: {
-          OR: [{ locale: localeTag }, { language: legacyLang }],
-        },
-        take: 1,
-      },
-    },
-    orderBy: [{ promotionLevel: "desc" }, { createdAt: "desc" }],
-    skip: (safePage - 1) * PAGE_SIZE,
-    take: PAGE_SIZE,
-  });
 
   const now = new Date();
-  const safeProperties = properties
-    .map((p) => ({
-      ...p,
-      price: Number(p.price),
-      featuredUntil: p.featuredUntil ? p.featuredUntil.toISOString() : null,
-      isFeatured: p.featuredUntil !== null && p.featuredUntil > now,
-    }))
-    .sort(comparePromotionThenDate);
-
-  const translatedSafeProperties = await Promise.all(
-    safeProperties.map(async (p: any) => {
-      const existing = p.translations?.[0];
-      const existingTitle = existing?.title ?? existing?.translatedTitle;
-      const existingDescription =
-        existing?.description ?? existing?.translatedDescription;
-
-      if (existingTitle && existingDescription) {
-        return {
-          ...p,
-          title: existingTitle,
-          description: existingDescription,
-        };
-      }
-
-      if (primary === "sk") return p;
-
-      const title = await translateText({
-        text: p.title,
-        targetLocale: localeTag,
-        cacheKey: `${localeTag}:${p.id}:title`,
-      });
-      const description = await translateText({
-        text: p.description,
-        targetLocale: localeTag,
-        cacheKey: `${localeTag}:${p.id}:description`,
-      });
-
-      await persistPropertyTranslation({
-        propertyId: p.id,
-        locale: localeTag,
-        title,
-        description,
-      });
-
-      return { ...p, title, description };
+  const translatedSafeProperties = rows
+    .map((p) => {
+      const text = pickListingText(p, p.translations?.[0]);
+      const featuredUntil = p.featuredUntil ? new Date(p.featuredUntil) : null;
+      return {
+        ...p,
+        ...text,
+        createdAt: new Date(p.createdAt),
+        featuredUntil: featuredUntil ? featuredUntil.toISOString() : null,
+        isFeatured: featuredUntil !== null && featuredUntil > now,
+      };
     })
-  );
+    .sort(comparePromotionThenDate);
 
   const paged = translatedSafeProperties;
 
@@ -233,3 +171,67 @@ export default async function PropertiesPage({
     />
   );
 }
+
+const getCachedSearch = unstable_cache(
+  async (whereJson: string, page: number, localeTag: string) => {
+    const where = JSON.parse(whereJson);
+    // Free-text keyword can match a large share of listings; counting them all
+    // is the slowest part of the query, so stop counting at 10 000.
+    const total = await prisma.property.count({
+      where,
+      ...(where.AND ? { take: MAX_COUNTED_RESULTS } : {}),
+    });
+    const pageCount = Math.max(1, Math.ceil(total / PAGE_SIZE));
+    const safePage = Math.min(page, pageCount);
+
+    const properties = await prisma.property.findMany({
+      where,
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        price: true,
+        currency: true,
+        city: true,
+        country: true,
+        latitude: true,
+        longitude: true,
+        showOnMap: true,
+        bedrooms: true,
+        bathrooms: true,
+        areaSqm: true,
+        propertyType: true,
+        offerType: true,
+        images: true,
+        promotionLevel: true,
+        featuredUntil: true,
+        createdAt: true,
+        translations: {
+          where: translationWhereForLocale(localeTag),
+          select: {
+            title: true,
+            description: true,
+            translatedTitle: true,
+            translatedDescription: true,
+          },
+          take: 1,
+        },
+      },
+      orderBy: [{ promotionLevel: "desc" }, { createdAt: "desc" }],
+      skip: (safePage - 1) * PAGE_SIZE,
+      take: PAGE_SIZE,
+    });
+
+    // Plain JSON only (Decimal / Date are not cache-serializable as-is).
+    const rows = properties.map((p) => ({
+      ...p,
+      price: Number(p.price),
+      createdAt: p.createdAt.toISOString(),
+      featuredUntil: p.featuredUntil ? p.featuredUntil.toISOString() : null,
+    }));
+
+    return { total, safePage, rows };
+  },
+  ["public-property-search-v1"],
+  { revalidate: 60, tags: [LISTINGS_CACHE_TAG] }
+);

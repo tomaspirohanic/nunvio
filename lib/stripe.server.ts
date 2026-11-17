@@ -18,6 +18,7 @@ import { authConfig } from "@/auth/config";
 import { prisma } from "@/lib/db";
 import { PromotionLevel } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import { revalidateListings } from "@/lib/revalidate-listings";
 import { PROMOTION_TIERS } from "@/lib/stripe.config";
 
 // Initialize Stripe client (internal function)
@@ -255,8 +256,9 @@ export async function handleStripeWebhook(
       revalidatePath("/properties", "page");
       for (const loc of ["en", "sk", "cs", "de"]) {
         revalidatePath(`/${loc}/dashboard/properties`);
-        revalidatePath(`/${loc}/properties`);
       }
+      // Search results + detail pages in every locale
+      revalidateListings([propertyId]);
 
       console.log("✅ WEBHOOK SUCCESS: Property promoted to", tierId, {
         propertyId,

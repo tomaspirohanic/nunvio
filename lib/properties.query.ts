@@ -191,13 +191,7 @@ export async function getPublicProperties(
   filters: PublicPropertyFilters = {},
   options: { take?: number } = {}
 ) {
-  // Lazy-expire promotions so featured badges stay truthful without a cron.
-  try {
-    const { expireOutdatedPromotions } = await import("@/lib/promotions.server");
-    await expireOutdatedPromotions();
-  } catch {
-    // non-fatal
-  }
+  // Expired promotions are demoted by /api/cron/maintenance (not per request).
 
   const take = Math.min(Math.max(options.take ?? 200, 1), 500);
 
