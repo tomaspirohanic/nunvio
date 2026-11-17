@@ -129,3 +129,39 @@ test("saved search: alerts new listings once, respects filters", { skip: !url },
   await unsubscribeSavedSearch(saved.token);
   assert.equal((await m.prisma.savedSearch.findUniqueOrThrow({ where: { id: saved.id } })).active, false);
 });
+
+test("SQL filter builder matches the Prisma one; drawn area filters exactly", { skip: !url }, async () => {
+  const { listingSqlWhere } = await import("../lib/listing-search-sql.server");
+  const { Prisma } = await import("@prisma/client");
+  const e = await makeAgency("epsilon");
+  await m.importNormalizedProperties({
+    ...e,
+    skipImages: true,
+    properties: [
+      { ...base, city: "Trnava", externalId: "E1", title: "Centrum", price: 200000, latitude: 48.377, longitude: 17.588 },
+      { ...base, city: "Trnava", externalId: "E2", title: "Okraj 50%_x", price: 150000, latitude: 48.40, longitude: 17.65, offerType: "RENT" },
+      { ...base, city: "Trnava", externalId: "E3", title: "Dom", price: 350000, propertyType: "HOUSE", areaSqm: 140, latitude: 48.36, longitude: 17.56 },
+    ],
+  });
+  const cases = [
+    { location: "Trnava" },
+    { location: "Trnava", offer: "buy" as const, maxPrice: 300000 },
+    { location: "Trnava", types: ["house_villa"] },
+    { location: "Slovensko", minArea: 100 },
+    { keyword: "50%_" },
+  ];
+  for (const c of cases) {
+    const viaPrisma = (await m.prisma.property.findMany({ where: m.buildListingWhere(c), select: { id: true } })).map((r) => r.id).sort();
+    const viaSql = (await m.prisma.$queryRaw<Array<{ id: string }>>(Prisma.sql`SELECT id FROM "Property" WHERE ${listingSqlWhere(c)}`)).map((r) => r.id).sort();
+    assert.deepEqual(viaSql, viaPrisma, JSON.stringify(c));
+  }
+  // Triangle around the centre point only
+  const area: Array<[number, number]> = [[48.39, 17.57], [48.37, 17.60], [48.365, 17.575]];
+  const inArea = await m.prisma.$queryRaw<Array<{ externalId: string }>>(
+    Prisma.sql`SELECT "externalId" FROM "Property" WHERE ${listingSqlWhere({ area })}`
+  );
+  assert.deepEqual(inArea.map((r) => r.externalId), ["E1"]);
+  const { pointInArea } = await import("../lib/listing-search-params");
+  assert.equal(pointInArea(48.377, 17.588, area), true);
+  assert.equal(pointInArea(48.40, 17.65, area), false);
+});

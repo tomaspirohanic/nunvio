@@ -734,5 +734,16 @@
     "indexTitle": "Property prices",
     "indexLead": "Average asking prices per m² from current listings, by country and city. Updated daily.",
     "listingsCount": "{count, plural, one {# listing} other {# listings}}"
+  },
+  "MapSearch": {
+    "drawArea": "Draw area",
+    "redraw": "Draw again",
+    "clearArea": "Remove area",
+    "done": "Done",
+    "undo": "Undo",
+    "cancel": "Cancel",
+    "drawHint": "Tap the map to mark the corners of your area",
+    "openListing": "Open listing",
+    "perMonth": "/ month"
   }
 }

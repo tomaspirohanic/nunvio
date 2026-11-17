@@ -17,6 +17,7 @@ import { getAppBaseUrl } from "@/lib/listing";
 import { buildListingWhere } from "@/lib/listing-search.server";
 import {
   filtersForSaving,
+  pointInArea,
   listingSearchQuery,
   type ListingSearchParams,
 } from "@/lib/listing-search-params";
@@ -226,11 +227,14 @@ export async function findAlertMatches(filters: ListingSearchParams, since: Date
       },
     ],
   };
-  const [rows, total] = await Promise.all([
+  const area = filters.area;
+  const [allRows, bboxTotal] = await Promise.all([
     prisma.property.findMany({
       where,
       select: {
         id: true,
+        latitude: true,
+        longitude: true,
         title: true,
         city: true,
         price: true,
@@ -241,10 +245,16 @@ export async function findAlertMatches(filters: ListingSearchParams, since: Date
         createdAt: true,
       },
       orderBy: { createdAt: "desc" },
-      take: LISTINGS_PER_EMAIL,
+      // Drawn area: the query matched its bounding box; filter exactly here.
+      take: area ? 500 : LISTINGS_PER_EMAIL,
     }),
-    prisma.property.count({ where, take: 500 }),
+    area ? Promise.resolve(0) : prisma.property.count({ where, take: 500 }),
   ]);
+  const inArea = area
+    ? allRows.filter((r) => r.latitude != null && r.longitude != null && pointInArea(r.latitude, r.longitude, area))
+    : allRows;
+  const total = area ? inArea.length : bboxTotal;
+  const rows = inArea.slice(0, LISTINGS_PER_EMAIL);
   const listings: AlertListing[] = rows.map((r) => ({
     id: r.id,
     title: r.title,

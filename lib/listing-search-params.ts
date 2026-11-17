@@ -17,6 +17,8 @@ export type ListingSearchParams = {
   isNewBuild?: boolean;
   /** Only listings whose price went down (previousPrice set) */
   reduced?: boolean;
+  /** Area drawn on the map: polygon of [lat, lng] points (3–60 points) */
+  area?: Array<[number, number]>;
   page?: number;
 };
 
@@ -30,6 +32,35 @@ const num = (v: string | string[] | undefined) => {
   const n = Number(v);
   return Number.isFinite(n) && n >= 0 ? n : undefined;
 };
+
+export const MAX_AREA_POINTS = 60;
+
+/** "48.1,17.1;48.2,17.2;…" -> [[48.1,17.1],…]; invalid input -> undefined */
+export function parseArea(raw: string | undefined): Array<[number, number]> | undefined {
+  if (!raw) return undefined;
+  const pts: Array<[number, number]> = [];
+  for (const pair of raw.split(";").slice(0, MAX_AREA_POINTS)) {
+    const [a, b] = pair.split(",").map(Number);
+    if (!Number.isFinite(a) || !Number.isFinite(b) || Math.abs(a) > 90 || Math.abs(b) > 180) return undefined;
+    pts.push([Math.round(a * 1e6) / 1e6, Math.round(b * 1e6) / 1e6]);
+  }
+  return pts.length >= 3 ? pts : undefined;
+}
+
+export function serializeArea(area: Array<[number, number]>): string {
+  return area.map(([a, b]) => `${a.toFixed(5)},${b.toFixed(5)}`).join(";");
+}
+
+/** Ray casting; exported for tests and for post-filtering in JS. */
+export function pointInArea(lat: number, lng: number, area: Array<[number, number]>): boolean {
+  let inside = false;
+  for (let i = 0, j = area.length - 1; i < area.length; j = i++) {
+    const [yi, xi] = area[i];
+    const [yj, xj] = area[j];
+    if (yi > lat !== yj > lat && lng < ((xj - xi) * (lat - yi)) / (yj - yi) + xi) inside = !inside;
+  }
+  return inside;
+}
 
 /** Read filters from a /properties URL query. */
 export function parseListingSearchParams(sp: RawParams): ListingSearchParams {
@@ -54,6 +85,7 @@ export function parseListingSearchParams(sp: RawParams): ListingSearchParams {
     keyword: str(sp.keyword),
     isNewBuild: sp.isNewBuild === "true" ? true : undefined,
     reduced: sp.reduced === "true" ? true : undefined,
+    area: parseArea(str(sp.area)),
     page: Math.max(1, Math.floor(num(sp.page) ?? 1)),
   };
 }
@@ -72,7 +104,8 @@ export function filtersForSaving(p: ListingSearchParams): ListingSearchParams {
 export function listingSearchQuery(p: ListingSearchParams): string {
   const q = new URLSearchParams();
   for (const [k, v] of Object.entries(filtersForSaving(p))) {
-    q.set(k, Array.isArray(v) ? v.join(",") : String(v));
+    if (k === "area") q.set(k, serializeArea(v as Array<[number, number]>));
+    else q.set(k, Array.isArray(v) ? v.join(",") : String(v));
   }
   return q.toString();
 }

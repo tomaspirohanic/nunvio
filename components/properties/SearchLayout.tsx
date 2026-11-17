@@ -13,7 +13,10 @@ import {
   X,
 } from "lucide-react";
 import PropertyCard from "@/components/properties/PropertyCard";
-import PropertyMap from "@/components/properties/PropertyMap";
+import dynamic from "next/dynamic";
+
+// Leaflet needs the browser: load the map only on the client.
+const MapSearch = dynamic(() => import("@/components/properties/MapSearch"), { ssr: false });
 
 type Property = Parameters<typeof PropertyCard>[0]["property"];
 
@@ -1175,7 +1178,7 @@ export default function SearchLayout({
         {showMap && (
           <div className="hidden lg:block lg:w-1/2 h-full overflow-hidden border-l border-gray-200 bg-white relative z-0">
             <div className="h-full w-full">
-              <PropertyMap properties={properties as any} />
+              <MapSearch fallback={properties as unknown as Array<{ latitude: number | null; longitude: number | null }>} />
             </div>
           </div>
         )}

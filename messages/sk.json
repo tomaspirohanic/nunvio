@@ -735,5 +735,16 @@
     "indexTitle": "Ceny nehnuteľností",
     "indexLead": "Priemerné ponukové ceny za m² z aktuálnych inzerátov podľa krajín a miest. Aktualizované denne.",
     "listingsCount": "{count, plural, one {# inzerát} few {# inzeráty} other {# inzerátov}}"
+  },
+  "MapSearch": {
+    "drawArea": "Nakresliť oblasť",
+    "redraw": "Nakresliť znova",
+    "clearArea": "Zrušiť oblasť",
+    "done": "Hotovo",
+    "undo": "Späť",
+    "cancel": "Zrušiť",
+    "drawHint": "Ťuknutím do mapy označte rohy oblasti",
+    "openListing": "Otvoriť inzerát",
+    "perMonth": "/ mesiac"
   }
 }

@@ -735,5 +735,16 @@
     "indexTitle": "Ceny nemovitostí",
     "indexLead": "Průměrné nabídkové ceny za m² z aktuálních inzerátů podle zemí a měst. Aktualizováno denně.",
     "listingsCount": "{count, plural, one {# inzerát} few {# inzeráty} other {# inzerátů}}"
+  },
+  "MapSearch": {
+    "drawArea": "Nakreslit oblast",
+    "redraw": "Nakreslit znovu",
+    "clearArea": "Zrušit oblast",
+    "done": "Hotovo",
+    "undo": "Zpět",
+    "cancel": "Zrušit",
+    "drawHint": "Klepnutím do mapy označte rohy oblasti",
+    "openListing": "Otevřít inzerát",
+    "perMonth": "/ měsíc"
   }
 }
