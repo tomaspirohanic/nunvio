@@ -24,6 +24,8 @@ import {
 } from "@/lib/listing-text";
 import { resolvePropertyImageUrls } from "@/lib/property-gallery";
 import ListingMarketInfo from "@/components/properties/ListingMarketInfo";
+import MortgageCalculator from "@/components/properties/MortgageCalculator";
+import { countryConfig } from "@/lib/country-config";
 
 // ISR: detail pages are rendered once and served from the CDN; refreshed at
 // most every 10 min, or immediately when the listing changes
@@ -56,6 +58,7 @@ const getPropertyForPublicDetail = cache(async function getPropertyForPublicDeta
         currency: true,
         city: true,
         country: true,
+        countryCode: true,
         address: true,
         latitude: true,
         longitude: true,
@@ -379,6 +382,14 @@ export default async function PropertyDetailPage({
               listedSince={property.createdAt}
               priceChanges={property.priceChanges}
             />
+
+            {property.offerType === "SALE" && property.price > 0 && (
+              <MortgageCalculator
+                price={property.price}
+                currency={property.currency}
+                defaults={countryConfig(property.countryCode).mortgage}
+              />
+            )}
 
             {/* Description */}
             <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-6">

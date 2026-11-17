@@ -745,5 +745,17 @@
     "drawHint": "Tap the map to mark the corners of your area",
     "openListing": "Open listing",
     "perMonth": "/ month"
+  },
+  "Mortgage": {
+    "title": "Mortgage calculator",
+    "downPayment": "Down payment",
+    "rate": "Interest rate",
+    "years": "Length",
+    "yearsShort": "yrs",
+    "monthly": "Monthly payment",
+    "loan": "Loan",
+    "ownFunds": "Your own funds",
+    "totalInterest": "Total interest",
+    "disclaimer": "Indicative calculation with typical market rates. Your bank's offer may differ."
   }
 }

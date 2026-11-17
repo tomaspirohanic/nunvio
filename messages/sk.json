@@ -746,5 +746,17 @@
     "drawHint": "Ťuknutím do mapy označte rohy oblasti",
     "openListing": "Otvoriť inzerát",
     "perMonth": "/ mesiac"
+  },
+  "Mortgage": {
+    "title": "Hypotekárna kalkulačka",
+    "downPayment": "Vlastné zdroje",
+    "rate": "Úrok",
+    "years": "Splatnosť",
+    "yearsShort": "r.",
+    "monthly": "Mesačná splátka",
+    "loan": "Výška úveru",
+    "ownFunds": "Vaše vlastné zdroje",
+    "totalInterest": "Úroky spolu",
+    "disclaimer": "Orientačný výpočet s bežnými trhovými sadzbami. Ponuka vašej banky sa môže líšiť."
   }
 }
