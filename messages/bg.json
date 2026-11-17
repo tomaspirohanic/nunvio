@@ -677,11 +677,7 @@
     "sinceListed": "Промяна в цената от публикуването",
     "priceHistory": "История на цената",
     "listed": "публикувано",
-    "perMonth": "/ месец",
-    "otherOffers": "{count, plural, one {Предлага се и от още # продавач} other {Предлага се и от още # продавачи}}",
-    "otherOffersHint": "Този имот се предлага от няколко агенции. Сравнете цените и изберете с кого да се свържете.",
-    "privateSeller": "Частно лице",
-    "viewOffer": "Виж"
+    "perMonth": "/ месец"
   },
   "AlertEmail": {
     "confirmSubject": "Потвърдете известието от Nunvio",

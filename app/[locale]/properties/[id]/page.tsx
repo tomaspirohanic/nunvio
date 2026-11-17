@@ -23,7 +23,6 @@ import {
   translationWhereForLocale,
 } from "@/lib/listing-text";
 import { resolvePropertyImageUrls } from "@/lib/property-gallery";
-import { firstListedAt, getOtherOffers } from "@/lib/dedup.server";
 import ListingMarketInfo from "@/components/properties/ListingMarketInfo";
 
 // ISR: detail pages are rendered once and served from the CDN; refreshed at
@@ -75,7 +74,6 @@ const getPropertyForPublicDetail = cache(async function getPropertyForPublicDeta
         promotionLevel: true,
         featuredUntil: true,
         createdAt: true,
-        duplicateOfId: true,
         previousPrice: true,
         priceChanges: {
           orderBy: { changedAt: "asc" },
@@ -264,13 +262,6 @@ export default async function PropertyDetailPage({
 
   const galleryImages = resolvePropertyImageUrls(property);
 
-  const [otherOffers, listedSince] = await Promise.all([
-    getOtherOffers(property.id, property.duplicateOfId).catch(() => []),
-    firstListedAt(property.id, property.duplicateOfId, property.createdAt).catch(
-      () => property.createdAt
-    ),
-  ]);
-
   return (
     <div className="bg-white">
       <div className="max-w-7xl mx-auto px-4 mt-6">
@@ -385,9 +376,8 @@ export default async function PropertyDetailPage({
               currentPrice={property.price}
               currency={property.currency}
               offerType={property.offerType}
-              listedSince={listedSince}
+              listedSince={property.createdAt}
               priceChanges={property.priceChanges}
-              otherOffers={otherOffers}
             />
 
             {/* Description */}

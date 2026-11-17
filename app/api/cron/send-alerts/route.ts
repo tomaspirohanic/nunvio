@@ -7,8 +7,8 @@ export const maxDuration = 60;
 
 /**
  * Vercel Cron: e-mail new listings / price drops for saved searches.
- * Scheduled after sync-feeds and maintenance (duplicate finder), so alerts
- * contain each property once. On Vercel Pro run it every 15 minutes for
+ * Scheduled after sync-feeds, so alerts include the day's imported
+ * listings. On Vercel Pro run it every 15 minutes for
  * near-instant alerts (see docs/PRODUCTION-LAUNCH.md).
  */
 export async function GET(req: NextRequest) {

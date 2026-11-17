@@ -620,11 +620,7 @@
     "sinceListed": "Price change since listed",
     "priceHistory": "Price history",
     "listed": "listed",
-    "perMonth": "/ month",
-    "otherOffers": "{count, plural, one {Also offered by # other seller} other {Also offered by # other sellers}}",
-    "otherOffersHint": "The same property is listed by several agencies. Compare prices and choose whom to contact.",
-    "privateSeller": "Private seller",
-    "viewOffer": "View"
+    "perMonth": "/ month"
   },
   "SavedSearch": {
     "kind_flat": "Flats",

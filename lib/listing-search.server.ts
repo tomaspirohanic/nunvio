@@ -28,8 +28,7 @@ export const MAX_COUNTED_RESULTS = 10_000;
 export type { ListingSearchParams } from "@/lib/listing-search-params";
 
 export function buildListingWhere(p: ListingSearchParams): Prisma.PropertyWhereInput {
-  // Duplicates of another agency's listing are shown on that listing's page.
-  const where: Prisma.PropertyWhereInput = { status: "PUBLISHED", duplicateOfId: null };
+  const where: Prisma.PropertyWhereInput = { status: "PUBLISHED" };
   const and: Prisma.PropertyWhereInput[] = [];
 
   if (p.location) {

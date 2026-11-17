@@ -677,11 +677,7 @@
     "sinceListed": "Bidla fil-prezz minn meta ġie ppubblikat",
     "priceHistory": "Storja tal-prezz",
     "listed": "ippubblikat",
-    "perMonth": "/ xahar",
-    "otherOffers": "{count, plural, one {Offrut ukoll minn # bejjiegħ ieħor} other {Offrut ukoll minn # bejjiegħa oħra}}",
-    "otherOffersHint": "Din il-proprjetà hija offruta minn diversi aġenziji. Qabbel il-prezzijiet u agħżel lil min tikkuntattja.",
-    "privateSeller": "Bejjiegħ privat",
-    "viewOffer": "Ara"
+    "perMonth": "/ xahar"
   },
   "AlertEmail": {
     "confirmSubject": "Ikkonferma t-twissija ta' Nunvio",

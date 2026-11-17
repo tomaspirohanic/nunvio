@@ -163,7 +163,7 @@ On Vercel Hobby every cron runs once a day. After upgrading to Pro, change
 | Cron | Hobby (now) | Pro (launch) |
 | --- | --- | --- |
 | `/api/cron/sync-feeds` | `0 3 * * *` | `*/15 * * * *` |
-| `/api/cron/maintenance` (promotions, duplicate finder) | `30 3 * * *` | `5,35 * * * *` |
+| `/api/cron/maintenance` (promotions, housekeeping) | `30 3 * * *` | `5,35 * * * *` |
 | `/api/cron/send-alerts` (saved-search e-mails) | `30 4 * * *` | `10,25,40,55 * * * *` |
 
 After the schema change run `npm run db:push` once against production.

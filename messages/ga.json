@@ -677,11 +677,7 @@
     "sinceListed": "Athrú praghais ó foilsíodh é",
     "priceHistory": "Stair an phraghais",
     "listed": "foilsithe",
-    "perMonth": "/ mí",
-    "otherOffers": "{count, plural, one {Á thairiscint freisin ag # díoltóir eile} other {Á thairiscint freisin ag # díoltóir eile}}",
-    "otherOffersHint": "Tá an maoin seo á fógairt ag roinnt gníomhaireachtaí. Cuir na praghsanna i gcomparáid agus roghnaigh cé leis a rachaidh tú i dteagmháil.",
-    "privateSeller": "Díoltóir príobháideach",
-    "viewOffer": "Féach"
+    "perMonth": "/ mí"
   },
   "AlertEmail": {
     "confirmSubject": "Dearbhaigh d'fholáireamh Nunvio",

@@ -677,11 +677,7 @@
     "sinceListed": "Hinnanmuutos julkaisusta",
     "priceHistory": "Hintahistoria",
     "listed": "julkaistu",
-    "perMonth": "/ kk",
-    "otherOffers": "{count, plural, one {Myös # muu myyjä tarjoaa} other {Myös # muuta myyjää tarjoaa}}",
-    "otherOffersHint": "Kohdetta tarjoaa useampi välittäjä. Vertaa hintoja ja valitse, kehen otat yhteyttä.",
-    "privateSeller": "Yksityinen myyjä",
-    "viewOffer": "Näytä"
+    "perMonth": "/ kk"
   },
   "AlertEmail": {
     "confirmSubject": "Vahvista Nunvio-hakuvahti",

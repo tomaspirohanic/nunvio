@@ -1,12 +1,10 @@
 // ============================================
 // LISTING MARKET INFO (server component)
 // ============================================
-// Days on market, price history and other agencies offering the same
-// property (see lib/dedup.server.ts). Rendered on the listing detail page.
+// Days on market and price history. Rendered on the listing detail page.
 // ============================================
 
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/src/i18n/routing";
 import type { Currency, ListingOffer } from "@prisma/client";
 
 type PriceChange = {
@@ -16,13 +14,6 @@ type PriceChange = {
   changedAt: Date;
 };
 
-type OtherOffer = {
-  id: string;
-  price: number;
-  currency: Currency;
-  agency: { id: string; name: string; logoUrl: string | null } | null;
-  owner: { name: string | null } | null;
-};
 
 function money(amount: number, currency: string, locale: string) {
   try {
@@ -51,7 +42,6 @@ export default async function ListingMarketInfo({
   offerType,
   listedSince,
   priceChanges,
-  otherOffers,
 }: {
   locale: string;
   currentPrice: number;
@@ -59,7 +49,6 @@ export default async function ListingMarketInfo({
   offerType: ListingOffer;
   listedSince: Date;
   priceChanges: PriceChange[];
-  otherOffers: OtherOffer[];
 }) {
   const t = await getTranslations({ locale, namespace: "ListingMarket" });
   const days = Math.max(
@@ -122,34 +111,6 @@ export default async function ListingMarketInfo({
         </div>
       )}
 
-      {otherOffers.length > 0 && (
-        <div className="mt-6">
-          <h2 className="text-base font-semibold text-gray-950">
-            {t("otherOffers", { count: otherOffers.length })}
-          </h2>
-          <p className="mt-1 text-sm text-gray-500">{t("otherOffersHint")}</p>
-          <ul className="mt-3 divide-y divide-gray-100 text-sm">
-            {otherOffers.map((o) => (
-              <li key={o.id} className="flex items-center justify-between gap-3 py-2">
-                <span className="truncate text-gray-800">
-                  {o.agency?.name ?? o.owner?.name ?? t("privateSeller")}
-                </span>
-                <span className="flex shrink-0 items-center gap-3">
-                  <span className="font-medium text-gray-900">
-                    {money(o.price, o.currency, locale)}
-                  </span>
-                  <Link
-                    href={`/properties/${o.id}`}
-                    className="font-semibold text-red-600 hover:underline"
-                  >
-                    {t("viewOffer")}
-                  </Link>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   );
 }

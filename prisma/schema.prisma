@@ -201,14 +201,6 @@ model Property {
   previousPrice  Decimal?
   priceChangedAt DateTime?
 
-  /// Same real property listed by another agency: points at the listing we
-  /// show in search (the "main" one). Null = this listing is shown itself.
-  duplicateOfId  String?
-  duplicateOf    Property?  @relation("PropertyDuplicates", fields: [duplicateOfId], references: [id], onDelete: SetNull)
-  duplicates     Property[] @relation("PropertyDuplicates")
-  /// Null = needs a (re)check by the background duplicate finder
-  dedupCheckedAt DateTime?
-
   promotionLevel PromotionLevel @default(NONE)
   featuredUntil  DateTime?
   isFeatured     Boolean        @default(false)
@@ -249,10 +241,6 @@ model Property {
   @@index([status, countryCode, offerType, propertyType, promotionLevel(sort: Desc), createdAt(sort: Desc)])
   @@index([country, countryCode])
   @@index([agencyId, lastSeenInFeedAt])
-  @@index([duplicateOfId])
-  // Duplicate finder: candidates with the same country, offer, type and size
-  @@index([countryCode, offerType, propertyType, areaSqm])
-  @@index([dedupCheckedAt])
   // Saved-search alerts use the existing [status, createdAt] index for new listings
   @@index([status, priceChangedAt])
   // Trigram indexes: make ILIKE '%x%' (Prisma `contains` + mode insensitive) use an index

@@ -677,11 +677,7 @@
     "sinceListed": "Variazione di prezzo dalla pubblicazione",
     "priceHistory": "Storico prezzi",
     "listed": "pubblicato",
-    "perMonth": "/ mese",
-    "otherOffers": "{count, plural, one {Offerto anche da # altro venditore} other {Offerto anche da altri # venditori}}",
-    "otherOffersHint": "Questo immobile è proposto da più agenzie. Confronta i prezzi e scegli chi contattare.",
-    "privateSeller": "Privato",
-    "viewOffer": "Vedi"
+    "perMonth": "/ mese"
   },
   "AlertEmail": {
     "confirmSubject": "Conferma il tuo avviso Nunvio",

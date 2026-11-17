@@ -677,11 +677,7 @@
     "sinceListed": "Prisændring siden oprettelse",
     "priceHistory": "Prishistorik",
     "listed": "oprettet",
-    "perMonth": "/ måned",
-    "otherOffers": "{count, plural, one {Udbydes også af # anden sælger} other {Udbydes også af # andre sælgere}}",
-    "otherOffersHint": "Boligen udbydes af flere mæglere. Sammenlign priserne, og vælg hvem du kontakter.",
-    "privateSeller": "Privat sælger",
-    "viewOffer": "Se"
+    "perMonth": "/ måned"
   },
   "AlertEmail": {
     "confirmSubject": "Bekræft din Nunvio-boligagent",

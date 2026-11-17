@@ -249,8 +249,6 @@ export async function importNormalizedProperties(opts: {
         lastSeenInFeedAt: seenAt,
         address: prop.address ?? null,
         isNewBuild: prop.isNewBuild ?? false,
-        // Content changed -> the duplicate finder looks at it again.
-        dedupCheckedAt: null,
       };
 
       let propertyId: string;

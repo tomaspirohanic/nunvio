@@ -677,11 +677,7 @@
     "sinceListed": "Kainos pokytis nuo paskelbimo",
     "priceHistory": "Kainos istorija",
     "listed": "paskelbta",
-    "perMonth": "/ mėn.",
-    "otherOffers": "{count, plural, one {Taip pat siūlo dar # pardavėjas} few {Taip pat siūlo dar # pardavėjai} other {Taip pat siūlo dar # pardavėjų}}",
-    "otherOffersHint": "Šį objektą siūlo kelios agentūros. Palyginkite kainas ir pasirinkite, į ką kreiptis.",
-    "privateSeller": "Privatus pardavėjas",
-    "viewOffer": "Žiūrėti"
+    "perMonth": "/ mėn."
   },
   "AlertEmail": {
     "confirmSubject": "Patvirtinkite Nunvio pranešimus",

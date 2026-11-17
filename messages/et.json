@@ -677,11 +677,7 @@
     "sinceListed": "Hinnamuutus avaldamisest",
     "priceHistory": "Hinnaajalugu",
     "listed": "avaldatud",
-    "perMonth": "/ kuu",
-    "otherOffers": "{count, plural, one {Pakub ka # teine müüja} other {Pakuvad ka # teist müüjat}}",
-    "otherOffersHint": "Seda kinnisvara pakub mitu maaklerit. Võrrelge hindu ja valige, kellega ühendust võtta.",
-    "privateSeller": "Eraisik",
-    "viewOffer": "Vaata"
+    "perMonth": "/ kuu"
   },
   "AlertEmail": {
     "confirmSubject": "Kinnitage Nunvio teavitus",

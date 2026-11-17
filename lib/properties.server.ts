@@ -205,7 +205,6 @@ export async function updateProperty(
         contactPhone: input.contactPhone?.trim() || null,
         isNewBuild: input.isNewBuild ?? false,
         ...priceChangeData(existing, input.price, input.currency),
-        dedupCheckedAt: null,
         ...(input.status
           ? { status: input.status as PropertyStatus }
           : {}),

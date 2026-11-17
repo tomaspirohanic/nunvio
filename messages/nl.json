@@ -677,11 +677,7 @@
     "sinceListed": "Prijswijziging sinds plaatsing",
     "priceHistory": "Prijsgeschiedenis",
     "listed": "geplaatst",
-    "perMonth": "/ maand",
-    "otherOffers": "{count, plural, one {Ook aangeboden door # andere verkoper} other {Ook aangeboden door # andere verkopers}}",
-    "otherOffersHint": "Deze woning wordt door meerdere makelaars aangeboden. Vergelijk de prijzen en kies wie u benadert.",
-    "privateSeller": "Particulier",
-    "viewOffer": "Bekijken"
+    "perMonth": "/ maand"
   },
   "AlertEmail": {
     "confirmSubject": "Bevestig uw Nunvio-melding",

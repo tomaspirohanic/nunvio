@@ -687,11 +687,7 @@
     "sinceListed": "Preisänderung seit Veröffentlichung",
     "priceHistory": "Preisentwicklung",
     "listed": "veröffentlicht",
-    "perMonth": "/ Monat",
-    "otherOffers": "{count, plural, one {Auch von # weiteren Anbieter angeboten} other {Auch von # weiteren Anbietern angeboten}}",
-    "otherOffersHint": "Diese Immobilie wird von mehreren Maklern angeboten. Vergleichen Sie die Preise und wählen Sie, wen Sie kontaktieren.",
-    "privateSeller": "Privatanbieter",
-    "viewOffer": "Ansehen"
+    "perMonth": "/ Monat"
   },
   "AlertEmail": {
     "confirmSubject": "Bestätigen Sie Ihre Nunvio-Benachrichtigung",

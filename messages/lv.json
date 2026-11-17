@@ -677,11 +677,7 @@
     "sinceListed": "Cenas izmaiņas kopš publicēšanas",
     "priceHistory": "Cenas vēsture",
     "listed": "publicēts",
-    "perMonth": "/ mēn.",
-    "otherOffers": "{count, plural, zero {Piedāvā arī vēl # pārdevēji} one {Piedāvā arī vēl # pārdevējs} other {Piedāvā arī vēl # pārdevēji}}",
-    "otherOffersHint": "Šo īpašumu piedāvā vairākas aģentūras. Salīdziniet cenas un izvēlieties, ar ko sazināties.",
-    "privateSeller": "Privātpersona",
-    "viewOffer": "Skatīt"
+    "perMonth": "/ mēn."
   },
   "AlertEmail": {
     "confirmSubject": "Apstipriniet Nunvio paziņojumus",

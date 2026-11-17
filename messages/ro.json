@@ -677,11 +677,7 @@
     "sinceListed": "Modificare de preț de la publicare",
     "priceHistory": "Istoricul prețului",
     "listed": "publicat",
-    "perMonth": "/ lună",
-    "otherOffers": "{count, plural, one {Oferit și de încă # vânzător} few {Oferit și de încă # vânzători} other {Oferit și de încă # de vânzători}}",
-    "otherOffersHint": "Această proprietate este oferită de mai multe agenții. Comparați prețurile și alegeți pe cine contactați.",
-    "privateSeller": "Proprietar",
-    "viewOffer": "Vezi"
+    "perMonth": "/ lună"
   },
   "AlertEmail": {
     "confirmSubject": "Confirmați alerta Nunvio",

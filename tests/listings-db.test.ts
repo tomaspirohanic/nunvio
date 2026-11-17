@@ -1,4 +1,4 @@
-// Database tests for import -> price history -> duplicate finder.
+// Database tests for import -> price history -> search -> alerts.
 // They need an empty throwaway Postgres; they are skipped unless
 // TEST_DATABASE_URL is set, e.g.
 //   TEST_DATABASE_URL=postgresql://postgres@localhost:5433/nunvio_test npm test
@@ -12,8 +12,6 @@ if (url) process.env.DATABASE_URL = url;
 type Mods = {
   prisma: typeof import("../lib/db").prisma;
   importNormalizedProperties: typeof import("../lib/feed-import.server").importNormalizedProperties;
-  findDuplicateListings: typeof import("../lib/dedup.server").findDuplicateListings;
-  getOtherOffers: typeof import("../lib/dedup.server").getOtherOffers;
   buildListingWhere: typeof import("../lib/listing-search.server").buildListingWhere;
 };
 let m: Mods;
@@ -48,8 +46,6 @@ before(async () => {
   m = {
     prisma: (await import("../lib/db")).prisma,
     importNormalizedProperties: (await import("../lib/feed-import.server")).importNormalizedProperties,
-    findDuplicateListings: (await import("../lib/dedup.server")).findDuplicateListings,
-    getOtherOffers: (await import("../lib/dedup.server")).getOtherOffers,
     buildListingWhere: (await import("../lib/listing-search.server")).buildListingWhere,
   };
   await m.prisma.$executeRawUnsafe(
@@ -61,15 +57,13 @@ after(async () => {
   if (url) await m.prisma.$disconnect();
 });
 
-test("import records price drops; dedup links the same flat from two agencies", { skip: !url }, async () => {
+test("import records price drops; each agency's listing of the same flat stays visible", { skip: !url }, async () => {
   const a = await makeAgency("alpha");
   const b = await makeAgency("beta");
 
   await m.importNormalizedProperties({ ...a, skipImages: true, properties: [{ ...base, externalId: "A1", title: "Byt A", price: 250000 }] });
-  // 30 m away, slightly different price and area -> same property
-  await m.importNormalizedProperties({ ...b, skipImages: true, properties: [{ ...base, externalId: "B1", title: "Byt B", price: 245000, areaSqm: 76, latitude: 48.1488 }] });
-  // Different flat: other size
-  await m.importNormalizedProperties({ ...b, skipImages: true, properties: [{ ...base, externalId: "B2", title: "Iný byt", price: 250000, areaSqm: 110 }] });
+  // Same flat offered by another agency: agencies are our customers, both must show.
+  await m.importNormalizedProperties({ ...b, skipImages: true, properties: [{ ...base, externalId: "B1", title: "Byt B", price: 245000, areaSqm: 76 }] });
 
   // Price drop on A1
   const r = await m.importNormalizedProperties({ ...a, skipImages: true, properties: [{ ...base, externalId: "A1", title: "Byt A", price: 239000 }] });
@@ -79,44 +73,17 @@ test("import records price drops; dedup links the same flat from two agencies", 
   assert.equal(a1.priceChanges.length, 1);
   assert.equal(Number(a1.priceChanges[0].newPrice), 239000);
 
-  const res = await m.findDuplicateListings({ deadline: Date.now() + 10_000 });
-  assert.equal(res.linked, 1);
+  // Price raise clears the "reduced" badge but keeps history
+  await m.importNormalizedProperties({ ...b, skipImages: true, properties: [{ ...base, externalId: "B1", title: "Byt B", price: 255000, areaSqm: 76 }] });
+  const b1 = await m.prisma.property.findFirstOrThrow({ where: { externalId: "B1" }, include: { priceChanges: true } });
+  assert.equal(b1.previousPrice, null);
+  assert.equal(b1.priceChanges.length, 1);
 
-  const b1 = await m.prisma.property.findFirstOrThrow({ where: { externalId: "B1" } });
-  const b2 = await m.prisma.property.findFirstOrThrow({ where: { externalId: "B2" } });
-  assert.equal(b1.duplicateOfId, a1.id, "newer listing points at the older one");
-  assert.equal(b2.duplicateOfId, null);
-
-  const visible = await m.prisma.property.findMany({ where: m.buildListingWhere({}), select: { externalId: true } });
-  assert.deepEqual(visible.map((v) => v.externalId).sort(), ["A1", "B2"]);
+  const visible = await m.prisma.property.findMany({ where: m.buildListingWhere({ location: "Bratislava" }), select: { externalId: true } });
+  assert.deepEqual(visible.map((v) => v.externalId).sort(), ["A1", "B1"]);
 
   const reduced = await m.prisma.property.findMany({ where: m.buildListingWhere({ reduced: true }), select: { externalId: true } });
   assert.deepEqual(reduced.map((v) => v.externalId), ["A1"]);
-
-  const others = await m.getOtherOffers(a1.id, null);
-  assert.equal(others.length, 1);
-  assert.equal(others[0].id, b1.id);
-
-  // Main listing archived -> duplicate shows again after the next run
-  await m.prisma.property.update({ where: { id: a1.id }, data: { status: "ARCHIVED" } });
-  await m.findDuplicateListings({ deadline: Date.now() + 10_000 });
-  const b1After = await m.prisma.property.findUniqueOrThrow({ where: { id: b1.id } });
-  assert.equal(b1After.duplicateOfId, null);
-});
-
-test("same agency never dedups its own listings", { skip: !url }, async () => {
-  const c = await makeAgency("gamma");
-  await m.importNormalizedProperties({
-    ...c,
-    skipImages: true,
-    properties: [
-      { ...base, city: "Košice", externalId: "C1", title: "Byt 1", price: 150000 },
-      { ...base, city: "Košice", externalId: "C2", title: "Byt 2", price: 150000 },
-    ],
-  });
-  await m.findDuplicateListings({ deadline: Date.now() + 10_000 });
-  const rows = await m.prisma.property.findMany({ where: { agencyId: c.agencyId } });
-  assert.ok(rows.every((r) => r.duplicateOfId === null));
 });
 
 test("saved search: alerts new listings once, respects filters", { skip: !url }, async () => {

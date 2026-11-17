@@ -677,11 +677,7 @@
     "sinceListed": "Sprememba cene od objave",
     "priceHistory": "Zgodovina cene",
     "listed": "objavljeno",
-    "perMonth": "/ mesec",
-    "otherOffers": "{count, plural, one {Ponuja tudi še # prodajalec} two {Ponujata tudi še # prodajalca} few {Ponujajo tudi še # prodajalci} other {Ponuja tudi še # prodajalcev}}",
-    "otherOffersHint": "To nepremičnino ponuja več agencij. Primerjajte cene in izberite, koga boste kontaktirali.",
-    "privateSeller": "Zasebni prodajalec",
-    "viewOffer": "Poglej"
+    "perMonth": "/ mesec"
   },
   "AlertEmail": {
     "confirmSubject": "Potrdite obvestila Nunvio",

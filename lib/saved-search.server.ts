@@ -5,8 +5,7 @@
 // listings and price drops. Works without an account (double opt-in by
 // e-mail); for signed-in users with a verified e-mail it is active at once.
 //
-// The alert job (/api/cron/send-alerts) runs after the feed sync and the
-// duplicate finder, so an alert never shows the same flat twice.
+// The alert job (/api/cron/send-alerts) runs after the feed sync.
 // ============================================
 
 import "server-only";

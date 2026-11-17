@@ -677,11 +677,7 @@
     "sinceListed": "发布以来的价格变化",
     "priceHistory": "价格历史",
     "listed": "发布",
-    "perMonth": "/ 月",
-    "otherOffers": "{count, plural, other {另有 # 位卖家也在出售}}",
-    "otherOffersHint": "该房产由多家中介发布。比较价格后选择联系谁。",
-    "privateSeller": "个人卖家",
-    "viewOffer": "查看"
+    "perMonth": "/ 月"
   },
   "AlertEmail": {
     "confirmSubject": "确认您的 Nunvio 提醒",

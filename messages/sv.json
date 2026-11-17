@@ -677,11 +677,7 @@
     "sinceListed": "Prisändring sedan publicering",
     "priceHistory": "Prishistorik",
     "listed": "publicerad",
-    "perMonth": "/ månad",
-    "otherOffers": "{count, plural, one {Erbjuds även av # annan säljare} other {Erbjuds även av # andra säljare}}",
-    "otherOffersHint": "Bostaden erbjuds av flera mäklare. Jämför priserna och välj vem du kontaktar.",
-    "privateSeller": "Privatperson",
-    "viewOffer": "Visa"
+    "perMonth": "/ månad"
   },
   "AlertEmail": {
     "confirmSubject": "Bekräfta din Nunvio-bevakning",

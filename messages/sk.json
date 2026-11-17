@@ -621,11 +621,7 @@
     "sinceListed": "Zmena ceny od zverejnenia",
     "priceHistory": "Vývoj ceny",
     "listed": "zverejnené",
-    "perMonth": "/ mesiac",
-    "otherOffers": "{count, plural, one {Ponúka aj # ďalší predajca} few {Ponúkajú aj # ďalší predajcovia} other {Ponúka aj # ďalších predajcov}}",
-    "otherOffersHint": "Túto nehnuteľnosť ponúka viac realitiek. Porovnajte ceny a vyberte si, koho oslovíte.",
-    "privateSeller": "Súkromný predajca",
-    "viewOffer": "Zobraziť"
+    "perMonth": "/ mesiac"
   },
   "SavedSearch": {
     "kind_flat": "Byty",

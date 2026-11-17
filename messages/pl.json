@@ -677,11 +677,7 @@
     "sinceListed": "Zmiana ceny od publikacji",
     "priceHistory": "Historia ceny",
     "listed": "opublikowano",
-    "perMonth": "/ miesiąc",
-    "otherOffers": "{count, plural, one {Oferuje też # inny sprzedawca} few {Oferują też # inni sprzedawcy} many {Oferuje też # innych sprzedawców} other {Oferuje też # innego sprzedawcy}}",
-    "otherOffersHint": "Tę nieruchomość oferuje kilka biur. Porównaj ceny i wybierz, z kim się skontaktować.",
-    "privateSeller": "Osoba prywatna",
-    "viewOffer": "Zobacz"
+    "perMonth": "/ miesiąc"
   },
   "AlertEmail": {
     "confirmSubject": "Potwierdź powiadomienie Nunvio",
