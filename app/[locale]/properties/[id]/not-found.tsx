@@ -1,9 +1,13 @@
+"use client";
+
 // ============================================
 // PROPERTY NOT FOUND PAGE
 // ============================================
 // 404 page for non-existent properties
 // ============================================
 
+// Client component: a not-found boundary gets no route params, so on the
+// server next-intl would read request headers and break ISR for the page.
 import { useTranslations } from "next-intl";
 import { Link } from "@/src/i18n/routing";
 

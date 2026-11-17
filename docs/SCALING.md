@@ -13,7 +13,7 @@ search, feeds, translations or caching.
 ## Caching
 | Page | Strategy |
 |---|---|
-| Homepage `/[locale]` | ISR, 5 min |
+| Homepage `/[locale]` | Dynamic shell, DB data cached 5 min (tag `listings`); build needs no DB |
 | Listing detail `/[locale]/properties/[id]` | ISR, 10 min, refreshed immediately on edit / import / promotion |
 | Search `/[locale]/properties` | Dynamic, but DB result cached 60 s per identical query (tag `listings`) |
 | `/api/locations/suggest` | CDN 1 h |
