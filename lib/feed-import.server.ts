@@ -20,7 +20,7 @@ import "server-only";
 
 import { createHash } from "node:crypto";
 import { prisma } from "@/lib/db";
-import { PropertyStatus } from "@prisma/client";
+import { Prisma, PropertyStatus } from "@prisma/client";
 import {
   deleteStoredImagesByUrl,
   uploadImageFromUrl,
@@ -28,9 +28,10 @@ import {
 import {
   MAX_FEED_XML_BYTES,
   type NormalizedProperty,
-  normalizeXmlProperty,
+  normalizeXmlProperties,
   parseXmlProperties,
 } from "@/lib/import-xml";
+import { priceChangeData } from "@/lib/price-history.server";
 import { revalidateListings } from "@/lib/revalidate-listings";
 
 /** Upper bound per run; in practice the deadline decides where a run stops. */
@@ -61,8 +62,14 @@ function sha1(value: string): string {
 }
 
 function contentHash(p: NormalizedProperty): string {
+  // Optional fields are appended only when present, so listings imported
+  // before these fields existed keep their hash (no needless mass rewrite).
+  const extras: unknown[] = [];
+  if (p.address) extras.push(["address", p.address]);
+  if (p.isNewBuild) extras.push(["newBuild", true]);
   return sha1(
     JSON.stringify([
+      ...extras,
       p.title,
       p.description,
       p.price,
@@ -199,6 +206,8 @@ export async function importNormalizedProperties(opts: {
             status: true,
             sourceHash: true,
             imageSourceHash: true,
+            price: true,
+            currency: true,
           },
         })
       : [];
@@ -238,6 +247,8 @@ export async function importNormalizedProperties(opts: {
         status: PropertyStatus.PUBLISHED,
         sourceHash: hash,
         lastSeenInFeedAt: seenAt,
+        address: prop.address ?? null,
+        isNewBuild: prop.isNewBuild ?? false,
       };
 
       let propertyId: string;
@@ -260,6 +271,7 @@ export async function importNormalizedProperties(opts: {
             where: { id: existing.id },
             data: {
               ...data,
+              ...priceChangeData(existing, prop.price, prop.currency),
               // Stale machine translations -> background job re-translates.
               ...(textChanged ? { translations: { deleteMany: {} } } : {}),
             },
@@ -285,6 +297,8 @@ export async function importNormalizedProperties(opts: {
             status: PropertyStatus.PUBLISHED,
             sourceHash: hash,
             imageSourceHash: null,
+            price: new Prisma.Decimal(prop.price),
+            currency: prop.currency,
           });
         }
       }
@@ -336,6 +350,10 @@ export async function importNormalizedProperties(opts: {
     errorMessages: errorMessages.slice(0, 50),
     processed,
   };
+}
+
+function rawIndexOfValid(sliceLength: number, validRawIndexes: number[], processedValid: number): number {
+  return processedValid < validRawIndexes.length ? validRawIndexes[processedValid] : sliceLength;
 }
 
 export async function fetchFeedXml(feedUrl: string): Promise<string> {
@@ -406,21 +424,30 @@ export async function importXmlFromUrl(opts: {
     };
   }
 
-  const normalized = slice.map((p, i) =>
-    normalizeXmlProperty(p, offset + i, {
-      defaultCountry: opts.defaultCountry,
-    })
-  );
+  const normalized = normalizeXmlProperties(slice, {
+    defaultCountry: opts.defaultCountry,
+    indexOffset: offset,
+  });
 
   const result = await importNormalizedProperties({
     agencyId: opts.agencyId,
     ownerId: opts.ownerId,
-    properties: normalized,
+    properties: normalized.properties,
     skipImages: opts.skipImages,
     deadline: opts.deadline,
   });
 
-  const nextOffset = offset + result.processed;
+  // Unusable records are skipped (and reported) instead of failing the feed.
+  // Resume offset counts raw records: if the deadline cut the run short we
+  // resume at the first valid listing that was not processed yet.
+  const consumedRaw =
+    result.processed >= normalized.properties.length
+      ? slice.length
+      : rawIndexOfValid(slice.length, normalized.validRawIndexes, result.processed);
+  result.errors += normalized.failed;
+  result.errorMessages = [...normalized.errors, ...result.errorMessages].slice(0, 50);
+
+  const nextOffset = offset + consumedRaw;
   const feedComplete = nextOffset >= total;
 
   return {

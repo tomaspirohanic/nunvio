@@ -47,6 +47,21 @@ Same as step 3–4. Host XML on their website / CDN / CRM export URL.
 
 Sample: `/samples/nunvio-properties-sample.xml`
 
+## Exports we read as-is (no changes needed on the agency side)
+
+Nunvio detects the format of every listing automatically:
+
+| Format | Typical source | Detected by |
+| --- | --- | --- |
+| **Sreality-style** `advert_*` fields | CZ / SK CRMs that already send to Sreality | `advert_function`, `advert_type`, `advert_price`, `advert_rkid` (numeric codebooks: 1 sale / 2 rent, 1 flat / 2 house / 3 land / 4 commercial, currency 1 CZK / 2 USD / 3 EUR, price unit per m² is multiplied by area) |
+| **OpenImmo** | DE / AT CRMs | `<openimmo><anbieter><immobilie>` |
+| **Kyero v3** | ES / PT / IT / FR / HR, cross-border portals | `<root><property>` with `price_freq`, `surface_area` |
+| **Nunvio** + SK/CZ aliases | everything else | see below |
+
+Titles are generated (in the listing country's language) when an export has none.
+One broken record is skipped and reported; it never blocks the rest of the feed.
+Test samples: `tests/fixtures/*.xml`.
+
 ## Accepted roots / item tags
 
 | Wrapper | Item node |

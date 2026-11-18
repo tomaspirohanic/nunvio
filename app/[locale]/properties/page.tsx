@@ -2,6 +2,7 @@ import SearchLayout from "@/components/properties/SearchLayout";
 import { comparePromotionThenDate } from "@/lib/listing";
 import { normalizeLocale, pickListingText } from "@/lib/listing-text";
 import { SEARCH_PAGE_SIZE, searchListings } from "@/lib/listing-search.server";
+import { parseListingSearchParams } from "@/lib/listing-search-params";
 
 export default async function PropertiesPage({
   params,
@@ -14,48 +15,19 @@ export default async function PropertiesPage({
   const sp = await searchParams;
   const localeTag = normalizeLocale(locale);
 
-  const getString = (v: string | string[] | undefined) =>
-    typeof v === "string" && v.trim().length > 0 ? v.trim() : undefined;
-
-  const getNumber = (v: string | string[] | undefined) => {
-    if (typeof v !== "string") return undefined;
-    const n = Number(v);
-    return Number.isFinite(n) ? n : undefined;
-  };
-
-  const location = getString(sp.location) ?? getString(sp.city);
-  const typeParam = getString(sp.type) ?? getString(sp.propertyType);
-  const typesParam = getString(sp.types);
-  const offer = getString(sp.offer);
-  const minPrice = getNumber(sp.minPrice);
-  const maxPrice = getNumber(sp.maxPrice);
-  const minArea = getNumber(sp.minArea);
-  const maxArea = getNumber(sp.maxArea);
-  const keyword = getString(sp.keyword);
-  const page = Math.max(1, Math.floor(getNumber(sp.page) ?? 1));
-  const isNewBuild = sp.isNewBuild === "true";
-
-  const types = typesParam
-    ? typesParam
-        .split(",")
-        .map((s) => s.trim())
-        .filter(Boolean)
-    : undefined;
+  const filters = parseListingSearchParams(sp);
+  const {
+    location,
+    type: typeParam,
+    types,
+    offer,
+    keyword,
+    isNewBuild,
+    reduced,
+  } = filters;
 
   const { total, totalIsCapped, pageCount, safePage, rows } = await searchListings(
-    {
-      location,
-      type: typeParam,
-      types,
-      offer: offer === "buy" || offer === "rent" ? offer : undefined,
-      minPrice,
-      maxPrice,
-      minArea,
-      maxArea,
-      keyword,
-      isNewBuild,
-      page,
-    },
+    filters,
     localeTag
   );
 
@@ -78,23 +50,15 @@ export default async function PropertiesPage({
 
   const initialParams = {
     location,
-    offer: offer === "buy" || offer === "rent" ? (offer as "buy" | "rent") : undefined,
-    types:
-      (typesParam
-        ? typesParam
-            .split(",")
-            .map((s) => s.trim())
-            .filter(Boolean)
-        : typeParam
-          ? [typeParam.toLowerCase()]
-          : undefined) ?? undefined,
+    offer,
+    types: types ?? (typeParam ? [typeParam.toLowerCase()] : undefined),
     minPrice: typeof sp.minPrice === "string" ? sp.minPrice : undefined,
     maxPrice: typeof sp.maxPrice === "string" ? sp.maxPrice : undefined,
     minArea: typeof sp.minArea === "string" ? sp.minArea : undefined,
     maxArea: typeof sp.maxArea === "string" ? sp.maxArea : undefined,
-    keyword: typeof sp.keyword === "string" ? sp.keyword : undefined,
+    keyword,
     isNewBuild: isNewBuild ? true : undefined,
-    hasVideo: undefined,
+    reduced: reduced ? true : undefined,
     page: String(safePage),
   } satisfies Parameters<typeof SearchLayout>[0]["initialParams"];
 

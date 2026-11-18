@@ -23,6 +23,10 @@ import {
   translationWhereForLocale,
 } from "@/lib/listing-text";
 import { resolvePropertyImageUrls } from "@/lib/property-gallery";
+import ListingMarketInfo from "@/components/properties/ListingMarketInfo";
+import MortgageCalculator from "@/components/properties/MortgageCalculator";
+import NearbyPlaces from "@/components/properties/NearbyPlaces";
+import { countryConfig } from "@/lib/country-config";
 
 // ISR: detail pages are rendered once and served from the CDN; refreshed at
 // most every 10 min, or immediately when the listing changes
@@ -55,6 +59,7 @@ const getPropertyForPublicDetail = cache(async function getPropertyForPublicDeta
         currency: true,
         city: true,
         country: true,
+        countryCode: true,
         address: true,
         latitude: true,
         longitude: true,
@@ -73,6 +78,12 @@ const getPropertyForPublicDetail = cache(async function getPropertyForPublicDeta
         promotionLevel: true,
         featuredUntil: true,
         createdAt: true,
+        previousPrice: true,
+        priceChanges: {
+          orderBy: { changedAt: "asc" },
+          select: { oldPrice: true, newPrice: true, currency: true, changedAt: true },
+          take: 50,
+        },
         owner: {
           select: {
             name: true,
@@ -104,6 +115,13 @@ const getPropertyForPublicDetail = cache(async function getPropertyForPublicDeta
     return {
       ...property,
       price: Number(property.price),
+      previousPrice: property.previousPrice != null ? Number(property.previousPrice) : null,
+      priceChanges: property.priceChanges.map((c) => ({
+        oldPrice: Number(c.oldPrice),
+        newPrice: Number(c.newPrice),
+        currency: c.currency,
+        changedAt: c.changedAt,
+      })),
       bedrooms:
         typeof property.bedrooms === "number" && !isNaN(property.bedrooms)
           ? property.bedrooms
@@ -357,6 +375,23 @@ export default async function PropertyDetailPage({
               </div>
             </div>
 
+            <ListingMarketInfo
+              locale={locale}
+              currentPrice={property.price}
+              currency={property.currency}
+              offerType={property.offerType}
+              listedSince={property.createdAt}
+              priceChanges={property.priceChanges}
+            />
+
+            {property.offerType === "SALE" && property.price > 0 && (
+              <MortgageCalculator
+                price={property.price}
+                currency={property.currency}
+                defaults={countryConfig(property.countryCode).mortgage}
+              />
+            )}
+
             {/* Description */}
             <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-6">
               <h2 className="text-xl font-semibold text-gray-950">
@@ -393,6 +428,9 @@ export default async function PropertyDetailPage({
                 )}
               </div>
             </div>
+            {property.showOnMap !== false && property.latitude && property.longitude ? (
+              <NearbyPlaces propertyId={property.id} />
+            ) : null}
           </div>
 
           {/* Right column */}

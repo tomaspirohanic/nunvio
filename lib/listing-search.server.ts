@@ -15,6 +15,8 @@ import { prisma } from "@/lib/db";
 import { countryCodeFor } from "@/lib/country-display";
 import { translationWhereForLocale } from "@/lib/listing-text";
 import { LISTINGS_CACHE_TAG } from "@/lib/revalidate-listings";
+import type { ListingSearchParams } from "@/lib/listing-search-params";
+import { listingSqlWhere } from "@/lib/listing-search-sql.server";
 
 export const SEARCH_PAGE_SIZE = 48;
 /**
@@ -24,21 +26,7 @@ export const SEARCH_PAGE_SIZE = 48;
  */
 export const MAX_COUNTED_RESULTS = 10_000;
 
-export type ListingSearchParams = {
-  location?: string;
-  /** Exact property type, e.g. "APARTMENT" */
-  type?: string;
-  /** UI type chips, e.g. ["flat_2", "house_villa"] */
-  types?: string[];
-  offer?: "buy" | "rent";
-  minPrice?: number;
-  maxPrice?: number;
-  minArea?: number;
-  maxArea?: number;
-  keyword?: string;
-  isNewBuild?: boolean;
-  page?: number;
-};
+export type { ListingSearchParams } from "@/lib/listing-search-params";
 
 export function buildListingWhere(p: ListingSearchParams): Prisma.PropertyWhereInput {
   const where: Prisma.PropertyWhereInput = { status: "PUBLISHED" };
@@ -87,6 +75,18 @@ export function buildListingWhere(p: ListingSearchParams): Prisma.PropertyWhereI
   }
 
   if (p.isNewBuild) where.isNewBuild = true;
+  if (p.reduced) where.previousPrice = { not: null };
+
+  // Drawn map area: Prisma can only express its bounding box. Exact
+  // point-in-polygon runs in SQL (searchListings) or in JS (alerts).
+  if (p.area) {
+    const lats = p.area.map((x) => x[0]);
+    const lngs = p.area.map((x) => x[1]);
+    and.push({
+      latitude: { gte: Math.min(...lats), lte: Math.max(...lats) },
+      longitude: { gte: Math.min(...lngs), lte: Math.max(...lngs) },
+    });
+  }
 
   if (p.keyword) {
     and.push({
@@ -115,8 +115,34 @@ export function buildListingWhere(p: ListingSearchParams): Prisma.PropertyWhereI
  * this cache immediately.
  */
 export async function searchListings(params: ListingSearchParams, localeTag: string) {
-  const where = buildListingWhere(params);
   const page = Math.max(1, Math.floor(params.page ?? 1));
+  if (params.area) {
+    // Exact polygon filter: ids come from SQL, the rest is the normal query.
+    const sqlWhere = listingSqlWhere(params);
+    const [{ n }] = await prisma.$queryRaw<Array<{ n: bigint }>>(
+      Prisma.sql`SELECT COUNT(*) AS n FROM (SELECT 1 FROM "Property" WHERE ${sqlWhere} LIMIT ${MAX_COUNTED_RESULTS}) x`
+    );
+    const counted = Number(n);
+    const pageCount = Math.max(1, Math.ceil(counted / SEARCH_PAGE_SIZE));
+    const safePage = Math.min(page, pageCount);
+    const ids = await prisma.$queryRaw<Array<{ id: string }>>(Prisma.sql`
+      SELECT "id" FROM "Property" WHERE ${sqlWhere}
+      ORDER BY "promotionLevel" DESC, "createdAt" DESC
+      OFFSET ${(safePage - 1) * SEARCH_PAGE_SIZE} LIMIT ${SEARCH_PAGE_SIZE}`);
+    const res = await cachedSearch(
+      JSON.stringify({ id: { in: ids.map((r) => r.id) } }),
+      1,
+      localeTag
+    );
+    return {
+      ...res,
+      total: counted,
+      totalIsCapped: counted >= MAX_COUNTED_RESULTS,
+      pageCount,
+      safePage,
+    };
+  }
+  const where = buildListingWhere(params);
   return cachedSearch(JSON.stringify(where), page, localeTag);
 }
 
@@ -151,6 +177,8 @@ const cachedSearch = unstable_cache(
         promotionLevel: true,
         featuredUntil: true,
         createdAt: true,
+        previousPrice: true,
+        priceChangedAt: true,
         translations: {
           where: translationWhereForLocale(localeTag),
           select: {
@@ -171,12 +199,14 @@ const cachedSearch = unstable_cache(
     const rows = properties.map((p) => ({
       ...p,
       price: Number(p.price),
+      previousPrice: p.previousPrice != null ? Number(p.previousPrice) : null,
+      priceChangedAt: p.priceChangedAt ? p.priceChangedAt.toISOString() : null,
       createdAt: p.createdAt.toISOString(),
       featuredUntil: p.featuredUntil ? p.featuredUntil.toISOString() : null,
     }));
 
     return { total: counted, totalIsCapped, pageCount, safePage, rows };
   },
-  ["public-property-search-v2"],
+  ["public-property-search-v3"],
   { revalidate: 60, tags: [LISTINGS_CACHE_TAG] }
 );

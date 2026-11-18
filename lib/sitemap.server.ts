@@ -2,6 +2,7 @@ import "server-only";
 import { prisma } from "@/lib/db";
 import { locales } from "@/i18n";
 import { getCanonicalOrigin } from "@/lib/domains";
+import { getCountriesWithListings, getCountryCities } from "@/lib/market-stats.server";
 
 /**
  * Listings per sitemap file. Each listing carries hreflang links for all
@@ -43,7 +44,7 @@ function urlset(entries: string[]) {
 export async function sitemapIndexXml(): Promise<string> {
   const origin = getCanonicalOrigin();
   const published = await prisma.property.count({ where: { status: "PUBLISHED" } });
-  const files = ["static.xml"];
+  const files = ["static.xml", "prices.xml"];
   for (let i = 0; i * LISTINGS_PER_SITEMAP < published; i++) files.push(`listings-${i}.xml`);
   const body = files
     .map((f) => `<sitemap><loc>${esc(`${origin}/sitemaps/${f}`)}</loc></sitemap>`)
@@ -67,4 +68,17 @@ export async function listingsSitemapXml(chunk: number): Promise<string | null> 
   });
   if (rows.length === 0 && chunk > 0) return null;
   return urlset(rows.map((r) => urlEntry(`/properties/${r.id}`, r.updatedAt)));
+}
+
+/** Price pages: /prices, one per country, one per city with enough listings. */
+export async function pricesSitemapXml(): Promise<string> {
+  const entries = [urlEntry("/prices")];
+  for (const c of await getCountriesWithListings()) {
+    const cc = c.countryCode.toLowerCase();
+    entries.push(urlEntry(`/prices/${cc}`));
+    for (const city of await getCountryCities(c.countryCode)) {
+      entries.push(urlEntry(`/prices/${cc}/${city.slug}`));
+    }
+  }
+  return urlset(entries);
 }

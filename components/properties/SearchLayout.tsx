@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import SaveSearchButton from "@/components/alerts/SaveSearchButton";
 import {
   Building2,
   Home,
@@ -12,7 +13,10 @@ import {
   X,
 } from "lucide-react";
 import PropertyCard from "@/components/properties/PropertyCard";
-import PropertyMap from "@/components/properties/PropertyMap";
+import dynamic from "next/dynamic";
+
+// Leaflet needs the browser: load the map only on the client.
+const MapSearch = dynamic(() => import("@/components/properties/MapSearch"), { ssr: false });
 
 type Property = Parameters<typeof PropertyCard>[0]["property"];
 
@@ -26,7 +30,7 @@ type InitialParams = Partial<{
   maxArea: string;
   keyword: string;
   isNewBuild: boolean;
-  hasVideo: boolean;
+  reduced: boolean;
   page: string;
 }>;
 
@@ -86,7 +90,7 @@ export default function SearchLayout({
   const [maxArea, setMaxArea] = useState(initialParams.maxArea ?? "");
   const [keyword, setKeyword] = useState(initialParams.keyword ?? "");
   const [isNewBuild, setIsNewBuild] = useState(!!initialParams.isNewBuild);
-  const [hasVideo, setHasVideo] = useState(!!initialParams.hasVideo);
+  const [reduced, setReduced] = useState(!!initialParams.reduced);
 
   const [draftMinPrice, setDraftMinPrice] = useState(minPrice);
   const [draftMaxPrice, setDraftMaxPrice] = useState(maxPrice);
@@ -94,7 +98,7 @@ export default function SearchLayout({
   const [draftMaxArea, setDraftMaxArea] = useState(maxArea);
   const [draftKeyword, setDraftKeyword] = useState(keyword);
   const [draftIsNewBuild, setDraftIsNewBuild] = useState(isNewBuild);
-  const [draftHasVideo, setDraftHasVideo] = useState(hasVideo);
+  const [draftReduced, setDraftReduced] = useState(reduced);
   const [draftTypes, setDraftTypes] = useState<string[]>(types);
   const [draftLocation, setDraftLocation] = useState(location);
   const [draftOffer, setDraftOffer] = useState<"" | "buy" | "rent">(offer);
@@ -323,7 +327,7 @@ export default function SearchLayout({
     if (maxArea) params.set("maxArea", maxArea);
     if (keyword.trim()) params.set("keyword", keyword.trim());
     if (isNewBuild) params.set("isNewBuild", "true");
-    if (hasVideo) params.set("hasVideo", "true");
+    if (reduced) params.set("reduced", "true");
     router.push(`/${locale}/properties?${params.toString()}`);
   };
 
@@ -701,7 +705,7 @@ export default function SearchLayout({
                 setDraftMaxArea(maxArea);
                 setDraftKeyword(keyword);
                 setDraftIsNewBuild(isNewBuild);
-                setDraftHasVideo(hasVideo);
+                setDraftReduced(reduced);
                 setIsFilterModalOpen(true);
               }}
               className="h-11 px-4 rounded-xl border border-gray-200 text-gray-900 bg-white shadow-sm hover:bg-gray-50 transition-colors inline-flex items-center gap-2"
@@ -952,11 +956,11 @@ export default function SearchLayout({
                   <label className="flex items-center gap-2 cursor-pointer w-full whitespace-nowrap text-sm font-medium text-gray-900">
                     <input
                       type="checkbox"
-                      checked={draftHasVideo}
-                      onChange={(e) => setDraftHasVideo(e.target.checked)}
+                      checked={draftReduced}
+                      onChange={(e) => setDraftReduced(e.target.checked)}
                       className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500/30"
                     />
-                    {tSearch("onlyWithVideo")}
+                    {tSearch("onlyReduced")}
                   </label>
                 </div>
               </div>
@@ -1054,7 +1058,7 @@ export default function SearchLayout({
                   setDraftMaxArea("");
                   setDraftKeyword("");
                   setDraftIsNewBuild(false);
-                  setDraftHasVideo(false);
+                  setDraftReduced(false);
                 }}
                 className="text-sm text-gray-500 underline hover:text-gray-700"
               >
@@ -1072,7 +1076,7 @@ export default function SearchLayout({
                   setMaxArea(draftMaxArea.trim());
                   setKeyword(draftKeyword.trim());
                   setIsNewBuild(draftIsNewBuild);
-                  setHasVideo(draftHasVideo);
+                  setReduced(draftReduced);
                   setIsFilterModalOpen(false);
                   // Apply immediately, matching reference UX.
                   const params = new URLSearchParams();
@@ -1085,7 +1089,7 @@ export default function SearchLayout({
                   if (draftMaxArea.trim()) params.set("maxArea", draftMaxArea.trim());
                   if (draftKeyword.trim()) params.set("keyword", draftKeyword.trim());
                   if (draftIsNewBuild) params.set("isNewBuild", "true");
-                  if (draftHasVideo) params.set("hasVideo", "true");
+                  if (draftReduced) params.set("reduced", "true");
                   router.push(`/${locale}/properties?${params.toString()}`);
                 }}
                 className="rounded-xl bg-red-600 hover:bg-red-700 text-white px-6 py-3 text-sm font-bold transition-colors"
@@ -1107,17 +1111,20 @@ export default function SearchLayout({
               : "w-full h-full overflow-y-auto p-4 md:p-6 max-w-5xl mx-auto"
           }
         >
-          <div className="mb-6">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-950 tracking-tight">
-              {tProperties("resultsTitle")}
-            </h1>
-            <div className="mt-2 text-sm text-gray-500">
-              {pagination?.totalIsCapped
-                ? tProperties("resultsCountCapped", { count: pagination.total })
-                : tProperties("resultsCount", {
-                    count: pagination?.total ?? properties.length,
-                  })}
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-950 tracking-tight">
+                {tProperties("resultsTitle")}
+              </h1>
+              <div className="mt-2 text-sm text-gray-500">
+                {pagination?.totalIsCapped
+                  ? tProperties("resultsCountCapped", { count: pagination.total })
+                  : tProperties("resultsCount", {
+                      count: pagination?.total ?? properties.length,
+                    })}
+              </div>
             </div>
+            <SaveSearchButton />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1171,7 +1178,7 @@ export default function SearchLayout({
         {showMap && (
           <div className="hidden lg:block lg:w-1/2 h-full overflow-hidden border-l border-gray-200 bg-white relative z-0">
             <div className="h-full w-full">
-              <PropertyMap properties={properties as any} />
+              <MapSearch fallback={properties as unknown as Array<{ latitude: number | null; longitude: number | null }>} />
             </div>
           </div>
         )}

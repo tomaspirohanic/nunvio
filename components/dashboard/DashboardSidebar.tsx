@@ -11,6 +11,7 @@ import {
   Users,
   FileUp,
   X,
+  Bell,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -25,6 +26,7 @@ const mainNavItems: NavItem[] = [
   { href: "/dashboard", label: "overview", icon: LayoutDashboard },
   { href: "/dashboard/properties", label: "myListings", icon: Home },
   { href: "/dashboard/properties/new", label: "addListing", icon: PlusCircle },
+  { href: "/dashboard/alerts", label: "alerts", icon: Bell },
   { href: "/dashboard/settings", label: "settings", icon: Settings },
 ];
 

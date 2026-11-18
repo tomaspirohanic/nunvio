@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <kyero><feed_version>3</feed_version></kyero>
+  <property>
+    <id>9001</id>
+    <date>2026-10-01 10:00:00</date>
+    <ref>MAR-55</ref>
+    <price>495000</price>
+    <currency>EUR</currency>
+    <price_freq>sale</price_freq>
+    <new_build>0</new_build>
+    <type>villa</type>
+    <town>Marbella</town>
+    <province>Málaga</province>
+    <country>Spain</country>
+    <location><latitude>36.51</latitude><longitude>-4.88</longitude></location>
+    <beds>3</beds>
+    <baths>2</baths>
+    <surface_area><built>180</built><plot>600</plot></surface_area>
+    <desc><es>Villa con piscina.</es><en>Villa with pool and sea views.</en></desc>
+    <images>
+      <image id="1"><url>https://kyero.example.com/1.jpg</url></image>
+      <image id="2"><url>https://kyero.example.com/2.jpg</url></image>
+    </images>
+  </property>
+</root>
