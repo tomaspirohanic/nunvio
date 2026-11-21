@@ -111,7 +111,8 @@
     "typeLandFamily": "Para casas",
     "typeLandCommercial": "Comercial",
     "typeLandGarden": "Jardines",
-    "onlyReduced": "Solo precio rebajado"
+    "onlyReduced": "Solo precio rebajado",
+    "listShow": "Ver lista"
   },
   "Properties": {
     "title": "Propiedades",
@@ -745,7 +746,12 @@
     "cancel": "Cancelar",
     "drawHint": "Toca el mapa para marcar las esquinas de tu zona",
     "openListing": "Abrir anuncio",
-    "perMonth": "/ mes"
+    "perMonth": "/ mes",
+    "noPhotos": "Sin fotos",
+    "previewError": "No se pudo cargar la vista previa. Abre el anuncio.",
+    "sameSpot": "Anuncio {current} de {total} en este lugar",
+    "prevHere": "Anuncio anterior en este lugar",
+    "nextHere": "Siguiente anuncio en este lugar"
   },
   "Mortgage": {
     "title": "Calculadora de hipoteca",

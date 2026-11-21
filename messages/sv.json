@@ -111,7 +111,8 @@
     "typeLandFamily": "För villor",
     "typeLandCommercial": "Kommersiell",
     "typeLandGarden": "Trädgårdar",
-    "onlyReduced": "Endast sänkt pris"
+    "onlyReduced": "Endast sänkt pris",
+    "listShow": "Visa lista"
   },
   "Properties": {
     "title": "Bostäder",
@@ -744,7 +745,12 @@
     "cancel": "Avbryt",
     "drawHint": "Tryck på kartan för att markera områdets hörn",
     "openListing": "Öppna annons",
-    "perMonth": "/ mån"
+    "perMonth": "/ mån",
+    "noPhotos": "Inga bilder",
+    "previewError": "Förhandsvisningen kunde inte laddas. Öppna annonsen.",
+    "sameSpot": "Annons {current} av {total} på den här platsen",
+    "prevHere": "Föregående annons på den här platsen",
+    "nextHere": "Nästa annons på den här platsen"
   },
   "Mortgage": {
     "title": "Bolånekalkylator",

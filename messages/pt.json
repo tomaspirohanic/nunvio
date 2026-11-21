@@ -111,7 +111,8 @@
     "typeLandFamily": "Para moradias",
     "typeLandCommercial": "Comercial",
     "typeLandGarden": "Quintais",
-    "onlyReduced": "Só preço reduzido"
+    "onlyReduced": "Só preço reduzido",
+    "listShow": "Ver lista"
   },
   "Properties": {
     "title": "Imóveis",
@@ -744,7 +745,12 @@
     "cancel": "Cancelar",
     "drawHint": "Toque no mapa para marcar os cantos da sua área",
     "openListing": "Abrir anúncio",
-    "perMonth": "/ mês"
+    "perMonth": "/ mês",
+    "noPhotos": "Sem fotos",
+    "previewError": "Não foi possível carregar a pré-visualização. Abra o anúncio.",
+    "sameSpot": "Anúncio {current} de {total} neste local",
+    "prevHere": "Anúncio anterior neste local",
+    "nextHere": "Próximo anúncio neste local"
   },
   "Mortgage": {
     "title": "Simulador de crédito habitação",

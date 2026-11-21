@@ -111,7 +111,8 @@
     "typeLandFamily": "Pro rod. domy",
     "typeLandCommercial": "Komerční",
     "typeLandGarden": "Zahrady",
-    "onlyReduced": "Jen zlevněné"
+    "onlyReduced": "Jen zlevněné",
+    "listShow": "Zobrazit seznam"
   },
   "Properties": {
     "title": "Nemovitosti",
@@ -745,7 +746,12 @@
     "cancel": "Zrušit",
     "drawHint": "Klepnutím do mapy označte rohy oblasti",
     "openListing": "Otevřít inzerát",
-    "perMonth": "/ měsíc"
+    "perMonth": "/ měsíc",
+    "noPhotos": "Bez fotek",
+    "previewError": "Náhled se nepodařilo načíst. Otevřete inzerát.",
+    "sameSpot": "Inzerát {current} z {total} na tomto místě",
+    "prevHere": "Předchozí inzerát na tomto místě",
+    "nextHere": "Další inzerát na tomto místě"
   },
   "Mortgage": {
     "title": "Hypoteční kalkulačka",

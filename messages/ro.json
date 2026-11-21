@@ -111,7 +111,8 @@
     "typeLandFamily": "Pentru case familiale",
     "typeLandCommercial": "Comercial",
     "typeLandGarden": "Grădini",
-    "onlyReduced": "Doar preț redus"
+    "onlyReduced": "Doar preț redus",
+    "listShow": "Afișează lista"
   },
   "Properties": {
     "title": "Proprietăți",
@@ -744,7 +745,12 @@
     "cancel": "Renunță",
     "drawHint": "Atinge harta pentru a marca colțurile zonei",
     "openListing": "Deschide anunțul",
-    "perMonth": "/ lună"
+    "perMonth": "/ lună",
+    "noPhotos": "Fără fotografii",
+    "previewError": "Previzualizarea nu a putut fi încărcată. Deschideți anunțul.",
+    "sameSpot": "Anunțul {current} din {total} în acest loc",
+    "prevHere": "Anunțul anterior din acest loc",
+    "nextHere": "Următorul anunț din acest loc"
   },
   "Mortgage": {
     "title": "Calculator credit ipotecar",

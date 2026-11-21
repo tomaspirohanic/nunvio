@@ -111,7 +111,8 @@
     "typeLandFamily": "Pour maisons individuelles",
     "typeLandCommercial": "Commercial",
     "typeLandGarden": "Jardins",
-    "onlyReduced": "Prix baissés uniquement"
+    "onlyReduced": "Prix baissés uniquement",
+    "listShow": "Afficher la liste"
   },
   "Properties": {
     "title": "Biens",
@@ -744,7 +745,12 @@
     "cancel": "Annuler",
     "drawHint": "Touchez la carte pour marquer les coins de votre zone",
     "openListing": "Voir l'annonce",
-    "perMonth": "/ mois"
+    "perMonth": "/ mois",
+    "noPhotos": "Pas de photos",
+    "previewError": "Impossible de charger l'aperçu. Ouvrez l'annonce.",
+    "sameSpot": "Annonce {current} sur {total} à cet endroit",
+    "prevHere": "Annonce précédente à cet endroit",
+    "nextHere": "Annonce suivante à cet endroit"
   },
   "Mortgage": {
     "title": "Simulateur de prêt immobilier",

@@ -111,7 +111,8 @@
     "typeLandFamily": "За семейни къщи",
     "typeLandCommercial": "Търговски",
     "typeLandGarden": "Градини",
-    "onlyReduced": "Само с намалена цена"
+    "onlyReduced": "Само с намалена цена",
+    "listShow": "Покажи списъка"
   },
   "Properties": {
     "title": "Имоти",
@@ -744,7 +745,12 @@
     "cancel": "Отказ",
     "drawHint": "Докоснете картата, за да отбележите ъглите на зоната",
     "openListing": "Отвори обявата",
-    "perMonth": "/ месец"
+    "perMonth": "/ месец",
+    "noPhotos": "Няма снимки",
+    "previewError": "Прегледът не можа да се зареди. Отворете обявата.",
+    "sameSpot": "Обява {current} от {total} на това място",
+    "prevHere": "Предишна обява на това място",
+    "nextHere": "Следваща обява на това място"
   },
   "Mortgage": {
     "title": "Ипотечен калкулатор",
