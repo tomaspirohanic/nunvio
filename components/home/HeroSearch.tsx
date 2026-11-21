@@ -113,7 +113,8 @@ export default function HeroSearch() {
         ).slice(0, 8);
 
         setSuggestions(uniqueResults);
-        setShowDropdown(true);
+        // Only while the person is typing in the box.
+        setShowDropdown(document.activeElement === whereInputRef.current);
       } catch (error) {
         console.error("City autocomplete error:", error);
         setSuggestions([]);
