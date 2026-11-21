@@ -15,8 +15,35 @@ import { countryCodeFor } from "@/lib/country-display";
 import { boundsForCountry } from "@/lib/country-bounds";
 import { listingSqlWhere } from "@/lib/listing-search-sql.server";
 import { findPlaceByValue } from "@/lib/places";
+import { geocodePlaces } from "@/lib/places/geocoder.server";
 
 /** A known town/district without listings yet: a box around its centre. */
+type Box = [number, number, number, number]; // [west, south, east, north]
+/** This route answers [south, west, north, east]. */
+const toSWNE = (b: Box) => [b[1], b[0], b[3], b[2]];
+
+async function geocodedBox(query: string): Promise<Box | null> {
+  try {
+    const [hit] = await geocodePlaces(query, "", 1);
+    return hit?.bbox ?? null;
+  } catch (err) {
+    console.error("[map-extent] geocoder", err);
+    return null;
+  }
+}
+
+/**
+ * Outline of a place we know: districts/regions from our list, towns and
+ * city parts from OpenStreetMap ("Rusovce, Bratislava, Slovensko").
+ */
+async function knownPlaceBounds(location: string) {
+  const place = findPlaceByValue(location);
+  if (!place) return null;
+  if (place.bounds) return toSWNE(place.bounds);
+  const box = await geocodedBox([place.name, place.context[0], "Slovensko"].filter(Boolean).join(", "));
+  return box ? toSWNE(box) : null;
+}
+
 function placeBounds(location: string) {
   const place = findPlaceByValue(location);
   if (!place || place.lat == null || place.lng == null) return null;
@@ -35,6 +62,9 @@ export async function GET(req: NextRequest) {
   const country = boundsForCountry(countryCodeFor(location));
   if (country) return NextResponse.json({ bounds: country, kind: "country" }, { headers });
 
+  const known = await knownPlaceBounds(location);
+  if (known) return NextResponse.json({ bounds: known, kind: "place" }, { headers });
+
   try {
     const where = Prisma.sql`${listingSqlWhere({ location })}
       AND "showOnMap" = true AND "latitude" IS NOT NULL AND "longitude" IS NOT NULL
@@ -48,7 +78,7 @@ export async function GET(req: NextRequest) {
              percentile_cont(0.97) WITHIN GROUP (ORDER BY lng) AS e
       FROM (SELECT "latitude" AS lat, "longitude" AS lng FROM "Property" WHERE ${where} LIMIT 5000) x`);
     if (r?.s == null || r.w == null || r.n == null || r.e == null) {
-      const fromPlace = placeBounds(location);
+      const fromPlace = placeBounds(location) ?? (await geocodedBox(location).then((b) => (b ? toSWNE(b) : null)));
       return NextResponse.json({ bounds: fromPlace, kind: fromPlace ? "place" : undefined }, { headers });
     }
     // A single building would zoom in to street level: keep at least ~2 km around it.

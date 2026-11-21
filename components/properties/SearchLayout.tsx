@@ -91,7 +91,10 @@ export default function SearchLayout({
   const pickedRef = useRef<PickedPlace | null>(
     initialParams.place && initialParams.placeBbox
       ? { value: initialParams.place, bbox: initialParams.placeBbox }
-      : null
+      : // the place already searched: no suggestions until it's changed
+        initialParams.location
+        ? { value: initialParams.location }
+        : null
   );
   const [isSearching, setIsSearching] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -155,7 +158,8 @@ export default function SearchLayout({
         const data = await response.json();
         const results = Array.isArray(data) ? data.slice(0, 8) : [];
         setSuggestions(results);
-        setShowDropdown(true);
+        // Only while the person is typing in the box.
+        setShowDropdown(document.activeElement === whereInputRef.current);
       } catch (error) {
         console.error("City autocomplete error:", error);
         setSuggestions([]);

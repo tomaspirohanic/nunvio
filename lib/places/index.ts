@@ -48,6 +48,8 @@ export interface Place {
    * instead of by the town name.
    */
   bbox?: [number, number, number, number] | null;
+  /** Districts / regions: box around their towns [west, south, east, north], for the map. */
+  bounds?: [number, number, number, number];
 }
 
 interface Entry {
@@ -96,6 +98,11 @@ function build() {
     const districtLabel = (d: string) => (prefix ? `${prefix} ${d}` : d);
     const districtCities: string[][] = file.districts.map(() => []);
     const regionCities: string[][] = file.regions.map(() => []);
+    type Box = [number, number, number, number];
+    const grow = (b: Box | undefined, lat: number, lng: number): Box =>
+      b ? [Math.min(b[0], lng), Math.min(b[1], lat), Math.max(b[2], lng), Math.max(b[3], lat)] : [lng, lat, lng, lat];
+    const districtBox: Array<Box | undefined> = file.districts.map(() => undefined);
+    const regionBox: Array<Box | undefined> = file.regions.map(() => undefined);
 
     file.places.forEach(([name, type, ri, di, lat, lng, parent], i) => {
       const kind: PlaceKind = type === "c" ? "city" : type === "p" ? "part" : "village";
@@ -106,6 +113,10 @@ function build() {
       const cities = cityVariants(name, parent);
       if (di >= 0) districtCities[di].push(...cities);
       regionCities[ri].push(...cities);
+      if (lat && lng && type !== "p") {
+        if (di >= 0) districtBox[di] = grow(districtBox[di], lat, lng);
+        regionBox[ri] = grow(regionBox[ri], lat, lng);
+      }
       entries.push({
         place: {
           id: `${cc}-p${i}`,
@@ -135,6 +146,7 @@ function build() {
           countryCode: cc,
           lat: lat || null,
           lng: lng || null,
+          bounds: districtBox[i],
         },
         key: foldPlaceName(name),
         words: [],
@@ -161,6 +173,7 @@ function build() {
           countryCode: cc,
           lat: avg(2),
           lng: avg(3),
+          bounds: regionBox[ri],
         },
         key: foldPlaceName(name),
         words: [],
