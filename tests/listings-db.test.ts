@@ -148,6 +148,9 @@ test("SQL filter builder matches the Prisma one; drawn area filters exactly", { 
     { location: "Trnava", offer: "buy" as const, maxPrice: 300000 },
     { location: "Trnava", types: ["house_villa"] },
     { location: "Slovensko", minArea: 100 },
+    { location: "okres Trnava" },
+    { location: "Trnavský kraj", offer: "buy" as const },
+    { location: "okres Sobrance" },
     { keyword: "50%_" },
   ];
   for (const c of cases) {
@@ -155,6 +158,12 @@ test("SQL filter builder matches the Prisma one; drawn area filters exactly", { 
     const viaSql = (await m.prisma.$queryRaw<Array<{ id: string }>>(Prisma.sql`SELECT id FROM "Property" WHERE ${listingSqlWhere(c)}`)).map((r) => r.id).sort();
     assert.deepEqual(viaSql, viaPrisma, JSON.stringify(c));
   }
+  // A district / region finds the listings of its towns, and only those.
+  const inDistrict = await m.prisma.property.count({ where: m.buildListingWhere({ location: "okres Trnava" }) });
+  const inTrnava = await m.prisma.property.count({ where: m.buildListingWhere({ location: "Trnava" }) });
+  assert.equal(inDistrict, inTrnava);
+  assert.ok(inDistrict > 0);
+  assert.equal(await m.prisma.property.count({ where: m.buildListingWhere({ location: "okres Sobrance" }) }), 0);
   // Triangle around the centre point only
   const area: Array<[number, number]> = [[48.39, 17.57], [48.37, 17.60], [48.365, 17.575]];
   const inArea = await m.prisma.$queryRaw<Array<{ externalId: string }>>(

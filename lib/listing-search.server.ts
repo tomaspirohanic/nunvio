@@ -13,6 +13,7 @@ import { unstable_cache } from "next/cache";
 import { Prisma, PropertyType } from "@prisma/client";
 import { prisma } from "@/lib/db";
 import { countryCodeFor } from "@/lib/country-display";
+import { citiesForArea } from "@/lib/places";
 import { translationWhereForLocale } from "@/lib/listing-text";
 import { LISTINGS_CACHE_TAG } from "@/lib/revalidate-listings";
 import type { ListingSearchParams } from "@/lib/listing-search-params";
@@ -36,8 +37,12 @@ export function buildListingWhere(p: ListingSearchParams): Prisma.PropertyWhereI
     // "Slovensko", "Germany", "Nemecko", "DE" -> indexed equality on countryCode.
     // Anything else (city, district, partial text) -> trigram ILIKE on city/country.
     const code = countryCodeFor(p.location);
+    const areaCities = code ? null : citiesForArea(p.location);
     if (code) {
       where.countryCode = code;
+    } else if (areaCities) {
+      // "okres Sobrance", "Košický kraj" -> any of its towns (lib/places)
+      and.push({ city: { in: areaCities, mode: "insensitive" } });
     } else {
       and.push({
         OR: [

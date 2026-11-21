@@ -11,6 +11,7 @@
 import "server-only";
 import { Prisma, PropertyType } from "@prisma/client";
 import { countryCodeFor } from "@/lib/country-display";
+import { citiesForArea } from "@/lib/places";
 import type { ListingSearchParams } from "@/lib/listing-search-params";
 
 function likeEscape(s: string) {
@@ -27,8 +28,12 @@ export function listingSqlWhere(p: ListingSearchParams): Prisma.Sql {
 
   if (p.location) {
     const code = countryCodeFor(p.location);
+    const areaCities = code ? null : citiesForArea(p.location);
     if (code) parts.push(Prisma.sql`"countryCode" = ${code}`);
-    else {
+    else if (areaCities) {
+      // "okres Sobrance", "Košický kraj" -> any of its towns
+      parts.push(Prisma.sql`lower("city") = ANY(${areaCities.map((c) => c.toLowerCase())}::text[])`);
+    } else {
       const like = `%${likeEscape(p.location)}%`;
       parts.push(Prisma.sql`("city" ILIKE ${like} OR "country" ILIKE ${like})`);
     }
