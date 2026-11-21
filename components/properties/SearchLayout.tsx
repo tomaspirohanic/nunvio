@@ -4,6 +4,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import SaveSearchButton from "@/components/alerts/SaveSearchButton";
+import LocationSuggestionRow, {
+  suggestionValue,
+  type LocationSuggestion,
+} from "@/components/search/LocationSuggestionRow";
 import {
   Building2,
   Home,
@@ -76,7 +80,9 @@ export default function SearchLayout({
   const [activeDropdown, setActiveDropdown] = useState<"offer" | "what" | null>(
     null
   );
-  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [suggestions, setSuggestions] = useState<LocationSuggestion[]>([]);
+  // Text of the last picked suggestion: don't search again for it.
+  const pickedRef = useRef<string | null>(null);
   const [isSearching, setIsSearching] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const barRef = useRef<HTMLDivElement>(null);
@@ -117,7 +123,7 @@ export default function SearchLayout({
 
   useEffect(() => {
     const query = location.trim();
-    if (query.length < 2) {
+    if (query.length < 2 || query === pickedRef.current) {
       setSuggestions([]);
       setIsSearching(false);
       setShowDropdown(false);
@@ -127,7 +133,7 @@ export default function SearchLayout({
     const timeoutId = setTimeout(async () => {
       try {
         setIsSearching(true);
-        // Own endpoint (cities with listings) instead of public Nominatim.
+        // Own endpoint: all towns/districts/regions (lib/places) + listing counts.
         const response = await fetch(
           `/api/locations/suggest?q=${encodeURIComponent(query)}`
         );
@@ -281,15 +287,9 @@ export default function SearchLayout({
     },
   ];
 
-  const handleSelectSuggestion = (suggestion: any) => {
-    const selectedCity =
-      suggestion?.address?.city ||
-      suggestion?.address?.town ||
-      suggestion?.address?.village ||
-      suggestion?.name ||
-      suggestion?.display_name ||
-      "";
-
+  const handleSelectSuggestion = (suggestion: LocationSuggestion) => {
+    const selectedCity = suggestionValue(suggestion);
+    pickedRef.current = selectedCity;
     setLocation(selectedCity);
     setSuggestions([]);
     setShowDropdown(false);
@@ -342,15 +342,15 @@ export default function SearchLayout({
       <div className="w-full bg-white border-b border-gray-200 p-4 z-10 sticky top-0">
         <div
           ref={barRef}
-          className="max-w-7xl mx-auto flex items-center justify-between w-full gap-4"
+          className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between w-full gap-3 lg:gap-4"
         >
           {/* Inputs group */}
-          <div className="flex-1 min-w-0">
-            <div className="w-full bg-white rounded-2xl md:rounded-full border border-gray-200 shadow-sm px-3 py-3">
+          <div className="w-full lg:flex-1 min-w-0">
+            <div className="w-full bg-white rounded-2xl lg:rounded-full border border-gray-200 shadow-sm px-2 py-1 lg:px-3 lg:py-3">
               <div className="flex flex-col lg:flex-row gap-3 lg:gap-4 items-stretch lg:items-center">
                 {/* Where */}
                 <div
-                  className="relative flex items-center px-3 py-2 gap-2 w-full md:w-auto md:flex-[2] md:min-w-[220px] cursor-pointer hover:bg-gray-50 rounded-lg min-h-12 border-b border-gray-100 md:border-b-0"
+                  className="relative flex items-center px-3 py-2 gap-2 w-full lg:w-auto lg:flex-[2] lg:min-w-[220px] cursor-pointer hover:bg-gray-50 rounded-lg min-h-12"
                   onClick={() => {
                     whereInputRef.current?.focus();
                     setActiveDropdown(null);
@@ -401,46 +401,11 @@ export default function SearchLayout({
                           </li>
                         ) : (
                           suggestions.map((suggestion) => (
-                            <li
+                            <LocationSuggestionRow
                               key={suggestion.place_id}
-                              className="flex items-center gap-3 p-3 hover:bg-gray-50 cursor-pointer rounded-lg border-b border-gray-100 last:border-b-0"
-                              onClick={() => handleSelectSuggestion(suggestion)}
-                            >
-                              <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
-                                <svg
-                                  className="w-4 h-4 text-gray-500"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  aria-hidden="true"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M12 11c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z"
-                                  />
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M19.5 10.5c0 6-7.5 11-7.5 11s-7.5-5-7.5-11a7.5 7.5 0 1115 0z"
-                                  />
-                                </svg>
-                              </div>
-                              <div className="flex flex-col min-w-0">
-                                <span className="text-sm font-semibold text-gray-800 truncate">
-                                  {String(suggestion.display_name).split(",")[0]}
-                                </span>
-                                <span className="text-xs text-gray-500 truncate">
-                                  {String(suggestion.display_name)
-                                    .split(",")
-                                    .slice(1)
-                                    .join(",")
-                                    .trim()}
-                                </span>
-                              </div>
-                            </li>
+                              suggestion={suggestion}
+                              onSelect={handleSelectSuggestion}
+                            />
                           ))
                         )}
                       </ul>
@@ -448,11 +413,11 @@ export default function SearchLayout({
                   )}
                 </div>
 
-                <div className="hidden md:block h-8 border-l border-gray-300" />
+                <div className="hidden lg:block h-8 border-l border-gray-300" />
 
                 {/* Offer */}
                 <div
-                  className="relative flex items-center px-3 py-2 gap-2 w-full md:w-auto md:flex-[1] md:min-w-[160px] cursor-pointer hover:bg-gray-50 rounded-lg min-h-12 border-b border-gray-100 md:border-b-0"
+                  className="relative hidden lg:flex items-center px-3 py-2 gap-2 w-full lg:w-auto lg:flex-[1] lg:min-w-[160px] cursor-pointer hover:bg-gray-50 rounded-lg min-h-12 border-b border-gray-100 lg:border-b-0"
                   onClick={() => {
                     setActiveDropdown((prev) => (prev === "offer" ? null : "offer"));
                     setShowDropdown(false);
@@ -535,11 +500,11 @@ export default function SearchLayout({
                   )}
                 </div>
 
-                <div className="hidden md:block h-8 border-l border-gray-300" />
+                <div className="hidden lg:block h-8 border-l border-gray-300" />
 
                 {/* What */}
                 <div
-                  className="relative flex items-center px-3 py-2 gap-2 w-full md:w-auto md:flex-[1.5] md:min-w-[240px] cursor-pointer hover:bg-gray-50 rounded-lg min-h-12 border-b border-gray-100 md:border-b-0"
+                  className="relative hidden lg:flex items-center px-3 py-2 gap-2 w-full lg:w-auto lg:flex-[1.5] lg:min-w-[240px] cursor-pointer hover:bg-gray-50 rounded-lg min-h-12 border-b border-gray-100 lg:border-b-0"
                   onClick={() => {
                     setActiveDropdown(null);
                     setShowDropdown(false);
@@ -694,8 +659,10 @@ export default function SearchLayout({
             </div>
           </div>
 
+          {/* Actions + map toggle: one row on phones, separate on desktop */}
+          <div className="flex items-center gap-2 lg:contents">
           {/* Actions group */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex flex-1 lg:flex-none items-center gap-2 shrink-0">
                   <button
               type="button"
               onClick={() => {
@@ -711,7 +678,7 @@ export default function SearchLayout({
                 setDraftReduced(reduced);
                 setIsFilterModalOpen(true);
               }}
-              className="h-11 px-4 rounded-xl border border-gray-200 text-gray-900 bg-white shadow-sm hover:bg-gray-50 transition-colors inline-flex items-center gap-2"
+              className="h-11 px-4 rounded-xl border border-gray-200 text-gray-900 bg-white shadow-sm hover:bg-gray-50 transition-colors inline-flex items-center justify-center gap-2 flex-1 lg:flex-none"
             >
               <SlidersHorizontal className="w-4 h-4" />
                     <span>{tSearch("filter")}</span>
@@ -720,7 +687,7 @@ export default function SearchLayout({
             <button
               type="button"
               onClick={onSearch}
-              className="h-11 px-6 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold shadow-sm transition-colors inline-flex items-center gap-2"
+              className="h-11 px-4 lg:px-6 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold shadow-sm transition-colors inline-flex items-center justify-center gap-2 flex-1 lg:flex-none"
             >
               <svg
                 className="w-4 h-4"
@@ -745,11 +712,13 @@ export default function SearchLayout({
             <button
               type="button"
               onClick={() => setIsMapOpen((v) => !v)}
-              className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 transition-colors"
+              aria-label={showMap ? tSearch("mapHide") : tSearch("mapShow")}
+              className="h-11 lg:h-auto inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 lg:px-4 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 transition-colors"
             >
               <MapIcon className="w-4 h-4" />
-              {showMap ? tSearch("mapHide") : tSearch("mapShow")}
+              <span className="hidden sm:inline">{showMap ? tSearch("mapHide") : tSearch("mapShow")}</span>
             </button>
+          </div>
           </div>
         </div>
       </div>

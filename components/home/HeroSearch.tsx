@@ -12,6 +12,10 @@ import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { PropertyType } from "@prisma/client";
 import AdvancedFilterModal from "./AdvancedFilterModal";
+import LocationSuggestionRow, {
+  suggestionValue,
+  type LocationSuggestion,
+} from "@/components/search/LocationSuggestionRow";
 
 type OfferType = "buy" | "rent" | "";
 
@@ -34,7 +38,9 @@ export default function HeroSearch() {
   const tPropertyTypes = useTranslations("PropertyTypes");
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<"offer" | "what" | null>(null);
-  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [suggestions, setSuggestions] = useState<LocationSuggestion[]>([]);
+  // Text of the last picked suggestion: don't search again for it.
+  const pickedRef = useRef<string | null>(null);
   const [isSearching, setIsSearching] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const searchBarRef = useRef<HTMLDivElement>(null);
@@ -76,7 +82,7 @@ export default function HeroSearch() {
 
   useEffect(() => {
     const query = filters.city.trim();
-    if (query.length < 2) {
+    if (query.length < 2 || query === pickedRef.current) {
       setSuggestions([]);
       setIsSearching(false);
       setShowDropdown(false);
@@ -86,7 +92,7 @@ export default function HeroSearch() {
     const timeoutId = setTimeout(async () => {
       try {
         setIsSearching(true);
-        // Own endpoint (cities with listings) instead of public Nominatim.
+        // Own endpoint: all towns/districts/regions (lib/places) + listing counts.
         const response = await fetch(
           `/api/locations/suggest?q=${encodeURIComponent(query)}`
         );
@@ -96,12 +102,12 @@ export default function HeroSearch() {
         }
 
         const data = await response.json();
-        const raw = Array.isArray(data) ? data : [];
+        const raw: LocationSuggestion[] = Array.isArray(data) ? data : [];
 
         // SAFE DEDUPE: keep first occurrence of each exact display_name
         const uniqueResults = Array.from(
-          new Map(raw.map((item: any) => [item.display_name, item])).values()
-        ).slice(0, 5);
+          new Map(raw.map((item) => [item.display_name, item])).values()
+        ).slice(0, 8);
 
         setSuggestions(uniqueResults);
         setShowDropdown(true);
@@ -129,15 +135,9 @@ export default function HeroSearch() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleSelectSuggestion = (suggestion: any) => {
-    const selectedCity =
-      suggestion?.address?.city ||
-      suggestion?.address?.town ||
-      suggestion?.address?.village ||
-      suggestion?.name ||
-      suggestion?.display_name ||
-      "";
-
+  const handleSelectSuggestion = (suggestion: LocationSuggestion) => {
+    const selectedCity = suggestionValue(suggestion);
+    pickedRef.current = selectedCity;
     handleFilterChange("city", selectedCity);
     setSuggestions([]);
     setShowDropdown(false);
@@ -178,13 +178,13 @@ export default function HeroSearch() {
       {/* Horizontal Search Bar */}
       <div
         ref={searchBarRef}
-        className="w-full max-w-6xl mx-auto bg-white rounded-2xl md:rounded-full shadow-lg border border-gray-200 p-4 md:p-3"
+        className="w-full max-w-6xl mx-auto bg-white rounded-2xl lg:rounded-full shadow-lg border border-gray-200 p-4 lg:p-3"
       >
-        <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-stretch md:items-center">
+        <div className="flex flex-col lg:flex-row gap-2 lg:gap-4 items-stretch lg:items-center">
           {/* Where: City Autocomplete */}
           <div
             ref={whereContainerRef}
-            className="relative flex items-center px-3 py-2 gap-2 w-full md:w-auto md:flex-[2] md:min-w-[200px] cursor-pointer hover:bg-gray-50 rounded-lg min-h-12 border-b border-gray-100 md:border-b-0"
+            className="relative flex items-center px-3 py-2 gap-2 w-full lg:w-auto lg:flex-[2] lg:min-w-[200px] cursor-pointer hover:bg-gray-50 rounded-lg min-h-12 border-b border-gray-100 lg:border-b-0"
             onClick={() => {
               whereInputRef.current?.focus();
               setActiveDropdown(null);
@@ -212,37 +212,22 @@ export default function HeroSearch() {
                   <li className="px-4 py-3 text-sm text-gray-500">{t("loadingSuggestions")}</li>
                 ) : (
                   suggestions.map((suggestion) => (
-                    <li
+                    <LocationSuggestionRow
                       key={suggestion.place_id}
-                      className="flex items-center gap-3 p-3 hover:bg-gray-50 cursor-pointer rounded-lg border-b border-gray-100 last:border-b-0"
-                      onClick={() => handleSelectSuggestion(suggestion)}
-                    >
-                      <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
-                        <svg className="w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 11c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.5 10.5c0 6-7.5 11-7.5 11s-7.5-5-7.5-11a7.5 7.5 0 1115 0z" />
-                        </svg>
-                      </div>
-                      <div className="flex flex-col min-w-0">
-                        <span className="text-sm font-semibold text-gray-800 truncate">
-                          {String(suggestion.display_name).split(",")[0]}
-                        </span>
-                        <span className="text-xs text-gray-500 truncate">
-                          {String(suggestion.display_name).split(",").slice(1).join(",").trim()}
-                        </span>
-                      </div>
-                    </li>
+                      suggestion={suggestion}
+                      onSelect={handleSelectSuggestion}
+                    />
                   ))
                 )}
                 </ul>
               </div>
             )}
           </div>
-          <div className="hidden md:block h-8 border-l border-gray-300" />
+          <div className="hidden lg:block h-8 border-l border-gray-300" />
 
           {/* Offer: Buy/Rent */}
           <div
-            className="relative flex items-center px-3 py-2 gap-2 w-full md:w-auto md:flex-[1] md:min-w-[140px] cursor-pointer hover:bg-gray-50 rounded-lg min-h-12 border-b border-gray-100 md:border-b-0"
+            className="relative flex items-center px-3 py-2 gap-2 w-full lg:w-auto lg:flex-[1] lg:min-w-[140px] cursor-pointer hover:bg-gray-50 rounded-lg min-h-12 border-b border-gray-100 lg:border-b-0"
             onClick={() => {
               setActiveDropdown((prev) => (prev === "offer" ? null : "offer"));
               setShowDropdown(false);
@@ -287,11 +272,11 @@ export default function HeroSearch() {
               </div>
             )}
           </div>
-          <div className="hidden md:block h-8 border-l border-gray-300" />
+          <div className="hidden lg:block h-8 border-l border-gray-300" />
 
           {/* What: Property Type */}
           <div
-            className="relative flex items-center px-3 py-2 gap-2 w-full md:w-auto md:flex-[1.5] md:min-w-[220px] cursor-pointer hover:bg-gray-50 rounded-lg min-h-12 border-b border-gray-100 md:border-b-0"
+            className="relative flex items-center px-3 py-2 gap-2 w-full lg:w-auto lg:flex-[1.5] lg:min-w-[220px] cursor-pointer hover:bg-gray-50 rounded-lg min-h-12 border-b border-gray-100 lg:border-b-0"
             onClick={() => {
               setActiveDropdown((prev) => (prev === "what" ? null : "what"));
               setShowDropdown(false);
@@ -347,13 +332,13 @@ export default function HeroSearch() {
               </div>
             )}
           </div>
-          <div className="hidden md:block h-8 border-l border-gray-300" />
+          <div className="hidden lg:block h-8 border-l border-gray-300" />
 
           {/* Buttons */}
-          <div className="w-full md:w-auto flex flex-row justify-between mt-2 md:mt-0 md:justify-start gap-2 md:gap-3 md:pl-2">
+          <div className="w-full lg:w-auto flex flex-row justify-between mt-2 lg:mt-0 lg:justify-start gap-2 lg:gap-3 lg:pl-2">
             <button
               onClick={() => setIsFilterModalOpen(true)}
-              className={`h-12 px-5 rounded-lg border border-gray-300 transition-colors flex items-center justify-center gap-2 w-full md:w-auto ${
+              className={`h-12 px-5 rounded-lg border border-gray-300 transition-colors flex items-center justify-center gap-2 w-full lg:w-auto ${
                 hasAdvancedFilters ? "bg-blue-50 border-blue-300 text-blue-700" : "text-gray-700"
               }`}
               aria-label={t("filters")}
@@ -371,7 +356,7 @@ export default function HeroSearch() {
 
             <button
               onClick={handleSearch}
-              className="h-12 min-w-32 px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors font-bold text-base flex items-center justify-center gap-2 w-full md:w-auto"
+              className="h-12 min-w-32 px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors font-bold text-base flex items-center justify-center gap-2 w-full lg:w-auto"
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
