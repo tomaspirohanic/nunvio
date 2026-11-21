@@ -8,6 +8,7 @@ import {
   Building2,
   Home,
   LandPlot,
+  List,
   Map as MapIcon,
   SlidersHorizontal,
   X,
@@ -68,6 +69,8 @@ export default function SearchLayout({
   }, [locale]);
 
   const [isMapOpen, setIsMapOpen] = useState(true);
+  /** Phones show either the list or a full-screen map (toggle button at the bottom). */
+  const [mobileMap, setMobileMap] = useState(false);
 
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<"offer" | "what" | null>(
@@ -738,7 +741,7 @@ export default function SearchLayout({
           </div>
 
           {/* Right: map toggle pushed to edge */}
-          <div className="ml-auto shrink-0">
+          <div className="ml-auto shrink-0 hidden lg:block">
             <button
               type="button"
               onClick={() => setIsMapOpen((v) => !v)}
@@ -1102,14 +1105,14 @@ export default function SearchLayout({
       )}
 
       {/* Split-screen area */}
-      <div className="h-[calc(100vh-140px)] overflow-hidden flex flex-col lg:flex-row">
+      <div className="relative h-[calc(100vh-140px)] overflow-hidden flex flex-col lg:flex-row">
         {/* LEFT: List */}
         <div
-          className={
+          className={`${mobileMap ? "hidden lg:block " : ""}${
             showMap
               ? "w-full lg:w-1/2 h-full overflow-y-auto p-4 md:p-6"
               : "w-full h-full overflow-y-auto p-4 md:p-6 max-w-5xl mx-auto"
-          }
+          }`}
         >
           <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
             <div>
@@ -1175,13 +1178,33 @@ export default function SearchLayout({
         </div>
 
         {/* RIGHT: Map */}
-        {showMap && (
-          <div className="hidden lg:block lg:w-1/2 h-full overflow-hidden border-l border-gray-200 bg-white relative z-0">
+        {(showMap || mobileMap) && (
+          <div
+            className={`${
+              mobileMap
+                ? "fixed inset-x-0 top-16 bottom-0 z-[650] pb-16 lg:static lg:z-0 lg:pb-0"
+                : "hidden relative z-0"
+            } ${showMap ? "lg:block" : "lg:hidden"} w-full lg:w-1/2 lg:h-full overflow-hidden lg:border-l border-gray-200 bg-white`}
+          >
             <div className="h-full w-full">
-              <MapSearch fallback={properties as unknown as Array<{ latitude: number | null; longitude: number | null }>} />
+              <MapSearch
+                key={mobileMap ? "mobile" : "desktop"}
+                fallback={properties as unknown as Array<{ latitude: number | null; longitude: number | null }>}
+              />
             </div>
           </div>
         )}
+
+        {/* Phones: switch between list and map */}
+        <button
+          type="button"
+          data-testid="mobile-map-toggle"
+          onClick={() => setMobileMap((v) => !v)}
+          className="lg:hidden fixed bottom-4 left-1/2 z-[700] -translate-x-1/2 inline-flex items-center gap-2 rounded-full bg-gray-900 px-5 py-3 text-sm font-semibold text-white shadow-lg"
+        >
+          {mobileMap ? <List className="w-4 h-4" /> : <MapIcon className="w-4 h-4" />}
+          {mobileMap ? tSearch("listShow") : tSearch("mapShow")}
+        </button>
       </div>
     </div>
   );

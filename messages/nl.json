@@ -111,7 +111,8 @@
     "typeLandFamily": "Voor woningbouw",
     "typeLandCommercial": "Bedrijfsgrond",
     "typeLandGarden": "Tuinen",
-    "onlyReduced": "Alleen verlaagde prijs"
+    "onlyReduced": "Alleen verlaagde prijs",
+    "listShow": "Lijst tonen"
   },
   "Properties": {
     "title": "Woningen",
@@ -744,7 +745,9 @@
     "cancel": "Annuleren",
     "drawHint": "Tik op de kaart om de hoeken van je gebied te markeren",
     "openListing": "Advertentie openen",
-    "perMonth": "/ maand"
+    "perMonth": "/ maand",
+    "noPhotos": "Geen foto's",
+    "previewError": "Voorbeeld kon niet worden geladen. Open de advertentie."
   },
   "Mortgage": {
     "title": "Hypotheekcalculator",

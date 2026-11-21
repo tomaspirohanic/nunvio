@@ -111,7 +111,8 @@
     "typeLandFamily": "Għal djar tal-familja",
     "typeLandCommercial": "Kummerċjali",
     "typeLandGarden": "Ġonna",
-    "onlyReduced": "Prezz imnaqqas biss"
+    "onlyReduced": "Prezz imnaqqas biss",
+    "listShow": "Uri l-lista"
   },
   "Properties": {
     "title": "Proprjetajiet",
@@ -744,7 +745,9 @@
     "cancel": "Ikkanċella",
     "drawHint": "Agħfas fuq il-mappa biex timmarka l-kantunieri taż-żona",
     "openListing": "Iftaħ ir-reklam",
-    "perMonth": "/ xahar"
+    "perMonth": "/ xahar",
+    "noPhotos": "L-ebda ritratt",
+    "previewError": "Ma setax jitgħabba l-preview. Iftaħ ir-reklam."
   },
   "Mortgage": {
     "title": "Kalkulatur tas-self għad-dar",

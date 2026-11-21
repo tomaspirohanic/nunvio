@@ -111,7 +111,8 @@
     "typeLandFamily": "Pre rod. domy",
     "typeLandCommercial": "Komerčné",
     "typeLandGarden": "Záhrady",
-    "onlyReduced": "Iba zlacnené"
+    "onlyReduced": "Iba zlacnené",
+    "listShow": "Zobraziť zoznam"
   },
   "Properties": {
     "title": "Nehnuteľnosti",
@@ -745,7 +746,9 @@
     "cancel": "Zrušiť",
     "drawHint": "Ťuknutím do mapy označte rohy oblasti",
     "openListing": "Otvoriť inzerát",
-    "perMonth": "/ mesiac"
+    "perMonth": "/ mesiac",
+    "noPhotos": "Bez fotiek",
+    "previewError": "Náhľad sa nepodarilo načítať. Otvorte inzerát."
   },
   "Mortgage": {
     "title": "Hypotekárna kalkulačka",

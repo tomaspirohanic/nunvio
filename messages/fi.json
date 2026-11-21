@@ -111,7 +111,8 @@
     "typeLandFamily": "Omakotitaloille",
     "typeLandCommercial": "Liiketontti",
     "typeLandGarden": "Puutarhat",
-    "onlyReduced": "Vain alennettu hinta"
+    "onlyReduced": "Vain alennettu hinta",
+    "listShow": "Näytä lista"
   },
   "Properties": {
     "title": "Asunnot",
@@ -744,7 +745,9 @@
     "cancel": "Peruuta",
     "drawHint": "Napauta karttaa merkitäksesi alueen kulmat",
     "openListing": "Avaa ilmoitus",
-    "perMonth": "/ kk"
+    "perMonth": "/ kk",
+    "noPhotos": "Ei kuvia",
+    "previewError": "Esikatselua ei voitu ladata. Avaa ilmoitus."
   },
   "Mortgage": {
     "title": "Asuntolainalaskuri",

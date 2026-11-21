@@ -111,7 +111,8 @@
     "typeLandFamily": "Za obiteljske kuće",
     "typeLandCommercial": "Poslovno",
     "typeLandGarden": "Vrtovi",
-    "onlyReduced": "Samo snižena cijena"
+    "onlyReduced": "Samo snižena cijena",
+    "listShow": "Prikaži popis"
   },
   "Properties": {
     "title": "Nekretnine",
@@ -744,7 +745,9 @@
     "cancel": "Odustani",
     "drawHint": "Dodirnite kartu da označite kutove područja",
     "openListing": "Otvori oglas",
-    "perMonth": "/ mj."
+    "perMonth": "/ mj.",
+    "noPhotos": "Nema fotografija",
+    "previewError": "Pregled se nije mogao učitati. Otvorite oglas."
   },
   "Mortgage": {
     "title": "Kalkulator stambenog kredita",

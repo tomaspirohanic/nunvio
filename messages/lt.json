@@ -111,7 +111,8 @@
     "typeLandFamily": "Gyvenamiesiems namams",
     "typeLandCommercial": "Komercinis",
     "typeLandGarden": "Sodai",
-    "onlyReduced": "Tik sumažinta kaina"
+    "onlyReduced": "Tik sumažinta kaina",
+    "listShow": "Rodyti sąrašą"
   },
   "Properties": {
     "title": "Nekilnojamasis turtas",
@@ -744,7 +745,9 @@
     "cancel": "Atšaukti",
     "drawHint": "Palieskite žemėlapį, kad pažymėtumėte srities kampus",
     "openListing": "Atidaryti skelbimą",
-    "perMonth": "/ mėn."
+    "perMonth": "/ mėn.",
+    "noPhotos": "Nuotraukų nėra",
+    "previewError": "Nepavyko įkelti peržiūros. Atidarykite skelbimą."
   },
   "Mortgage": {
     "title": "Būsto paskolos skaičiuoklė",
