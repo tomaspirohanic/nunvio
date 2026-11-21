@@ -135,7 +135,7 @@ export default function SearchLayout({
         setIsSearching(true);
         // Own endpoint: all towns/districts/regions (lib/places) + listing counts.
         const response = await fetch(
-          `/api/locations/suggest?q=${encodeURIComponent(query)}`
+          `/api/locations/suggest?v=2&q=${encodeURIComponent(query)}`
         );
 
         if (!response.ok) {
