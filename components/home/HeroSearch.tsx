@@ -13,8 +13,11 @@ import { useLocale, useTranslations } from "next-intl";
 import { PropertyType } from "@prisma/client";
 import AdvancedFilterModal from "./AdvancedFilterModal";
 import LocationSuggestionRow, {
+  setLocationParams,
+  suggestUrl,
   suggestionValue,
   type LocationSuggestion,
+  type PickedPlace,
 } from "@/components/search/LocationSuggestionRow";
 
 type OfferType = "buy" | "rent" | "";
@@ -40,7 +43,7 @@ export default function HeroSearch() {
   const [activeDropdown, setActiveDropdown] = useState<"offer" | "what" | null>(null);
   const [suggestions, setSuggestions] = useState<LocationSuggestion[]>([]);
   // Text of the last picked suggestion: don't search again for it.
-  const pickedRef = useRef<string | null>(null);
+  const pickedRef = useRef<PickedPlace | null>(null);
   const [isSearching, setIsSearching] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const searchBarRef = useRef<HTMLDivElement>(null);
@@ -62,7 +65,7 @@ export default function HeroSearch() {
     const params = new URLSearchParams();
 
     // Results page expects: location, offer, type
-    if (filters.city) params.set("location", filters.city);
+    setLocationParams(params, filters.city, pickedRef.current);
     if (filters.offer) params.set("offer", filters.offer);
     if (filters.propertyType)
       params.set("type", String(filters.propertyType).toLowerCase());
@@ -82,7 +85,7 @@ export default function HeroSearch() {
 
   useEffect(() => {
     const query = filters.city.trim();
-    if (query.length < 2 || query === pickedRef.current) {
+    if (query.length < 2 || query === pickedRef.current?.value) {
       setSuggestions([]);
       setIsSearching(false);
       setShowDropdown(false);
@@ -94,7 +97,7 @@ export default function HeroSearch() {
         setIsSearching(true);
         // Own endpoint: all towns/districts/regions (lib/places) + listing counts.
         const response = await fetch(
-          `/api/locations/suggest?v=2&q=${encodeURIComponent(query)}`
+          suggestUrl(query, locale)
         );
 
         if (!response.ok) {
@@ -121,7 +124,7 @@ export default function HeroSearch() {
     }, 300);
 
     return () => clearTimeout(timeoutId);
-  }, [filters.city]);
+  }, [filters.city, locale]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -137,7 +140,7 @@ export default function HeroSearch() {
 
   const handleSelectSuggestion = (suggestion: LocationSuggestion) => {
     const selectedCity = suggestionValue(suggestion);
-    pickedRef.current = selectedCity;
+    pickedRef.current = { value: selectedCity, bbox: suggestion.bbox ?? null };
     handleFilterChange("city", selectedCity);
     setSuggestions([]);
     setShowDropdown(false);

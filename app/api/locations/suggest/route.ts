@@ -3,6 +3,7 @@ import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/db";
 import { countryCodeFor } from "@/lib/country-display";
 import { foldPlaceName, searchPlaces, type Place } from "@/lib/places";
+import { geocodePlaces } from "@/lib/places/geocoder.server";
 
 export const runtime = "nodejs";
 
@@ -14,8 +15,10 @@ const LIMIT = 8;
  * 1. Every town, village, city part, district and region of the countries in
  *    lib/places (static list, so places with no listings yet are suggested
  *    too, e.g. "sobra" -> Sobrance, okres Sobrance).
- * 2. Plus towns that have listings but are not in that list yet (countries
- *    we have no place list for), from the database.
+ * 2. Worldwide streets, city parts, towns and regions from OpenStreetMap
+ *    (lib/places/geocoder.server.ts). Picking one searches listings inside
+ *    its area on the map.
+ * 3. Plus towns that have listings but neither list knows, from the database.
  * Each suggestion carries how many listings it has right now.
  *
  * Replaces direct browser calls to nominatim.openstreetmap.org (whose usage
@@ -39,15 +42,33 @@ function toSuggestion(p: Place, listings: number): Suggestion {
   };
 }
 
+/** Own list first, but leave room for worldwide results. */
+const OWN_MAX = 5;
+
 const suggest = unstable_cache(
-  async (q: string): Promise<Suggestion[]> => {
-    const places = searchPlaces(q, LIMIT);
+  async (q: string, locale: string): Promise<Suggestion[]> => {
+    const [own, world] = await Promise.all([
+      Promise.resolve(searchPlaces(q, LIMIT)),
+      geocodePlaces(q, locale, LIMIT).catch((error) => {
+        // Our own list still answers when the worldwide search is down.
+        console.error("[locations/suggest] geocoder", error);
+        return [] as Place[];
+      }),
+    ]);
+    // Worldwide results that our own list already has (same name, same country).
+    const ownKeys = new Set(own.map((p) => `${p.countryCode}|${foldPlaceName(p.name.replace(/^okres /, ""))}`));
+    const fresh = world.filter(
+      (p) =>
+        p.kind === "street" ||
+        !ownKeys.has(`${p.countryCode}|${foldPlaceName(p.name.replace(/^okres /, ""))}`)
+    );
+    const places = [...own.slice(0, Math.max(OWN_MAX, LIMIT - fresh.length)), ...fresh].slice(0, LIMIT);
 
     const escaped = q.replace(/[\\%_]/g, (m) => `\\${m}`);
     const pattern = `%${escaped}%`;
     const prefix = `${escaped}%`;
     const placeNames = places
-      .filter((p) => p.kind === "city" || p.kind === "village" || p.kind === "part")
+      .filter((p) => !p.bbox && (p.kind === "city" || p.kind === "village" || p.kind === "part"))
       .map((p) => p.name);
 
     // Towns with listings matching the text, plus listing counts for the
@@ -75,11 +96,14 @@ const suggest = unstable_cache(
     }
 
     const out = places.map((p) =>
-      toSuggestion(p, p.kind === "district" || p.kind === "region" ? 0 : counts.get(foldPlaceName(p.name)) ?? 0)
+      toSuggestion(
+        p,
+        p.bbox || p.kind === "district" || p.kind === "region" ? 0 : counts.get(foldPlaceName(p.name)) ?? 0
+      )
     );
 
     // Towns with listings that the place list doesn't know (yet).
-    const known = new Set(places.map((p) => foldPlaceName(p.name)));
+    const known = new Set(places.filter((p) => p.kind !== "street").map((p) => foldPlaceName(p.name)));
     const extra: Suggestion[] = [];
     for (const r of rows) {
       const k = foldPlaceName(r.city);
@@ -107,16 +131,17 @@ const suggest = unstable_cache(
     const room = Math.min(extra.length, 2);
     return [...out.slice(0, LIMIT - room), ...extra].slice(0, LIMIT);
   },
-  ["location-suggest-v2"],
+  ["location-suggest-v3"],
   { revalidate: 3600 }
 );
 
 export async function GET(req: NextRequest) {
   const q = (req.nextUrl.searchParams.get("q") || "").trim().slice(0, 60);
+  const locale = (req.nextUrl.searchParams.get("lang") || "").slice(0, 5).toLowerCase();
   if (q.length < 2) return NextResponse.json([]);
 
   try {
-    const data = await suggest(q.toLowerCase());
+    const data = await suggest(q.toLowerCase(), locale);
     return NextResponse.json(data, {
       headers: {
         // Same query from many visitors -> served by the CDN.

@@ -8,12 +8,38 @@ import { useTranslations } from "next-intl";
 export interface LocationSuggestion {
   place_id: string;
   display_name: string;
-  kind?: "city" | "village" | "part" | "district" | "region";
+  kind?: "city" | "village" | "part" | "district" | "region" | "street" | "country";
   name?: string;
   value?: string;
   context?: string[];
   listings?: number;
   address?: { city?: string; town?: string; village?: string };
+  /** [west, south, east, north]: search listings inside this area */
+  bbox?: [number, number, number, number] | null;
+}
+
+/** A place picked in the box: its text, and the area to search, if any. */
+export type PickedPlace = { value: string; bbox?: [number, number, number, number] | null };
+
+/**
+ * Put the "Kde:" choice into a /properties query: a picked street / city part
+ * / place abroad searches its area on the map (?bbox=…&place=label); anything
+ * else searches by name (?location=…).
+ */
+export function setLocationParams(params: URLSearchParams, text: string, picked: PickedPlace | null) {
+  const t = text.trim();
+  if (!t) return;
+  if (picked?.bbox && picked.value === t) {
+    params.set("place", t);
+    params.set("bbox", picked.bbox.join(","));
+  } else {
+    params.set("location", t);
+  }
+}
+
+/** Suggestion URL; the UI language picks names where the service has them. */
+export function suggestUrl(query: string, locale: string) {
+  return `/api/locations/suggest?v=3&lang=${encodeURIComponent(locale)}&q=${encodeURIComponent(query)}`;
 }
 
 /** Text to put into the search box when a suggestion is picked. */
@@ -40,7 +66,9 @@ export default function LocationSuggestionRow({
   const parts = String(suggestion.display_name).split(",");
   const name = suggestion.name ?? parts[0];
   const context = suggestion.context ? suggestion.context.join(", ") : parts.slice(1).join(",").trim();
-  const isArea = suggestion.kind === "district" || suggestion.kind === "region";
+  const isArea =
+    suggestion.kind === "district" || suggestion.kind === "region" || suggestion.kind === "country";
+  const isStreet = suggestion.kind === "street";
 
   return (
     <li
@@ -52,7 +80,11 @@ export default function LocationSuggestionRow({
       }}
     >
       <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
-        {isArea ? (
+        {isStreet ? (
+          <svg className="w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 3L5 21M16 3l3 18M12 4v2m0 4v3m0 4v3" />
+          </svg>
+        ) : isArea ? (
           <svg className="w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
           </svg>
