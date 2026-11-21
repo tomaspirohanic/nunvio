@@ -111,7 +111,8 @@
     "typeLandFamily": "Családi házhoz",
     "typeLandCommercial": "Kereskedelmi",
     "typeLandGarden": "Kertek",
-    "onlyReduced": "Csak csökkentett ár"
+    "onlyReduced": "Csak csökkentett ár",
+    "listShow": "Lista megjelenítése"
   },
   "Properties": {
     "title": "Ingatlanok",
@@ -744,7 +745,9 @@
     "cancel": "Mégse",
     "drawHint": "Koppintson a térképre a terület sarkainak megjelöléséhez",
     "openListing": "Hirdetés megnyitása",
-    "perMonth": "/ hó"
+    "perMonth": "/ hó",
+    "noPhotos": "Nincs fotó",
+    "previewError": "Az előnézet nem tölthető be. Nyissa meg a hirdetést."
   },
   "Mortgage": {
     "title": "Jelzáloghitel-kalkulátor",

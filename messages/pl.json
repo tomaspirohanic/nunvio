@@ -111,7 +111,8 @@
     "typeLandFamily": "Pod domy jednorodzinne",
     "typeLandCommercial": "Komercyjne",
     "typeLandGarden": "Ogrody",
-    "onlyReduced": "Tylko obniżona cena"
+    "onlyReduced": "Tylko obniżona cena",
+    "listShow": "Pokaż listę"
   },
   "Properties": {
     "title": "Nieruchomości",
@@ -744,7 +745,9 @@
     "cancel": "Anuluj",
     "drawHint": "Stuknij mapę, aby zaznaczyć narożniki obszaru",
     "openListing": "Otwórz ogłoszenie",
-    "perMonth": "/ mies."
+    "perMonth": "/ mies.",
+    "noPhotos": "Brak zdjęć",
+    "previewError": "Nie udało się wczytać podglądu. Otwórz ogłoszenie."
   },
   "Mortgage": {
     "title": "Kalkulator kredytu hipotecznego",

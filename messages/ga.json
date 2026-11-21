@@ -111,7 +111,8 @@
     "typeLandFamily": "Do thithe teaghlaigh",
     "typeLandCommercial": "Tráchtála",
     "typeLandGarden": "Gairdíní",
-    "onlyReduced": "Praghas laghdaithe amháin"
+    "onlyReduced": "Praghas laghdaithe amháin",
+    "listShow": "Taispeáin an liosta"
   },
   "Properties": {
     "title": "Réadmhaoin",
@@ -744,7 +745,9 @@
     "cancel": "Cealaigh",
     "drawHint": "Tapáil an léarscáil chun coirnéil an limistéir a mharcáil",
     "openListing": "Oscail an fógra",
-    "perMonth": "/ mí"
+    "perMonth": "/ mí",
+    "noPhotos": "Gan grianghraif",
+    "previewError": "Níorbh fhéidir an réamhamharc a lódáil. Oscail an fógra."
   },
   "Mortgage": {
     "title": "Áireamhán morgáiste",

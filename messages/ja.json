@@ -111,7 +111,8 @@
     "typeLandFamily": "住宅用地",
     "typeLandCommercial": "商業用地",
     "typeLandGarden": "庭",
-    "onlyReduced": "値下げ物件のみ"
+    "onlyReduced": "値下げ物件のみ",
+    "listShow": "リストを表示"
   },
   "Properties": {
     "title": "物件",
@@ -744,7 +745,9 @@
     "cancel": "キャンセル",
     "drawHint": "地図をタップしてエリアの角を指定してください",
     "openListing": "物件を開く",
-    "perMonth": "/ 月"
+    "perMonth": "/ 月",
+    "noPhotos": "写真なし",
+    "previewError": "プレビューを読み込めませんでした。物件ページを開いてください。"
   },
   "Mortgage": {
     "title": "住宅ローン計算",

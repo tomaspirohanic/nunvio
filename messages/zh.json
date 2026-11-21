@@ -111,7 +111,8 @@
     "typeLandFamily": "住宅用地",
     "typeLandCommercial": "商业用地",
     "typeLandGarden": "花园",
-    "onlyReduced": "仅看降价房源"
+    "onlyReduced": "仅看降价房源",
+    "listShow": "显示列表"
   },
   "Properties": {
     "title": "房产",
@@ -744,7 +745,9 @@
     "cancel": "取消",
     "drawHint": "点击地图标记区域的各个角",
     "openListing": "打开房源",
-    "perMonth": "/ 月"
+    "perMonth": "/ 月",
+    "noPhotos": "暂无照片",
+    "previewError": "无法加载预览。请打开房源页面。"
   },
   "Mortgage": {
     "title": "房贷计算器",

@@ -110,7 +110,8 @@
     "areaTo": "Fläche bis",
     "mapHide": "Karte ausblenden",
     "mapShow": "Karte anzeigen",
-    "onlyReduced": "Nur reduzierte Preise"
+    "onlyReduced": "Nur reduzierte Preise",
+    "listShow": "Liste anzeigen"
   },
   "Properties": {
     "title": "Immobilien",
@@ -754,7 +755,9 @@
     "cancel": "Abbrechen",
     "drawHint": "Tippen Sie auf die Karte, um die Ecken Ihres Gebiets zu markieren",
     "openListing": "Inserat öffnen",
-    "perMonth": "/ Monat"
+    "perMonth": "/ Monat",
+    "noPhotos": "Keine Fotos",
+    "previewError": "Vorschau konnte nicht geladen werden. Inserat öffnen."
   },
   "Mortgage": {
     "title": "Hypothekenrechner",

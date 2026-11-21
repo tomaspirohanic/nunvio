@@ -111,7 +111,8 @@
     "typeLandFamily": "Per case indipendenti",
     "typeLandCommercial": "Commerciale",
     "typeLandGarden": "Giardini",
-    "onlyReduced": "Solo prezzo ribassato"
+    "onlyReduced": "Solo prezzo ribassato",
+    "listShow": "Mostra elenco"
   },
   "Properties": {
     "title": "Immobili",
@@ -744,7 +745,9 @@
     "cancel": "Annulla",
     "drawHint": "Tocca la mappa per segnare gli angoli della tua area",
     "openListing": "Apri annuncio",
-    "perMonth": "/ mese"
+    "perMonth": "/ mese",
+    "noPhotos": "Nessuna foto",
+    "previewError": "Impossibile caricare l'anteprima. Apri l'annuncio."
   },
   "Mortgage": {
     "title": "Calcolatore mutuo",

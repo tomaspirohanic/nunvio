@@ -19,14 +19,13 @@ import {
   Marker,
   Polygon,
   Polyline,
-  Popup,
   TileLayer,
   useMap,
   useMapEvents,
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { Link } from "@/src/i18n/routing";
+import MapPreviewCard, { prefetchMapPreview, type MapPreviewSeed } from "./MapPreviewCard";
 import { parseArea, serializeArea } from "@/lib/listing-search-params";
 
 type Point = { id: string; lat: number; lng: number; price: number; currency: string; offerType: string };
@@ -50,9 +49,9 @@ function compactPrice(v: number, currency: string, locale: string) {
   }
 }
 
-function pillIcon(label: string) {
+function pillIcon(label: string, active = false) {
   return L.divIcon({
-    className: "nv-map-pill",
+    className: active ? "nv-map-pill nv-map-pill--active" : "nv-map-pill",
     html: `<span>${label.replace(/</g, "&lt;")}</span>`,
     iconSize: [72, 28],
     iconAnchor: [36, 28],
@@ -134,12 +133,43 @@ function DataLoader({ query, onData }: { query: string; onData: (d: MapData | nu
   return null;
 }
 
-function DrawCapture({ active, onPoint }: { active: boolean; onPoint: (p: [number, number]) => void }) {
+function DrawCapture({
+  active,
+  onPoint,
+  onMapClick,
+}: {
+  active: boolean;
+  onPoint: (p: [number, number]) => void;
+  onMapClick: () => void;
+}) {
   useMapEvents({
     click(e) {
       if (active) onPoint([e.latlng.lat, e.latlng.lng]);
+      else onMapClick();
     },
   });
+  return null;
+}
+
+/** Keeps the selected pin's on-screen position up to date while the map moves. */
+function PinTracker({
+  latLng,
+  onPosition,
+}: {
+  latLng: [number, number] | null;
+  onPosition: (p: { x: number; y: number; w: number; h: number } | null) => void;
+}) {
+  const map = useMap();
+  const update = useCallback(() => {
+    if (!latLng) return onPosition(null);
+    const pt = map.latLngToContainerPoint(latLng);
+    const size = map.getSize();
+    onPosition({ x: pt.x, y: pt.y, w: size.x, h: size.y });
+  }, [map, latLng, onPosition]);
+  useEffect(() => {
+    update();
+  }, [update]);
+  useMapEvents({ move: update, zoom: update, resize: update });
   return null;
 }
 
@@ -155,6 +185,25 @@ export default function MapSearch({ fallback = [] }: { fallback?: Fallback[] }) 
   const [data, setData] = useState<MapData | null>(null);
   const [drawing, setDrawing] = useState(false);
   const [draft, setDraft] = useState<Array<[number, number]>>([]);
+  const [selected, setSelected] = useState<(MapPreviewSeed & { lat: number; lng: number }) | null>(null);
+  const [pinPos, setPinPos] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
+  const selectedLatLng = useMemo<[number, number] | null>(
+    () => (selected ? [selected.lat, selected.lng] : null),
+    [selected]
+  );
+
+  const selectPin = (p: Point) => {
+    setSelected({ id: p.id, price: p.price, currency: p.currency, offerType: p.offerType, lat: p.lat, lng: p.lng });
+    // Phones: the card sits at the bottom of the map, so move the pin into
+    // the free space above it.
+    const m = mapRef.current;
+    if (m && window.matchMedia("(max-width: 639px)").matches) {
+      const pt = m.latLngToContainerPoint([p.lat, p.lng]);
+      const size = m.getSize();
+      const targetY = Math.max(70, (size.y - 380) / 2 + 20);
+      if (pt.y > size.y - 380 || pt.y < 60) m.panBy([pt.x - size.x / 2, pt.y - targetY]);
+    }
+  };
   const mapRef = useRef<L.Map | null>(null);
 
   const applyArea = (next: Array<[number, number]> | null) => {
@@ -188,6 +237,14 @@ export default function MapSearch({ fallback = [] }: { fallback?: Fallback[] }) 
           transform: translateX(-50%);
           margin-left: 50%;
         }
+        .nv-map-pill--active span {
+          background: #dc2626;
+          color: #fff;
+          transform: translateX(-50%) scale(1.1);
+        }
+        .leaflet-marker-icon.nv-map-pill--active {
+          z-index: 10000 !important;
+        }
         .nv-map-cluster span {
           display: flex;
           align-items: center;
@@ -216,7 +273,12 @@ export default function MapSearch({ fallback = [] }: { fallback?: Fallback[] }) 
         />
         <FitInitial area={area} fallback={fallback} />
         <DataLoader query={query} onData={setData} />
-        <DrawCapture active={drawing} onPoint={(p) => setDraft((d) => [...d, p])} />
+        <PinTracker latLng={selectedLatLng} onPosition={setPinPos} />
+        <DrawCapture
+          active={drawing}
+          onPoint={(p) => setDraft((d) => [...d, p])}
+          onMapClick={() => setSelected(null)}
+        />
 
         {area && !drawing && (
           <Polygon positions={area} pathOptions={{ color: "#dc2626", weight: 2, fillOpacity: 0.06 }} />
@@ -242,19 +304,15 @@ export default function MapSearch({ fallback = [] }: { fallback?: Fallback[] }) 
 
         {!drawing && data?.kind === "points" &&
           data.points.map((p) => (
-            <Marker key={p.id} position={[p.lat, p.lng]} icon={pillIcon(compactPrice(p.price, p.currency, locale))}>
-              <Popup>
-                <div className="min-w-[160px]">
-                  <div className="text-base font-bold text-gray-900">
-                    {new Intl.NumberFormat(locale, { style: "currency", currency: p.currency, maximumFractionDigits: 0 }).format(p.price)}
-                    {p.offerType === "RENT" ? ` ${t("perMonth")}` : ""}
-                  </div>
-                  <Link href={`/properties/${p.id}`} className="mt-1 inline-block font-semibold text-red-600">
-                    {t("openListing")}
-                  </Link>
-                </div>
-              </Popup>
-            </Marker>
+            <Marker
+              key={p.id}
+              position={[p.lat, p.lng]}
+              icon={pillIcon(compactPrice(p.price, p.currency, locale), selected?.id === p.id)}
+              eventHandlers={{
+                click: () => selectPin(p),
+                mouseover: () => prefetchMapPreview(p.id, locale),
+              }}
+            />
           ))}
       </MapContainer>
 
@@ -265,6 +323,7 @@ export default function MapSearch({ fallback = [] }: { fallback?: Fallback[] }) 
             type="button"
             onClick={() => {
               setDraft([]);
+              setSelected(null);
               setDrawing(true);
             }}
             className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-md hover:bg-gray-50"
@@ -315,6 +374,9 @@ export default function MapSearch({ fallback = [] }: { fallback?: Fallback[] }) 
           </>
         )}
       </div>
+      {selected && !drawing && (
+        <MapPreviewCard key={selected.id} seed={selected} anchor={pinPos} onClose={() => setSelected(null)} />
+      )}
       {drawing && (
         <div className="absolute bottom-3 left-1/2 z-[500] -translate-x-1/2 rounded-full bg-gray-900/85 px-4 py-2 text-center text-sm text-white">
           {t("drawHint")}

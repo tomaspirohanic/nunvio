@@ -111,7 +111,8 @@
     "typeLandFamily": "Til parcelhuse",
     "typeLandCommercial": "Erhverv",
     "typeLandGarden": "Haver",
-    "onlyReduced": "Kun nedsat pris"
+    "onlyReduced": "Kun nedsat pris",
+    "listShow": "Vis liste"
   },
   "Properties": {
     "title": "Boliger",
@@ -744,7 +745,9 @@
     "cancel": "Annuller",
     "drawHint": "Tryk på kortet for at markere områdets hjørner",
     "openListing": "Åbn annonce",
-    "perMonth": "/ md."
+    "perMonth": "/ md.",
+    "noPhotos": "Ingen billeder",
+    "previewError": "Forhåndsvisningen kunne ikke indlæses. Åbn annoncen."
   },
   "Mortgage": {
     "title": "Boliglånsberegner",
