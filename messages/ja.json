@@ -750,7 +750,8 @@
     "previewError": "プレビューを読み込めませんでした。物件ページを開いてください。",
     "sameSpot": "この場所の物件 {current} / {total}",
     "prevHere": "この場所の前の物件",
-    "nextHere": "この場所の次の物件"
+    "nextHere": "この場所の次の物件",
+    "searchAsMove": "地図を動かすと検索"
   },
   "Mortgage": {
     "title": "住宅ローン計算",

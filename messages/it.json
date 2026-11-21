@@ -750,7 +750,8 @@
     "previewError": "Impossibile caricare l'anteprima. Apri l'annuncio.",
     "sameSpot": "Annuncio {current} di {total} in questo punto",
     "prevHere": "Annuncio precedente in questo punto",
-    "nextHere": "Annuncio successivo in questo punto"
+    "nextHere": "Annuncio successivo in questo punto",
+    "searchAsMove": "Cerca mentre sposto la mappa"
   },
   "Mortgage": {
     "title": "Calcolatore mutuo",

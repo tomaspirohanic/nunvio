@@ -750,7 +750,8 @@
     "previewError": "Esikatselua ei voitu ladata. Avaa ilmoitus.",
     "sameSpot": "Ilmoitus {current}/{total} tässä paikassa",
     "prevHere": "Edellinen ilmoitus tässä paikassa",
-    "nextHere": "Seuraava ilmoitus tässä paikassa"
+    "nextHere": "Seuraava ilmoitus tässä paikassa",
+    "searchAsMove": "Hae karttaa siirtäessä"
   },
   "Mortgage": {
     "title": "Asuntolainalaskuri",

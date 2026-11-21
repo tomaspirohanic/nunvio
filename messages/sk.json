@@ -751,7 +751,8 @@
     "previewError": "Náhľad sa nepodarilo načítať. Otvorte inzerát.",
     "sameSpot": "Inzerát {current} z {total} na tomto mieste",
     "prevHere": "Predchádzajúci inzerát na tomto mieste",
-    "nextHere": "Ďalší inzerát na tomto mieste"
+    "nextHere": "Ďalší inzerát na tomto mieste",
+    "searchAsMove": "Hľadať pri posúvaní mapy"
   },
   "Mortgage": {
     "title": "Hypotekárna kalkulačka",

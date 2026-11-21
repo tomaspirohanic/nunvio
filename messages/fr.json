@@ -750,7 +750,8 @@
     "previewError": "Impossible de charger l'aperçu. Ouvrez l'annonce.",
     "sameSpot": "Annonce {current} sur {total} à cet endroit",
     "prevHere": "Annonce précédente à cet endroit",
-    "nextHere": "Annonce suivante à cet endroit"
+    "nextHere": "Annonce suivante à cet endroit",
+    "searchAsMove": "Rechercher en déplaçant la carte"
   },
   "Mortgage": {
     "title": "Simulateur de prêt immobilier",

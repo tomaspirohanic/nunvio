@@ -750,7 +750,8 @@
     "previewError": "Nepavyko įkelti peržiūros. Atidarykite skelbimą.",
     "sameSpot": "Skelbimas {current} iš {total} šioje vietoje",
     "prevHere": "Ankstesnis skelbimas šioje vietoje",
-    "nextHere": "Kitas skelbimas šioje vietoje"
+    "nextHere": "Kitas skelbimas šioje vietoje",
+    "searchAsMove": "Ieškoti judinant žemėlapį"
   },
   "Mortgage": {
     "title": "Būsto paskolos skaičiuoklė",
