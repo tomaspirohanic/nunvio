@@ -319,6 +319,30 @@ export default function SearchLayout({
     return cat.items.every((i) => list.includes(i.value));
   };
 
+  /**
+   * With no place typed in, keep searching the area shown on the map
+   * (moved map or drawn area), so changing e.g. the price doesn't jump
+   * the map elsewhere.
+   */
+  const keepMapArea = (params: URLSearchParams) => {
+    if (params.get("location")) return;
+    const cur = new URLSearchParams(window.location.search);
+    for (const k of ["bbox", "area"]) {
+      const v = cur.get(k);
+      if (v) params.set(k, v);
+    }
+  };
+
+  // Moving the map searches its area: the typed place no longer applies.
+  useEffect(() => {
+    const onMapArea = () => {
+      setLocation("");
+      setDraftLocation("");
+    };
+    window.addEventListener("nv:map-area", onMapArea);
+    return () => window.removeEventListener("nv:map-area", onMapArea);
+  }, []);
+
   const onSearch = () => {
     const params = new URLSearchParams();
     if (location.trim()) params.set("location", location.trim());
@@ -331,6 +355,7 @@ export default function SearchLayout({
     if (keyword.trim()) params.set("keyword", keyword.trim());
     if (isNewBuild) params.set("isNewBuild", "true");
     if (reduced) params.set("reduced", "true");
+    keepMapArea(params);
     router.push(`/${locale}/properties?${params.toString()}`);
   };
 
@@ -1062,6 +1087,7 @@ export default function SearchLayout({
                   if (draftKeyword.trim()) params.set("keyword", draftKeyword.trim());
                   if (draftIsNewBuild) params.set("isNewBuild", "true");
                   if (draftReduced) params.set("reduced", "true");
+                  keepMapArea(params);
                   router.push(`/${locale}/properties?${params.toString()}`);
                 }}
                 className="rounded-xl bg-red-600 hover:bg-red-700 text-white px-6 py-3 text-sm font-bold transition-colors"

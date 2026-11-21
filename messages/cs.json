@@ -751,7 +751,8 @@
     "previewError": "Náhled se nepodařilo načíst. Otevřete inzerát.",
     "sameSpot": "Inzerát {current} z {total} na tomto místě",
     "prevHere": "Předchozí inzerát na tomto místě",
-    "nextHere": "Další inzerát na tomto místě"
+    "nextHere": "Další inzerát na tomto místě",
+    "searchAsMove": "Hledat při posouvání mapy"
   },
   "Mortgage": {
     "title": "Hypoteční kalkulačka",

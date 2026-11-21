@@ -751,7 +751,8 @@
     "previewError": "No se pudo cargar la vista previa. Abre el anuncio.",
     "sameSpot": "Anuncio {current} de {total} en este lugar",
     "prevHere": "Anuncio anterior en este lugar",
-    "nextHere": "Siguiente anuncio en este lugar"
+    "nextHere": "Siguiente anuncio en este lugar",
+    "searchAsMove": "Buscar al mover el mapa"
   },
   "Mortgage": {
     "title": "Calculadora de hipoteca",

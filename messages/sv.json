@@ -750,7 +750,8 @@
     "previewError": "Förhandsvisningen kunde inte laddas. Öppna annonsen.",
     "sameSpot": "Annons {current} av {total} på den här platsen",
     "prevHere": "Föregående annons på den här platsen",
-    "nextHere": "Nästa annons på den här platsen"
+    "nextHere": "Nästa annons på den här platsen",
+    "searchAsMove": "Sök när kartan flyttas"
   },
   "Mortgage": {
     "title": "Bolånekalkylator",

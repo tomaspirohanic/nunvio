@@ -19,6 +19,8 @@ export type ListingSearchParams = {
   reduced?: boolean;
   /** Area drawn on the map: polygon of [lat, lng] points (3–60 points) */
   area?: Array<[number, number]>;
+  /** Visible map area [west, south, east, north] — "search as I move the map" */
+  bbox?: [number, number, number, number];
   page?: number;
 };
 
@@ -62,6 +64,16 @@ export function pointInArea(lat: number, lng: number, area: Array<[number, numbe
   return inside;
 }
 
+/** "west,south,east,north" -> numbers; invalid -> undefined */
+export function parseBbox(raw: string | undefined): [number, number, number, number] | undefined {
+  if (!raw) return undefined;
+  const n = raw.split(",").map(Number);
+  if (n.length !== 4 || n.some((x) => !Number.isFinite(x))) return undefined;
+  const [w, s, e, no] = n;
+  if (Math.abs(s) > 90 || Math.abs(no) > 90 || s >= no || w >= e) return undefined;
+  return [Math.max(-180, w), s, Math.min(180, e), no];
+}
+
 /** Read filters from a /properties URL query. */
 export function parseListingSearchParams(sp: RawParams): ListingSearchParams {
   const offer = str(sp.offer);
@@ -86,6 +98,7 @@ export function parseListingSearchParams(sp: RawParams): ListingSearchParams {
     isNewBuild: sp.isNewBuild === "true" ? true : undefined,
     reduced: sp.reduced === "true" ? true : undefined,
     area: parseArea(str(sp.area)),
+    bbox: parseBbox(str(sp.bbox)),
     page: Math.max(1, Math.floor(num(sp.page) ?? 1)),
   };
 }

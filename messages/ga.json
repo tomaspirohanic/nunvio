@@ -750,7 +750,8 @@
     "previewError": "Níorbh fhéidir an réamhamharc a lódáil. Oscail an fógra.",
     "sameSpot": "Fógra {current} as {total} san áit seo",
     "prevHere": "Fógra roimhe seo san áit seo",
-    "nextHere": "An chéad fhógra eile san áit seo"
+    "nextHere": "An chéad fhógra eile san áit seo",
+    "searchAsMove": "Cuardaigh agus mé ag bogadh an léarscáil"
   },
   "Mortgage": {
     "title": "Áireamhán morgáiste",

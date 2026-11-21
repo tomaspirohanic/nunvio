@@ -750,7 +750,8 @@
     "previewError": "Predogleda ni bilo mogoče naložiti. Odprite oglas.",
     "sameSpot": "Oglas {current} od {total} na tem mestu",
     "prevHere": "Prejšnji oglas na tem mestu",
-    "nextHere": "Naslednji oglas na tem mestu"
+    "nextHere": "Naslednji oglas na tem mestu",
+    "searchAsMove": "Išči ob premikanju zemljevida"
   },
   "Mortgage": {
     "title": "Kalkulator stanovanjskega kredita",

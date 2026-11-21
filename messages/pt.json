@@ -750,7 +750,8 @@
     "previewError": "Não foi possível carregar a pré-visualização. Abra o anúncio.",
     "sameSpot": "Anúncio {current} de {total} neste local",
     "prevHere": "Anúncio anterior neste local",
-    "nextHere": "Próximo anúncio neste local"
+    "nextHere": "Próximo anúncio neste local",
+    "searchAsMove": "Pesquisar ao mover o mapa"
   },
   "Mortgage": {
     "title": "Simulador de crédito habitação",

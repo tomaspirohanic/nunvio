@@ -750,7 +750,8 @@
     "previewError": "Priekšskatījumu neizdevās ielādēt. Atveriet sludinājumu.",
     "sameSpot": "Sludinājums {current} no {total} šajā vietā",
     "prevHere": "Iepriekšējais sludinājums šajā vietā",
-    "nextHere": "Nākamais sludinājums šajā vietā"
+    "nextHere": "Nākamais sludinājums šajā vietā",
+    "searchAsMove": "Meklēt, pārvietojot karti"
   },
   "Mortgage": {
     "title": "Hipotekārā kredīta kalkulators",
