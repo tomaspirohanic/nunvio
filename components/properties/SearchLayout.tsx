@@ -5,8 +5,11 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import SaveSearchButton from "@/components/alerts/SaveSearchButton";
 import LocationSuggestionRow, {
+  setLocationParams,
+  suggestUrl,
   suggestionValue,
   type LocationSuggestion,
+  type PickedPlace,
 } from "@/components/search/LocationSuggestionRow";
 import {
   Building2,
@@ -27,6 +30,9 @@ type Property = Parameters<typeof PropertyCard>[0]["property"];
 
 type InitialParams = Partial<{
   location: string;
+  /** Label of a place searched by its map area (?place=…&bbox=…) */
+  place: string;
+  placeBbox: [number, number, number, number];
   offer: "buy" | "rent";
   types: string[];
   minPrice: string;
@@ -82,13 +88,17 @@ export default function SearchLayout({
   );
   const [suggestions, setSuggestions] = useState<LocationSuggestion[]>([]);
   // Text of the last picked suggestion: don't search again for it.
-  const pickedRef = useRef<string | null>(null);
+  const pickedRef = useRef<PickedPlace | null>(
+    initialParams.place && initialParams.placeBbox
+      ? { value: initialParams.place, bbox: initialParams.placeBbox }
+      : null
+  );
   const [isSearching, setIsSearching] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const barRef = useRef<HTMLDivElement>(null);
   const whereInputRef = useRef<HTMLInputElement>(null);
 
-  const [location, setLocation] = useState(initialParams.location ?? "");
+  const [location, setLocation] = useState(initialParams.location ?? initialParams.place ?? "");
   const [offer, setOffer] = useState<"" | "buy" | "rent">(
     initialParams.offer ?? ""
   );
@@ -123,7 +133,7 @@ export default function SearchLayout({
 
   useEffect(() => {
     const query = location.trim();
-    if (query.length < 2 || query === pickedRef.current) {
+    if (query.length < 2 || query === pickedRef.current?.value) {
       setSuggestions([]);
       setIsSearching(false);
       setShowDropdown(false);
@@ -135,7 +145,7 @@ export default function SearchLayout({
         setIsSearching(true);
         // Own endpoint: all towns/districts/regions (lib/places) + listing counts.
         const response = await fetch(
-          `/api/locations/suggest?v=2&q=${encodeURIComponent(query)}`
+          suggestUrl(query, locale)
         );
 
         if (!response.ok) {
@@ -156,7 +166,7 @@ export default function SearchLayout({
     }, 300);
 
     return () => clearTimeout(timeoutId);
-  }, [location, regionNames]);
+  }, [location, regionNames, locale]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -289,7 +299,7 @@ export default function SearchLayout({
 
   const handleSelectSuggestion = (suggestion: LocationSuggestion) => {
     const selectedCity = suggestionValue(suggestion);
-    pickedRef.current = selectedCity;
+    pickedRef.current = { value: selectedCity, bbox: suggestion.bbox ?? null };
     setLocation(selectedCity);
     setSuggestions([]);
     setShowDropdown(false);
@@ -325,7 +335,7 @@ export default function SearchLayout({
    * the map elsewhere.
    */
   const keepMapArea = (params: URLSearchParams) => {
-    if (params.get("location")) return;
+    if (params.get("location") || params.get("place")) return;
     const cur = new URLSearchParams(window.location.search);
     for (const k of ["bbox", "area"]) {
       const v = cur.get(k);
@@ -345,7 +355,7 @@ export default function SearchLayout({
 
   const onSearch = () => {
     const params = new URLSearchParams();
-    if (location.trim()) params.set("location", location.trim());
+    setLocationParams(params, location, pickedRef.current);
     if (offer) params.set("offer", offer);
     if (types.length > 0) params.set("types", types.join(","));
     if (minPrice) params.set("minPrice", minPrice);
@@ -1077,7 +1087,7 @@ export default function SearchLayout({
                   setIsFilterModalOpen(false);
                   // Apply immediately, matching reference UX.
                   const params = new URLSearchParams();
-                  if (draftLocation.trim()) params.set("location", draftLocation.trim());
+                  setLocationParams(params, draftLocation, pickedRef.current);
                   if (draftOffer) params.set("offer", draftOffer);
                   if (draftTypes.length > 0) params.set("types", draftTypes.join(","));
                   if (draftMinPrice.trim()) params.set("minPrice", draftMinPrice.trim());

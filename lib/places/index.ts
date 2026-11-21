@@ -28,7 +28,7 @@ const COUNTRY_DATA: CountryFile[] = [sk as unknown as CountryFile];
 /** Word used before district names in the search box, per country. */
 const DISTRICT_PREFIX: Record<string, string> = { SK: "okres" };
 
-export type PlaceKind = "city" | "village" | "part" | "district" | "region";
+export type PlaceKind = "city" | "village" | "part" | "district" | "region" | "street" | "country";
 
 export interface Place {
   id: string;
@@ -42,6 +42,12 @@ export interface Place {
   countryCode: string;
   lat: number | null;
   lng: number | null;
+  /**
+   * Set for places found by the worldwide search (lib/places/geocoder.server):
+   * listings are then searched inside this box [west, south, east, north]
+   * instead of by the town name.
+   */
+  bbox?: [number, number, number, number] | null;
 }
 
 interface Entry {
@@ -66,10 +72,12 @@ export function foldPlaceName(s: string): string {
 
 const KIND_RANK: Record<PlaceKind, number> = {
   city: 0,
+  country: 0,
   region: 1,
   district: 2,
   part: 3,
   village: 4,
+  street: 5,
 };
 
 let index: { entries: Entry[]; byValue: Map<string, Entry> } | null = null;

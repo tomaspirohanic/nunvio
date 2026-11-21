@@ -90,6 +90,7 @@ function toLatLngBounds(b: Bounds) {
 function ViewController({
   area,
   location,
+  place,
   bbox,
   locale,
   fallback,
@@ -97,6 +98,8 @@ function ViewController({
 }: {
   area?: Array<[number, number]>;
   location: string;
+  /** Street / city part picked in "Kde:" — searched by its area (bbox) */
+  place: string;
   bbox: Bounds | null;
   locale: string;
   fallback: Fallback[];
@@ -105,7 +108,7 @@ function ViewController({
 }) {
   const map = useMap();
   // Searching the visible map area: the map is where the user put it.
-  const key = area ? `area:${serializeArea(area)}` : location ? `loc:${location.toLowerCase()}` : bbox ? "bbox" : "home";
+  const key = area ? `area:${serializeArea(area)}` : location ? `loc:${location.toLowerCase()}` : place && bbox ? `place:${place}:${bbox.join(",")}` : bbox ? "bbox" : "home";
   const initialised = useRef(false);
 
   useEffect(() => {
@@ -144,7 +147,8 @@ function ViewController({
         map.fitBounds(toLatLngBounds(bbox));
         initialised.current = true;
       }
-    } else if (area) fit(L.latLngBounds(area), 18);
+    } else if (key.startsWith("place:") && bbox) fit(toLatLngBounds(bbox), 16);
+    else if (area) fit(L.latLngBounds(area), 18);
     else if (location) {
       fetch(`/api/map-extent?location=${encodeURIComponent(location)}`)
         .then((r) => (r.ok ? r.json() : null))
@@ -194,6 +198,7 @@ function MapMoveSync({
         const b = map.getBounds();
         params.delete("location");
         params.delete("city");
+        params.delete("place");
         params.delete("page");
         params.set("bbox", [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()].map((n) => n.toFixed(5)).join(","));
         window.dispatchEvent(new Event("nv:map-area"));
@@ -348,6 +353,7 @@ export default function MapSearch({ fallback = [] }: { fallback?: Fallback[] }) 
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [visited, setVisited] = useState<Set<string>>(() => new Set());
   const location = searchParams.get("location") ?? searchParams.get("city") ?? "";
+  const place = searchParams.get("place") ?? "";
   const bboxParam = searchParams.get("bbox");
   const bbox = useMemo<Bounds | null>(() => {
     const n = (bboxParam ?? "").split(",").map(Number);
@@ -508,6 +514,7 @@ export default function MapSearch({ fallback = [] }: { fallback?: Fallback[] }) 
         <ViewController
           area={area}
           location={location}
+          place={place}
           bbox={bbox}
           locale={locale}
           fallback={fallback}

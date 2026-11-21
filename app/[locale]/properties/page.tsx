@@ -48,8 +48,11 @@ export default async function PropertiesPage({
 
   const paged = translatedSafeProperties;
 
+  const place = typeof sp.place === "string" && !location ? sp.place.slice(0, 120) : undefined;
   const initialParams = {
     location,
+    place: place && filters.bbox ? place : undefined,
+    placeBbox: place && filters.bbox ? filters.bbox : undefined,
     offer,
     types: types ?? (typeParam ? [typeParam.toLowerCase()] : undefined),
     minPrice: typeof sp.minPrice === "string" ? sp.minPrice : undefined,
