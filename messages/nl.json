@@ -750,7 +750,8 @@
     "previewError": "Voorbeeld kon niet worden geladen. Open de advertentie.",
     "sameSpot": "Advertentie {current} van {total} op deze plek",
     "prevHere": "Vorige advertentie op deze plek",
-    "nextHere": "Volgende advertentie op deze plek"
+    "nextHere": "Volgende advertentie op deze plek",
+    "searchAsMove": "Zoeken bij verschuiven van de kaart"
   },
   "Mortgage": {
     "title": "Hypotheekcalculator",

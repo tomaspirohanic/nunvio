@@ -750,7 +750,8 @@
     "previewError": "无法加载预览。请打开房源页面。",
     "sameSpot": "此位置第 {current} / {total} 个房源",
     "prevHere": "此位置的上一个房源",
-    "nextHere": "此位置的下一个房源"
+    "nextHere": "此位置的下一个房源",
+    "searchAsMove": "移动地图时搜索"
   },
   "Mortgage": {
     "title": "房贷计算器",

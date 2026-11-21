@@ -750,7 +750,8 @@
     "previewError": "Nie udało się wczytać podglądu. Otwórz ogłoszenie.",
     "sameSpot": "Ogłoszenie {current} z {total} w tym miejscu",
     "prevHere": "Poprzednie ogłoszenie w tym miejscu",
-    "nextHere": "Następne ogłoszenie w tym miejscu"
+    "nextHere": "Następne ogłoszenie w tym miejscu",
+    "searchAsMove": "Szukaj podczas przesuwania mapy"
   },
   "Mortgage": {
     "title": "Kalkulator kredytu hipotecznego",

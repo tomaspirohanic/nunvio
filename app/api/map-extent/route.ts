@@ -14,6 +14,15 @@ import { prisma } from "@/lib/db";
 import { countryCodeFor } from "@/lib/country-display";
 import { boundsForCountry } from "@/lib/country-bounds";
 import { listingSqlWhere } from "@/lib/listing-search-sql.server";
+import { findPlaceByValue } from "@/lib/places";
+
+/** A known town/district without listings yet: a box around its centre. */
+function placeBounds(location: string) {
+  const place = findPlaceByValue(location);
+  if (!place || place.lat == null || place.lng == null) return null;
+  const d = place.kind === "region" ? 0.6 : place.kind === "district" ? 0.25 : 0.05;
+  return [place.lat - d, place.lng - d * 1.5, place.lat + d, place.lng + d * 1.5];
+}
 
 export const runtime = "nodejs";
 
@@ -39,7 +48,8 @@ export async function GET(req: NextRequest) {
              percentile_cont(0.97) WITHIN GROUP (ORDER BY lng) AS e
       FROM (SELECT "latitude" AS lat, "longitude" AS lng FROM "Property" WHERE ${where} LIMIT 5000) x`);
     if (r?.s == null || r.w == null || r.n == null || r.e == null) {
-      return NextResponse.json({ bounds: null }, { headers });
+      const fromPlace = placeBounds(location);
+      return NextResponse.json({ bounds: fromPlace, kind: fromPlace ? "place" : undefined }, { headers });
     }
     // A single building would zoom in to street level: keep at least ~2 km around it.
     const pad = 0.01;

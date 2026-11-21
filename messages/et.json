@@ -750,7 +750,8 @@
     "previewError": "Eelvaadet ei õnnestunud laadida. Ava kuulutus.",
     "sameSpot": "Kuulutus {current}/{total} selles kohas",
     "prevHere": "Eelmine kuulutus selles kohas",
-    "nextHere": "Järgmine kuulutus selles kohas"
+    "nextHere": "Järgmine kuulutus selles kohas",
+    "searchAsMove": "Otsi kaardi liigutamisel"
   },
   "Mortgage": {
     "title": "Kodulaenu kalkulaator",

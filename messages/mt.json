@@ -750,7 +750,8 @@
     "previewError": "Ma setax jitgħabba l-preview. Iftaħ ir-reklam.",
     "sameSpot": "Reklam {current} minn {total} f'dan il-post",
     "prevHere": "Ir-reklam ta' qabel f'dan il-post",
-    "nextHere": "Ir-reklam li jmiss f'dan il-post"
+    "nextHere": "Ir-reklam li jmiss f'dan il-post",
+    "searchAsMove": "Fittex hekk kif niċċaqlaq il-mappa"
   },
   "Mortgage": {
     "title": "Kalkulatur tas-self għad-dar",

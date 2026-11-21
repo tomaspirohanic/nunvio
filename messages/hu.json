@@ -750,7 +750,8 @@
     "previewError": "Az előnézet nem tölthető be. Nyissa meg a hirdetést.",
     "sameSpot": "{current}/{total}. hirdetés ezen a helyen",
     "prevHere": "Előző hirdetés ezen a helyen",
-    "nextHere": "Következő hirdetés ezen a helyen"
+    "nextHere": "Következő hirdetés ezen a helyen",
+    "searchAsMove": "Keresés a térkép mozgatásakor"
   },
   "Mortgage": {
     "title": "Jelzáloghitel-kalkulátor",

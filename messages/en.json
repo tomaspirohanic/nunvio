@@ -750,7 +750,8 @@
     "previewError": "Couldn't load the preview. Open the listing.",
     "sameSpot": "Listing {current} of {total} at this spot",
     "prevHere": "Previous listing at this spot",
-    "nextHere": "Next listing at this spot"
+    "nextHere": "Next listing at this spot",
+    "searchAsMove": "Search as I move the map"
   },
   "Mortgage": {
     "title": "Mortgage calculator",

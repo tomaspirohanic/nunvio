@@ -760,7 +760,8 @@
     "previewError": "Vorschau konnte nicht geladen werden. Inserat öffnen.",
     "sameSpot": "Inserat {current} von {total} an diesem Ort",
     "prevHere": "Vorheriges Inserat an diesem Ort",
-    "nextHere": "Nächstes Inserat an diesem Ort"
+    "nextHere": "Nächstes Inserat an diesem Ort",
+    "searchAsMove": "Beim Verschieben der Karte suchen"
   },
   "Mortgage": {
     "title": "Hypothekenrechner",

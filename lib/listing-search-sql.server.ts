@@ -73,5 +73,9 @@ export function listingSqlWhere(p: ListingSearchParams): Prisma.Sql {
         AND point("longitude", "latitude") <@ ${polygonLiteral(p.area)}::polygon`
     );
   }
+  if (p.bbox) {
+    const [w, south, e, n] = p.bbox;
+    parts.push(Prisma.sql`"latitude" BETWEEN ${south} AND ${n} AND "longitude" BETWEEN ${w} AND ${e}`);
+  }
   return Prisma.join(parts, " AND ");
 }

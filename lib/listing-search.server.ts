@@ -93,6 +93,12 @@ export function buildListingWhere(p: ListingSearchParams): Prisma.PropertyWhereI
     });
   }
 
+  // Visible map area ("search as I move the map").
+  if (p.bbox) {
+    const [w, south, e, n] = p.bbox;
+    and.push({ latitude: { gte: south, lte: n }, longitude: { gte: w, lte: e } });
+  }
+
   if (p.keyword) {
     and.push({
       OR: [

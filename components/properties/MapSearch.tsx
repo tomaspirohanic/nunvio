@@ -90,16 +90,23 @@ function toLatLngBounds(b: Bounds) {
 function ViewController({
   area,
   location,
+  bbox,
   locale,
   fallback,
+  programmaticAt,
 }: {
   area?: Array<[number, number]>;
   location: string;
+  bbox: Bounds | null;
   locale: string;
   fallback: Fallback[];
+  /** Time of our own (not the user's) last map move. */
+  programmaticAt: { current: number };
 }) {
   const map = useMap();
-  const key = area ? `area:${serializeArea(area)}` : `loc:${location.toLowerCase()}`;
+  // Searching the visible map area: the map is where the user put it.
+  const key = area ? `area:${serializeArea(area)}` : location ? `loc:${location.toLowerCase()}` : bbox ? "bbox" : "home";
+  const initialised = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -109,8 +116,10 @@ function ViewController({
     const fit = (b: L.LatLngBounds, maxZoom: number) => {
       const go = () => {
         if (cancelled) return;
+        programmaticAt.current = Date.now();
         map.invalidateSize();
         map.fitBounds(b, { padding: [30, 30], maxZoom });
+        initialised.current = true;
       };
       go();
       timers.push(setTimeout(go, 300));
@@ -127,7 +136,15 @@ function ViewController({
       fit(L.latLngBounds(pts.map((p) => [p.latitude, p.longitude] as [number, number])), 14);
     };
 
-    if (area) fit(L.latLngBounds(area), 18);
+    if (key === "bbox") {
+      // Coming back to a map-area search (reload, shared link): show that area.
+      if (!initialised.current && bbox) {
+        programmaticAt.current = Date.now();
+        map.invalidateSize();
+        map.fitBounds(toLatLngBounds(bbox));
+        initialised.current = true;
+      }
+    } else if (area) fit(L.latLngBounds(area), 18);
     else if (location) {
       fetch(`/api/map-extent?location=${encodeURIComponent(location)}`)
         .then((r) => (r.ok ? r.json() : null))
@@ -149,6 +166,44 @@ function ViewController({
   return null;
 }
 
+/**
+ * "Search as I move the map": after the user pans or zooms, the results
+ * list switches to the visible area (?bbox=…, typed place dropped).
+ */
+function MapMoveSync({
+  enabled,
+  programmaticAt,
+}: {
+  enabled: boolean;
+  programmaticAt: { current: number };
+}) {
+  const map = useMap();
+  const router = useRouter();
+  const pathname = usePathname();
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (timer.current) clearTimeout(timer.current);
+  }, []);
+  useMapEvents({
+    moveend: () => {
+      if (!enabled || Date.now() - programmaticAt.current < 1200) return;
+      if (timer.current) clearTimeout(timer.current);
+      timer.current = setTimeout(() => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("area")) return; // a drawn area decides the results
+        const b = map.getBounds();
+        params.delete("location");
+        params.delete("city");
+        params.delete("page");
+        params.set("bbox", [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()].map((n) => n.toFixed(5)).join(","));
+        window.dispatchEvent(new Event("nv:map-area"));
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+      }, 500);
+    },
+  });
+  return null;
+}
+
 /** Re-renders the markers when the zoom level changes (for pin grouping). */
 function ZoomWatcher({ onZoom }: { onZoom: (z: number) => void }) {
   const map = useMap();
@@ -158,6 +213,9 @@ function ZoomWatcher({ onZoom }: { onZoom: (z: number) => void }) {
   useMapEvents({ zoomend: () => onZoom(map.getZoom()) });
   return null;
 }
+
+/** Wall-clock ms; only ever called from event handlers and effects. */
+const nowMs = () => Date.now();
 
 type PinGroup = { key: string; lat: number; lng: number; points: Point[] };
 
@@ -290,6 +348,31 @@ export default function MapSearch({ fallback = [] }: { fallback?: Fallback[] }) 
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [visited, setVisited] = useState<Set<string>>(() => new Set());
   const location = searchParams.get("location") ?? searchParams.get("city") ?? "";
+  const bboxParam = searchParams.get("bbox");
+  const bbox = useMemo<Bounds | null>(() => {
+    const n = (bboxParam ?? "").split(",").map(Number);
+    return n.length === 4 && n.every(Number.isFinite) ? [n[1], n[0], n[3], n[2]] : null; // → [s, w, n, e]
+  }, [bboxParam]);
+  const programmaticAt = useRef(0);
+  const [syncList, setSyncList] = useState(true);
+  useEffect(() => {
+    try {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      if (localStorage.getItem("nv-map-sync") === "0") setSyncList(false);
+    } catch {
+      /* storage blocked */
+    }
+  }, []);
+  const toggleSync = () => {
+    setSyncList((v) => {
+      try {
+        localStorage.setItem("nv-map-sync", v ? "0" : "1");
+      } catch {
+        /* storage blocked */
+      }
+      return !v;
+    });
+  };
   const selectedLatLng = useMemo<[number, number] | null>(
     () => (selected ? [selected.point.lat, selected.point.lng] : null),
     [selected]
@@ -324,7 +407,10 @@ export default function MapSearch({ fallback = [] }: { fallback?: Fallback[] }) 
       const pt = m.latLngToContainerPoint([p.lat, p.lng]);
       const size = m.getSize();
       const targetY = Math.max(70, (size.y - 380) / 2 + 20);
-      if (pt.y > size.y - 380 || pt.y < 60) m.panBy([pt.x - size.x / 2, pt.y - targetY]);
+      if (pt.y > size.y - 380 || pt.y < 60) {
+        programmaticAt.current = nowMs(); // making room for the card is not a new search
+        m.panBy([pt.x - size.x / 2, pt.y - targetY]);
+      }
     }
   };
 
@@ -419,7 +505,15 @@ export default function MapSearch({ fallback = [] }: { fallback?: Fallback[] }) 
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <ViewController area={area} location={location} locale={locale} fallback={fallback} />
+        <ViewController
+          area={area}
+          location={location}
+          bbox={bbox}
+          locale={locale}
+          fallback={fallback}
+          programmaticAt={programmaticAt}
+        />
+        <MapMoveSync enabled={syncList && !drawing && !area} programmaticAt={programmaticAt} />
         <ZoomWatcher onZoom={setZoom} />
         <DataLoader query={query} onData={setData} />
         <PinTracker latLng={selectedLatLng} onPosition={setPinPos} />
@@ -483,6 +577,18 @@ export default function MapSearch({ fallback = [] }: { fallback?: Fallback[] }) 
             );
           })}
       </MapContainer>
+
+      {!drawing && !area && (
+        <label className="absolute right-3 top-14 z-[500] flex cursor-pointer select-none items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-gray-900 shadow-md sm:top-3">
+          <input
+            type="checkbox"
+            checked={syncList}
+            onChange={toggleSync}
+            className="h-4 w-4 accent-red-600"
+          />
+          {t("searchAsMove")}
+        </label>
+      )}
 
       {/* Controls */}
       <div className="absolute left-1/2 top-3 z-[500] flex -translate-x-1/2 gap-2">
