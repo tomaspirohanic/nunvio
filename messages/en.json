@@ -747,7 +747,10 @@
     "openListing": "Open listing",
     "perMonth": "/ month",
     "noPhotos": "No photos",
-    "previewError": "Couldn't load the preview. Open the listing."
+    "previewError": "Couldn't load the preview. Open the listing.",
+    "sameSpot": "Listing {current} of {total} at this spot",
+    "prevHere": "Previous listing at this spot",
+    "nextHere": "Next listing at this spot"
   },
   "Mortgage": {
     "title": "Mortgage calculator",

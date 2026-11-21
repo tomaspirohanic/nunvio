@@ -203,6 +203,16 @@ export default async function middleware(request: NextRequest) {
     });
   }
 
+  // Visitor's country (from the hosting geo header), so the search map can
+  // open on it. Readable by the browser; not a preference, just a hint.
+  if (countryCode && request.cookies.get("NEXT_COUNTRY")?.value !== countryCode) {
+    response.cookies.set("NEXT_COUNTRY", countryCode, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 30,
+      sameSite: "lax",
+    });
+  }
+
   // Check if the path is a dashboard route (after locale routing)
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/dashboard`) || pathname === `/${locale}/dashboard`

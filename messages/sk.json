@@ -748,7 +748,10 @@
     "openListing": "Otvoriť inzerát",
     "perMonth": "/ mesiac",
     "noPhotos": "Bez fotiek",
-    "previewError": "Náhľad sa nepodarilo načítať. Otvorte inzerát."
+    "previewError": "Náhľad sa nepodarilo načítať. Otvorte inzerát.",
+    "sameSpot": "Inzerát {current} z {total} na tomto mieste",
+    "prevHere": "Predchádzajúci inzerát na tomto mieste",
+    "nextHere": "Ďalší inzerát na tomto mieste"
   },
   "Mortgage": {
     "title": "Hypotekárna kalkulačka",

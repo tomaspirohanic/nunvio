@@ -747,7 +747,10 @@
     "openListing": "Hirdetés megnyitása",
     "perMonth": "/ hó",
     "noPhotos": "Nincs fotó",
-    "previewError": "Az előnézet nem tölthető be. Nyissa meg a hirdetést."
+    "previewError": "Az előnézet nem tölthető be. Nyissa meg a hirdetést.",
+    "sameSpot": "{current}/{total}. hirdetés ezen a helyen",
+    "prevHere": "Előző hirdetés ezen a helyen",
+    "nextHere": "Következő hirdetés ezen a helyen"
   },
   "Mortgage": {
     "title": "Jelzáloghitel-kalkulátor",

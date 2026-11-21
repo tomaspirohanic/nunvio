@@ -747,7 +747,10 @@
     "openListing": "Otvori oglas",
     "perMonth": "/ mj.",
     "noPhotos": "Nema fotografija",
-    "previewError": "Pregled se nije mogao učitati. Otvorite oglas."
+    "previewError": "Pregled se nije mogao učitati. Otvorite oglas.",
+    "sameSpot": "Oglas {current} od {total} na ovom mjestu",
+    "prevHere": "Prethodni oglas na ovom mjestu",
+    "nextHere": "Sljedeći oglas na ovom mjestu"
   },
   "Mortgage": {
     "title": "Kalkulator stambenog kredita",

@@ -747,7 +747,10 @@
     "openListing": "Oscail an fógra",
     "perMonth": "/ mí",
     "noPhotos": "Gan grianghraif",
-    "previewError": "Níorbh fhéidir an réamhamharc a lódáil. Oscail an fógra."
+    "previewError": "Níorbh fhéidir an réamhamharc a lódáil. Oscail an fógra.",
+    "sameSpot": "Fógra {current} as {total} san áit seo",
+    "prevHere": "Fógra roimhe seo san áit seo",
+    "nextHere": "An chéad fhógra eile san áit seo"
   },
   "Mortgage": {
     "title": "Áireamhán morgáiste",

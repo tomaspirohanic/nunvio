@@ -748,7 +748,10 @@
     "openListing": "Otevřít inzerát",
     "perMonth": "/ měsíc",
     "noPhotos": "Bez fotek",
-    "previewError": "Náhled se nepodařilo načíst. Otevřete inzerát."
+    "previewError": "Náhled se nepodařilo načíst. Otevřete inzerát.",
+    "sameSpot": "Inzerát {current} z {total} na tomto místě",
+    "prevHere": "Předchozí inzerát na tomto místě",
+    "nextHere": "Další inzerát na tomto místě"
   },
   "Mortgage": {
     "title": "Hypoteční kalkulačka",

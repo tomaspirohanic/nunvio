@@ -747,7 +747,10 @@
     "openListing": "Atidaryti skelbimą",
     "perMonth": "/ mėn.",
     "noPhotos": "Nuotraukų nėra",
-    "previewError": "Nepavyko įkelti peržiūros. Atidarykite skelbimą."
+    "previewError": "Nepavyko įkelti peržiūros. Atidarykite skelbimą.",
+    "sameSpot": "Skelbimas {current} iš {total} šioje vietoje",
+    "prevHere": "Ankstesnis skelbimas šioje vietoje",
+    "nextHere": "Kitas skelbimas šioje vietoje"
   },
   "Mortgage": {
     "title": "Būsto paskolos skaičiuoklė",

@@ -747,7 +747,10 @@
     "openListing": "Ava kuulutus",
     "perMonth": "/ kuu",
     "noPhotos": "Fotosid pole",
-    "previewError": "Eelvaadet ei õnnestunud laadida. Ava kuulutus."
+    "previewError": "Eelvaadet ei õnnestunud laadida. Ava kuulutus.",
+    "sameSpot": "Kuulutus {current}/{total} selles kohas",
+    "prevHere": "Eelmine kuulutus selles kohas",
+    "nextHere": "Järgmine kuulutus selles kohas"
   },
   "Mortgage": {
     "title": "Kodulaenu kalkulaator",
