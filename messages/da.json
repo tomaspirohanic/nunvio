@@ -747,7 +747,10 @@
     "openListing": "Åbn annonce",
     "perMonth": "/ md.",
     "noPhotos": "Ingen billeder",
-    "previewError": "Forhåndsvisningen kunne ikke indlæses. Åbn annoncen."
+    "previewError": "Forhåndsvisningen kunne ikke indlæses. Åbn annoncen.",
+    "sameSpot": "Annonce {current} af {total} på dette sted",
+    "prevHere": "Forrige annonce på dette sted",
+    "nextHere": "Næste annonce på dette sted"
   },
   "Mortgage": {
     "title": "Boliglånsberegner",

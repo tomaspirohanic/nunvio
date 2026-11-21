@@ -747,7 +747,10 @@
     "openListing": "Öppna annons",
     "perMonth": "/ mån",
     "noPhotos": "Inga bilder",
-    "previewError": "Förhandsvisningen kunde inte laddas. Öppna annonsen."
+    "previewError": "Förhandsvisningen kunde inte laddas. Öppna annonsen.",
+    "sameSpot": "Annons {current} av {total} på den här platsen",
+    "prevHere": "Föregående annons på den här platsen",
+    "nextHere": "Nästa annons på den här platsen"
   },
   "Mortgage": {
     "title": "Bolånekalkylator",

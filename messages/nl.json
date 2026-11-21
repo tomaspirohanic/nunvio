@@ -747,7 +747,10 @@
     "openListing": "Advertentie openen",
     "perMonth": "/ maand",
     "noPhotos": "Geen foto's",
-    "previewError": "Voorbeeld kon niet worden geladen. Open de advertentie."
+    "previewError": "Voorbeeld kon niet worden geladen. Open de advertentie.",
+    "sameSpot": "Advertentie {current} van {total} op deze plek",
+    "prevHere": "Vorige advertentie op deze plek",
+    "nextHere": "Volgende advertentie op deze plek"
   },
   "Mortgage": {
     "title": "Hypotheekcalculator",

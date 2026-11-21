@@ -747,7 +747,10 @@
     "openListing": "Apri annuncio",
     "perMonth": "/ mese",
     "noPhotos": "Nessuna foto",
-    "previewError": "Impossibile caricare l'anteprima. Apri l'annuncio."
+    "previewError": "Impossibile caricare l'anteprima. Apri l'annuncio.",
+    "sameSpot": "Annuncio {current} di {total} in questo punto",
+    "prevHere": "Annuncio precedente in questo punto",
+    "nextHere": "Annuncio successivo in questo punto"
   },
   "Mortgage": {
     "title": "Calcolatore mutuo",

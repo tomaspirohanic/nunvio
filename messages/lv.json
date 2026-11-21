@@ -747,7 +747,10 @@
     "openListing": "Atvērt sludinājumu",
     "perMonth": "/ mēn.",
     "noPhotos": "Nav fotoattēlu",
-    "previewError": "Priekšskatījumu neizdevās ielādēt. Atveriet sludinājumu."
+    "previewError": "Priekšskatījumu neizdevās ielādēt. Atveriet sludinājumu.",
+    "sameSpot": "Sludinājums {current} no {total} šajā vietā",
+    "prevHere": "Iepriekšējais sludinājums šajā vietā",
+    "nextHere": "Nākamais sludinājums šajā vietā"
   },
   "Mortgage": {
     "title": "Hipotekārā kredīta kalkulators",

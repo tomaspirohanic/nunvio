@@ -87,10 +87,13 @@ export default function MapPreviewCard({
   seed,
   anchor,
   onClose,
+  stack,
 }: {
   seed: MapPreviewSeed;
   anchor?: { x: number; y: number; w: number; h: number } | null;
   onClose: () => void;
+  /** Several listings in the same spot (e.g. one building): step through them. */
+  stack?: { index: number; total: number; go: (i: number) => void };
 }) {
   const t = useTranslations("MapSearch");
   const tGallery = useTranslations("Gallery");
@@ -252,6 +255,28 @@ export default function MapPreviewCard({
           </div>
         )}
       </div>
+
+      {stack && (
+        <div className="flex items-center justify-between border-b border-gray-100 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-700">
+          <button
+            type="button"
+            aria-label={t("prevHere")}
+            onClick={() => stack.go(stack.index - 1)}
+            className="flex h-7 w-7 items-center justify-center rounded-full hover:bg-gray-200"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <span>{t("sameSpot", { current: stack.index + 1, total: stack.total })}</span>
+          <button
+            type="button"
+            aria-label={t("nextHere")}
+            onClick={() => stack.go(stack.index + 1)}
+            className="flex h-7 w-7 items-center justify-center rounded-full hover:bg-gray-200"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+      )}
 
       {/* Text */}
       <Link href={href} className="block px-4 pb-4 pt-3 hover:bg-gray-50">

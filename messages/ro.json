@@ -747,7 +747,10 @@
     "openListing": "Deschide anunțul",
     "perMonth": "/ lună",
     "noPhotos": "Fără fotografii",
-    "previewError": "Previzualizarea nu a putut fi încărcată. Deschideți anunțul."
+    "previewError": "Previzualizarea nu a putut fi încărcată. Deschideți anunțul.",
+    "sameSpot": "Anunțul {current} din {total} în acest loc",
+    "prevHere": "Anunțul anterior din acest loc",
+    "nextHere": "Următorul anunț din acest loc"
   },
   "Mortgage": {
     "title": "Calculator credit ipotecar",

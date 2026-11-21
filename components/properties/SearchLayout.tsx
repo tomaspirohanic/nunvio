@@ -1132,12 +1132,18 @@ export default function SearchLayout({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {properties.map((property) => (
-              <PropertyCard
+              <div
                 key={property.id}
-                property={property}
-                locale={locale}
-                tProperties={tProperties}
-              />
+                // Highlights this listing's pin on the map while hovered.
+                onMouseEnter={() =>
+                  window.dispatchEvent(new CustomEvent("nv:hover-listing", { detail: property.id }))
+                }
+                onMouseLeave={() =>
+                  window.dispatchEvent(new CustomEvent("nv:hover-listing", { detail: null }))
+                }
+              >
+                <PropertyCard property={property} locale={locale} tProperties={tProperties} />
+              </div>
             ))}
           </div>
 

@@ -747,7 +747,10 @@
     "openListing": "Voir l'annonce",
     "perMonth": "/ mois",
     "noPhotos": "Pas de photos",
-    "previewError": "Impossible de charger l'aperçu. Ouvrez l'annonce."
+    "previewError": "Impossible de charger l'aperçu. Ouvrez l'annonce.",
+    "sameSpot": "Annonce {current} sur {total} à cet endroit",
+    "prevHere": "Annonce précédente à cet endroit",
+    "nextHere": "Annonce suivante à cet endroit"
   },
   "Mortgage": {
     "title": "Simulateur de prêt immobilier",
