@@ -44,7 +44,8 @@
     "subtitle": "超过 {count} 套可选房产",
     "listProperty": "发布房源",
     "browseProperties": "浏览房产",
-    "imageAlt": "带花园的现代住宅"
+    "imageAlt": "带花园的现代住宅",
+    "subtitleGeneric": "汇集房产中介的公寓、住宅和土地"
   },
   "Search": {
     "heroTitle": "选对才是关键",
@@ -119,7 +120,7 @@
     "subtitle": "浏览我们精选的房产",
     "noProperties": "未找到房产",
     "viewDetails": "查看详情",
-    "bedrooms": "卧室",
+    "bedrooms": "房间",
     "bathrooms": "浴室",
     "area": "面积",
     "price": "价格",
@@ -177,7 +178,7 @@
     "emptyDesc": "该中介尚未发布任何房源。"
   },
   "PropertyDetail": {
-    "beds": "卧室",
+    "beds": "房间",
     "baths": "浴室",
     "area": "面积",
     "type": "类型",
@@ -217,7 +218,9 @@
     "addProperty": "添加您的房产"
   },
   "Home": {
-    "featuredTitle": "精品房产"
+    "featuredTitle": "精品房产",
+    "latestTitle": "最新房源",
+    "showAll": "查看全部"
   },
   "DashboardProperties": {
     "title": "我的房产",
@@ -451,26 +454,27 @@
     "resetIgnore": "如果不是您本人操作，请忽略此邮件。"
   },
   "Partners": {
-    "title": "CRM 与多平台发布合作伙伴",
-    "intro": "接入 Softreal、Urbium、backOFFICE、RealSys 等 CRM 的导出数据，让成千上万条房源自动同步到 Nunvio——先从斯洛伐克和捷克开始，再扩展到欧洲其他地区。",
+    "title": "房产中介接入",
+    "intro": "您的房源会从您正在使用的房产软件自动同步到 Nunvio，无需重复录入。",
     "howTitle": "接入方式",
-    "how1": "提供稳定的 HTTPS XML 数据源（每个中介或每个 CRM 导出一个 URL）。",
-    "how2": "中介在 Nunvio 注册，并在 控制台 → XML 导入 中粘贴数据源 URL。",
-    "how3": "启用自动同步——Nunvio 每约 15 分钟分批拉取数据（大型目录也安全）。",
-    "how4": "房源按 externalId 更新——更新不会产生重复。",
+    "how1": "在您的房产软件中开启房源导出（XML）并复制其地址。",
+    "how2": "在 Nunvio 注册您的中介，并在“房源导入”中粘贴该地址。",
+    "how3": "此后 Nunvio 会自动更新房源：添加新房源、同步修改并下架已售房源。",
+    "how4": "即使软件重复发送，每条房源在 Nunvio 上也只出现一次。",
     "crmTitle": "适用对象",
-    "crmBody": "CRM / 多平台发布服务商将 Nunvio 添加为导出目标。中介也可以直接粘贴现有的 XML URL。我们不向竞争门户购买房源目录。",
-    "techTitle": "技术方案（已就绪）",
+    "crmBody": "适用于房产中介，以及希望将 Nunvio 加入房源发布渠道的软件供应商。",
+    "techTitle": "技术说明",
     "techSync": "基于 cron 的分批同步、图片导入 R2、SK/CZ 字段别名（nazov、popis、cena、obec…）。",
     "contactTitle": "联系方式",
-    "contactBody": "如需配置接入或申请测试中介账户，请发送邮件至",
+    "contactBody": "有疑问或需要接入帮助？请发邮件至",
     "ctaRegister": "创建中介账户",
     "ctaSample": "下载 XML 示例",
     "crmSlovakia": "斯洛伐克",
     "crmCzechia": "捷克",
     "techSample": "XML 示例",
     "techValidate": "校验数据源（API）",
-    "techDocs": "文档"
+    "techDocs": "文档",
+    "techBody": "我们支持常见的导出格式。请发送文件样本，我们会在上线前检查。"
   },
   "Gallery": {
     "openPhotos": "打开照片",
@@ -543,7 +547,10 @@
     "propertyBody": "您要查找的房源不存在或已被删除。",
     "agencyTitle": "未找到中介",
     "agencyBody": "该房产中介不存在或已被删除。",
-    "browseAll": "浏览全部房源"
+    "browseAll": "浏览全部房源",
+    "pageTitle": "找不到页面",
+    "pageBody": "该页面不存在或已移动。请搜索房源或返回首页。",
+    "goHome": "首页"
   },
   "DashboardSidebar": {
     "badge": "控制台",

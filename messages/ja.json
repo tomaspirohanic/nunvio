@@ -44,7 +44,8 @@
     "subtitle": "{count} 件以上の物件を掲載中",
     "listProperty": "物件を掲載",
     "browseProperties": "物件を見る",
-    "imageAlt": "庭付きのモダンな住宅"
+    "imageAlt": "庭付きのモダンな住宅",
+    "subtitleGeneric": "不動産会社のマンション・一戸建て・土地をまとめて"
   },
   "Search": {
     "heroTitle": "大切なのは正しい選択",
@@ -119,7 +120,7 @@
     "subtitle": "厳選された物件をご覧ください",
     "noProperties": "物件が見つかりません",
     "viewDetails": "詳細を見る",
-    "bedrooms": "寝室",
+    "bedrooms": "部屋数",
     "bathrooms": "浴室",
     "area": "面積",
     "price": "価格",
@@ -177,7 +178,7 @@
     "emptyDesc": "この不動産会社はまだ物件を掲載していません。"
   },
   "PropertyDetail": {
-    "beds": "寝室",
+    "beds": "部屋数",
     "baths": "浴室",
     "area": "面積",
     "type": "タイプ",
@@ -217,7 +218,9 @@
     "addProperty": "物件を追加する"
   },
   "Home": {
-    "featuredTitle": "プレミアム物件"
+    "featuredTitle": "プレミアム物件",
+    "latestTitle": "新着物件",
+    "showAll": "すべて表示"
   },
   "DashboardProperties": {
     "title": "マイ物件",
@@ -451,26 +454,27 @@
     "resetIgnore": "心当たりがない場合はこのメールを無視してください。"
   },
   "Partners": {
-    "title": "CRM・マルチ掲載パートナー",
-    "intro": "Softreal、Urbium、backOFFICE、RealSys などの CRM エクスポートを接続すると、数千件の物件が Nunvio に自動同期されます。まずスロバキアとチェコから始め、その後ヨーロッパ全域へ展開します。",
+    "title": "不動産会社向け連携",
+    "intro": "お使いの不動産ソフトから物件情報が自動で Nunvio に掲載されます。二重入力は不要です。",
     "howTitle": "接続の仕組み",
-    "how1": "安定した HTTPS の XML フィードを用意します（不動産会社ごと、または CRM エクスポートごとに 1 つの URL）。",
-    "how2": "不動産会社が Nunvio に登録し、ダッシュボード → XML インポートでフィード URL を貼り付けます。",
-    "how3": "自動同期を有効にすると、Nunvio が約 15 分ごとに分割して取得します（大規模なカタログでも安全）。",
-    "how4": "物件は externalId で更新され、重複は作成されません。",
+    "how1": "不動産ソフトで物件エクスポート（XML）を有効にし、そのアドレスをコピーします。",
+    "how2": "Nunvio に会社を登録し、「物件インポート」にアドレスを貼り付けます。",
+    "how3": "以降、Nunvio が物件を自動更新します。新着の追加、変更の反映、成約物件の削除を行います。",
+    "how4": "ソフトが繰り返し送信しても、各物件は Nunvio に一度だけ掲載されます。",
     "crmTitle": "対象",
-    "crmBody": "CRM・マルチ掲載ベンダーは Nunvio をエクスポート先として追加できます。不動産会社が既存の XML URL を直接貼り付けることもできます。競合ポータルからカタログを購入することはありません。",
-    "techTitle": "技術パッケージ（準備完了）",
+    "crmBody": "不動産会社と、物件の送信先ポータルに Nunvio を追加したいソフト会社向けです。",
+    "techTitle": "技術担当者向け",
     "techSync": "cron による分割同期、R2 への画像取り込み、SK/CZ フィールドの別名（nazov、popis、cena、obec…）。",
     "contactTitle": "お問い合わせ",
-    "contactBody": "接続設定やテスト用の不動産会社アカウントについては、次のアドレスまでご連絡ください：",
+    "contactBody": "ご質問や連携のサポートは、こちらまでご連絡ください：",
     "ctaRegister": "不動産会社アカウントを作成",
     "ctaSample": "XML サンプルをダウンロード",
     "crmSlovakia": "スロバキア",
     "crmCzechia": "チェコ",
     "techSample": "XML サンプル",
     "techValidate": "フィードを検証（API）",
-    "techDocs": "ドキュメント"
+    "techDocs": "ドキュメント",
+    "techBody": "一般的なエクスポート形式に対応しています。ファイルのサンプルを送っていただければ、開始前に確認します。"
   },
   "Gallery": {
     "openPhotos": "写真を開く",
@@ -543,7 +547,10 @@
     "propertyBody": "お探しの物件は存在しないか、削除されました。",
     "agencyTitle": "不動産会社が見つかりません",
     "agencyBody": "この不動産会社は存在しないか、削除されました。",
-    "browseAll": "すべての物件を見る"
+    "browseAll": "すべての物件を見る",
+    "pageTitle": "ページが見つかりません",
+    "pageBody": "このページは存在しないか、移動しました。物件を検索するか、トップページに戻ってください。",
+    "goHome": "トップページ"
   },
   "DashboardSidebar": {
     "badge": "ダッシュボード",

@@ -44,7 +44,8 @@
     "subtitle": "Över {count} tillgängliga bostäder",
     "listProperty": "Annonsera din bostad",
     "browseProperties": "Bläddra bland bostäder",
-    "imageAlt": "Modernt hus med trädgård"
+    "imageAlt": "Modernt hus med trädgård",
+    "subtitleGeneric": "Lägenheter, hus och tomter från mäklare på ett ställe"
   },
   "Search": {
     "heroTitle": "Rätt val är nyckeln",
@@ -119,7 +120,7 @@
     "subtitle": "Bläddra bland vårt urval av fastigheter",
     "noProperties": "Inga bostäder hittades",
     "viewDetails": "Visa detaljer",
-    "bedrooms": "Sovrum",
+    "bedrooms": "Rum",
     "bathrooms": "Badrum",
     "area": "Yta",
     "price": "Pris",
@@ -177,7 +178,7 @@
     "emptyDesc": "Den här byrån har inte publicerat några annonser ännu."
   },
   "PropertyDetail": {
-    "beds": "Sovrum",
+    "beds": "Rum",
     "baths": "Badrum",
     "area": "Yta",
     "type": "Typ",
@@ -217,7 +218,9 @@
     "addProperty": "Lägg till din bostad"
   },
   "Home": {
-    "featuredTitle": "Premiumbostäder"
+    "featuredTitle": "Premiumbostäder",
+    "latestTitle": "Senaste bostäderna",
+    "showAll": "Visa alla"
   },
   "DashboardProperties": {
     "title": "Mina bostäder",
@@ -405,26 +408,27 @@
     "copyright": "© {year} Nunvio. Alla rättigheter förbehållna."
   },
   "Partners": {
-    "title": "Partner för CRM och multipublicering",
-    "intro": "Koppla exporter från Softreal, Urbium, backOFFICE, RealSys och andra CRM-system så att tusentals annonser synkas automatiskt till Nunvio — först i Slovakien och Tjeckien, sedan i resten av Europa.",
+    "title": "Anslutning för mäklare",
+    "intro": "Dina annonser kommer automatiskt till Nunvio från det mäklarsystem du redan använder. Inget behöver matas in två gånger.",
     "howTitle": "Så fungerar anslutningen",
-    "how1": "Tillhandahåll ett stabilt XML-flöde via HTTPS (en URL per byrå eller per CRM-export).",
-    "how2": "Byrån registrerar sig på Nunvio och klistrar in flödes-URL:en under Översikt → XML-import.",
-    "how3": "Aktivera automatisk synkning — Nunvio hämtar data i delar var ~15:e minut (säkert även för stora kataloger).",
-    "how4": "Annonser uppdateras via externalId — uppdateringar skapar inga dubbletter.",
+    "how1": "Aktivera annonsexporten (XML) i ditt system och kopiera dess adress.",
+    "how2": "Registrera byrån på Nunvio och klistra in adressen under Annonsimport.",
+    "how3": "Därefter uppdaterar Nunvio annonserna automatiskt: nya läggs till, ändringar förs över och sålda tas bort.",
+    "how4": "Varje annons visas bara en gång på Nunvio, även om systemet skickar den flera gånger.",
     "crmTitle": "Vem det är för",
-    "crmBody": "Leverantörer av CRM / multipublicering lägger till Nunvio som exportdestination. Byråer kan också klistra in sin befintliga XML-URL direkt. Vi köper inga kataloger från konkurrerande portaler.",
-    "techTitle": "Tekniskt paket (klart)",
+    "crmBody": "För mäklare och programvaruleverantörer som vill lägga till Nunvio bland portalerna de skickar annonser till.",
+    "techTitle": "För tekniker",
     "techSync": "Synkning i delar via cron, bildimport till R2, SK/CZ-fältalias (nazov, popis, cena, obec…).",
     "contactTitle": "Kontakt",
-    "contactBody": "För uppsättning av kopplingen eller ett testkonto för byrå, mejla",
+    "contactBody": "Frågor eller behöver du hjälp med anslutningen? Skriv till oss på",
     "ctaRegister": "Skapa byråkonto",
     "ctaSample": "Ladda ner exempel-XML",
     "crmSlovakia": "Slovakien",
     "crmCzechia": "Tjeckien",
     "techSample": "Exempel-XML",
     "techValidate": "Validera flöde (API)",
-    "techDocs": "Dokumentation"
+    "techDocs": "Dokumentation",
+    "techBody": "Vi stöder de vanliga exportformaten. Skicka ett exempel på din fil så kontrollerar vi den före start."
   },
   "Privacy": {
     "title": "Integritetspolicy",
@@ -531,7 +535,10 @@
     "propertyBody": "Bostaden du letar efter finns inte eller har tagits bort.",
     "agencyTitle": "Byrån hittades inte",
     "agencyBody": "Den här mäklarbyrån finns inte eller har tagits bort.",
-    "browseAll": "Bläddra bland alla bostäder"
+    "browseAll": "Bläddra bland alla bostäder",
+    "pageTitle": "Sidan hittades inte",
+    "pageBody": "Sidan finns inte eller har flyttats. Sök efter en bostad eller gå tillbaka till startsidan.",
+    "goHome": "Startsida"
   },
   "DashboardSidebar": {
     "badge": "Översikt",

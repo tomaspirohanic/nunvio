@@ -9,6 +9,7 @@
 // ============================================
 
 import { useState, useRef, useEffect } from "react";
+import { Globe } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter as useI18nRouter } from "@/src/i18n/routing";
@@ -190,7 +191,6 @@ export default function LocalizationSwitcher() {
     router.refresh();
   };
 
-  const currentLang = getLanguageConfig(locale);
   const currentCurrencyInfo = currencyInfo[currentCurrency];
 
   // Filter languages based on search
@@ -212,7 +212,8 @@ export default function LocalizationSwitcher() {
         className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors rounded-lg hover:bg-gray-100 border border-gray-200"
         aria-label={t("ariaLabel")}
       >
-        <span className="text-lg">{currentLang.flag}</span>
+        {/* Flag emoji render as two letters on Windows ("sk SK"): use an icon */}
+        <Globe className="h-4 w-4 text-gray-500" aria-hidden />
         <span className="uppercase font-semibold">{locale}</span>
         <span className="text-gray-400">|</span>
         <span className="text-lg">{currentCurrencyInfo.symbol}</span>
@@ -304,7 +305,9 @@ export default function LocalizationSwitcher() {
                             : "text-gray-700 hover:bg-gray-100"
                         }`}
                       >
-                        <span className="text-2xl">{config.flag}</span>
+                        <span className="flex h-7 w-9 shrink-0 items-center justify-center rounded-md border border-gray-200 bg-white text-xs font-semibold uppercase text-gray-600">
+                          {loc}
+                        </span>
                         <div className="flex-1">
                           <div className="font-medium">{config.nativeName}</div>
                           <div className="text-xs text-gray-500">{config.name}</div>

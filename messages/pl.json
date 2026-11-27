@@ -44,7 +44,8 @@
     "subtitle": "Ponad {count} dostępnych nieruchomości",
     "listProperty": "Dodaj ogłoszenie",
     "browseProperties": "Przeglądaj nieruchomości",
-    "imageAlt": "Nowoczesny dom z ogrodem"
+    "imageAlt": "Nowoczesny dom z ogrodem",
+    "subtitleGeneric": "Mieszkania, domy i działki od biur nieruchomości w jednym miejscu"
   },
   "Search": {
     "heroTitle": "Dobry wybór to podstawa",
@@ -119,7 +120,7 @@
     "subtitle": "Przeglądaj naszą ofertę nieruchomości",
     "noProperties": "Nie znaleziono nieruchomości",
     "viewDetails": "Zobacz szczegóły",
-    "bedrooms": "Sypialnie",
+    "bedrooms": "Pokoje",
     "bathrooms": "Łazienki",
     "area": "Powierzchnia",
     "price": "Cena",
@@ -177,7 +178,7 @@
     "emptyDesc": "To biuro nie opublikowało jeszcze żadnych ogłoszeń."
   },
   "PropertyDetail": {
-    "beds": "Sypialnie",
+    "beds": "Pokoje",
     "baths": "Łazienki",
     "area": "Powierzchnia",
     "type": "Typ",
@@ -217,7 +218,9 @@
     "addProperty": "Dodaj swoją nieruchomość"
   },
   "Home": {
-    "featuredTitle": "Nieruchomości premium"
+    "featuredTitle": "Nieruchomości premium",
+    "latestTitle": "Najnowsze nieruchomości",
+    "showAll": "Pokaż wszystkie"
   },
   "DashboardProperties": {
     "title": "Moje nieruchomości",
@@ -451,26 +454,27 @@
     "resetIgnore": "Jeśli to nie Ty, zignoruj tę wiadomość."
   },
   "Partners": {
-    "title": "Partnerzy CRM i multipublikacji",
-    "intro": "Połącz Softreal, Urbium, backOFFICE, RealSys i inne eksporty CRM, aby tysiące ogłoszeń automatycznie synchronizowały się z Nunvio. Zaczynamy od Słowacji i Czech, potem reszta Europy.",
+    "title": "Integracja dla biur nieruchomości",
+    "intro": "Twoje ogłoszenia trafiają na Nunvio automatycznie z oprogramowania, którego już używasz. Nic nie trzeba wpisywać dwa razy.",
     "howTitle": "Jak działa połączenie",
-    "how1": "Udostępnij stabilny feed XML przez HTTPS (jeden URL na biuro lub eksport CRM).",
-    "how2": "Biuro rejestruje się w Nunvio i wkleja URL feedu w Panel → Import XML.",
-    "how3": "Włącz automatyczną synchronizację. Nunvio pobiera dane partiami mniej więcej co 15 minut (bezpieczne także dla dużych katalogów).",
-    "how4": "Ogłoszenia są dopasowywane po externalId, więc aktualizacje nie tworzą duplikatów.",
+    "how1": "Włącz eksport ogłoszeń (XML) w swoim oprogramowaniu i skopiuj jego adres.",
+    "how2": "Zarejestruj biuro na Nunvio i wklej adres w sekcji Import ogłoszeń.",
+    "how3": "Od tej chwili Nunvio regularnie i automatycznie aktualizuje ogłoszenia: dodaje nowe, przenosi zmiany i usuwa sprzedane.",
+    "how4": "Każde ogłoszenie jest na Nunvio tylko raz, nawet jeśli oprogramowanie wysyła je wielokrotnie.",
     "crmTitle": "Dla kogo",
-    "crmBody": "Dostawcy CRM i multipublikacji dodają Nunvio jako cel eksportu. Biura mogą też bezpośrednio wkleić swój istniejący URL XML. Nie kupujemy baz ogłoszeń od konkurencyjnych portali.",
-    "techTitle": "Pakiet techniczny (gotowy)",
+    "crmBody": "Dla biur nieruchomości i dostawców oprogramowania, którzy chcą dodać Nunvio do portali, do których wysyłają ogłoszenia.",
+    "techTitle": "Dla techników",
     "techSync": "Synchronizacja partiami, import zdjęć, słowackie i czeskie nazwy pól (nazov, popis, cena, obec…).",
     "contactTitle": "Kontakt",
-    "contactBody": "W sprawie konfiguracji połączenia lub konta testowego napisz na",
+    "contactBody": "Masz pytanie lub potrzebujesz pomocy z integracją? Napisz do nas na",
     "ctaRegister": "Załóż konto biura",
     "ctaSample": "Pobierz przykładowy XML",
     "crmSlovakia": "Słowacja",
     "crmCzechia": "Czechy",
     "techSample": "Przykładowy XML",
     "techValidate": "Walidacja feedu (API)",
-    "techDocs": "Dokumentacja"
+    "techDocs": "Dokumentacja",
+    "techBody": "Obsługujemy popularne formaty eksportu. Wyślij nam przykładowy plik, a sprawdzimy go przed uruchomieniem."
   },
   "Gallery": {
     "openPhotos": "Otwórz zdjęcia",
@@ -543,7 +547,10 @@
     "propertyBody": "Szukane ogłoszenie nie istnieje lub zostało usunięte.",
     "agencyTitle": "Nie znaleziono biura",
     "agencyBody": "To biuro nieruchomości nie istnieje lub zostało usunięte.",
-    "browseAll": "Zobacz wszystkie nieruchomości"
+    "browseAll": "Zobacz wszystkie nieruchomości",
+    "pageTitle": "Nie znaleziono strony",
+    "pageBody": "Ta strona nie istnieje lub została przeniesiona. Wyszukaj nieruchomość lub wróć na stronę główną.",
+    "goHome": "Strona główna"
   },
   "DashboardSidebar": {
     "badge": "Panel",

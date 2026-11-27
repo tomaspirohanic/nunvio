@@ -41,7 +41,8 @@ export default function MortgageCalculator({
       <span className="flex justify-between text-sm text-gray-600">
         <span>{label}</span>
         <span className="font-semibold text-gray-900">
-          {value}
+          {/* Locale decimals: "3,9 %" in Slovak, "3.9 %" in English */}
+          {value.toLocaleString(locale, { maximumFractionDigits: 1 })}
           {opts.suffix}
         </span>
       </span>

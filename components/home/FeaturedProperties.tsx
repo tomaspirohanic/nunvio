@@ -6,13 +6,16 @@ import { useTranslations } from "next-intl";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import PropertyCard, { type FeaturedProperty } from "@/components/properties/PropertyCard";
+import { Link } from "@/src/i18n/routing";
 
 export default function FeaturedProperties({
   title,
+  showAllLabel,
   locale,
   properties,
 }: {
   title: string;
+  showAllLabel?: string;
   locale: string;
   properties: FeaturedProperty[];
 }) {
@@ -58,10 +61,21 @@ export default function FeaturedProperties({
 
   const dots = useMemo(() => Array.from({ length: snapCount }, (_, i) => i), [snapCount]);
 
+  // Nothing to show: no empty carousel with lonely arrows.
+  if (properties.length === 0) return null;
+
   return (
     <div className="w-full bg-white">
-      <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-900">{title}</h2>
+      <div className="mb-8 flex items-end justify-between gap-4">
+        <h2 className="text-2xl font-bold text-gray-900 md:text-3xl">{title}</h2>
+        {showAllLabel && (
+          <Link
+            href="/properties"
+            className="shrink-0 text-sm font-semibold text-gray-900 underline-offset-4 hover:underline"
+          >
+            {showAllLabel} →
+          </Link>
+        )}
       </div>
 
       <div className="relative">

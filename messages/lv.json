@@ -44,7 +44,8 @@
     "subtitle": "Vairāk nekā {count} pieejamu īpašumu",
     "listProperty": "Ievietojiet sludinājumu",
     "browseProperties": "Pārlūkot īpašumus",
-    "imageAlt": "Moderna māja ar dārzu"
+    "imageAlt": "Moderna māja ar dārzu",
+    "subtitleGeneric": "Dzīvokļi, mājas un zeme no nekustamo īpašumu aģentūrām vienuviet"
   },
   "Search": {
     "heroTitle": "Pareizā izvēle ir galvenais",
@@ -119,7 +120,7 @@
     "subtitle": "Pārlūkojiet mūsu nekustamo īpašumu piedāvājumu",
     "noProperties": "Īpašumi nav atrasti",
     "viewDetails": "Skatīt sīkāk",
-    "bedrooms": "Guļamistabas",
+    "bedrooms": "Istabas",
     "bathrooms": "Vannasistabas",
     "area": "Platība",
     "price": "Cena",
@@ -177,7 +178,7 @@
     "emptyDesc": "Šī aģentūra vēl nav publicējusi nevienu sludinājumu."
   },
   "PropertyDetail": {
-    "beds": "Guļamistabas",
+    "beds": "Istabas",
     "baths": "Vannasistabas",
     "area": "Platība",
     "type": "Veids",
@@ -217,7 +218,9 @@
     "addProperty": "Pievienojiet īpašumu"
   },
   "Home": {
-    "featuredTitle": "Premium īpašumi"
+    "featuredTitle": "Premium īpašumi",
+    "latestTitle": "Jaunākie īpašumi",
+    "showAll": "Rādīt visus"
   },
   "DashboardProperties": {
     "title": "Mani īpašumi",
@@ -405,26 +408,27 @@
     "copyright": "© {year} Nunvio. Visas tiesības aizsargātas."
   },
   "Partners": {
-    "title": "CRM un vairākkārtējas publicēšanas partneri",
-    "intro": "Pievienojiet Softreal, Urbium, backOFFICE, RealSys un citu CRM sistēmu eksportus, lai tūkstošiem sludinājumu automātiski sinhronizētos ar Nunvio — sākot ar Slovākiju un Čehiju, pēc tam visā Eiropā.",
+    "title": "Pieslēgšanās nekustamo īpašumu aģentūrām",
+    "intro": "Jūsu sludinājumi automātiski nonāk Nunvio no jau izmantotās programmatūras. Nekas nav jāievada divreiz.",
     "howTitle": "Kā darbojas savienojums",
-    "how1": "Nodrošiniet stabilu XML plūsmu caur HTTPS (viens URL katrai aģentūrai vai katram CRM eksportam).",
-    "how2": "Aģentūra reģistrējas Nunvio un ielīmē plūsmas URL sadaļā Vadības panelis → XML imports.",
-    "how3": "Ieslēdziet automātisko sinhronizāciju — Nunvio lejupielādē datus daļās ik pēc ~15 minūtēm (droši arī lieliem katalogiem).",
-    "how4": "Sludinājumi tiek atjaunināti pēc externalId — atjauninājumi neveido dublikātus.",
+    "how1": "Programmatūrā ieslēdziet sludinājumu eksportu (XML) un nokopējiet tā adresi.",
+    "how2": "Reģistrējiet aģentūru Nunvio un ielīmējiet adresi sadaļā Sludinājumu imports.",
+    "how3": "No tā brīža Nunvio automātiski atjaunina sludinājumus: pievieno jaunos, pārnes izmaiņas un noņem pārdotos.",
+    "how4": "Katrs sludinājums Nunvio ir tikai vienreiz, pat ja programmatūra to sūta atkārtoti.",
     "crmTitle": "Kam tas paredzēts",
-    "crmBody": "CRM / vairākkārtējas publicēšanas piegādātāji pievieno Nunvio kā eksporta galamērķi. Aģentūras var arī tieši ielīmēt savu esošo XML URL. Mēs nepērkam katalogus no konkurējošiem portāliem.",
-    "techTitle": "Tehniskā pakete (gatava)",
+    "crmBody": "Nekustamo īpašumu aģentūrām un programmatūras piegādātājiem, kas vēlas pievienot Nunvio portāliem, uz kuriem sūta sludinājumus.",
+    "techTitle": "Tehniskajiem darbiniekiem",
     "techSync": "Sinhronizācija daļās ar cron, attēlu imports uz R2, SK/CZ lauku aizstājvārdi (nazov, popis, cena, obec…).",
     "contactTitle": "Kontakti",
-    "contactBody": "Savienojuma iestatīšanai vai testa aģentūras kontam rakstiet uz",
+    "contactBody": "Jautājumi vai nepieciešama palīdzība pieslēgšanā? Rakstiet mums uz",
     "ctaRegister": "Izveidot aģentūras kontu",
     "ctaSample": "Lejupielādēt XML paraugu",
     "crmSlovakia": "Slovākija",
     "crmCzechia": "Čehija",
     "techSample": "XML paraugs",
     "techValidate": "Pārbaudīt plūsmu (API)",
-    "techDocs": "Dokumentācija"
+    "techDocs": "Dokumentācija",
+    "techBody": "Atbalstām izplatītākos eksporta formātus. Atsūtiet faila paraugu, un mēs to pārbaudīsim pirms palaišanas."
   },
   "Privacy": {
     "title": "Privātuma politika",
@@ -531,7 +535,10 @@
     "propertyBody": "Meklētais īpašums neeksistē vai ir noņemts.",
     "agencyTitle": "Aģentūra nav atrasta",
     "agencyBody": "Šī nekustamo īpašumu aģentūra neeksistē vai ir noņemta.",
-    "browseAll": "Pārlūkot visus īpašumus"
+    "browseAll": "Pārlūkot visus īpašumus",
+    "pageTitle": "Lapa nav atrasta",
+    "pageBody": "Šī lapa neeksistē vai ir pārvietota. Meklējiet īpašumu vai atgriezieties sākumlapā.",
+    "goHome": "Sākumlapa"
   },
   "DashboardSidebar": {
     "badge": "Vadības panelis",

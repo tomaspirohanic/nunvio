@@ -45,7 +45,9 @@ export function localizeCountryName(
 
   // If it's already a 2-letter code, try to display it nicely.
   const maybeCode = /^[A-Za-z]{2}$/.test(input) ? input.toUpperCase() : null;
-  const code = maybeCode ?? findCountryCodeFromName(input);
+  // Listings store the country as typed ("Španielsko", "Slowakei"…): recognise
+  // the name in any of our UI languages, so it is always shown translated.
+  const code = maybeCode ?? findCountryCodeFromName(input) ?? countryCodeFor(input);
   if (!code) return input;
 
   try {

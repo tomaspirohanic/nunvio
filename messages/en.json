@@ -44,7 +44,8 @@
     "subtitle": "Over {count} properties available",
     "listProperty": "List Your Property",
     "browseProperties": "Browse Properties",
-    "imageAlt": "Modern house with a garden"
+    "imageAlt": "Modern house with a garden",
+    "subtitleGeneric": "Flats, houses and land from real estate agencies in one place"
   },
   "Search": {
     "heroTitle": "Choosing right is the key",
@@ -119,7 +120,7 @@
     "subtitle": "Browse our collection of real estate properties",
     "noProperties": "No properties found",
     "viewDetails": "View Details",
-    "bedrooms": "Bedrooms",
+    "bedrooms": "Rooms",
     "bathrooms": "Bathrooms",
     "area": "Area",
     "price": "Price",
@@ -177,7 +178,7 @@
     "emptyDesc": "This agency has not published any listings yet."
   },
   "PropertyDetail": {
-    "beds": "Beds",
+    "beds": "Rooms",
     "baths": "Baths",
     "area": "Area",
     "type": "Type",
@@ -217,7 +218,9 @@
     "addProperty": "Add Your Property"
   },
   "Home": {
-    "featuredTitle": "Premium Properties"
+    "featuredTitle": "Premium Properties",
+    "latestTitle": "Latest properties",
+    "showAll": "Show all"
   },
   "DashboardProperties": {
     "title": "My Properties",
@@ -405,26 +408,27 @@
     "copyright": "© {year} Nunvio. All rights reserved."
   },
   "Partners": {
-    "title": "CRM & multi-posting partners",
-    "intro": "Connect Softreal, Urbium, backOFFICE, RealSys and other CRM exports so thousands of listings sync to Nunvio automatically — starting in Slovakia & Czechia, then the rest of Europe.",
+    "title": "Connect your agency",
+    "intro": "Your listings reach Nunvio automatically from the real estate software you already use (e.g. Softreal, Urbium, backOFFICE, RealSys). Nothing has to be entered twice.",
     "howTitle": "How connection works",
-    "how1": "Expose a stable HTTPS XML feed (one URL per agency or per CRM export).",
-    "how2": "Agency registers on Nunvio and pastes the Feed URL under Dashboard → XML import.",
-    "how3": "Enable automatic sync — Nunvio pulls in chunks every ~15 minutes (safe for large catalogs).",
-    "how4": "Listings upsert by externalId — updates do not create duplicates.",
+    "how1": "Turn on the listings export (XML) in your real estate software and copy its address.",
+    "how2": "Register your agency on Nunvio and paste the address under Listing import.",
+    "how3": "From then on Nunvio updates your listings automatically: new ones are added, changes copied over and sold ones removed.",
+    "how4": "Each listing appears on Nunvio only once, even if your software sends it again and again.",
     "crmTitle": "Who this is for",
-    "crmBody": "CRM / multi-posting vendors add Nunvio as an export destination. Agencies can also paste their existing XML URL directly. We do not buy catalog dumps from competing portals.",
-    "techTitle": "Technical package (ready)",
+    "crmBody": "For real estate agencies and for software providers who want to add Nunvio to the portals they send listings to.",
+    "techTitle": "For technical staff",
     "techSync": "Chunked cron sync, R2 image import, SK/CZ field aliases (nazov, popis, cena, obec…).",
     "contactTitle": "Contact",
-    "contactBody": "For bridge setup or a test agency account, email",
+    "contactBody": "Questions, or want help connecting? Write to us at",
     "ctaRegister": "Create agency account",
     "ctaSample": "Download sample XML",
     "crmSlovakia": "Slovakia",
     "crmCzechia": "Czechia",
     "techSample": "Sample XML",
     "techValidate": "Validate feed (API)",
-    "techDocs": "Documentation"
+    "techDocs": "Documentation",
+    "techBody": "We support the common Slovak and Czech export formats. Send us a sample of your file and we will check it before going live."
   },
   "Privacy": {
     "title": "Privacy Policy",
@@ -531,7 +535,10 @@
     "propertyBody": "The property you are looking for does not exist or has been removed.",
     "agencyTitle": "Agency not found",
     "agencyBody": "This real estate agency does not exist or has been removed.",
-    "browseAll": "Browse all properties"
+    "browseAll": "Browse all properties",
+    "pageTitle": "Page not found",
+    "pageBody": "This page does not exist or has moved. Search for a property or go back to the home page.",
+    "goHome": "Home page"
   },
   "DashboardSidebar": {
     "badge": "Dashboard",

@@ -44,7 +44,8 @@
     "subtitle": "Meer dan {count} woningen beschikbaar",
     "listProperty": "Woning plaatsen",
     "browseProperties": "Woningen bekijken",
-    "imageAlt": "Modern huis met tuin"
+    "imageAlt": "Modern huis met tuin",
+    "subtitleGeneric": "Appartementen, huizen en grond van makelaars op één plek"
   },
   "Search": {
     "heroTitle": "De juiste keuze maakt het verschil",
@@ -119,7 +120,7 @@
     "subtitle": "Bekijk ons woningaanbod",
     "noProperties": "Geen woningen gevonden",
     "viewDetails": "Details bekijken",
-    "bedrooms": "Slaapkamers",
+    "bedrooms": "Kamers",
     "bathrooms": "Badkamers",
     "area": "Oppervlakte",
     "price": "Prijs",
@@ -177,7 +178,7 @@
     "emptyDesc": "Deze makelaar heeft nog geen advertenties geplaatst."
   },
   "PropertyDetail": {
-    "beds": "Slaapkamers",
+    "beds": "Kamers",
     "baths": "Badkamers",
     "area": "Oppervlakte",
     "type": "Type",
@@ -217,7 +218,9 @@
     "addProperty": "Woning plaatsen"
   },
   "Home": {
-    "featuredTitle": "Uitgelichte woningen"
+    "featuredTitle": "Uitgelichte woningen",
+    "latestTitle": "Nieuwste woningen",
+    "showAll": "Alles tonen"
   },
   "DashboardProperties": {
     "title": "Mijn woningen",
@@ -405,26 +408,27 @@
     "copyright": "© {year} Nunvio. Alle rechten voorbehouden."
   },
   "Partners": {
-    "title": "CRM- en multipostingpartners",
-    "intro": "Koppel Softreal, Urbium, backOFFICE, RealSys en andere CRM-exports zodat duizenden advertenties automatisch met Nunvio synchroniseren. We beginnen in Slowakije en Tsjechië, daarna volgt de rest van Europa.",
+    "title": "Koppeling voor makelaars",
+    "intro": "Uw advertenties komen automatisch op Nunvio vanuit de makelaarssoftware die u al gebruikt. Niets hoeft dubbel te worden ingevoerd.",
     "howTitle": "Zo werkt de koppeling",
-    "how1": "Bied een stabiele HTTPS-XML-feed aan (één URL per kantoor of per CRM-export).",
-    "how2": "Het kantoor registreert zich op Nunvio en plakt de feed-URL bij Dashboard → XML-import.",
-    "how3": "Zet automatische synchronisatie aan. Nunvio haalt de gegevens ongeveer elke 15 minuten in delen op (veilig voor grote catalogi).",
-    "how4": "Advertenties worden gekoppeld via externalId, dus updates maken geen dubbele advertenties.",
+    "how1": "Zet de advertentie-export (XML) aan in uw software en kopieer het adres.",
+    "how2": "Registreer uw kantoor op Nunvio en plak het adres bij Advertenties importeren.",
+    "how3": "Vanaf dan werkt Nunvio uw advertenties automatisch bij: nieuwe worden toegevoegd, wijzigingen overgenomen en verkochte verwijderd.",
+    "how4": "Elke advertentie staat maar één keer op Nunvio, ook als uw software hem herhaaldelijk stuurt.",
     "crmTitle": "Voor wie",
-    "crmBody": "CRM- en multipostingleveranciers voegen Nunvio toe als exportbestemming. Kantoren kunnen ook direct hun bestaande XML-URL plakken. We kopen geen bestanden van concurrerende portals.",
-    "techTitle": "Technisch pakket (klaar)",
+    "crmBody": "Voor makelaars en softwareleveranciers die Nunvio willen toevoegen aan de portalen waar ze advertenties naartoe sturen.",
+    "techTitle": "Voor technici",
     "techSync": "Synchronisatie in delen, foto-import, Slowaakse en Tsjechische veldnamen (nazov, popis, cena, obec…).",
     "contactTitle": "Contact",
-    "contactBody": "Voor het instellen van de koppeling of een testaccount mail je naar",
+    "contactBody": "Vragen of hulp nodig bij de koppeling? Mail ons op",
     "ctaRegister": "Kantooraccount aanmaken",
     "ctaSample": "Voorbeeld-XML downloaden",
     "crmSlovakia": "Slowakije",
     "crmCzechia": "Tsjechië",
     "techSample": "Voorbeeld-XML",
     "techValidate": "Feed valideren (API)",
-    "techDocs": "Documentatie"
+    "techDocs": "Documentatie",
+    "techBody": "We ondersteunen de gangbare exportformaten. Stuur ons een voorbeeldbestand, dan controleren we het vóór de start."
   },
   "Privacy": {
     "title": "Privacybeleid",
@@ -531,7 +535,10 @@
     "propertyBody": "De woning die je zoekt bestaat niet of is verwijderd.",
     "agencyTitle": "Makelaar niet gevonden",
     "agencyBody": "Dit makelaarskantoor bestaat niet of is verwijderd.",
-    "browseAll": "Alle woningen bekijken"
+    "browseAll": "Alle woningen bekijken",
+    "pageTitle": "Pagina niet gevonden",
+    "pageBody": "Deze pagina bestaat niet of is verplaatst. Zoek een woning of ga terug naar de startpagina.",
+    "goHome": "Startpagina"
   },
   "DashboardSidebar": {
     "badge": "Dashboard",

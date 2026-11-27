@@ -44,7 +44,8 @@
     "subtitle": "Daugiau nei {count} objektų",
     "listProperty": "Įdėkite skelbimą",
     "browseProperties": "Peržiūrėti objektus",
-    "imageAlt": "Modernus namas su sodu"
+    "imageAlt": "Modernus namas su sodu",
+    "subtitleGeneric": "Butai, namai ir sklypai iš nekilnojamojo turto agentūrų vienoje vietoje"
   },
   "Search": {
     "heroTitle": "Teisingas pasirinkimas – svarbiausia",
@@ -119,7 +120,7 @@
     "subtitle": "Peržiūrėkite mūsų nekilnojamojo turto pasiūlą",
     "noProperties": "Objektų nerasta",
     "viewDetails": "Plačiau",
-    "bedrooms": "Miegamieji",
+    "bedrooms": "Kambariai",
     "bathrooms": "Vonios kambariai",
     "area": "Plotas",
     "price": "Kaina",
@@ -177,7 +178,7 @@
     "emptyDesc": "Ši agentūra dar nepaskelbė jokių skelbimų."
   },
   "PropertyDetail": {
-    "beds": "Miegamieji",
+    "beds": "Kambariai",
     "baths": "Vonios",
     "area": "Plotas",
     "type": "Tipas",
@@ -217,7 +218,9 @@
     "addProperty": "Pridėkite objektą"
   },
   "Home": {
-    "featuredTitle": "Išskirtiniai objektai"
+    "featuredTitle": "Išskirtiniai objektai",
+    "latestTitle": "Naujausi nekilnojamojo turto objektai",
+    "showAll": "Rodyti visus"
   },
   "DashboardProperties": {
     "title": "Mano objektai",
@@ -405,26 +408,27 @@
     "copyright": "© {year} Nunvio. Visos teisės saugomos."
   },
   "Partners": {
-    "title": "CRM ir daugkartinio skelbimo partneriai",
-    "intro": "Prijunkite Softreal, Urbium, backOFFICE, RealSys ir kitų CRM sistemų eksportus, kad tūkstančiai skelbimų automatiškai sinchronizuotųsi su Nunvio — pradedant Slovakija ir Čekija, vėliau visa Europa.",
+    "title": "Prisijungimas nekilnojamojo turto agentūroms",
+    "intro": "Jūsų skelbimai automatiškai patenka į Nunvio iš jau naudojamos programinės įrangos. Nieko nereikia įvesti du kartus.",
     "howTitle": "Kaip veikia prijungimas",
-    "how1": "Pateikite stabilų XML srautą per HTTPS (vienas URL vienai agentūrai arba vienam CRM eksportui).",
-    "how2": "Agentūra užsiregistruoja Nunvio ir įklijuoja srauto URL skiltyje Valdymo skydas → XML importas.",
-    "how3": "Įjunkite automatinį sinchronizavimą — Nunvio duomenis parsisiunčia dalimis maždaug kas 15 minučių (saugu net dideliems katalogams).",
-    "how4": "Skelbimai atnaujinami pagal externalId — atnaujinimai nesukuria dublikatų.",
+    "how1": "Programoje įjunkite skelbimų eksportą (XML) ir nukopijuokite jo adresą.",
+    "how2": "Užregistruokite agentūrą Nunvio ir įklijuokite adresą skiltyje Skelbimų importas.",
+    "how3": "Nuo tada Nunvio automatiškai atnaujina skelbimus: prideda naujus, perkelia pakeitimus ir pašalina parduotus.",
+    "how4": "Kiekvienas skelbimas Nunvio rodomas tik kartą, net jei programa jį siunčia pakartotinai.",
     "crmTitle": "Kam tai skirta",
-    "crmBody": "CRM / daugkartinio skelbimo tiekėjai prideda Nunvio kaip eksporto vietą. Agentūros taip pat gali tiesiogiai įklijuoti esamą XML URL. Mes neperkame katalogų iš konkuruojančių portalų.",
-    "techTitle": "Techninis paketas (paruoštas)",
+    "crmBody": "Nekilnojamojo turto agentūroms ir programinės įrangos tiekėjams, norintiems pridėti Nunvio prie portalų, į kuriuos siunčia skelbimus.",
+    "techTitle": "Techniniams darbuotojams",
     "techSync": "Sinchronizavimas dalimis per cron, nuotraukų importas į R2, SK/CZ laukų sinonimai (nazov, popis, cena, obec…).",
     "contactTitle": "Kontaktai",
-    "contactBody": "Dėl prijungimo nustatymo ar bandomosios agentūros paskyros rašykite",
+    "contactBody": "Klausimų ar reikia pagalbos prisijungiant? Rašykite mums",
     "ctaRegister": "Sukurti agentūros paskyrą",
     "ctaSample": "Atsisiųsti XML pavyzdį",
     "crmSlovakia": "Slovakija",
     "crmCzechia": "Čekija",
     "techSample": "XML pavyzdys",
     "techValidate": "Patikrinti srautą (API)",
-    "techDocs": "Dokumentacija"
+    "techDocs": "Dokumentacija",
+    "techBody": "Palaikome įprastus eksporto formatus. Atsiųskite failo pavyzdį ir patikrinsime jį prieš paleidimą."
   },
   "Privacy": {
     "title": "Privatumo politika",
@@ -531,7 +535,10 @@
     "propertyBody": "Ieškomas objektas neegzistuoja arba buvo pašalintas.",
     "agencyTitle": "Agentūra nerasta",
     "agencyBody": "Ši nekilnojamojo turto agentūra neegzistuoja arba buvo pašalinta.",
-    "browseAll": "Peržiūrėti visus objektus"
+    "browseAll": "Peržiūrėti visus objektus",
+    "pageTitle": "Puslapis nerastas",
+    "pageBody": "Šis puslapis neegzistuoja arba buvo perkeltas. Ieškokite objekto arba grįžkite į pagrindinį puslapį.",
+    "goHome": "Pagrindinis puslapis"
   },
   "DashboardSidebar": {
     "badge": "Valdymo skydas",

@@ -38,7 +38,10 @@ export default function Hero({ propertyCount }: HeroProps) {
               {t("title")}
             </h1>
             <p className="text-lg md:text-xl text-white/90 drop-shadow-md">
-              {t("subtitle", { count: propertyCount })}
+              {/* "Over 10 properties" sounds weak: show the count once it is impressive */}
+              {propertyCount >= 1000
+                ? t("subtitle", { count: propertyCount })
+                : t("subtitleGeneric")}
             </p>
           </div>
 

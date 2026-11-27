@@ -44,7 +44,8 @@
     "subtitle": "Több mint {count} elérhető ingatlan",
     "listProperty": "Hirdesse ingatlanát",
     "browseProperties": "Ingatlanok böngészése",
-    "imageAlt": "Modern ház kerttel"
+    "imageAlt": "Modern ház kerttel",
+    "subtitleGeneric": "Lakások, házak és telkek ingatlanirodáktól egy helyen"
   },
   "Search": {
     "heroTitle": "A jó választás a kulcs",
@@ -119,7 +120,7 @@
     "subtitle": "Böngéssze ingatlankínálatunkat",
     "noProperties": "Nincs találat",
     "viewDetails": "Részletek",
-    "bedrooms": "Hálószobák",
+    "bedrooms": "Szobák",
     "bathrooms": "Fürdőszobák",
     "area": "Alapterület",
     "price": "Ár",
@@ -177,7 +178,7 @@
     "emptyDesc": "Ez az iroda még nem tett közzé hirdetést."
   },
   "PropertyDetail": {
-    "beds": "Hálószobák",
+    "beds": "Szobák",
     "baths": "Fürdőszobák",
     "area": "Alapterület",
     "type": "Típus",
@@ -217,7 +218,9 @@
     "addProperty": "Ingatlan hozzáadása"
   },
   "Home": {
-    "featuredTitle": "Prémium ingatlanok"
+    "featuredTitle": "Prémium ingatlanok",
+    "latestTitle": "Legújabb ingatlanok",
+    "showAll": "Összes megtekintése"
   },
   "DashboardProperties": {
     "title": "Saját ingatlanok",
@@ -451,26 +454,27 @@
     "resetIgnore": "Ha nem Ön kérte, hagyja figyelmen kívül ezt az e-mailt."
   },
   "Partners": {
-    "title": "CRM- és multiposting-partnerek",
-    "intro": "Csatlakoztassa a Softreal, Urbium, backOFFICE, RealSys és más CRM-exportokat, hogy több ezer hirdetés automatikusan szinkronizálódjon a Nunvióval. Szlovákiával és Csehországgal kezdünk, utána jön Európa többi része.",
+    "title": "Csatlakozás ingatlanirodáknak",
+    "intro": "Hirdetései automatikusan átkerülnek a Nunvióra a már használt ingatlanos szoftverből. Semmit sem kell kétszer beírni.",
     "howTitle": "Hogyan működik a kapcsolat",
-    "how1": "Biztosítson stabil HTTPS XML-feedet (irodánként vagy CRM-exportonként egy URL).",
-    "how2": "Az iroda regisztrál a Nunvión, és beilleszti a feed URL-jét az Irányítópult → XML-import menüben.",
-    "how3": "Kapcsolja be az automatikus szinkronizálást. A Nunvio nagyjából 15 percenként részletekben tölti le az adatokat (nagy katalógusoknál is biztonságos).",
-    "how4": "A hirdetések az externalId alapján párosulnak, így a frissítések nem hoznak létre duplikátumot.",
+    "how1": "Kapcsolja be a hirdetésexportot (XML) a szoftverében, és másolja ki a címét.",
+    "how2": "Regisztrálja irodáját a Nunvión, és illessze be a címet a Hirdetésimport részben.",
+    "how3": "Ettől kezdve a Nunvio automatikusan frissíti a hirdetéseket: az újakat hozzáadja, a változásokat átveszi, az eladottakat leveszi.",
+    "how4": "Minden hirdetés csak egyszer jelenik meg a Nunvión, akkor is, ha a szoftver többször küldi.",
     "crmTitle": "Kinek szól",
-    "crmBody": "A CRM- és multiposting-szolgáltatók exportcélként adják hozzá a Nunviót. Az irodák a meglévő XML URL-jüket is közvetlenül beilleszthetik. Versenytárs portáloktól nem vásárolunk adatbázist.",
-    "techTitle": "Technikai csomag (kész)",
+    "crmBody": "Ingatlanirodáknak és szoftverszállítóknak, akik a Nunviót is fel szeretnék venni a portálok közé, ahová hirdetéseket küldenek.",
+    "techTitle": "Technikai munkatársaknak",
     "techSync": "Részletekben futó szinkronizálás, képimport, szlovák és cseh mezőnevek (nazov, popis, cena, obec…).",
     "contactTitle": "Kapcsolat",
-    "contactBody": "A kapcsolat beállításához vagy tesztfiókhoz írjon ide:",
+    "contactBody": "Kérdése van, vagy segítség kell a csatlakozáshoz? Írjon nekünk:",
     "ctaRegister": "Irodai fiók létrehozása",
     "ctaSample": "Minta XML letöltése",
     "crmSlovakia": "Szlovákia",
     "crmCzechia": "Csehország",
     "techSample": "Minta XML",
     "techValidate": "Feed ellenőrzése (API)",
-    "techDocs": "Dokumentáció"
+    "techDocs": "Dokumentáció",
+    "techBody": "Támogatjuk a szokásos exportformátumokat. Küldjön mintát a fájljából, és indulás előtt ellenőrizzük."
   },
   "Gallery": {
     "openPhotos": "Fotók megnyitása",
@@ -543,7 +547,10 @@
     "propertyBody": "A keresett hirdetés nem létezik, vagy eltávolították.",
     "agencyTitle": "Az iroda nem található",
     "agencyBody": "Ez az ingatlaniroda nem létezik, vagy eltávolították.",
-    "browseAll": "Összes ingatlan megtekintése"
+    "browseAll": "Összes ingatlan megtekintése",
+    "pageTitle": "Az oldal nem található",
+    "pageBody": "Ez az oldal nem létezik vagy áthelyezték. Keressen ingatlant, vagy térjen vissza a főoldalra.",
+    "goHome": "Főoldal"
   },
   "DashboardSidebar": {
     "badge": "Kezelőfelület",
