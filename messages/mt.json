@@ -44,7 +44,8 @@
     "subtitle": "Aktar minn {count} proprjetà disponibbli",
     "listProperty": "Irreklama l-proprjetà tiegħek",
     "browseProperties": "Ara l-proprjetajiet",
-    "imageAlt": "Dar moderna b'ġnien"
+    "imageAlt": "Dar moderna b'ġnien",
+    "subtitleGeneric": "Appartamenti, djar u art minn aġenziji tal-propjetà f'post wieħed"
   },
   "Search": {
     "heroTitle": "L-għażla t-tajba hija l-muftieħ",
@@ -119,7 +120,7 @@
     "subtitle": "Ara l-kollezzjoni tagħna ta' proprjetajiet",
     "noProperties": "Ma nstabet l-ebda proprjetà",
     "viewDetails": "Ara d-dettalji",
-    "bedrooms": "Kmamar tas-sodda",
+    "bedrooms": "Kmamar",
     "bathrooms": "Kmamar tal-banju",
     "area": "Daqs",
     "price": "Prezz",
@@ -177,7 +178,7 @@
     "emptyDesc": "Din l-aġenzija għadha ma ppubblikat l-ebda reklam."
   },
   "PropertyDetail": {
-    "beds": "Sodod",
+    "beds": "Kmamar",
     "baths": "Banjijiet",
     "area": "Daqs",
     "type": "Tip",
@@ -217,7 +218,9 @@
     "addProperty": "Żid il-proprjetà tiegħek"
   },
   "Home": {
-    "featuredTitle": "Proprjetajiet premium"
+    "featuredTitle": "Proprjetajiet premium",
+    "latestTitle": "L-aħħar proprjetajiet",
+    "showAll": "Uri kollox"
   },
   "DashboardProperties": {
     "title": "Il-proprjetajiet tiegħi",
@@ -405,26 +408,27 @@
     "copyright": "© {year} Nunvio. Id-drittijiet kollha riżervati."
   },
   "Partners": {
-    "title": "Sħab tas-CRM u tal-pubblikazzjoni multipla",
-    "intro": "Qabbad l-esportazzjonijiet minn Softreal, Urbium, backOFFICE, RealSys u sistemi CRM oħra sabiex eluf ta' reklami jiġu sinkronizzati awtomatikament ma' Nunvio — nibdew mis-Slovakkja u r-Repubblika Ċeka, imbagħad il-bqija tal-Ewropa.",
+    "title": "Konnessjoni għall-aġenziji tal-propjetà",
+    "intro": "Ir-reklami tiegħek jaslu fuq Nunvio awtomatikament mis-software li diġà tuża. M'hemmx għalfejn iddaħħal xejn darbtejn.",
     "howTitle": "Kif taħdem il-konnessjoni",
-    "how1": "Ipprovdi feed XML stabbli fuq HTTPS (URL wieħed għal kull aġenzija jew għal kull esportazzjoni CRM).",
-    "how2": "L-aġenzija tirreġistra fuq Nunvio u tpoġġi l-URL tal-feed taħt Pannell → Importazzjoni XML.",
-    "how3": "Ixgħel is-sinkronizzazzjoni awtomatika — Nunvio jiġbed id-data f'biċċiet kull ~15-il minuta (sikur anke għal katalgi kbar).",
-    "how4": "Ir-reklami jiġu aġġornati skont l-externalId — l-aġġornamenti ma joħolqux duplikati.",
+    "how1": "Ixgħel l-esportazzjoni tar-reklami (XML) fis-software u kkopja l-indirizz tagħha.",
+    "how2": "Irreġistra l-aġenzija fuq Nunvio u waħħal l-indirizz taħt Importazzjoni tar-reklami.",
+    "how3": "Minn dak il-ħin Nunvio jaġġorna r-reklami awtomatikament: iżid il-ġodda, jgħaddi l-bidliet u jneħħi dawk mibjugħa.",
+    "how4": "Kull reklam jidher fuq Nunvio darba biss, anki jekk is-software jibagħtu kemm-il darba.",
     "crmTitle": "Għal min hu",
-    "crmBody": "Il-fornituri tas-CRM / tal-pubblikazzjoni multipla jżidu lil Nunvio bħala destinazzjoni tal-esportazzjoni. L-aġenziji jistgħu wkoll ipoġġu l-URL XML eżistenti tagħhom direttament. Ma nixtrux katalgi minn portali konkorrenti.",
-    "techTitle": "Pakkett tekniku (lest)",
+    "crmBody": "Għall-aġenziji tal-propjetà u l-fornituri tas-software li jridu jżidu lil Nunvio mal-portali fejn jibagħtu r-reklami.",
+    "techTitle": "Għall-persunal tekniku",
     "techSync": "Sinkronizzazzjoni cron f'biċċiet, importazzjoni ta' stampi għal R2, alias tal-oqsma SK/CZ (nazov, popis, cena, obec…).",
     "contactTitle": "Kuntatt",
-    "contactBody": "Għall-konfigurazzjoni tal-konnessjoni jew għal kont ta' aġenzija tat-test, ibgħat email lil",
+    "contactBody": "Mistoqsijiet jew trid għajnuna bil-konnessjoni? Iktbilna fuq",
     "ctaRegister": "Oħloq kont ta' aġenzija",
     "ctaSample": "Niżżel XML ta' kampjun",
     "crmSlovakia": "Slovakkja",
     "crmCzechia": "Repubblika Ċeka",
     "techSample": "XML ta' kampjun",
     "techValidate": "Ivverifika l-feed (API)",
-    "techDocs": "Dokumentazzjoni"
+    "techDocs": "Dokumentazzjoni",
+    "techBody": "Nappoġġaw il-formati tal-esportazzjoni komuni. Ibgħatilna kampjun tal-fajl u niċċekkjawh qabel il-bidu."
   },
   "Privacy": {
     "title": "Politika tal-privatezza",
@@ -531,7 +535,10 @@
     "propertyBody": "Il-proprjetà li qed tfittex ma teżistix jew tneħħiet.",
     "agencyTitle": "L-aġenzija ma nstabitx",
     "agencyBody": "Din l-aġenzija tal-proprjetà ma teżistix jew tneħħiet.",
-    "browseAll": "Ara l-proprjetajiet kollha"
+    "browseAll": "Ara l-proprjetajiet kollha",
+    "pageTitle": "Il-paġna ma nstabitx",
+    "pageBody": "Din il-paġna ma teżistix jew ġiet imċaqalqa. Fittex proprjetà jew mur lura għall-paġna ewlenija.",
+    "goHome": "Paġna ewlenija"
   },
   "DashboardSidebar": {
     "badge": "Pannell",

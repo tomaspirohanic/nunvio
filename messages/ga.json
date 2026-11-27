@@ -44,7 +44,8 @@
     "subtitle": "Breis is {count} réadmhaoin ar fáil",
     "listProperty": "Fógair do réadmhaoin",
     "browseProperties": "Brabhsáil réadmhaoine",
-    "imageAlt": "Teach nua-aimseartha le gairdín"
+    "imageAlt": "Teach nua-aimseartha le gairdín",
+    "subtitleGeneric": "Árasáin, tithe agus talamh ó ghníomhaireachtaí eastáit in aon áit amháin"
   },
   "Search": {
     "heroTitle": "Is é an rogha cheart an eochair",
@@ -119,7 +120,7 @@
     "subtitle": "Brabhsáil ár mbailiúchán réadmhaoine",
     "noProperties": "Níor aimsíodh réadmhaoin ar bith",
     "viewDetails": "Féach sonraí",
-    "bedrooms": "Seomraí leapa",
+    "bedrooms": "Seomraí",
     "bathrooms": "Seomraí folctha",
     "area": "Achar",
     "price": "Praghas",
@@ -177,7 +178,7 @@
     "emptyDesc": "Níor fhoilsigh an ghníomhaireacht seo aon fhógra fós."
   },
   "PropertyDetail": {
-    "beds": "Leapacha",
+    "beds": "Seomraí",
     "baths": "Folcadáin",
     "area": "Achar",
     "type": "Cineál",
@@ -217,7 +218,9 @@
     "addProperty": "Cuir do réadmhaoin leis"
   },
   "Home": {
-    "featuredTitle": "Réadmhaoine préimhe"
+    "featuredTitle": "Réadmhaoine préimhe",
+    "latestTitle": "Na réadmhaoine is déanaí",
+    "showAll": "Taispeáin uile"
   },
   "DashboardProperties": {
     "title": "Mo réadmhaoine",
@@ -405,26 +408,27 @@
     "copyright": "© {year} Nunvio. Gach ceart ar cosaint."
   },
   "Partners": {
-    "title": "Comhpháirtithe CRM agus ilfhoilsithe",
-    "intro": "Nasc easpórtálacha ó Softreal, Urbium, backOFFICE, RealSys agus córais CRM eile ionas go sioncrónófar na mílte fógraí le Nunvio go huathoibríoch — ag tosú sa tSlóvaic agus sa tSeicia, agus ansin ar fud na hEorpa.",
+    "title": "Ceangal do ghníomhaireachtaí eastáit",
+    "intro": "Tagann d'fhógraí chuig Nunvio go huathoibríoch ón mbogearra atá in úsáid agat cheana. Ní gá aon rud a iontráil faoi dhó.",
     "howTitle": "Conas a oibríonn an nasc",
-    "how1": "Cuir fotha XML seasmhach ar fáil thar HTTPS (URL amháin in aghaidh na gníomhaireachta nó in aghaidh easpórtáil CRM).",
-    "how2": "Cláraíonn an ghníomhaireacht ar Nunvio agus greamaíonn sí URL an fhotha faoi Phainéal → Iompórtáil XML.",
-    "how3": "Cumasaigh sioncrónú uathoibríoch — tarraingíonn Nunvio na sonraí ina gcodanna gach ~15 nóiméad (sábháilte do chatalóga móra).",
-    "how4": "Nuashonraítear fógraí de réir externalId — ní chruthaíonn nuashonruithe dúblaigh.",
+    "how1": "Cas air easpórtáil na bhfógraí (XML) i do bhogearra agus cóipeáil a sheoladh.",
+    "how2": "Cláraigh do ghníomhaireacht ar Nunvio agus greamaigh an seoladh faoi Iompórtáil fógraí.",
+    "how3": "Ón am sin nuashonraíonn Nunvio d'fhógraí go huathoibríoch: cuirtear cinn nua leo, aistrítear athruithe agus baintear na cinn a díoladh.",
+    "how4": "Ní bhíonn gach fógra ar Nunvio ach uair amháin, fiú má sheolann do bhogearra arís agus arís é.",
     "crmTitle": "Cé dó é seo",
-    "crmBody": "Cuireann soláthraithe CRM / ilfhoilsithe Nunvio leis mar cheann scríbe easpórtála. Is féidir le gníomhaireachtaí a URL XML reatha a ghreamú go díreach freisin. Ní cheannaímid catalóga ó thairseacha iomaíocha.",
-    "techTitle": "Pacáiste teicniúil (réidh)",
+    "crmBody": "Do ghníomhaireachtaí eastáit agus do sholáthraithe bogearraí ar mian leo Nunvio a chur leis na tairseacha a seolann siad fógraí chucu.",
+    "techTitle": "Don fhoireann theicniúil",
     "techSync": "Sioncrónú cron ina chodanna, iompórtáil íomhánna go R2, ailiasanna réimse SK/CZ (nazov, popis, cena, obec…).",
     "contactTitle": "Teagmháil",
-    "contactBody": "Chun an nasc a shocrú nó chun cuntas gníomhaireachta tástála a fháil, seol ríomhphost chuig",
+    "contactBody": "Ceisteanna, nó cabhair uait leis an gceangal? Scríobh chugainn ag",
     "ctaRegister": "Cruthaigh cuntas gníomhaireachta",
     "ctaSample": "Íoslódáil XML samplach",
     "crmSlovakia": "An tSlóvaic",
     "crmCzechia": "An tSeicia",
     "techSample": "XML samplach",
     "techValidate": "Bailíochtaigh an fotha (API)",
-    "techDocs": "Doiciméadú"
+    "techDocs": "Doiciméadú",
+    "techBody": "Tacaímid leis na formáidí easpórtála coitianta. Seol sampla de do chomhad chugainn agus seiceálfaimid é sula dtosaíonn sé."
   },
   "Privacy": {
     "title": "Polasaí príobháideachta",
@@ -531,7 +535,10 @@
     "propertyBody": "Níl an réadmhaoin atá á lorg agat ann nó baineadh í.",
     "agencyTitle": "Níor aimsíodh an ghníomhaireacht",
     "agencyBody": "Níl an ghníomhaireacht eastáit seo ann nó baineadh í.",
-    "browseAll": "Brabhsáil gach réadmhaoin"
+    "browseAll": "Brabhsáil gach réadmhaoin",
+    "pageTitle": "Níor aimsíodh an leathanach",
+    "pageBody": "Níl an leathanach seo ann nó bogadh é. Cuardaigh réadmhaoin nó fill ar an leathanach baile.",
+    "goHome": "Leathanach baile"
   },
   "DashboardSidebar": {
     "badge": "Painéal",

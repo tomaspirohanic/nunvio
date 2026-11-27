@@ -44,7 +44,8 @@
     "subtitle": "Více než {count} nemovitostí k dispozici",
     "listProperty": "Přidat inzerát",
     "browseProperties": "Procházet nemovitosti",
-    "imageAlt": "Moderní dům se zahradou"
+    "imageAlt": "Moderní dům se zahradou",
+    "subtitleGeneric": "Byty, domy a pozemky od realitních kanceláří na jednom místě"
   },
   "Search": {
     "heroTitle": "Správná volba je klíčová",
@@ -119,7 +120,7 @@
     "subtitle": "Prohlédněte si naši nabídku nemovitostí",
     "noProperties": "Nebyly nalezeny žádné nemovitosti",
     "viewDetails": "Zobrazit detail",
-    "bedrooms": "Ložnice",
+    "bedrooms": "Pokoje",
     "bathrooms": "Koupelny",
     "area": "Plocha",
     "price": "Cena",
@@ -166,7 +167,7 @@
     }
   },
   "PropertyDetail": {
-    "beds": "Ložnice",
+    "beds": "Pokoje",
     "baths": "Koupelny",
     "area": "Plocha",
     "type": "Typ",
@@ -254,7 +255,9 @@
     "addProperty": "Přidat nemovitost"
   },
   "Home": {
-    "featuredTitle": "Prémiové nemovitosti"
+    "featuredTitle": "Prémiové nemovitosti",
+    "latestTitle": "Nejnovější nemovitosti",
+    "showAll": "Zobrazit vše"
   },
   "AgencyDashboard": {
     "registerHeading": "Registrace kanceláře",
@@ -418,26 +421,27 @@
     "copyright": "© {year} Nunvio. Všechna práva vyhrazena."
   },
   "Partners": {
-    "title": "Partneři CRM a multi-postingu",
-    "intro": "Propojte Softreal, Urbium, backOFFICE, RealSys a další CRM exporty a tisíce inzerátů se do Nunvio budou synchronizovat automaticky. Začínáme na Slovensku a v Česku, poté zbytek Evropy.",
+    "title": "Napojení pro realitní kanceláře",
+    "intro": "Vaše inzeráty se na Nunvio dostanou automaticky z realitního softwaru, který už používáte (např. Softreal, Urbium, backOFFICE, RealSys). Nic nemusíte zadávat dvakrát.",
     "howTitle": "Jak propojení funguje",
-    "how1": "Zpřístupněte stabilní HTTPS XML feed (jedna URL na kancelář nebo na CRM export).",
-    "how2": "Kancelář se zaregistruje na Nunvio a vloží URL feedu v sekci Přehled → XML import.",
-    "how3": "Zapněte automatickou synchronizaci. Nunvio stahuje data po částech zhruba každých 15 minut (bezpečné i pro velké katalogy).",
-    "how4": "Inzeráty se párují podle externalId, aktualizace tedy nevytvářejí duplicity.",
+    "how1": "V realitním softwaru si zapněte export inzerátů (XML) a zkopírujte jeho adresu.",
+    "how2": "Zaregistrujte kancelář na Nunvio a adresu vložte v části Import inzerátů.",
+    "how3": "Nunvio od té doby inzeráty pravidelně a automaticky aktualizuje: nové přidá, změny přenese a prodané stáhne.",
+    "how4": "Každý inzerát je na Nunvio jen jednou, i když ho software posílá opakovaně.",
     "crmTitle": "Pro koho to je",
-    "crmBody": "Dodavatelé CRM a multi-postingu přidají Nunvio jako cíl exportu. Kanceláře mohou také přímo vložit svou stávající XML URL. Nekupujeme databáze inzerátů od konkurenčních portálů.",
-    "techTitle": "Technický balíček (připraveno)",
+    "crmBody": "Pro realitní kanceláře a dodavatele realitního softwaru, kteří chtějí Nunvio přidat mezi portály, kam posílají inzeráty.",
+    "techTitle": "Pro techniky",
     "techSync": "Synchronizace po částech, import fotek, české a slovenské názvy polí (nazov, popis, cena, obec…).",
     "contactTitle": "Kontakt",
-    "contactBody": "Pro nastavení propojení nebo testovací účet kanceláře pište na",
+    "contactBody": "Máte dotaz nebo chcete pomoci s napojením? Napište nám na",
     "ctaRegister": "Vytvořit účet kanceláře",
     "ctaSample": "Stáhnout ukázkový XML",
     "crmSlovakia": "Slovensko",
     "crmCzechia": "Česko",
     "techSample": "Ukázkový XML",
     "techValidate": "Ověření feedu (API)",
-    "techDocs": "Dokumentace"
+    "techDocs": "Dokumentace",
+    "techBody": "Podporujeme běžné slovenské a české formáty exportu. Pošlete nám ukázku vašeho souboru a ověříme ji před spuštěním."
   },
   "Privacy": {
     "title": "Zásady ochrany osobních údajů",
@@ -544,7 +548,10 @@
     "propertyBody": "Inzerát, který hledáte, neexistuje nebo byl odstraněn.",
     "agencyTitle": "Kancelář nenalezena",
     "agencyBody": "Tato realitní kancelář neexistuje nebo byla odstraněna.",
-    "browseAll": "Prohlédnout všechny nemovitosti"
+    "browseAll": "Prohlédnout všechny nemovitosti",
+    "pageTitle": "Stránka nebyla nalezena",
+    "pageBody": "Tato stránka neexistuje nebo byla přesunuta. Zkuste vyhledat nemovitost nebo se vraťte na úvodní stránku.",
+    "goHome": "Úvodní stránka"
   },
   "DashboardSidebar": {
     "badge": "Správa",

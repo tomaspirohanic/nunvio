@@ -44,7 +44,8 @@
     "subtitle": "Viac ako {count} nehnuteľností k dispozícii",
     "listProperty": "Pridať inzerát",
     "browseProperties": "Prehľadať nehnuteľnosti",
-    "imageAlt": "Moderný dom so záhradou"
+    "imageAlt": "Moderný dom so záhradou",
+    "subtitleGeneric": "Byty, domy a pozemky od realitných kancelárií na jednom mieste"
   },
   "Search": {
     "heroTitle": "Vybrať správne je kľúčové",
@@ -119,7 +120,7 @@
     "subtitle": "Prehľadajte našu zbierku nehnuteľností",
     "noProperties": "Nenašli sa žiadne nehnuteľnosti",
     "viewDetails": "Zobraziť detaily",
-    "bedrooms": "Spálne",
+    "bedrooms": "Izby",
     "bathrooms": "Kúpeľne",
     "area": "Plocha",
     "price": "Cena",
@@ -177,7 +178,7 @@
     "emptyDesc": "Táto agentúra ešte nezverejnila žiadne ponuky."
   },
   "PropertyDetail": {
-    "beds": "Spálne",
+    "beds": "Izby",
     "baths": "Kúpeľne",
     "area": "Plocha",
     "type": "Typ",
@@ -217,7 +218,9 @@
     "addProperty": "Pridať nehnuteľnosť"
   },
   "Home": {
-    "featuredTitle": "Prémiové nehnuteľnosti"
+    "featuredTitle": "Prémiové nehnuteľnosti",
+    "latestTitle": "Najnovšie nehnuteľnosti",
+    "showAll": "Zobraziť všetky"
   },
   "DashboardProperties": {
     "title": "Moje nehnuteľnosti",
@@ -406,26 +409,27 @@
     "copyright": "© {year} Nunvio. Všetky práva vyhradené."
   },
   "Partners": {
-    "title": "Partneri CRM a multi-posting",
-    "intro": "Napojte Softreal, Urbium, backOFFICE, RealSys a ďalšie CRM exporty — tisíce inzerátov sa na Nunvio synchronizujú automaticky. Najprv SK + CZ, potom zvyšok Európy.",
+    "title": "Napojenie pre realitné kancelárie",
+    "intro": "Vaše inzeráty sa na Nunvio dostanú automaticky z realitného softvéru, ktorý už používate (napr. Softreal, Urbium, backOFFICE, RealSys). Nič nemusíte zadávať dvakrát.",
     "howTitle": "Ako prebieha napojenie",
-    "how1": "Zverejnite stabilný HTTPS XML feed (URL pre agentúru alebo CRM export).",
-    "how2": "Agentúra sa zaregistruje na Nunvio a vloží Feed URL v Dashboard → XML import.",
-    "how3": "Zapne automatický sync — Nunvio sťahuje po dávkach každých ~15 min (bezpečné aj pri veľkých katalógoch).",
-    "how4": "Inzeráty sa aktualizujú podľa externalId — nevznikajú duplicity.",
+    "how1": "V realitnom softvéri si zapnite export inzerátov (XML) a skopírujte jeho adresu.",
+    "how2": "Zaregistrujte kanceláriu na Nunvio a adresu vložte v časti Import inzerátov.",
+    "how3": "Nunvio odvtedy inzeráty pravidelne a automaticky aktualizuje: nové pridá, zmeny prenesie a predané stiahne.",
+    "how4": "Každý inzerát je na Nunvio iba raz, aj keď ho softvér posiela opakovane.",
     "crmTitle": "Pre koho to je",
-    "crmBody": "CRM / multi-posting dodávatelia pridajú Nunvio ako cieľ exportu. Agentúry môžu vložiť aj vlastnú XML URL. Nekupujeme katalógy od konkurenčných portálov.",
-    "techTitle": "Technický balík (pripravený)",
+    "crmBody": "Pre realitné kancelárie a pre dodávateľov realitného softvéru, ktorí chcú Nunvio pridať medzi portály, kam posielajú inzeráty.",
+    "techTitle": "Pre technikov",
     "techSync": "Chunkovaný cron sync, import fotiek do R2, SK/CZ aliasy polí (názov, popis, cena, obec…).",
     "contactTitle": "Kontakt",
-    "contactBody": "Pre mostík alebo testovací účet agentúry napíšte na",
+    "contactBody": "Máte otázku alebo chcete pomôcť s napojením? Napíšte nám na",
     "ctaRegister": "Vytvoriť účet agentúry",
     "ctaSample": "Stiahnuť ukážkové XML",
     "crmSlovakia": "Slovensko",
     "crmCzechia": "Česko",
     "techSample": "Ukážkový XML",
     "techValidate": "Overenie feedu (API)",
-    "techDocs": "Dokumentácia"
+    "techDocs": "Dokumentácia",
+    "techBody": "Podporujeme bežné slovenské a české formáty exportu. Pošlite nám ukážku vášho súboru a overíme ho pred spustením."
   },
   "Privacy": {
     "title": "Zásady ochrany súkromia",
@@ -544,7 +548,10 @@
     "propertyBody": "Inzerát, ktorý hľadáte, neexistuje alebo bol odstránený.",
     "agencyTitle": "Kancelária sa nenašla",
     "agencyBody": "Táto realitná kancelária neexistuje alebo bola odstránená.",
-    "browseAll": "Prezrieť všetky nehnuteľnosti"
+    "browseAll": "Prezrieť všetky nehnuteľnosti",
+    "pageTitle": "Stránka sa nenašla",
+    "pageBody": "Táto stránka neexistuje alebo bola presunutá. Skúste vyhľadať nehnuteľnosť alebo sa vráťte na úvodnú stránku.",
+    "goHome": "Úvodná stránka"
   },
   "DashboardSidebar": {
     "badge": "Správa",

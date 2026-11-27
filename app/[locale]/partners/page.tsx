@@ -7,9 +7,6 @@ export default async function PartnersPage() {
     process.env.PARTNER_CONTACT_EMAIL ||
     process.env.EMAIL_FROM?.replace(/.*<([^>]+)>.*/, "$1") ||
     "partners@nunvio.com";
-  const appUrl =
-    process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ||
-    "https://nunvio.vercel.app";
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12">
@@ -43,29 +40,13 @@ export default async function PartnersPage() {
         <h2 className="text-xl font-semibold text-gray-900">
           {t("techTitle")}
         </h2>
-        <ul className="space-y-2 text-sm text-gray-700">
-          <li>
-            <strong>{t("techSample")}:</strong>{" "}
-            <a
-              className="text-blue-700 underline"
-              href="/samples/nunvio-properties-sample.xml"
-            >
-              /samples/nunvio-properties-sample.xml
-            </a>
-          </li>
-          <li>
-            <strong>{t("techValidate")}:</strong>{" "}
-            <code className="rounded bg-white px-1">
-              POST {appUrl}/api/partners/validate-feed
-            </code>
-          </li>
-          <li>
-            <strong>{t("techDocs")}:</strong> docs/PARTNER-FEED.md
-          </li>
-          <li>
-            <strong>Sync:</strong> {t("techSync")}
-          </li>
-        </ul>
+        <p className="text-sm text-gray-700">{t("techBody")}</p>
+        <a
+          className="inline-block text-sm font-medium text-gray-900 underline underline-offset-4"
+          href="/samples/nunvio-properties-sample.xml"
+        >
+          {t("ctaSample")}
+        </a>
       </section>
 
       <section className="mt-10 space-y-3">
@@ -84,16 +65,10 @@ export default async function PartnersPage() {
         <div className="flex flex-wrap gap-3 pt-2">
           <Link
             href="/register"
-            className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+            className="rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white hover:bg-red-700"
           >
             {t("ctaRegister")}
           </Link>
-          <a
-            href="/samples/nunvio-properties-sample.xml"
-            className="rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50"
-          >
-            {t("ctaSample")}
-          </a>
         </div>
       </section>
     </div>

@@ -9,7 +9,7 @@ import {
 } from "@/lib/currency";
 import { formatArea, formatCurrency } from "@/lib/formatters";
 import { localizeCountryName } from "@/lib/country-display";
-import { Bath, BedDouble, Square } from "lucide-react";
+import { Bath, DoorOpen, Square } from "lucide-react";
 import { PromotionLevel } from "@prisma/client";
 import type { Currency, ListingOffer, PropertyType } from "@prisma/client";
 import { useEffect, useState } from "react";
@@ -228,22 +228,31 @@ export default function PropertyCard({
           {property.city}, {displayCountry}
         </div>
 
-        <div className="mt-3 flex items-center gap-4 text-sm text-gray-600">
-          <span className="inline-flex items-center gap-2">
-            <BedDouble className="w-4 h-4 text-gray-500" />
-            <span className="font-medium text-gray-800">{property.bedrooms}</span>
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Bath className="w-4 h-4 text-gray-500" />
-            <span className="font-medium text-gray-800">{property.bathrooms}</span>
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Square className="w-4 h-4 text-gray-500" />
-            <span className="font-medium text-gray-800">
-              {formatArea(property.areaSqm, units, locale)}
-            </span>
-          </span>
-        </div>
+        {/* Zero means "not given" (e.g. commercial space): never show "0". */}
+        {(property.bedrooms > 0 || property.bathrooms > 0 || property.areaSqm > 0) && (
+          <div className="mt-3 flex items-center gap-4 text-sm text-gray-600">
+            {property.bedrooms > 0 && (
+              <span className="inline-flex items-center gap-2" title={t("bedrooms")}>
+                <DoorOpen className="w-4 h-4 text-gray-500" />
+                <span className="font-medium text-gray-800">{property.bedrooms}</span>
+              </span>
+            )}
+            {property.bathrooms > 0 && (
+              <span className="inline-flex items-center gap-2" title={t("bathrooms")}>
+                <Bath className="w-4 h-4 text-gray-500" />
+                <span className="font-medium text-gray-800">{property.bathrooms}</span>
+              </span>
+            )}
+            {property.areaSqm > 0 && (
+              <span className="inline-flex items-center gap-2" title={t("area")}>
+                <Square className="w-4 h-4 text-gray-500" />
+                <span className="font-medium text-gray-800">
+                  {formatArea(property.areaSqm, units, locale)}
+                </span>
+              </span>
+            )}
+          </div>
+        )}
 
         <div className="mt-4 pt-4 border-t border-gray-100">
           <div className="text-sm font-semibold text-gray-900 line-clamp-1">

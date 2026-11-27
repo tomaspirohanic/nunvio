@@ -34,10 +34,10 @@ export async function generateMetadata({
   const agency = await getPublicAgencyById(id);
   if (!agency) {
     const t = await getTranslations({ locale, namespace: "NotFound" });
-    return { title: `${t("agencyTitle")} | Nunvio` };
+    return { title: `${t("agencyTitle")}` };
   }
   return {
-    title: `${agency.name} | Nunvio`,
+    title: agency.name,
     description: `${agency.name} — ${agency.city}, ${agency.country}. Real estate listings on Nunvio.`,
   };
 }

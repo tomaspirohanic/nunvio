@@ -44,7 +44,8 @@
     "subtitle": "Üle {count} saadaoleva objekti",
     "listProperty": "Lisa oma kuulutus",
     "browseProperties": "Sirvi kinnisvara",
-    "imageAlt": "Kaasaegne maja aiaga"
+    "imageAlt": "Kaasaegne maja aiaga",
+    "subtitleGeneric": "Korterid, majad ja krundid kinnisvarabüroodelt ühes kohas"
   },
   "Search": {
     "heroTitle": "Õige valik on võtmetähtsusega",
@@ -119,7 +120,7 @@
     "subtitle": "Sirvi meie kinnisvarapakkumisi",
     "noProperties": "Objekte ei leitud",
     "viewDetails": "Vaata lähemalt",
-    "bedrooms": "Magamistoad",
+    "bedrooms": "Toad",
     "bathrooms": "Vannitoad",
     "area": "Pind",
     "price": "Hind",
@@ -177,7 +178,7 @@
     "emptyDesc": "See büroo pole veel ühtegi kuulutust avaldanud."
   },
   "PropertyDetail": {
-    "beds": "Magamistoad",
+    "beds": "Toad",
     "baths": "Vannitoad",
     "area": "Pind",
     "type": "Tüüp",
@@ -217,7 +218,9 @@
     "addProperty": "Lisa oma kinnisvara"
   },
   "Home": {
-    "featuredTitle": "Premium-kinnisvara"
+    "featuredTitle": "Premium-kinnisvara",
+    "latestTitle": "Uusimad kinnisvarad",
+    "showAll": "Näita kõiki"
   },
   "DashboardProperties": {
     "title": "Minu kinnisvara",
@@ -405,26 +408,27 @@
     "copyright": "© {year} Nunvio. Kõik õigused kaitstud."
   },
   "Partners": {
-    "title": "CRM- ja mitmikavaldamise partnerid",
-    "intro": "Ühenda Softreali, Urbiumi, backOFFICE'i, RealSysi ja teiste CRM-ide ekspordid, et tuhanded kuulutused sünkroniseeruksid Nunvioga automaatselt — alustades Slovakkia ja Tšehhiga, seejärel kogu Euroopas.",
+    "title": "Ühendus kinnisvarabüroodele",
+    "intro": "Teie kuulutused jõuavad Nunviosse automaatselt juba kasutatavast kinnisvaratarkvarast. Midagi ei pea kaks korda sisestama.",
     "howTitle": "Kuidas ühendamine toimib",
-    "how1": "Paku stabiilset XML-voogu HTTPS-i kaudu (üks URL büroo või CRM-ekspordi kohta).",
-    "how2": "Büroo registreerub Nunvios ja kleebib voo URL-i jaotisesse Töölaud → XML-import.",
-    "how3": "Lülita sisse automaatne sünkroonimine — Nunvio laadib andmed osade kaupa alla iga ~15 minuti järel (ohutu ka suurtele kataloogidele).",
-    "how4": "Kuulutusi uuendatakse externalId alusel — uuendused ei loo duplikaate.",
+    "how1": "Lülitage tarkvaras sisse kuulutuste eksport (XML) ja kopeerige selle aadress.",
+    "how2": "Registreerige büroo Nunvios ja kleepige aadress jaotisse Kuulutuste import.",
+    "how3": "Edaspidi uuendab Nunvio kuulutusi automaatselt: lisab uued, kannab üle muudatused ja eemaldab müüdud.",
+    "how4": "Iga kuulutus on Nunvios ainult üks kord, isegi kui tarkvara saadab seda korduvalt.",
     "crmTitle": "Kellele see on mõeldud",
-    "crmBody": "CRM-i / mitmikavaldamise pakkujad lisavad Nunvio ekspordi sihtkohaks. Bürood saavad ka oma olemasoleva XML-URL-i otse kleepida. Me ei osta kataloogi konkureerivatelt portaalidelt.",
-    "techTitle": "Tehniline pakett (valmis)",
+    "crmBody": "Kinnisvarabüroodele ja tarkvarapakkujatele, kes soovivad lisada Nunvio portaalide hulka, kuhu nad kuulutusi saadavad.",
+    "techTitle": "Tehnilistele töötajatele",
     "techSync": "Osade kaupa cron-sünkroonimine, piltide import R2-sse, SK/CZ väljade aliased (nazov, popis, cena, obec…).",
     "contactTitle": "Kontakt",
-    "contactBody": "Ühenduse seadistamiseks või testbüroo konto saamiseks kirjuta aadressil",
+    "contactBody": "Küsimusi või vajate abi ühendamisel? Kirjutage meile",
     "ctaRegister": "Loo büroo konto",
     "ctaSample": "Laadi alla näidis-XML",
     "crmSlovakia": "Slovakkia",
     "crmCzechia": "Tšehhi",
     "techSample": "Näidis-XML",
     "techValidate": "Kontrolli voogu (API)",
-    "techDocs": "Dokumentatsioon"
+    "techDocs": "Dokumentatsioon",
+    "techBody": "Toetame levinud ekspordivorminguid. Saatke meile näidisfail ja kontrollime selle enne käivitamist üle."
   },
   "Privacy": {
     "title": "Privaatsuspoliitika",
@@ -531,7 +535,10 @@
     "propertyBody": "Otsitavat objekti ei ole olemas või see on eemaldatud.",
     "agencyTitle": "Bürood ei leitud",
     "agencyBody": "Seda kinnisvarabürood ei ole olemas või see on eemaldatud.",
-    "browseAll": "Sirvi kogu kinnisvara"
+    "browseAll": "Sirvi kogu kinnisvara",
+    "pageTitle": "Lehte ei leitud",
+    "pageBody": "Seda lehte ei ole olemas või see on teisaldatud. Otsige kinnisvara või minge tagasi avalehele.",
+    "goHome": "Avaleht"
   },
   "DashboardSidebar": {
     "badge": "Töölaud",

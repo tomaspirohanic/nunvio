@@ -5,7 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/src/i18n/routing";
 import { locales } from "@/i18n";
 import { getCanonicalOrigin } from "@/lib/domains";
-import { localizeCountryName } from "@/lib/country-display";
+import { countryCodeFor, localizeCountryName } from "@/lib/country-display";
 import { getCountryCities, statsCurrency } from "@/lib/market-stats.server";
 
 export const revalidate = 86400;
@@ -19,8 +19,11 @@ async function load(country: string) {
   const cc = country.toUpperCase();
   if (!/^[A-Z]{2}$/.test(cc)) return null;
   try {
+    // A real country with too few listings still gets its page (with a short
+    // note) instead of a "page not found" error.
+    if (!countryCodeFor(cc)) return null;
     const cities = await getCountryCities(cc);
-    return cities.length > 0 ? { cc, cities } : null;
+    return { cc, cities };
   } catch (e) {
     console.error("[prices] country failed", e);
     return null;
@@ -33,7 +36,10 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const country = localizeCountryName(p.country.toUpperCase(), p.locale);
   const origin = getCanonicalOrigin();
   const path = `/prices/${p.country}`;
+  const data = await load(p.country);
   return {
+    // Thin pages (no city with enough listings yet) stay out of Google.
+    ...(data && data.cities.length === 0 ? { robots: { index: false, follow: true } } : {}),
     title: t("countryMetaTitle", { country, year: new Date().getFullYear() }),
     description: t("countryMetaDescription", { country }),
     alternates: {
@@ -67,6 +73,9 @@ export default async function CountryPricesPage({ params }: { params: Promise<Pa
         </h1>
         <p className="mt-3 max-w-3xl text-lg text-gray-700">{t("countryLead", { country })}</p>
 
+        {data.cities.length === 0 ? (
+          <p className="mt-8 rounded-xl border border-gray-200 p-6 text-gray-700">{t("tooFew")}</p>
+        ) : (
         <div className="mt-8 overflow-hidden rounded-2xl border border-gray-200">
           <table className="w-full text-left text-sm">
             <thead className="bg-gray-50 text-gray-500">
@@ -93,6 +102,7 @@ export default async function CountryPricesPage({ params }: { params: Promise<Pa
             </tbody>
           </table>
         </div>
+        )}
         <p className="mt-6 rounded-xl bg-gray-50 p-4 text-sm text-gray-600">{t("disclaimer")}</p>
       </div>
     </div>

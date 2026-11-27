@@ -44,9 +44,29 @@ function MapCenter({ lat, lng }: { lat: number; lng: number }) {
   const map = useMap();
   
   useEffect(() => {
-    map.setView([lat, lng], 15, { animate: true });
+    map.setView([lat, lng], 15, { animate: false });
   }, [map, lat, lng]);
-  
+
+  // The map is created while the page is still laying out (photos, fonts), so
+  // Leaflet measures a wrong size and draws only a thin strip of tiles. Re-measure
+  // whenever the box changes size, and once more after everything has loaded.
+  useEffect(() => {
+    const el = map.getContainer();
+    const fix = () => {
+      map.invalidateSize({ animate: false });
+      map.setView([lat, lng], map.getZoom(), { animate: false });
+    };
+    const ro = new ResizeObserver(fix);
+    ro.observe(el);
+    const t1 = window.setTimeout(fix, 300);
+    window.addEventListener("load", fix);
+    return () => {
+      ro.disconnect();
+      window.clearTimeout(t1);
+      window.removeEventListener("load", fix);
+    };
+  }, [map, lat, lng]);
+
   return null;
 }
 

@@ -44,7 +44,8 @@
     "subtitle": "Yli {count} kohdetta saatavilla",
     "listProperty": "Ilmoita kohteesi",
     "browseProperties": "Selaa kohteita",
-    "imageAlt": "Moderni talo ja puutarha"
+    "imageAlt": "Moderni talo ja puutarha",
+    "subtitleGeneric": "Asunnot, talot ja tontit kiinteistönvälittäjiltä yhdessä paikassa"
   },
   "Search": {
     "heroTitle": "Oikea valinta on avain",
@@ -119,7 +120,7 @@
     "subtitle": "Selaa kiinteistövalikoimaamme",
     "noProperties": "Kohteita ei löytynyt",
     "viewDetails": "Näytä tiedot",
-    "bedrooms": "Makuuhuoneet",
+    "bedrooms": "Huoneet",
     "bathrooms": "Kylpyhuoneet",
     "area": "Pinta-ala",
     "price": "Hinta",
@@ -177,7 +178,7 @@
     "emptyDesc": "Tämä välittäjä ei ole vielä julkaissut ilmoituksia."
   },
   "PropertyDetail": {
-    "beds": "Makuuhuoneet",
+    "beds": "Huoneet",
     "baths": "Kylpyhuoneet",
     "area": "Pinta-ala",
     "type": "Tyyppi",
@@ -217,7 +218,9 @@
     "addProperty": "Lisää kohteesi"
   },
   "Home": {
-    "featuredTitle": "Premium-kohteet"
+    "featuredTitle": "Premium-kohteet",
+    "latestTitle": "Uusimmat kohteet",
+    "showAll": "Näytä kaikki"
   },
   "DashboardProperties": {
     "title": "Omat kohteet",
@@ -405,26 +408,27 @@
     "copyright": "© {year} Nunvio. Kaikki oikeudet pidätetään."
   },
   "Partners": {
-    "title": "CRM- ja monijulkaisukumppanit",
-    "intro": "Yhdistä Softrealin, Urbiumin, backOFFICEn, RealSysin ja muiden CRM-järjestelmien viennit, jotta tuhannet ilmoitukset synkronoituvat automaattisesti Nunvioon — ensin Slovakiassa ja Tšekissä, sitten muualla Euroopassa.",
+    "title": "Liittyminen kiinteistönvälittäjille",
+    "intro": "Ilmoituksesi siirtyvät Nunvioon automaattisesti jo käyttämästäsi välitysohjelmasta. Mitään ei tarvitse syöttää kahdesti.",
     "howTitle": "Näin yhdistäminen toimii",
-    "how1": "Tarjoa vakaa XML-syöte HTTPS:n kautta (yksi URL toimistoa tai CRM-vientiä kohden).",
-    "how2": "Toimisto rekisteröityy Nunvioon ja liittää syötteen URL-osoitteen kohtaan Hallintapaneeli → XML-tuonti.",
-    "how3": "Ota automaattinen synkronointi käyttöön — Nunvio hakee tiedot osissa noin 15 minuutin välein (turvallinen suurillekin luetteloille).",
-    "how4": "Ilmoitukset päivitetään externalId:n perusteella — päivitykset eivät luo kaksoiskappaleita.",
+    "how1": "Ota ilmoitusvienti (XML) käyttöön ohjelmassasi ja kopioi sen osoite.",
+    "how2": "Rekisteröi toimistosi Nunvioon ja liitä osoite kohtaan Ilmoitusten tuonti.",
+    "how3": "Siitä lähtien Nunvio päivittää ilmoitukset automaattisesti: lisää uudet, siirtää muutokset ja poistaa myydyt.",
+    "how4": "Jokainen ilmoitus näkyy Nunviossa vain kerran, vaikka ohjelma lähettäisi sen useasti.",
     "crmTitle": "Kenelle tämä on",
-    "crmBody": "CRM- ja monijulkaisutoimittajat lisäävät Nunvion vientikohteeksi. Toimistot voivat myös liittää olemassa olevan XML-URL-osoitteensa suoraan. Emme osta luetteloita kilpailevilta portaaleilta.",
-    "techTitle": "Tekninen paketti (valmis)",
+    "crmBody": "Kiinteistönvälittäjille ja ohjelmistotoimittajille, jotka haluavat lisätä Nunvion portaaleihin, joihin ne lähettävät ilmoituksia.",
+    "techTitle": "Teknisille henkilöille",
     "techSync": "Osissa tapahtuva cron-synkronointi, kuvien tuonti R2:een, SK/CZ-kenttäaliakset (nazov, popis, cena, obec…).",
     "contactTitle": "Yhteystiedot",
-    "contactBody": "Yhteyden määrittämistä tai testitoimistotiliä varten lähetä sähköpostia osoitteeseen",
+    "contactBody": "Kysyttävää tai apua liittymiseen? Kirjoita meille osoitteeseen",
     "ctaRegister": "Luo toimistotili",
     "ctaSample": "Lataa esimerkki-XML",
     "crmSlovakia": "Slovakia",
     "crmCzechia": "Tšekki",
     "techSample": "Esimerkki-XML",
     "techValidate": "Tarkista syöte (API)",
-    "techDocs": "Dokumentaatio"
+    "techDocs": "Dokumentaatio",
+    "techBody": "Tuemme yleisiä vientimuotoja. Lähetä meille esimerkkitiedosto, niin tarkistamme sen ennen käynnistystä."
   },
   "Privacy": {
     "title": "Tietosuojakäytäntö",
@@ -531,7 +535,10 @@
     "propertyBody": "Etsimääsi kohdetta ei ole olemassa tai se on poistettu.",
     "agencyTitle": "Toimistoa ei löytynyt",
     "agencyBody": "Tätä kiinteistönvälitystoimistoa ei ole olemassa tai se on poistettu.",
-    "browseAll": "Selaa kaikkia kohteita"
+    "browseAll": "Selaa kaikkia kohteita",
+    "pageTitle": "Sivua ei löytynyt",
+    "pageBody": "Sivua ei ole olemassa tai se on siirretty. Hae kohdetta tai palaa etusivulle.",
+    "goHome": "Etusivu"
   },
   "DashboardSidebar": {
     "badge": "Hallintapaneeli",

@@ -44,7 +44,8 @@
     "subtitle": "Peste {count} proprietăți disponibile",
     "listProperty": "Publică proprietatea ta",
     "browseProperties": "Răsfoiește proprietățile",
-    "imageAlt": "Casă modernă cu grădină"
+    "imageAlt": "Casă modernă cu grădină",
+    "subtitleGeneric": "Apartamente, case și terenuri de la agenții imobiliare într-un singur loc"
   },
   "Search": {
     "heroTitle": "Alegerea potrivită este esențială",
@@ -119,7 +120,7 @@
     "subtitle": "Răsfoiește colecția noastră de proprietăți imobiliare",
     "noProperties": "Nicio proprietate găsită",
     "viewDetails": "Vezi detalii",
-    "bedrooms": "Dormitoare",
+    "bedrooms": "Camere",
     "bathrooms": "Băi",
     "area": "Suprafață",
     "price": "Preț",
@@ -177,7 +178,7 @@
     "emptyDesc": "Această agenție nu a publicat încă niciun anunț."
   },
   "PropertyDetail": {
-    "beds": "Dormitoare",
+    "beds": "Camere",
     "baths": "Băi",
     "area": "Suprafață",
     "type": "Tip",
@@ -217,7 +218,9 @@
     "addProperty": "Adaugă proprietatea"
   },
   "Home": {
-    "featuredTitle": "Proprietăți premium"
+    "featuredTitle": "Proprietăți premium",
+    "latestTitle": "Cele mai noi proprietăți",
+    "showAll": "Vezi toate"
   },
   "DashboardProperties": {
     "title": "Proprietățile mele",
@@ -405,26 +408,27 @@
     "copyright": "© {year} Nunvio. Toate drepturile rezervate."
   },
   "Partners": {
-    "title": "Parteneri CRM și multi-posting",
-    "intro": "Conectează exporturile din Softreal, Urbium, backOFFICE, RealSys și alte CRM-uri, astfel încât mii de anunțuri să se sincronizeze automat cu Nunvio — începând cu Slovacia și Cehia, apoi restul Europei.",
+    "title": "Conectare pentru agenții imobiliare",
+    "intro": "Anunțurile dvs. ajung automat pe Nunvio din software-ul imobiliar pe care îl folosiți deja. Nimic nu trebuie introdus de două ori.",
     "howTitle": "Cum funcționează conectarea",
-    "how1": "Oferă un feed XML stabil prin HTTPS (un URL pe agenție sau pe export CRM).",
-    "how2": "Agenția se înregistrează pe Nunvio și lipește URL-ul feedului în Panou de control → Import XML.",
-    "how3": "Activează sincronizarea automată — Nunvio descarcă datele pe părți la fiecare ~15 minute (sigur pentru cataloage mari).",
-    "how4": "Anunțurile se actualizează după externalId — actualizările nu creează duplicate.",
+    "how1": "Activați exportul anunțurilor (XML) în software și copiați adresa acestuia.",
+    "how2": "Înregistrați agenția pe Nunvio și lipiți adresa la Import anunțuri.",
+    "how3": "De atunci Nunvio actualizează automat anunțurile: le adaugă pe cele noi, preia modificările și le retrage pe cele vândute.",
+    "how4": "Fiecare anunț apare pe Nunvio o singură dată, chiar dacă software-ul îl trimite de mai multe ori.",
     "crmTitle": "Pentru cine este",
-    "crmBody": "Furnizorii de CRM / multi-posting adaugă Nunvio ca destinație de export. Agențiile pot lipi direct și URL-ul XML existent. Nu cumpărăm cataloage de la portaluri concurente.",
-    "techTitle": "Pachet tehnic (gata)",
+    "crmBody": "Pentru agenții imobiliare și furnizori de software care vor să adauge Nunvio printre portalurile în care trimit anunțuri.",
+    "techTitle": "Pentru tehnicieni",
     "techSync": "Sincronizare cron pe părți, import de imagini în R2, aliasuri de câmpuri SK/CZ (nazov, popis, cena, obec…).",
     "contactTitle": "Contact",
-    "contactBody": "Pentru configurarea conexiunii sau un cont de agenție de test, scrie la",
+    "contactBody": "Întrebări sau aveți nevoie de ajutor la conectare? Scrieți-ne la",
     "ctaRegister": "Creează cont de agenție",
     "ctaSample": "Descarcă XML de exemplu",
     "crmSlovakia": "Slovacia",
     "crmCzechia": "Cehia",
     "techSample": "XML de exemplu",
     "techValidate": "Validează feedul (API)",
-    "techDocs": "Documentație"
+    "techDocs": "Documentație",
+    "techBody": "Acceptăm formatele obișnuite de export. Trimiteți-ne un exemplu de fișier și îl verificăm înainte de lansare."
   },
   "Privacy": {
     "title": "Politica de confidențialitate",
@@ -531,7 +535,10 @@
     "propertyBody": "Proprietatea pe care o cauți nu există sau a fost eliminată.",
     "agencyTitle": "Agenția nu a fost găsită",
     "agencyBody": "Această agenție imobiliară nu există sau a fost eliminată.",
-    "browseAll": "Răsfoiește toate proprietățile"
+    "browseAll": "Răsfoiește toate proprietățile",
+    "pageTitle": "Pagina nu a fost găsită",
+    "pageBody": "Această pagină nu există sau a fost mutată. Căutați o proprietate sau reveniți la pagina principală.",
+    "goHome": "Pagina principală"
   },
   "DashboardSidebar": {
     "badge": "Panou de control",

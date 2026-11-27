@@ -44,7 +44,8 @@
     "subtitle": "Plus de {count} biens disponibles",
     "listProperty": "Publier votre bien",
     "browseProperties": "Parcourir les biens",
-    "imageAlt": "Maison moderne avec jardin"
+    "imageAlt": "Maison moderne avec jardin",
+    "subtitleGeneric": "Appartements, maisons et terrains des agences immobilières en un seul endroit"
   },
   "Search": {
     "heroTitle": "Bien choisir, c'est essentiel",
@@ -119,7 +120,7 @@
     "subtitle": "Parcourez notre sélection de biens immobiliers",
     "noProperties": "Aucun bien trouvé",
     "viewDetails": "Voir le détail",
-    "bedrooms": "Chambres",
+    "bedrooms": "Pièces",
     "bathrooms": "Salles de bain",
     "area": "Surface",
     "price": "Prix",
@@ -177,7 +178,7 @@
     "emptyDesc": "Cette agence n'a encore publié aucune annonce."
   },
   "PropertyDetail": {
-    "beds": "Chambres",
+    "beds": "Pièces",
     "baths": "Salles de bain",
     "area": "Surface",
     "type": "Type",
@@ -217,7 +218,9 @@
     "addProperty": "Ajouter votre bien"
   },
   "Home": {
-    "featuredTitle": "Biens premium"
+    "featuredTitle": "Biens premium",
+    "latestTitle": "Dernières annonces",
+    "showAll": "Tout afficher"
   },
   "DashboardProperties": {
     "title": "Mes biens",
@@ -451,26 +454,27 @@
     "resetIgnore": "Si vous n'êtes pas à l'origine de cette demande, ignorez cet e-mail."
   },
   "Partners": {
-    "title": "Partenaires CRM et multidiffusion",
-    "intro": "Connectez Softreal, Urbium, backOFFICE, RealSys et d’autres exports CRM pour que des milliers d’annonces se synchronisent automatiquement avec Nunvio. Nous commençons par la Slovaquie et la Tchéquie, puis le reste de l’Europe.",
+    "title": "Connexion pour les agences immobilières",
+    "intro": "Vos annonces arrivent automatiquement sur Nunvio depuis le logiciel immobilier que vous utilisez déjà. Rien à saisir deux fois.",
     "howTitle": "Comment fonctionne la connexion",
-    "how1": "Publiez un flux XML HTTPS stable (une URL par agence ou par export CRM).",
-    "how2": "L’agence s’inscrit sur Nunvio et colle l’URL du flux dans Tableau de bord → Import XML.",
-    "how3": "Activez la synchronisation automatique. Nunvio récupère les données par lots environ toutes les 15 minutes (adapté aux gros catalogues).",
-    "how4": "Les annonces sont associées par externalId : les mises à jour ne créent pas de doublons.",
+    "how1": "Activez l'export des annonces (XML) dans votre logiciel et copiez son adresse.",
+    "how2": "Inscrivez votre agence sur Nunvio et collez l'adresse dans Import des annonces.",
+    "how3": "Nunvio met ensuite vos annonces à jour automatiquement : ajout des nouvelles, reprise des modifications, retrait des biens vendus.",
+    "how4": "Chaque annonce n'apparaît qu'une fois sur Nunvio, même si votre logiciel l'envoie plusieurs fois.",
     "crmTitle": "Pour qui",
-    "crmBody": "Les éditeurs de CRM et de multidiffusion ajoutent Nunvio comme destination d’export. Les agences peuvent aussi coller directement leur URL XML existante. Nous n’achetons pas de bases d’annonces aux portails concurrents.",
-    "techTitle": "Package technique (prêt)",
+    "crmBody": "Pour les agences immobilières et les éditeurs de logiciels qui veulent ajouter Nunvio aux portails où ils envoient leurs annonces.",
+    "techTitle": "Pour les techniciens",
     "techSync": "Synchronisation par lots, import des photos, alias de champs slovaques et tchèques (nazov, popis, cena, obec…).",
     "contactTitle": "Contact",
-    "contactBody": "Pour configurer la connexion ou obtenir un compte d’agence de test, écrivez à",
+    "contactBody": "Une question ou besoin d'aide pour la connexion ? Écrivez-nous à",
     "ctaRegister": "Créer un compte agence",
     "ctaSample": "Télécharger le XML d’exemple",
     "crmSlovakia": "Slovaquie",
     "crmCzechia": "Tchéquie",
     "techSample": "XML d’exemple",
     "techValidate": "Valider le flux (API)",
-    "techDocs": "Documentation"
+    "techDocs": "Documentation",
+    "techBody": "Nous prenons en charge les formats d'export courants. Envoyez-nous un exemple de fichier, nous le vérifierons avant la mise en ligne."
   },
   "Gallery": {
     "openPhotos": "Ouvrir les photos",
@@ -543,7 +547,10 @@
     "propertyBody": "L’annonce que vous cherchez n’existe pas ou a été supprimée.",
     "agencyTitle": "Agence introuvable",
     "agencyBody": "Cette agence immobilière n’existe pas ou a été supprimée.",
-    "browseAll": "Voir tous les biens"
+    "browseAll": "Voir tous les biens",
+    "pageTitle": "Page introuvable",
+    "pageBody": "Cette page n'existe pas ou a été déplacée. Recherchez un bien ou revenez à l'accueil.",
+    "goHome": "Accueil"
   },
   "DashboardSidebar": {
     "badge": "Espace pro",

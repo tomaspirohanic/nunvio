@@ -73,13 +73,16 @@ export default function PropertyGallery({ images }: { images: string[] }) {
 
   return (
     <>
-      {/* STATE 1: Initial grid */}
+      {/* STATE 1: Initial grid. The layout follows the number of photos, so
+          there are never empty grey tiles. Phones show only the first photo. */}
       <div className="relative">
-        <div className="relative grid grid-cols-1 md:grid-cols-4 gap-2 h-[40vh] md:h-[60vh] rounded-2xl overflow-hidden bg-gray-100">
+        <div className="relative grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-2 h-[40vh] md:h-[60vh] rounded-2xl overflow-hidden bg-gray-100">
           <button
             type="button"
             onClick={openList}
-            className="col-span-1 md:col-span-2 row-span-2 relative group focus:outline-none"
+            className={`${
+              sideImages.length === 0 ? "md:col-span-4" : "md:col-span-2"
+            } col-span-1 md:row-span-2 relative group focus:outline-none`}
             aria-label={t("openPhotos")}
           >
             <img
@@ -89,39 +92,45 @@ export default function PropertyGallery({ images }: { images: string[] }) {
             />
           </button>
 
-          {Array.from({ length: 4 }).map((_, idx) => {
-            const imageUrl = sideImages[idx];
-            const isLastTile = idx === 3;
-
+          {sideImages.map((imageUrl, idx) => {
+            const n = sideImages.length;
+            // 1 side photo: right half. 2: two stacked halves. 3: one wide on
+            // top, two below. 4: classic 2x2.
+            const span =
+              n === 1
+                ? "md:col-span-2 md:row-span-2"
+                : n === 2
+                  ? "md:col-span-2"
+                  : n === 3 && idx === 0
+                    ? "md:col-span-2"
+                    : "";
             return (
               <button
                 key={idx}
                 type="button"
                 onClick={openList}
-                className="col-span-1 row-span-1 relative group focus:outline-none"
+                className={`hidden md:block relative group focus:outline-none ${span}`}
                 aria-label={t("openPhotos")}
               >
-                {imageUrl ? (
-                  <img
-                    src={imageUrl}
-                    alt={t("photoAlt", { n: idx + 2 })}
-                    className="object-cover w-full h-full group-hover:opacity-90 transition-opacity"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gray-200" />
-                )}
-
-                {isLastTile && (
-                  <div className="absolute bottom-3 right-3">
-                    <div className="rounded-full bg-white/95 backdrop-blur px-4 py-2 text-sm font-semibold text-gray-900 shadow-md border border-gray-200 group-hover:bg-white transition-colors">
-                      {t("showAll")}
-                    </div>
-                  </div>
-                )}
+                <img
+                  src={imageUrl}
+                  alt={t("photoAlt", { n: idx + 2 })}
+                  className="object-cover w-full h-full group-hover:opacity-90 transition-opacity"
+                />
               </button>
             );
           })}
         </div>
+
+        {safeImages.length > 1 && (
+          <button
+            type="button"
+            onClick={openList}
+            className="absolute bottom-3 right-3 rounded-full border border-gray-200 bg-white/95 px-4 py-2 text-sm font-semibold text-gray-900 shadow-md backdrop-blur transition-colors hover:bg-white"
+          >
+            {t("showAll")} ({safeImages.length})
+          </button>
+        )}
       </div>
 
       {/* STATE 2: Vertical list modal */}

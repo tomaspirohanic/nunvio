@@ -44,7 +44,8 @@
     "subtitle": "Over {count} tilgængelige boliger",
     "listProperty": "Sæt din bolig til salg",
     "browseProperties": "Se boliger",
-    "imageAlt": "Moderne hus med have"
+    "imageAlt": "Moderne hus med have",
+    "subtitleGeneric": "Lejligheder, huse og grunde fra ejendomsmæglere ét sted"
   },
   "Search": {
     "heroTitle": "Det rigtige valg er nøglen",
@@ -119,7 +120,7 @@
     "subtitle": "Se vores udvalg af ejendomme",
     "noProperties": "Ingen boliger fundet",
     "viewDetails": "Se detaljer",
-    "bedrooms": "Soveværelser",
+    "bedrooms": "Værelser",
     "bathrooms": "Badeværelser",
     "area": "Areal",
     "price": "Pris",
@@ -177,7 +178,7 @@
     "emptyDesc": "Denne mægler har endnu ikke offentliggjort nogen annoncer."
   },
   "PropertyDetail": {
-    "beds": "Soveværelser",
+    "beds": "Værelser",
     "baths": "Badeværelser",
     "area": "Areal",
     "type": "Type",
@@ -217,7 +218,9 @@
     "addProperty": "Tilføj din bolig"
   },
   "Home": {
-    "featuredTitle": "Premiumboliger"
+    "featuredTitle": "Premiumboliger",
+    "latestTitle": "Nyeste boliger",
+    "showAll": "Vis alle"
   },
   "DashboardProperties": {
     "title": "Mine boliger",
@@ -405,26 +408,27 @@
     "copyright": "© {year} Nunvio. Alle rettigheder forbeholdes."
   },
   "Partners": {
-    "title": "Partnere inden for CRM og multipublicering",
-    "intro": "Forbind eksporter fra Softreal, Urbium, backOFFICE, RealSys og andre CRM-systemer, så tusindvis af annoncer synkroniseres automatisk til Nunvio — først i Slovakiet og Tjekkiet, derefter i resten af Europa.",
+    "title": "Tilslutning for ejendomsmæglere",
+    "intro": "Dine annoncer kommer automatisk til Nunvio fra det mæglersystem, du allerede bruger. Intet skal indtastes to gange.",
     "howTitle": "Sådan fungerer forbindelsen",
-    "how1": "Stil et stabilt XML-feed til rådighed via HTTPS (én URL pr. virksomhed eller pr. CRM-eksport).",
-    "how2": "Virksomheden tilmelder sig Nunvio og indsætter feed-URL'en under Kontrolpanel → XML-import.",
-    "how3": "Aktivér automatisk synkronisering — Nunvio henter data i bidder ca. hvert 15. minut (sikkert selv for store kataloger).",
-    "how4": "Annoncer opdateres via externalId — opdateringer skaber ikke dubletter.",
+    "how1": "Slå annonceeksporten (XML) til i dit system, og kopiér dens adresse.",
+    "how2": "Registrér dit kontor på Nunvio, og indsæt adressen under Annonceimport.",
+    "how3": "Derefter opdaterer Nunvio annoncerne automatisk: nye tilføjes, ændringer overføres og solgte fjernes.",
+    "how4": "Hver annonce vises kun én gang på Nunvio, også selvom systemet sender den flere gange.",
     "crmTitle": "Hvem det er til",
-    "crmBody": "Leverandører af CRM / multipublicering tilføjer Nunvio som eksportdestination. Virksomheder kan også indsætte deres eksisterende XML-URL direkte. Vi køber ikke kataloger fra konkurrerende portaler.",
-    "techTitle": "Teknisk pakke (klar)",
+    "crmBody": "For ejendomsmæglere og softwareleverandører, der vil tilføje Nunvio til de portaler, de sender annoncer til.",
+    "techTitle": "For teknikere",
     "techSync": "Synkronisering i bidder via cron, billedimport til R2, SK/CZ-feltaliasser (nazov, popis, cena, obec…).",
     "contactTitle": "Kontakt",
-    "contactBody": "For opsætning af forbindelsen eller en testkonto til virksomheder, skriv til",
+    "contactBody": "Spørgsmål eller brug for hjælp til tilslutningen? Skriv til os på",
     "ctaRegister": "Opret virksomhedskonto",
     "ctaSample": "Download eksempel-XML",
     "crmSlovakia": "Slovakiet",
     "crmCzechia": "Tjekkiet",
     "techSample": "Eksempel-XML",
     "techValidate": "Validér feed (API)",
-    "techDocs": "Dokumentation"
+    "techDocs": "Dokumentation",
+    "techBody": "Vi understøtter de almindelige eksportformater. Send os et eksempel på din fil, så tjekker vi den før start."
   },
   "Privacy": {
     "title": "Privatlivspolitik",
@@ -531,7 +535,10 @@
     "propertyBody": "Den bolig, du leder efter, findes ikke eller er blevet fjernet.",
     "agencyTitle": "Mægleren blev ikke fundet",
     "agencyBody": "Denne ejendomsmægler findes ikke eller er blevet fjernet.",
-    "browseAll": "Se alle boliger"
+    "browseAll": "Se alle boliger",
+    "pageTitle": "Siden blev ikke fundet",
+    "pageBody": "Siden findes ikke eller er flyttet. Søg efter en bolig, eller gå tilbage til forsiden.",
+    "goHome": "Forside"
   },
   "DashboardSidebar": {
     "badge": "Kontrolpanel",

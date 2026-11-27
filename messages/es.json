@@ -44,7 +44,8 @@
     "subtitle": "Más de {count} propiedades disponibles",
     "listProperty": "Publicar propiedad",
     "browseProperties": "Explorar propiedades",
-    "imageAlt": "Casa moderna con jardín"
+    "imageAlt": "Casa moderna con jardín",
+    "subtitleGeneric": "Pisos, casas y terrenos de inmobiliarias en un solo lugar"
   },
   "Search": {
     "heroTitle": "Elegir bien es la clave",
@@ -119,7 +120,7 @@
     "subtitle": "Explora nuestra selección de propiedades",
     "noProperties": "No se encontraron propiedades",
     "viewDetails": "Ver detalles",
-    "bedrooms": "Dormitorios",
+    "bedrooms": "Habitaciones",
     "bathrooms": "Baños",
     "area": "Superficie",
     "price": "Precio",
@@ -166,7 +167,7 @@
     }
   },
   "PropertyDetail": {
-    "beds": "Camas",
+    "beds": "Habitaciones",
     "baths": "Baños",
     "area": "Superficie",
     "type": "Tipo",
@@ -254,7 +255,9 @@
     "addProperty": "Añadir inmueble"
   },
   "Home": {
-    "featuredTitle": "Inmuebles destacados"
+    "featuredTitle": "Inmuebles destacados",
+    "latestTitle": "Últimos inmuebles",
+    "showAll": "Ver todos"
   },
   "AgencyDashboard": {
     "registerHeading": "Registra tu agencia",
@@ -418,26 +421,27 @@
     "copyright": "© {year} Nunvio. Todos los derechos reservados."
   },
   "Partners": {
-    "title": "Socios de CRM y multipublicación",
-    "intro": "Conecta Softreal, Urbium, backOFFICE, RealSys y otros CRM para que miles de anuncios se sincronicen automáticamente con Nunvio. Empezamos en Eslovaquia y Chequia y después el resto de Europa.",
+    "title": "Conexión para inmobiliarias",
+    "intro": "Sus anuncios llegan a Nunvio automáticamente desde el software inmobiliario que ya utiliza. No hay que introducir nada dos veces.",
     "howTitle": "Cómo funciona la conexión",
-    "how1": "Publica un feed XML estable por HTTPS (una URL por agencia o por exportación del CRM).",
-    "how2": "La agencia se registra en Nunvio y pega la URL del feed en Panel → Importación XML.",
-    "how3": "Activa la sincronización automática. Nunvio descarga los datos por partes cada 15 minutos aproximadamente (seguro también para catálogos grandes).",
-    "how4": "Los anuncios se identifican por externalId, así que las actualizaciones no crean duplicados.",
+    "how1": "Active la exportación de anuncios (XML) en su software y copie su dirección.",
+    "how2": "Registre su agencia en Nunvio y pegue la dirección en Importar anuncios.",
+    "how3": "A partir de ahí Nunvio actualiza sus anuncios automáticamente: añade los nuevos, copia los cambios y retira los vendidos.",
+    "how4": "Cada anuncio aparece en Nunvio una sola vez, aunque su software lo envíe varias veces.",
     "crmTitle": "Para quién es",
-    "crmBody": "Los proveedores de CRM y multipublicación añaden Nunvio como destino de exportación. Las agencias también pueden pegar directamente su URL XML. No compramos bases de datos de portales competidores.",
-    "techTitle": "Paquete técnico (listo)",
+    "crmBody": "Para inmobiliarias y proveedores de software que quieren añadir Nunvio a los portales a los que envían anuncios.",
+    "techTitle": "Para el equipo técnico",
     "techSync": "Sincronización por partes, importación de fotos, nombres de campos en eslovaco y checo (nazov, popis, cena, obec…).",
     "contactTitle": "Contacto",
-    "contactBody": "Para configurar la conexión o una cuenta de prueba, escribe a",
+    "contactBody": "¿Preguntas o necesita ayuda con la conexión? Escríbanos a",
     "ctaRegister": "Crear cuenta de agencia",
     "ctaSample": "Descargar XML de ejemplo",
     "crmSlovakia": "Eslovaquia",
     "crmCzechia": "Chequia",
     "techSample": "XML de ejemplo",
     "techValidate": "Validar feed (API)",
-    "techDocs": "Documentación"
+    "techDocs": "Documentación",
+    "techBody": "Admitimos los formatos de exportación habituales. Envíenos un ejemplo de su archivo y lo revisaremos antes de empezar."
   },
   "Privacy": {
     "title": "Política de privacidad",
@@ -544,7 +548,10 @@
     "propertyBody": "El inmueble que buscas no existe o se ha eliminado.",
     "agencyTitle": "Agencia no encontrada",
     "agencyBody": "Esta agencia inmobiliaria no existe o se ha eliminado.",
-    "browseAll": "Ver todos los inmuebles"
+    "browseAll": "Ver todos los inmuebles",
+    "pageTitle": "Página no encontrada",
+    "pageBody": "Esta página no existe o se ha movido. Busca un inmueble o vuelve a la página de inicio.",
+    "goHome": "Inicio"
   },
   "DashboardSidebar": {
     "badge": "Panel",

@@ -44,7 +44,8 @@
     "subtitle": "Več kot {count} razpoložljivih nepremičnin",
     "listProperty": "Objavite nepremičnino",
     "browseProperties": "Prebrskajte nepremičnine",
-    "imageAlt": "Moderna hiša z vrtom"
+    "imageAlt": "Moderna hiša z vrtom",
+    "subtitleGeneric": "Stanovanja, hiše in zemljišča nepremičninskih agencij na enem mestu"
   },
   "Search": {
     "heroTitle": "Prava izbira je ključna",
@@ -119,7 +120,7 @@
     "subtitle": "Prebrskajte našo ponudbo nepremičnin",
     "noProperties": "Ni najdenih nepremičnin",
     "viewDetails": "Podrobnosti",
-    "bedrooms": "Spalnice",
+    "bedrooms": "Sobe",
     "bathrooms": "Kopalnice",
     "area": "Površina",
     "price": "Cena",
@@ -177,7 +178,7 @@
     "emptyDesc": "Ta agencija še ni objavila nobenega oglasa."
   },
   "PropertyDetail": {
-    "beds": "Spalnice",
+    "beds": "Sobe",
     "baths": "Kopalnice",
     "area": "Površina",
     "type": "Vrsta",
@@ -217,7 +218,9 @@
     "addProperty": "Dodajte nepremičnino"
   },
   "Home": {
-    "featuredTitle": "Premium nepremičnine"
+    "featuredTitle": "Premium nepremičnine",
+    "latestTitle": "Najnovejše nepremičnine",
+    "showAll": "Prikaži vse"
   },
   "DashboardProperties": {
     "title": "Moje nepremičnine",
@@ -405,26 +408,27 @@
     "copyright": "© {year} Nunvio. Vse pravice pridržane."
   },
   "Partners": {
-    "title": "Partnerji za CRM in večkanalno objavljanje",
-    "intro": "Povežite izvoze iz sistemov Softreal, Urbium, backOFFICE, RealSys in drugih CRM-jev, da se tisoči oglasov samodejno sinhronizirajo z Nunviom — najprej na Slovaškem in Češkem, nato v preostali Evropi.",
+    "title": "Povezava za nepremičninske agencije",
+    "intro": "Vaši oglasi samodejno pridejo na Nunvio iz nepremičninske programske opreme, ki jo že uporabljate. Ničesar ni treba vnašati dvakrat.",
     "howTitle": "Kako deluje povezava",
-    "how1": "Zagotovite stabilen vir XML prek HTTPS (en URL na agencijo ali na izvoz CRM).",
-    "how2": "Agencija se registrira na Nunviu in prilepi URL vira v Nadzorna plošča → Uvoz XML.",
-    "how3": "Vklopite samodejno sinhronizacijo — Nunvio prenaša podatke po delih vsakih ~15 minut (varno tudi za velike kataloge).",
-    "how4": "Oglasi se posodabljajo glede na externalId — posodobitve ne ustvarjajo dvojnikov.",
+    "how1": "V programu vklopite izvoz oglasov (XML) in kopirajte njegov naslov.",
+    "how2": "Registrirajte agencijo na Nunvio in prilepite naslov v Uvoz oglasov.",
+    "how3": "Od takrat Nunvio samodejno posodablja oglase: doda nove, prenese spremembe in odstrani prodane.",
+    "how4": "Vsak oglas je na Nunvio samo enkrat, tudi če ga program pošilja večkrat.",
     "crmTitle": "Komu je namenjeno",
-    "crmBody": "Ponudniki CRM / večkanalnega objavljanja dodajo Nunvio kot cilj izvoza. Agencije lahko svoj obstoječi URL XML prilepijo tudi neposredno. Ne kupujemo katalogov od konkurenčnih portalov.",
-    "techTitle": "Tehnični paket (pripravljen)",
+    "crmBody": "Za nepremičninske agencije in ponudnike programske opreme, ki želijo Nunvio dodati med portale, kamor pošiljajo oglase.",
+    "techTitle": "Za tehnike",
     "techSync": "Sinhronizacija po delih prek crona, uvoz slik v R2, vzdevki polj SK/CZ (nazov, popis, cena, obec…).",
     "contactTitle": "Kontakt",
-    "contactBody": "Za nastavitev povezave ali testni račun agencije pišite na",
+    "contactBody": "Vprašanja ali pomoč pri povezavi? Pišite nam na",
     "ctaRegister": "Ustvari račun agencije",
     "ctaSample": "Prenesi vzorčni XML",
     "crmSlovakia": "Slovaška",
     "crmCzechia": "Češka",
     "techSample": "Vzorčni XML",
     "techValidate": "Preveri vir (API)",
-    "techDocs": "Dokumentacija"
+    "techDocs": "Dokumentacija",
+    "techBody": "Podpiramo običajne izvozne formate. Pošljite nam primer datoteke in ga bomo preverili pred zagonom."
   },
   "Privacy": {
     "title": "Pravilnik o zasebnosti",
@@ -531,7 +535,10 @@
     "propertyBody": "Nepremičnina, ki jo iščete, ne obstaja ali je bila odstranjena.",
     "agencyTitle": "Agencija ni najdena",
     "agencyBody": "Ta nepremičninska agencija ne obstaja ali je bila odstranjena.",
-    "browseAll": "Prebrskajte vse nepremičnine"
+    "browseAll": "Prebrskajte vse nepremičnine",
+    "pageTitle": "Strani ni mogoče najti",
+    "pageBody": "Ta stran ne obstaja ali je bila premaknjena. Poiščite nepremičnino ali se vrnite na domačo stran.",
+    "goHome": "Domača stran"
   },
   "DashboardSidebar": {
     "badge": "Nadzorna plošča",

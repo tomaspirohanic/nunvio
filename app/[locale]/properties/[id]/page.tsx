@@ -27,6 +27,8 @@ import ListingMarketInfo from "@/components/properties/ListingMarketInfo";
 import MortgageCalculator from "@/components/properties/MortgageCalculator";
 import NearbyPlaces from "@/components/properties/NearbyPlaces";
 import { countryConfig } from "@/lib/country-config";
+import { localizeCountryName } from "@/lib/country-display";
+import { Bath, DoorOpen, Home, Ruler } from "lucide-react";
 
 // ISR: detail pages are rendered once and served from the CDN; refreshed at
 // most every 10 min, or immediately when the listing changes
@@ -153,7 +155,7 @@ export async function generateMetadata({
 
   if (!property) {
     return {
-      title: `${(await getTranslations({ locale, namespace: "NotFound" }))("propertyTitle")} | Nunvio`,
+      title: `${(await getTranslations({ locale, namespace: "NotFound" }))("propertyTitle")}`,
     };
   }
 
@@ -162,9 +164,10 @@ export async function generateMetadata({
     property,
     property.translations[0]
   );
+  const country = localizeCountryName(property.country, locale);
   const location = property.address
-    ? `${property.address}, ${property.country}`
-    : `${property.city}, ${property.country}`;
+    ? `${property.address}, ${country}`
+    : `${property.city}, ${country}`;
 
   // Simple price formatting for metadata (no conversion needed)
   const priceFormatted = new Intl.NumberFormat("en-US", {
@@ -175,7 +178,8 @@ export async function generateMetadata({
   }).format(property.price);
 
   return {
-    title: `${title} - ${location} | Nunvio`,
+    // The root layout's title template adds " | Nunvio".
+    title: `${title} - ${location}`,
     description: `${description.substring(0, 160)}... Location: ${location}. Price: ${priceFormatted}.`,
   };
 }
@@ -195,6 +199,8 @@ export default async function PropertyDetailPage({
   }
 
   const t = await getTranslations({ locale, namespace: "PropertyDetail" });
+  const tTypes = await getTranslations({ locale, namespace: "PropertyTypes" });
+  const typeLabel = tTypes(property.propertyType);
 
   // Stored translation for this locale, else the original text.
   // Never machine-translate during render (cost + latency); see
@@ -232,9 +238,12 @@ export default async function PropertyDetailPage({
             }
       : null;
 
+  const countryLabel = property.country
+    ? localizeCountryName(property.country, locale)
+    : "";
   const addressLine = property.address
-    ? `${property.address}${property.country ? `, ${property.country}` : ""}`
-    : `${property.city}, ${property.country}`;
+    ? `${property.address}${countryLabel ? `, ${countryLabel}` : ""}`
+    : `${property.city}, ${countryLabel}`;
   const contactBoxProperty = {
     id: property.id,
     title: displayTitle,
@@ -307,7 +316,7 @@ export default async function PropertyDetailPage({
                 {property.offerType === "RENT" ? t("forRent") : t("forSale")}
               </span>
               <span className="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1 text-sm font-medium text-gray-700 shadow-sm">
-                {property.propertyType}
+                {typeLabel}
               </span>
               {promotionBadge && (
                 <span
@@ -324,55 +333,31 @@ export default async function PropertyDetailPage({
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-8 pb-16">
           {/* Left column */}
           <div className="lg:col-span-2">
-            {/* Key features */}
-            <div className="flex flex-wrap gap-6 rounded-2xl border border-gray-200 bg-white p-6">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-center">
-                  <span className="text-sm font-semibold text-gray-700">🛏</span>
-                </div>
-                <div>
-                  <div className="text-sm text-gray-500">{t("beds")}</div>
-                  <div className="text-lg font-semibold text-gray-950">
-                    {property.bedrooms}
+            {/* Key features (0 = not given, e.g. commercial space: hidden) */}
+            <div className="grid grid-cols-2 gap-6 rounded-2xl border border-gray-200 bg-white p-6 sm:flex sm:flex-wrap sm:gap-10">
+              {[
+                { show: property.bedrooms > 0, Icon: DoorOpen, label: t("beds"), value: property.bedrooms },
+                { show: property.bathrooms > 0, Icon: Bath, label: t("baths"), value: property.bathrooms },
+                {
+                  show: property.areaSqm > 0,
+                  Icon: Ruler,
+                  label: t("area"),
+                  value: <AreaValue areaSqm={property.areaSqm} />,
+                },
+                { show: true, Icon: Home, label: t("type"), value: typeLabel },
+              ]
+                .filter((f) => f.show)
+                .map(({ Icon, label, value }) => (
+                  <div key={label} className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gray-200 bg-gray-50">
+                      <Icon className="h-5 w-5 text-gray-600" aria-hidden />
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-500">{label}</div>
+                      <div className="text-lg font-semibold text-gray-950">{value}</div>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-center">
-                  <span className="text-sm font-semibold text-gray-700">🛁</span>
-                </div>
-                <div>
-                  <div className="text-sm text-gray-500">{t("baths")}</div>
-                  <div className="text-lg font-semibold text-gray-950">
-                    {property.bathrooms}
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-center">
-                  <span className="text-sm font-semibold text-gray-700">㎡</span>
-                </div>
-                <div>
-                  <div className="text-sm text-gray-500">{t("area")}</div>
-                  <div className="text-lg font-semibold text-gray-950">
-                    <AreaValue areaSqm={property.areaSqm} />
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-center">
-                  <span className="text-sm font-semibold text-gray-700">🏠</span>
-                </div>
-                <div>
-                  <div className="text-sm text-gray-500">{t("type")}</div>
-                  <div className="text-lg font-semibold text-gray-950">
-                    {property.propertyType}
-                  </div>
-                </div>
-              </div>
+                ))}
             </div>
 
             <ListingMarketInfo

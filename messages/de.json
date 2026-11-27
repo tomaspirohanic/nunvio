@@ -34,7 +34,8 @@
     "subtitle": "Über {count} Immobilien verfügbar",
     "listProperty": "Immobilie inserieren",
     "browseProperties": "Immobilien durchsuchen",
-    "imageAlt": "Modernes Haus mit Garten"
+    "imageAlt": "Modernes Haus mit Garten",
+    "subtitleGeneric": "Wohnungen, Häuser und Grundstücke von Maklern an einem Ort"
   },
   "Search": {
     "where": "Wo",
@@ -118,7 +119,7 @@
     "subtitle": "Durchsuchen Sie unsere Sammlung von Immobilien",
     "noProperties": "Keine Immobilien gefunden",
     "viewDetails": "Details anzeigen",
-    "bedrooms": "Schlafzimmer",
+    "bedrooms": "Zimmer",
     "bathrooms": "Badezimmer",
     "area": "Fläche",
     "price": "Preis",
@@ -164,7 +165,9 @@
     "addProperty": "Immobilie hinzufügen"
   },
   "Home": {
-    "featuredTitle": "Premium-Immobilien"
+    "featuredTitle": "Premium-Immobilien",
+    "latestTitle": "Neueste Immobilien",
+    "showAll": "Alle anzeigen"
   },
   "DashboardProperties": {
     "title": "Meine Immobilien",
@@ -349,7 +352,7 @@
     "emptyDesc": "Dieser Makler hat noch keine Inserate veröffentlicht."
   },
   "PropertyDetail": {
-    "beds": "Schlafzimmer",
+    "beds": "Zimmer",
     "baths": "Bäder",
     "area": "Fläche",
     "type": "Typ",
@@ -427,26 +430,27 @@
     "copyright": "© {year} Nunvio. Alle Rechte vorbehalten."
   },
   "Partners": {
-    "title": "CRM- und Multi-Posting-Partner",
-    "intro": "Verbinden Sie Softreal, Urbium, backOFFICE, RealSys und andere CRM-Exporte, damit Tausende Inserate automatisch mit Nunvio synchronisiert werden. Wir starten in der Slowakei und Tschechien, danach folgt der Rest Europas.",
+    "title": "Anbindung für Immobilienmakler",
+    "intro": "Ihre Inserate gelangen automatisch aus der Maklersoftware, die Sie bereits nutzen, auf Nunvio. Nichts muss doppelt eingegeben werden.",
     "howTitle": "So funktioniert die Anbindung",
-    "how1": "Stellen Sie einen stabilen HTTPS-XML-Feed bereit (eine URL pro Makler oder CRM-Export).",
-    "how2": "Der Makler registriert sich bei Nunvio und fügt die Feed-URL unter Übersicht → XML-Import ein.",
-    "how3": "Automatische Synchronisierung aktivieren. Nunvio lädt die Daten etwa alle 15 Minuten in Teilen (sicher auch für große Kataloge).",
-    "how4": "Inserate werden über die externalId zugeordnet, Aktualisierungen erzeugen keine Duplikate.",
+    "how1": "Aktivieren Sie in Ihrer Maklersoftware den Inserate-Export (XML) und kopieren Sie dessen Adresse.",
+    "how2": "Registrieren Sie Ihr Büro auf Nunvio und fügen Sie die Adresse unter Inserate-Import ein.",
+    "how3": "Ab dann aktualisiert Nunvio Ihre Inserate automatisch: Neue werden hinzugefügt, Änderungen übernommen, verkaufte entfernt.",
+    "how4": "Jedes Inserat erscheint nur einmal auf Nunvio, auch wenn Ihre Software es mehrfach sendet.",
     "crmTitle": "Für wen ist das?",
-    "crmBody": "CRM- und Multi-Posting-Anbieter fügen Nunvio als Exportziel hinzu. Makler können auch ihre bestehende XML-URL direkt einfügen. Wir kaufen keine Datenbestände von konkurrierenden Portalen.",
-    "techTitle": "Technisches Paket (bereit)",
+    "crmBody": "Für Immobilienbüros und Softwareanbieter, die Nunvio zu den Portalen hinzufügen möchten, an die sie Inserate senden.",
+    "techTitle": "Für Techniker",
     "techSync": "Synchronisierung in Teilen, Bildimport, slowakische und tschechische Feldnamen (nazov, popis, cena, obec…).",
     "contactTitle": "Kontakt",
-    "contactBody": "Für die Einrichtung der Anbindung oder ein Testkonto schreiben Sie an",
+    "contactBody": "Fragen oder Hilfe bei der Anbindung? Schreiben Sie uns an",
     "ctaRegister": "Maklerkonto erstellen",
     "ctaSample": "Beispiel-XML herunterladen",
     "crmSlovakia": "Slowakei",
     "crmCzechia": "Tschechien",
     "techSample": "Beispiel-XML",
     "techValidate": "Feed prüfen (API)",
-    "techDocs": "Dokumentation"
+    "techDocs": "Dokumentation",
+    "techBody": "Wir unterstützen die gängigen Exportformate. Senden Sie uns ein Beispiel Ihrer Datei, wir prüfen sie vor dem Start."
   },
   "Privacy": {
     "title": "Datenschutzerklärung",
@@ -553,7 +557,10 @@
     "propertyBody": "Das gesuchte Inserat existiert nicht oder wurde entfernt.",
     "agencyTitle": "Makler nicht gefunden",
     "agencyBody": "Dieser Immobilienmakler existiert nicht oder wurde entfernt.",
-    "browseAll": "Alle Immobilien ansehen"
+    "browseAll": "Alle Immobilien ansehen",
+    "pageTitle": "Seite nicht gefunden",
+    "pageBody": "Diese Seite existiert nicht oder wurde verschoben. Suchen Sie nach einer Immobilie oder kehren Sie zur Startseite zurück.",
+    "goHome": "Startseite"
   },
   "DashboardSidebar": {
     "badge": "Verwaltung",
